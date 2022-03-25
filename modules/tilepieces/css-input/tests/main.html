@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>main test css input</title>
+  <style>
+    body {
+      font-size: 1.4em;
+    }
+  </style>
+  <style>
+    .panel-element {
+      display: none
+    }
+  </style>
+  <link href="../css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input" data-tilepieces-current-stylesheet="">
+</head>
+<body><h2>Note: if there is space in text node ( not trimmed ), selection doesn't work well ( two and three examples)</h2>
+<fieldset>
+  <legend>one</legend>
+  <div class="input-css" contenteditable="">100px solid rgb(255, 0, 0)</div>
+</fieldset>
+<fieldset>
+  <legend>two</legend>
+  <div class="input-css" contenteditable="">background:
+    url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7) 0 0 no-repeat;
+  </div>
+</fieldset>
+<fieldset>
+  <legend>three</legend>
+  <div class="input-css" contenteditable="">
+    url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7) 0 0 no-repeat
+    red,linear-gradient(10% rgb(0,0,0),100% rgba(0,0,0,0))
+  </div>
+</fieldset>
+<fieldset><legend>four</legend>
+  <div class="input-css" contenteditable="">1px solid hsl(0, 100%, 50%)</div>
+</fieldset>
+
+<fieldset>
+  <legend>five</legend>
+  <div class="input-css" contenteditable="">linear-gradient(10% rgb(0,0,0),100% rgba(0,0,0,0))</div>
+</fieldset>
+<div class="panel-element" data-alt-popup="" data-tilepieces-component="tilepieces/colorpicker" id="colorpicker">
+  <div class="panel-handler">
+    <span class="panel-title">tilepieces - colorpicker</span>
+  </div>
+  <span class="panel-minimize">_</span>
+  <span class="panel-eject"></span>
+  <span class="panel-close">X</span>
+  <iframe data-src=""></iframe>
+  <div class="panel-prevent-iframe-mousedown"></div>
+</div>
+<script src="../css-input.bundle.js" data-tilepieces-component="tilepieces/css-input"></script>
+<script>
+  inputCss(document.body);
+</script>
+
+</body></html>

@@ -1,0 +1,50 @@
+{
+  "name": "tilepieces/framework",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "html/tilepieces-framework.html",
+  "addDependenciesToBundles": true,
+  "bundle": {
+    "stylesheet": {
+      "href": "tilepieces-framework.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "tilepieces-framework.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [
+      "css/*.css"
+    ],
+    "scripts": [
+      "src/header",
+      "src/*.js",
+      "src/!(header)**/**/*.js"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/stylesheet",
+    "tilepieces/core",
+    "tilepieces/panel",
+    "tilepieces/dialog",
+    "tilepieces/tt",
+    "tilepieces/codeMirror-editor",
+    "tilepieces/colorpicker",
+    "tilepieces/dialogReader",
+    "tilepieces/wysiwyg"
+  ],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": true,
+  "parseHTML": "parseHTML.js",
+  "components": {}
+}

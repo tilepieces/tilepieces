@@ -1,0 +1,31 @@
+<title>Example Window</title>
+example
+<nav>
+    <button>create div</button>
+    <button>create section</button>
+    <div>Last created : <span></span></div>
+</nav>
+
+<script>
+    console.log("example window loaded");
+    var opener = window.opener ? window.opener : window.parent;
+    console.log(window.parent,window.opener);
+    console.log(opener);
+    var buttonDiv = document.querySelector("nav").children[0];
+    var buttonSection = document.querySelector("nav").children[1];
+    var spanLast = document.querySelector("nav").children[2].children[0];
+    buttonDiv.addEventListener("click",()=>createDOMelements('div'))
+    buttonSection.addEventListener("click",()=>createDOMelements('section'))
+    function createDOMelements(tagName){
+        console.log(opener);
+        var el = `<${tagName}></${tagName}>`;
+        var newHtml = document.createElement(tagName);
+        newHtml.textContent = `new ${tagName} created here`;
+        opener.eventInterface.dispatch("component-selected",{
+            newHtml : newHtml,
+            newElHTML : el
+        });
+        spanLast.textContent = "Created a " + tagName + " on " + new Date();
+    }
+    opener.addEventListener("window-popup-open",e=>console.log("open on example",e.detail));
+</script>

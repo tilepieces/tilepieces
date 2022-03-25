@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head><title> css viewer</title>
+  <link href="../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs">
+  <link href="../../drag/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag">
+  <link href="../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input">
+  <link href="../../autocomplete/autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete">
+  <link href="../../css-text/css-text.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-text">
+  <link href="../../css-rule-modification/css-rule-modification.css" rel="stylesheet"
+        data-tilepieces-component="tilepieces/css-rule-modification">
+  <link href="../../animations/animations.bundle.css" rel="stylesheet"
+        data-tilepieces-component="tilepieces/animations">
+  <link href="../../transform/transform.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/transform">
+  <link href="../../layout/layout.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/layout">
+  <link href="../../dropzone/dropzone.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/dropzone">
+  <link href="../../gradient/gradient.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/gradient">
+  <link href="../../background/background.bundle.css" rel="stylesheet"
+        data-tilepieces-component="tilepieces/background">
+  <link href="../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet">
+  <link href="../../fonts/fonts.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/fonts">
+  <link href="../../border/border.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/border">
+  <link href="../../css-inspector/css-inspector.bundle.css" rel="stylesheet"
+        data-tilepieces-component="tilepieces/css-inspector">
+  <link href="../css-viewer.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-viewer"
+        data-tilepieces-current-stylesheet="">
+</head>
+<body>
+<div id="css-viewer" class="${isVisible}">
+  <div class="css-selector">
+    <details>
+      <summary class="css-viewer-media-rules">
+        <div class="flex-box-stroke">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;"
+                 xml:space="preserve">
+            <g>
+              <ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)"
+                       style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5"
+                       rx="11"
+                       ry="11"></ellipse>
+              <path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+              C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+              <path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+              C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+              </g>
+            </svg>
+          </span>
+          Grouping rule:
+          <span data-if="grChosen">
+            <span data-if="grChosen.inheritedConditionText">${grChosen.inheritedConditionText},</span>
+            ${grChosen.conditionText}
+          </span>
+          <button id="add-gr-rule" class="component-properties-add">+</button>
+        </div>
+      </summary>
+      <ul>
+        <li data-foreach="groupingRules" data-foreach-key-name="gr" data-index="${gr.index}"
+            data-iscurrent="${gr.isCurrentGr}" class="grouping-rule-item flex-box">
+            <span class="grouping-condition">
+              <svg x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;"
+                   xml:space="preserve">
+                <g>
+              <path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+              C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+              <path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+              C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+              </g>
+              </svg>
+              <span data-if="gr.inheritedConditionText">${gr.inheritedConditionText},</span>
+              ${gr.conditionText}
+            </span>
+          <button class="delete-gr-rule component-properties-remove" data-index="${gr.index}">-</button>
+        </li>
+      </ul>
+    </details>
+    <div><span>Rule:</span>
+      <span data-bind="currentSelector" data-bind-events="blur,input" contenteditable="" spellcheck="false"></span>
+      <div class="related-selectors">
+        <a href="#" class="related-selectors-select">${relatedSelectors.length}</a> affected by this rule
+      </div>
+      <div data-if="!selectorMatch" class="rule-sector-wrong">Selector doesn't apply to current element</div>
+    </div>
+  </div>
+  <!-- modal new gr -->
+  <div id="modal-new-gr">
+    <section>
+      <div class="modal-new-gr-close"></div>
+      <!-- code for other grouping rule like support
+      <div class="modal-new-gr-select">
+        <select data-bind="newGroupingType">
+          <option value="0">@media</option>
+          <option value="1">@supports</option>
+        </select>
+      </div>
+      <div data-if="newGroupingType == '1'">
+        @supports <input data-bind="supportCondition">
+        <div>
+          Set css in this @supports rule <input type="checkbox" data-bind="mediaQueryUICheck">
+        </div>
+        <div>
+          <button class="support-done" ${newgrbuttondisabled}="">Done</button>
+        </div>
+      </div>
+      -->
+      <div id="modal-media-queries" data-if="newGroupingType == '0'">
+        <div class="modal-media-content">
+          Min-max width<input type="radio" data-bind="mediaQueryUIMask" name="media-query-UI" value="min-max-width">
+          Freehand<input type="radio" data-bind="mediaQueryUIMask" name="media-query-UI" value="freehand">
+        </div>
+        <div data-if="mediaQueryUIMask == 'min-max-width'" id="media-query-UI-mask">
+          @media
+          <select class="media-logical-operator" data-bind="mediaQueryMainLogicalOperator">
+            <option value=""></option>
+            <option value="not">not</option>
+            <option value="only">only</option>
+          </select>
+          <div>
+            <select data-bind="mediaQueryUIMaskMediaType">
+              <option value="all">all</option>
+              <option value="print">print</option>
+              <option value="screen">screen</option>
+              <option value="speech">speech</option>
+            </select>
+            <button data-if="!mediaQueryUIMaskFeatures.length" class="add-media-feature" title="add media feature">+
+            </button>
+          </div>
+          <div data-foreach="mediaQueryUIMaskFeatures">
+            <div>
+              <select class="media-logical-operator" data-bind="key.logicalOperator">
+                <option value="and">and</option>
+                <option value="not">not</option>
+                <option value="only">only</option>
+              </select>
+            </div>
+            <select class="media-feature" data-index="${key.index}" data-bind="key.feature">
+              <option value="max-width">max-width</option>
+              <option value="min-width">min-width</option>
+              <option value="max-height">max-height</option>
+              <option value="min-height">min-height</option>
+              <option value="orientation">orientation</option>
+            </select>
+            <div data-if="key.featureInput == 'input'">
+              <div class="input-css" data-index="${key.index}" data-value="${key.value}" data-bind="key.value"
+                   data-bind-events="blur" contenteditable="">
+              </div>
+            </div>
+            <select data-if="key.featureInput == 'orientation'" data-bind="key.value">
+              <option value="landscape">landscape</option>
+              <option value="portrait">portrait</option>
+            </select>
+            <button data-index="${key.index}" class="delete-feature" title="delete media feature">-</button>
+            <button data-if="key.index == mediaQueryUIMaskFeatures.length-1" class="add-media-feature"
+                    title="add media feature">+
+            </button>
+          </div>
+        </div>
+        <div data-if="mediaQueryUIMask == 'freehand'">
+          <input data-bind="mediaQueryUIFreeHand" data-bind-events="input">
+        </div>
+        <div class="label-for-mediaQueryUICheck">
+          <label for="mediaQueryUICheck">Set css in this media query</label>
+          <input type="checkbox" data-bind="mediaQueryUICheck" id="mediaQueryUICheck">
+        </div>
+        <div>
+          <button class="modal-media-done" ${mediaqueryuidisabled}="">Done</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>setCurrentStyleSheet test</title>
+  <style>
+    .larger {
+      font-size: larger;
+      margin: 5px 0;
+      border-bottom: 1px solid #ccc
+    }
+
+    .large {
+      font-size: large;
+      margin: 5px 0;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success::before {
+      content: "\2713";
+      padding-right: 10px;
+    }
+
+    .error::before {
+      content: "\2715";
+      padding-right: 10px;
+    }
+  </style>
+</head>
+<body>
+<section id=log-section></section>
+<iframe id=frame style="display:none"></iframe>
+<script src="../../../html-tree-match/htmlTreeMatch.js" data-tilepieces-component="tilepieces/html-tree-match"></script>
+<script src="../../../css-split-value/splitCssValue.js" data-tilepieces-component="tilepieces/css-split-value"></script>
+<script src="../../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script>
+<script src="../../../css-specificity/cssSpecificity.js"
+        data-tilepieces-component="tilepieces/css-specificity"></script>
+<script src="../../../css-matcher/css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script>
+<script src="../../tilepieces-core.js" data-tilepieces-component="tilepieces/core"></script>
+<!-- test utils -->
+<script src="testUtils/assert.js"></script>
+<script src="testUtils/logOnDocument.js"></script>
+<script src="testUtils/getDocuments.js"></script>
+<script src="testUtils/compareDocuments.js"></script>
+<script src="testUtils/setTest.js"></script>
+<script src="testUtils/logError.js"></script>
+<script src="htmlMatch/addHeadNode.js"></script>
+<script src="stylesheet/setCurrentStyleSheet.js"></script>
+<script>
+  setTest().then(async function () {
+    try {
+      var historys = [];
+      historys.push(getDocuments());
+      var style = tilepieces.core.currentDocument.createElement("style");
+      addHeadNode(style);
+      historys.push(getDocuments());
+      await setCurrentStyleSheetTest(style);
+      historys.push(getDocuments());
+      var historyEntriesLength = tilepieces.core.history.entries.length;
+      var pointer = tilepieces.core.history.pointer;
+      logOnDocument(
+        assert(historyEntriesLength == pointer,
+          "expect history pointer be equal to history entries length"), "success");
+      logOnDocument(
+        assert(pointer == 2,
+          "expect history pointer be equal to 2"), "success");
+      for (var i = pointer; i > 0; i--) {
+        tilepieces.core.undo();
+        logOnDocument("compare after undo");
+        compareDocuments(historys[i - 1]);
+      }
+      for (var i2 = 0; i2 < pointer; i2++) {
+        await tilepieces.core.redo();
+        logOnDocument("compare after redo");
+        compareDocuments(historys[i2 + 1]);
+      }
+      logOnDocument("test success!!!!");
+      window.dispatchEvent(new Event("test-success"))
+    } catch (e) {
+      logError(e);
+    }
+  })
+    .catch(logError);
+</script>
+</body>
+</html>

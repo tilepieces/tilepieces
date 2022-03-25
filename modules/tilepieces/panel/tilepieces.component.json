@@ -1,0 +1,43 @@
+{
+  "name": "tilepieces/panel",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "css/css.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
+    "script": {
+      "src": "panel.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/drag"
+  ],
+  "components": {
+    "tilepieces/panel/template": {
+      "name": "tilepieces/panel/template",
+      "path": "/components/panel/template"
+    }
+  },
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

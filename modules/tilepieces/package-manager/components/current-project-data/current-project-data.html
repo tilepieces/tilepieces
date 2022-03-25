@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html><head>
+  <style>#current-project-data {
+    display: block !important;
+  }</style>
+  <link href="../../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet">
+  <link href="../../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs">
+  <link href="../../../dialog/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialog">
+  <link href="../../../vertical-tab/vertical-tab.css" rel="stylesheet" data-tilepieces-component="tilepieces/vertical-tab">
+  <link href="../../css/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/package-manager" data-tilepieces-current-stylesheet="">
+</head>
+<body>
+<div id="current-project-data" style="display:none">
+  <div ${hiddenattr}="">
+    <fieldset>
+      <legend><input type="checkbox" data-bind="project.sandboxFrame">sandbox page<a href="https://tilepieces.net/documentation/data-structures/general-settings.html#sandbox-page" class="info-round-icon" target="_blank"></a>
+      </legend>
+    </fieldset>
+    <fieldset>
+      <legend><input type="checkbox" data-bind="project.relativePaths">relative paths
+        <a href="https://tilepieces.net/documentation/data-structures/general-settings.html#relative-paths" class="info-round-icon" target="_blank"></a></legend>
+    </fieldset>
+    <fieldset>
+      <legend><label for="component-path">component path<a href="https://tilepieces.net/documentation/data-structures/general-settings.html#components-path" class="info-round-icon" target="_blank"></a></label></legend>
+      <input data-bind="project.componentPath" id="component-path">
+    </fieldset>
+    
+    <fieldset>
+      <legend><label for="miscDir">miscellaneous dir<a href="https://tilepieces.net/documentation/data-structures/general-settings.html#miscellaneous-dir" class="info-round-icon" target="_blank"></a></label></legend>
+      <input data-bind="project.miscDir" id="miscDir">
+    </fieldset>
+    <fieldset>
+      <legend><label for="delayUpdateFileMs">delay when update file<a href="https://tilepieces.net/documentation/data-structures/general-settings.html#delayUpdateFileMs" class="info-round-icon" target="_blank"></a></label></legend>
+      <input data-bind="project.delayUpdateFileMs" id="delayUpdateFileMs">
+    </fieldset>
+    <fieldset>
+      <legend>
+        <label for="imageTypeProcess">image type Process<a href="https://tilepieces.net/documentation/data-structures/general-settings.html#image-type-process" class="info-round-icon" target="_blank"></a></label>
+      </legend>
+      <select data-bind="project.imageTypeProcess" id="imageTypeProcess">
+        <option value="0">file system</option>
+        <option value="64">base64</option>
+      </select>
+    </fieldset>
+    <fieldset>
+      <legend><span>Files<a href="https://tilepieces.net/documentation/data-structures/project.html#files" class="info-round-icon" target="_blank"></a></span>
+        <button class="current-project-data__add-files">+</button>
+      </legend>
+      <div data-foreach="project.files" class="project-with-remove">
+        <input class="current-project-data__file-value" data-bind="key.value">
+        <button class="current-project-data__remove-files" data-index="${key.index}">-</button>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+</body></html>

@@ -1,0 +1,40 @@
+.__drag__drop-overlay{
+    box-shadow:inset 0 0 10px 0 rgba(0,0,0,0.35);
+}
+dummy-drag{
+    position:absolute;top:0;left:0;opacity:0.7;
+    transform:translate(-9999px,-9999px);
+    pointer-events:none;
+    touch-action:none;
+    cursor:grabbing;
+    z-index:1
+}
+.__drag-prevent-mouse-out{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:9;
+    display:none;
+}
+.__drag-cursor-grab{
+    cursor:grab;
+    cursor: -webkit-grab;
+}
+body.__drag-cursor-grabbing,
+body.__drag-cursor-grabbing *{
+    cursor:grabbing!important;
+    cursor: -webkit-grabbing!important;
+}
+.targetClone{
+    position:absolute;
+    opacity:0.4;
+    pointer-events: none;
+    top:0;
+    left:0;
+}
+.targetClone li{list-style:none}
+.cloneToAppend{
+    background-color:cyan;
+}

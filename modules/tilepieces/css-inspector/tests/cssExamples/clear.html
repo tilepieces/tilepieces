@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>clear examples </title>
+  <style>
+    .wrapper {
+      border: 1px solid black;
+      padding: 10px;
+    }
+
+    .wrapper p.left {
+      border: 1px solid black;
+      clear: left;
+    }
+
+    .wrapper p.black {
+      float: left;
+      margin: 0;
+      background-color: black;
+      color: #fff;
+      width: 20%;
+    }
+
+    .wrapper p.red {
+      float: left;
+      margin: 0;
+      background-color: pink;
+      width: 20%;
+    }
+
+    .wrapper p {
+      width: 50%;
+    }
+
+    img {
+      float: left;
+    }
+
+    p.clear {
+      clear: both;
+    }
+
+    .wrapper p.rightFloat {
+      float: right;
+    }
+
+    .rightClear {
+      clear: right;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <p class="black">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus sit amet diam. Duis mattis varius
+    dui. Suspendisse eget dolor.</p>
+  <p class="red">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+  <p class="left">This paragraph clears left.</p>
+</div>
+<div class="wrapper">
+  <p class="black rightFloat">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus sit amet diam. Duis
+    mattis varius dui. Suspendisse eget dolor.</p>
+  <p class="red rightFloat">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+  <p class="rightClear">This paragraph clears right.</p>
+</div>
+<div>
+  <h1>The clear Property</h1>
+
+  <img src="https://www.w3schools.com/cssref/w3css.gif" width="100" height="132">
+  <p>This is some text. This is some text. This is some text. This is some text. This is some text. This is some
+    text.</p>
+  <p class="clear">This is also some text. This is also some text. This is also some text. This is also some text. This
+    is also some text. This is also some text.</p>
+  <p><strong>Remove the "clear" class to see the effect.</strong></p>
+</div>
+</body>
+</html>

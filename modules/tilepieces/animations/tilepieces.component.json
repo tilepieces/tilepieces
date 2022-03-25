@@ -1,0 +1,41 @@
+{
+  "name": "tilepieces/animations",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "html/animations.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "animations.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
+    "script": {
+      "src": "animations.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src/header",
+      "src/*.js",
+      "src/events"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/css-rule-modification",
+    "tilepieces/tabs"
+  ],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": true,
+  "parseHTML": "",
+  "components": {}
+}

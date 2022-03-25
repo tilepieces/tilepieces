@@ -1,0 +1,32 @@
+{
+  "name": "tilepieces/vanilla-picker",
+  "description": "A simple, easy to use vanilla JS (no dependencies) color picker with alpha selection.",
+  "version": "2.11.2",
+  "author": "Andreas Borgen (https://github.com/Sphinxxxx), Adam Brooks (https://github.com/dissimulate)",
+  "website": "https://vanilla-picker.js.org/",
+  "repository": "https://github.com/Sphinxxxx/vanilla-picker",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {},
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "vanilla-picker.min.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": []
+  },
+  "dependencies": [],
+  "components": [],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

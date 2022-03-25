@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title></title>
+  <link rel="stylesheet" href="css.css" data-tilepieces-current-stylesheet=""></head><body><input type="checkbox"><div class="flex-box"><div class="start-flex-box">sdsdsdssd</div>
+<button disabled="">This is a BUTTON tag</button></div>
+    <ul><li><a href="#" data-index="0"><span class="element-sum-tag-name">a</span></a></li><li>
+      <a href="#" data-index="2"><span class="element-sum-tag-name">a</span></a></li>
+      <li><a href="#" data-index="3"><span class="element-sum-tag-name">a</span></a></li>
+      <li><a href="#" data-index="5"><span class="element-sum-tag-name">sup</span>&nbsp;
+        <span class="element-sum-id">#cite_ref-2</span>&nbsp;<span class="element-sum-classes">.reference</span>
+      </a></li></ul>
+<details>
+        <summary>details summary</summary>
+    
+    <details>
+        <summary>An inner summary</summary>
+    </details>
+</details>
+<div class="flex-box"><div class="upload-button"><label class="as-button">UPLOAD
+<input type="file"></label></div><input><button>This is a BUTTON tag</button></div>
+<div class="flex-box"><input><button disabled="">This is a BUTTON tag</button></div><div class="flex-box"><input><button>-</button></div><div class="flex-box two-buttons"><button style="">This is a BUTTON tag</button><button>This is a BUTTON tag</button></div>
+  
+  <div style="display: flex; flex-wrap: wrap;">
+  <div class="flex-box two-buttons"><button style="">This is a BUTTON tag</button><button>?</button>
+	</div>
+    <div class="flex-box two-buttons"><button style="">This is a BUTTON tag</button><button>?</button>
+	</div>
+    <div class="flex-box two-buttons"><button style="">This is a BUTTON tag</button><button>?</button>
+	</div>
+    <div class="flex-box two-buttons"><button style="">This is a BUTTON tag</button><button>?</button>
+	</div>
+</div><section id="main">
+    <div id="attributes">
+      <div class="attributes-node-name">
+        <label for="node-name">Node Name:</label>
+        <input name="node-name" id="node-name" data-bind="nodeName" ${nodenamedisabled}="">
+        
+        <small class="tilepieces-small-error show">Node name invalid in this position</small>
+      </div>
+      
+      
+    </div>
+  </section>
+
+  <section id="component-interface">
+    <fieldset>
+      <legend><label>associated components</label><button>-</button></legend>
+      <select data-bind="interfaceAssociated" id="interfaces-associated">
+        <option data-foreach="interfaces" value="${key.name}">${key.name}</option>
+      </select>
+    </fieldset>
+    
+  <fieldset class="no-border">
+      <legend><input value="associated components"><button>-</button></legend>
+      <select data-bind="interfaceAssociated" id="interfaces-associated">
+        <option data-foreach="interfaces" value="${key.name}">${key.name}</option>
+      </select>
+    </fieldset></section>
+<div class="flex-box">
+  <input min="1" type="number" data-bind="key.size.value" change-srcset="">
+  <select data-bind="key.size.unit" data-change-srcset="">
+    <option value="">(not setted)</option>
+    <option value="w">Width</option>
+    <option value="x">Pixel Density</option>
+  </select>
+</div>
+<fieldset>
+            <legend><span>srcset</span><button class="add-srcset">+</button></legend>
+            
+            <fieldset data-foreach="srcsets">
+  <legend>
+    <span>srcset #${key.count}</span>
+  </legend>
+  <fieldset class="no-border">
+  <legend>
+    <label for="srcset-src-${key.count}">src</label>
+    <button class="remove-srcset" data-count="${key.count}">-</button>
+  </legend>
+  <div class="flex-box">
+    <input data-bind="key.src" id="srcset-src-${key.count}" data-change-srcset="">
+	<button class="search-button" data-type="img">🔎</button>
+  </div>
+</fieldset>
+<fieldset class="no-border">
+  <legend>
+    <label for="srcset-descriptor-${key.count}">descriptor</label>
+  </legend>
+  <div class="flex-box">
+    <input min="1" type="number" data-bind="key.size.value" id="srcset-descriptor-${key.count}" data-change-srcset="">
+    <select data-bind="key.size.unit" data-change-srcset="">
+      <option value="">(not setted)</option>
+      <option value="w">Width</option>
+      <option value="x">Pixel Density</option>
+    </select>
+  </div>
+</fieldset>
+</fieldset>
+        </fieldset></body></html>

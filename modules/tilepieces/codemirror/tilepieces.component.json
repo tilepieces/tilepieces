@@ -1,0 +1,61 @@
+{
+  "name": "tilepieces/codemirror",
+  "description": "Codemirror tilepieces library based on version 5.63.3",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "codemirror.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "codemirror.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [
+      "codemirror-zip/lib/codemirror.css",
+      "codemirror-zip/addon/fold/foldgutter.css",
+      "codemirror-zip/addon/hint/show-hint.css",
+      "codemirror-zip/addon/merge/merge.css",
+      "codemirror-zip/addon/dialog/dialog.css"
+    ],
+    "scripts": [
+      "codemirror-zip/lib/codemirror.js",
+      "codemirror-zip/addon/fold/foldcode.js",
+      "codemirror-zip/addon/fold/foldgutter.js",
+      "codemirror-zip/addon/fold/brace-fold.js",
+      "codemirror-zip/addon/fold/xml-fold.js",
+      "codemirror-zip/addon/edit/closetag.js",
+      "codemirror-zip/addon/edit/closebrackets.js",
+      "codemirror-zip/addon/edit/matchbrackets.js",
+      "codemirror-zip/addon/edit/matchtags.js",
+      "codemirror-zip/mode/xml/xml.js",
+      "codemirror-zip/mode/htmlmixed/htmlmixed.js",
+      "codemirror-zip/addon/hint/show-hint.js",
+      "codemirror-zip/addon/hint/xml-hint.js",
+      "codemirror-zip/addon/hint/html-hint.js",
+      "codemirror-zip/mode/javascript/javascript.js",
+      "codemirror-zip/mode/css/css.js",
+      "codemirror-zip/addon/search/search.js",
+      "codemirror-zip/addon/search/searchcursor.js",
+      "codemirror-zip/addon/search/jump-to-line.js",
+      "codemirror-zip/addon/dialog/dialog.js"
+    ]
+  },
+  "dependencies": [],
+  "components": [],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

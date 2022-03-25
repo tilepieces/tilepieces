@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><link href="../components/dialog/css.css" rel="stylesheet" data-tilepieces-component="dialog"><link href="../components/tilepieces-stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces-stylesheet"><link href="../css.css" rel="stylesheet" data-tilepieces-component="dialogReader" data-tilepieces-current-stylesheet=""></head>
+<body><div class="flex-box upload-file-mask"><div class="upload-button"><label class="as-button">UPLOAD
+<input type="file" id="dialog-reader-file-input"></label></div><input id="dialog-reader-filepath-input" value="${miscpath}" ${disableinputfile}="" accept="${accept}"><button id="dialog-reader-file-button" ${disableinputfile}="">SAVE AND SELECT</button></div>
+    <div class="${storageInterfaceClass}"><div class="storage-interface-error-msg">Error on search</div>
+    <section class="image-search-box" data-if="resources.length">
+        <figure data-foreach="resources" data-value="${key.src}">
+          <figcaption>${key.filename}</figcaption>
+<div data-if="type == 'img' || type == 'video' || type == 'audio'">
+  <img data-if="type == 'img'" title="${key.src}" data-src="${key.src}">
+  <video data-if="type == 'video'" title="${key.src}" data-src="${key.src}"></video>
+  <audio data-if="type == 'audio'" title="${key.src}" data-src="${key.src}"></audio>
+</div>
+
+
+          
+        </figure>
+    </section><div class="image-search-pagination-box" data-if="pagination">
+        <span class="image-search-previous" data-prev="" data-if="pagination.pointer > 0">&lt;</span>
+        <span class="image-search-next" data-next="" data-if="pagination.page < pagination.pages">&gt;</span>
+    </div><button class="image-search-box-submit">Select</button>
+    </div>
+
+
+
+<script src="../components/events/index.js" data-tilepieces-component="events"></script><script src="../components/dialog/dialog.bundle.js" data-tilepieces-component="dialog"></script><script src="../components/tt/tt.js" data-tilepieces-component="tt"></script><script src="../dialogReader.bundle.js" data-tilepieces-component="dialogReader"></script></body></html>

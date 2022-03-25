@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A test - write</title>
+</head>
+<body>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <div id="test">
+        <img alt="An image should be here" src=""/>
+    </div>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<div style="position:absolute;right:0;top:0">
+<button id="undo" onclick="undo()" disabled >Undo!</button>
+<button id="redo" onclick="redo()" disabled>Redo!</button>
+</div>
+<script src="../../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    // TESTING IF IMAGES ARE CORRECTLY REFERENCED
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+        console.log('append "child1" under first banner');
+        /* append "child1" under first banner */
+        var toAdd = document.createElement("div");
+        toAdd.textContent = "Child1";
+        var whereAppend = document.querySelector(".banner");
+        htmlMatch.appendChild(whereAppend,toAdd);
+        console.log('changeInnerHTML of "child1" with Child1<br>child1 change INNERHTML<hr>');
+        /* changeInnerHTML of "child1" with Child1<br>child1 change INNERHTML<hr>*/
+        htmlMatch.innerHTML(toAdd,"Child1<br>child1 change INNERHTML<hr>");
+        console.log('insertAdjacentElement after child1 -> child2');
+        /* insertAdjacentElement after child1" with child2*/
+        var child2 = document.createElement("div");
+        child2.textContent = "Child2";
+        htmlMatch.insertAdjacentElement(toAdd,"after",child2);
+        console.log('insertBefore child2 child1.5');
+        /* insertBefore after child2 child1.5*/
+        var child1 = document.createElement("div");
+        child1.textContent = "Child1.5";
+        htmlMatch.insertBefore(child1,child2);
+        console.log('change child2 in P tag');
+        /* change child2 in P tag*/
+        htmlMatch.outerHTML(child2,"<p>" + child2.innerHTML +"</p>");
+        console.log('replace second img with anotherOne');
+        /* replace second img with anotherOne */
+        var URL2 = "https://assets.amuniversal.com/1786cb30ed1b0137d080005056a9545d";
+        var toReplace2 = document.querySelector(".banner:nth-child(1) img");
+        var img2 = document.createElement("img");
+        img2.src=URL2;
+        htmlMatch.replaceChild(img2,toReplace2);
+        console.log('add courtesy child before image');
+        var div_courtesy1 = document.createElement("div");
+        htmlMatch.insertAdjacentElement(img2,"before",document.createTextNode("This image is taken from https://assets.amuniversal.com/1786cb30ed1b0137d080005056a9545d. This have the only purpouse of testing. If someone have problem with this please send email to mantainer@tilepieces.com"))
+        console.log('replace last img with another one');
+        /* replace last img with another one */
+        var URL = "https://imgs.xkcd.com/comics/exploits_of_a_mom.png";
+        var toReplace = document.querySelector(".banner:nth-child(2) img");
+        var img = document.createElement("img");
+        img.src=URL;
+        htmlMatch.replaceWith(toReplace,img);
+        console.log('add courtesy child before image');
+        htmlMatch.insertAdjacentElement(img,"before",document.createTextNode("This image is taken from https://imgs.xkcd.com/comics/exploits_of_a_mom.png. This have the only purpouse of testing. If someone have problem with this please send email to mantainer@tilepieces.com"))
+    }
+    a();
+    window.addEventListener("DOM-change",function(){
+        if(htmlMatch.history.pointer != 0)
+            undoEl.removeAttribute("disabled");
+        else
+            undoEl.setAttribute("disabled","");
+        if(htmlMatch.history.pointer != htmlMatch.history.entries.length)
+            redoEl.removeAttribute("disabled");
+        else
+            redoEl.setAttribute("disabled","");
+    });
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,567 @@
+[
+  {
+    "nazione": "IT",
+    "codice_regione": "AG",
+    "descrizione": "Agrigento"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "AL",
+    "descrizione": "Alessandria"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "AN",
+    "descrizione": "Ancona"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "AO",
+    "descrizione": "Aosta"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "AR",
+    "descrizione": "Arezzo"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "AP",
+    "descrizione": "Ascoli Piceno"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "AT",
+    "descrizione": "Asti"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "AV",
+    "descrizione": "Avellino"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "BA",
+    "descrizione": "Bari"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "BL",
+    "descrizione": "Belluno"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "BN",
+    "descrizione": "Benevento"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "BG",
+    "descrizione": "Bergamo"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "BI",
+    "descrizione": "Biella"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "BO",
+    "descrizione": "Bologna"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "BZ",
+    "descrizione": "Bolzano"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "BS",
+    "descrizione": "Brescia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "BT",
+    "descrizione": "Barletta-Andria-Trani"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "BR",
+    "descrizione": "Brindisi"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CA",
+    "descrizione": "Cagliari"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CL",
+    "descrizione": "Caltanisetta"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CB",
+    "descrizione": "Campobasso"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CI",
+    "descrizione": "Carbonia-Iglesias"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CE",
+    "descrizione": "Caserta"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CT",
+    "descrizione": "Catania"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CZ",
+    "descrizione": "Catanzaro"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CH",
+    "descrizione": "Chieti"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CO",
+    "descrizione": "Como"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CS",
+    "descrizione": "Cosenza"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CR",
+    "descrizione": "Cremona"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "KR",
+    "descrizione": "Crotone"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "CN",
+    "descrizione": "Cuneo"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "EN",
+    "descrizione": "Enna"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "FE",
+    "descrizione": "Ferrara"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "FI",
+    "descrizione": "Firenze"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "FM",
+    "descrizione": "Fermo"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "FG",
+    "descrizione": "Foggia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "FC",
+    "descrizione": "Forli/Cesena"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "FR",
+    "descrizione": "Frosinone"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "GE",
+    "descrizione": "Genova"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "GO",
+    "descrizione": "Gorizia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "GR",
+    "descrizione": "Grosseto"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "IM",
+    "descrizione": "Imperia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "IS",
+    "descrizione": "Isernia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "AQ",
+    "descrizione": "L'Aquila"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "SP",
+    "descrizione": "La Spezia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "LT",
+    "descrizione": "Latina"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "LE",
+    "descrizione": "Lecce"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "LC",
+    "descrizione": "Lecco"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "LI",
+    "descrizione": "Livorno"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "LO",
+    "descrizione": "Lodi"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "LU",
+    "descrizione": "Lucca"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "MC",
+    "descrizione": "Macerata"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "MN",
+    "descrizione": "Mantova"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "MS",
+    "descrizione": "Massa Carrara"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "MT",
+    "descrizione": "Matera"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "VS",
+    "descrizione": "Medio Campidano"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "ME",
+    "descrizione": "Messina"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "MI",
+    "descrizione": "Milano"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "MO",
+    "descrizione": "Modena"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "MB",
+    "descrizione": "Monza e Brianza"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "NA",
+    "descrizione": "Napoli"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "NO",
+    "descrizione": "Novara"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "NU",
+    "descrizione": "Nuoro"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "OG",
+    "descrizione": "Ogliastra"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "OT",
+    "descrizione": "Olbia-Tempio"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "OR",
+    "descrizione": "Oristano"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PD",
+    "descrizione": "Padova"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PA",
+    "descrizione": "Palermo"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PR",
+    "descrizione": "Parma"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PV",
+    "descrizione": "Pavia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PG",
+    "descrizione": "Perugia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PU",
+    "descrizione": "Pesaro-Urbino"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PE",
+    "descrizione": "Pescara"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PC",
+    "descrizione": "Piacenza"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PI",
+    "descrizione": "Pisa"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PT",
+    "descrizione": "Pistoia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PN",
+    "descrizione": "Pordenone"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PZ",
+    "descrizione": "Potenza"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "PO",
+    "descrizione": "Prato"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "RG",
+    "descrizione": "Ragusa"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "RA",
+    "descrizione": "Ravenna"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "RC",
+    "descrizione": "Reggio Calabria"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "RE",
+    "descrizione": "Reggio Emilia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "RI",
+    "descrizione": "Rieti"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "RN",
+    "descrizione": "Rimini"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "RM",
+    "descrizione": "Roma"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "RO",
+    "descrizione": "Rovigo"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "SA",
+    "descrizione": "Salerno"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "SS",
+    "descrizione": "Sassari"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "SV",
+    "descrizione": "Savona"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "SI",
+    "descrizione": "Siena"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "SR",
+    "descrizione": "Siracusa"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "SO",
+    "descrizione": "Sondrio"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "EE",
+    "descrizione": "Stati Esteri"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "TA",
+    "descrizione": "Taranto"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "TE",
+    "descrizione": "Teramo"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "TR",
+    "descrizione": "Terni"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "TO",
+    "descrizione": "Torino"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "TP",
+    "descrizione": "Trapani"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "TN",
+    "descrizione": "Trento"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "TV",
+    "descrizione": "Treviso"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "TS",
+    "descrizione": "Trieste"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "UD",
+    "descrizione": "Udine"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "VA",
+    "descrizione": "Varese"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "VE",
+    "descrizione": "Venezia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "VB",
+    "descrizione": "Verbania"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "VC",
+    "descrizione": "Vercelli"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "VR",
+    "descrizione": "Verona"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "VV",
+    "descrizione": "Vibo Valentia"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "VI",
+    "descrizione": "Vicenza"
+  },
+  {
+    "nazione": "IT",
+    "codice_regione": "VT",
+    "descrizione": "Viterbo"
+  },
+  {
+    "nazione": "VA",
+    "codice_regione": "",
+    "descrizione": "Città del Vaticano"
+  },
+  {
+    "nazione": "SM",
+    "codice_regione": "",
+    "descrizione": "San Marino"
+  }
+]

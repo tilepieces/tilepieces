@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html><head><title> css viewer</title>
+  <link href="../bundle/css-viewer.bundle.css" rel="stylesheet" data-tilepieces-component="css-viewer/bundle">
+</head>
+<body style="display:none">
+<div id="css-viewer" class="${isVisible}" data-tilepieces-component="tilepieces/css-viewer">
+  <div class="css-selector">
+    <details>
+      <summary class="css-viewer-media-rules">
+        <div class="flex-box-stroke">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+            <g>
+              <ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+              <path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+              C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+              <path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+              C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+              </g>
+            </svg>
+          </span>
+          Grouping rule:
+          <span data-if="grChosen">
+            <span data-if="grChosen.inheritedConditionText">${grChosen.inheritedConditionText},</span>
+            ${grChosen.conditionText}
+          </span>
+          <button id="add-gr-rule" class="component-properties-add">+</button>
+        </div>
+      </summary>
+      <ul>
+        <li data-foreach="groupingRules" data-foreach-key-name="gr" data-index="${gr.index}" data-iscurrent="${gr.isCurrentGr}" class="grouping-rule-item flex-box">
+            <span class="grouping-condition">
+              <svg x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+                <g>
+              <path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+              C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+              <path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+              C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+              </g>
+              </svg>
+              <span data-if="gr.inheritedConditionText">${gr.inheritedConditionText},</span>
+              ${gr.conditionText}
+            </span>
+          <button class="delete-gr-rule component-properties-remove" data-index="${gr.index}">-</button>
+        </li>
+      </ul>
+    </details>
+    <div><span>Rule:</span>
+      <span data-bind="currentSelector" data-bind-events="blur,input" contenteditable="" spellcheck="false"></span>
+      <div class="related-selectors">
+        Elements matching this selector: <span class="related-selectors-select">${relatedSelectors.length}</span>
+      </div>
+      <div data-if="!selectorMatch" class="rule-sector-wrong">Selector doesn't match the selected element</div>
+    </div>
+  </div>
+  <!-- modal new gr -->
+  <div id="modal-new-gr">
+    <section>
+      <div class="modal-new-gr-close"></div>
+      <!-- code for other grouping rule like support
+      <div class="modal-new-gr-select">
+        <select data-bind="newGroupingType">
+          <option value="0">@media</option>
+          <option value="1">@supports</option>
+        </select>
+      </div>
+      <div data-if="newGroupingType == '1'">
+        @supports <input data-bind="supportCondition">
+        <div>
+          Set css in this @supports rule <input type="checkbox" data-bind="mediaQueryUICheck">
+        </div>
+        <div>
+          <button class="support-done" ${newgrbuttondisabled}="">Done</button>
+        </div>
+      </div>
+      -->
+      <div id="modal-media-queries" data-if="newGroupingType == '0'">
+        <div class="modal-media-content">
+          Min-max width<input type="radio" data-bind="mediaQueryUIMask" name="media-query-UI" value="min-max-width">
+          Freehand<input type="radio" data-bind="mediaQueryUIMask" name="media-query-UI" value="freehand">
+        </div>
+        <div data-if="mediaQueryUIMask == 'min-max-width'" id="media-query-UI-mask">
+          @media
+          <select class="media-logical-operator" data-bind="mediaQueryMainLogicalOperator">
+            <option value=""></option>
+            <option value="not">not</option>
+            <option value="only">only</option>
+          </select>
+          <div>
+            <select data-bind="mediaQueryUIMaskMediaType">
+              <option value="all">all</option>
+              <option value="print">print</option>
+              <option value="screen">screen</option>
+              <option value="speech">speech</option>
+            </select>
+            <button data-if="!mediaQueryUIMaskFeatures.length" class="add-media-feature" title="add media feature">+
+            </button>
+          </div>
+          <div data-foreach="mediaQueryUIMaskFeatures">
+            <div>
+              <select class="media-logical-operator" data-bind="key.logicalOperator">
+                <option value="and">and</option>
+                <option value="not">not</option>
+                <option value="only">only</option>
+              </select>
+            </div>
+            <select class="media-feature" data-index="${key.index}" data-bind="key.feature">
+              <option value="max-width">max-width</option>
+              <option value="min-width">min-width</option>
+              <option value="max-height">max-height</option>
+              <option value="min-height">min-height</option>
+              <option value="orientation">orientation</option>
+            </select>
+            <div data-if="key.featureInput == 'input'">
+              <div class="input-css" data-index="${key.index}" data-value="${key.value}" data-bind="key.value" data-bind-events="blur" contenteditable="">
+              </div>
+            </div>
+            <select data-if="key.featureInput == 'orientation'" data-bind="key.value">
+              <option value="landscape">landscape</option>
+              <option value="portrait">portrait</option>
+            </select>
+            <button data-index="${key.index}" class="delete-feature" title="delete media feature">-</button>
+            <button data-if="key.index == mediaQueryUIMaskFeatures.length-1" class="add-media-feature" title="add media feature">+
+            </button>
+          </div>
+        </div>
+        <div data-if="mediaQueryUIMask == 'freehand'">
+          <input data-bind="mediaQueryUIFreeHand" data-bind-events="input">
+        </div>
+        <div class="label-for-mediaQueryUICheck">
+          <label for="mediaQueryUICheck">Set css in this media query</label>
+          <input type="checkbox" data-bind="mediaQueryUICheck" id="mediaQueryUICheck">
+        </div>
+        <div>
+          <button class="modal-media-done" ${mediaqueryuidisabled}="">Done</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<nav class="tab-vertical" data-tilepieces-component="tilepieces/vertical-tab">
+  <button><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+	
+		<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:0.35;fill:#FFFFFF;" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+	<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+		C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+	<path style="fill: rgb(153, 153, 153);" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+		C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></button>
+    <div class="tab-buttons">
+      <div class="tab-buttons-wrap">
+          <div class="tab-buttons-inside">
+
+
+        <a href="#css-inspector" class="selected">inspector</a><a href="#layout-box">layout</a><a href="#css-text">text</a><a href="#background-box">background</a><a href="#border-style">border</a><a href="#transform">transform</a><a href="#animations">animations</a><a href="#fonts">fonts</a></div>
+      </div>
+  </div>
+</nav>
+
+<template id="gradient-template" data-tilepieces-component="tilepieces/gradient">
+<section class="gradient">
+  <div class="gradient-inputs">
+    <select data-bind="gradientType">
+      <option value="linear-gradient">linear gradient</option>
+      <option value="repeating-linear-gradient">repeating linear gradient</option>
+      <option value="radial-gradient">radial gradient</option>
+      <option value="repeating-radial-gradient">repeating radial gradient</option>
+    </select>
+    <div class="gradient-parameters-wrapper">
+      <div class="input-css parameters" data-bind="parameters" contenteditable="">
+      </div>
+    </div>
+    <div class="knob ${knobIsVisible}">
+      <div class="knob-index"></div>
+    </div>
+  </div>
+  <div class="color-interpolation-slider ${canAdd}">
+    <div data-foreach="colorStops" data-foreach-key-name="colorStop" class="color-interpolation ${colorStop.endPos}" data-index="${colorStop.index}" style="left:${colorStop.endPos}">
+      <div class="color-interpolation-colors">
+        <div class="color-interpolation-left" style="background-color:${colorStop.c}"></div>
+        <div class="color-interpolation-right" style="background-color:${colorStop.nextColor}"></div>
+      </div>
+    </div>
+  </div>
+  <div class="gradient-image">
+    <div class="gradient-image-gradient" style="background-image:${declarationForView}"></div>
+    <div class="gradient-image-transparent"></div>
+  </div>
+  <div class="color-stops ${canAdd}">
+    <div data-foreach="colorStops" class="color-stop" data-foreach-key-name="colorStop" data-index="${colorStop.index}" data-color="${colorStop.c}" style="left:calc(${colorStop.stopPos} - 12px)">
+      <div class="color-stop-dragger"></div>
+      <button class="color-stop-button" style="background-color:${colorStop.c}" data-index="${colorStop.index}"></button>
+      <div class="remove-color-stop" data-if="colorStops.length>2" data-index="${colorStop.index}">-</div>
+    </div>
+  </div>
+</section></template>
+<template id="css-properties-list" data-tilepieces-component="tilepieces/css-rule-modification">
+    <ul class="rule-block__list" data-bind-dom-prop="__css-viewer-rule,rule">
+        <li data-foreach="rule.properties" data-foreach-key-name="property" data-index="${property.index}" class="rule__property ${property.isInheritedClass} ${rule.contenteditable}">
+            <input class="rule-block__checked" type="checkbox" data-bind="property.checked" ${property.disabled}="">
+            <div class="rule-block__key autocomplete" data-bind-dom-prop="__autocomplete_suggestions,cssDefaultProperties" data-key="${property.property}" data-bind="property.property" data-contenteditable="${property.contenteditable}"></div>
+            <div class="rule-block__divider">:</div>
+            <div class="input-css rule-block__value autocomplete" data-bind-dom-prop="__autocomplete_suggestions,property.autocomplete_suggestions" data-prop="${property.property}" data-bind="property.value" ${property.contenteditable}=""></div><div>;</div>
+        </li>
+    </ul>
+    <button class="rule-block__add-property">+</button>
+</template>
+<div id="css-inspector" class="${isVisible}" data-tilepieces-component="tilepieces/css-inspector">
+  <div class="css-inspector__menu-bar">
+    <span id="css-target-new-rule">+</span>
+    <span id="css-target-delete-rule" class="${deleteRuleDisabled}">-</span>
+    <span id="toggle-pseudo-states">:</span>
+    <span id="toggle-pseudo-elements">::</span>
+  </div>
+  <div id="main-rules" class="css-inspector__container ${showMainRules}">
+    <!-- rules associated -->
+    <div data-foreach="rules" data-foreach-key-name="rule" data-type="rules" data-bind-dom-prop="__css-viewer-rule,rule" class="css-inspector__rule-block ${rule.contenteditable} ${rule.selected}">
+      <div data-if="rule.isStyle">
+        <span class="selector-style">element.style</span>{
+      </div>
+      <div class="css-inspector__rule__selector" data-if="!rule.isStyle">
+        <div data-if="rule.parentRules.length">
+          <div data-foreach="rule.parentRules" data-foreach-key-name="pr">
+            ${pr.type} ${pr.conditionText}
+          </div>
+        </div>
+        <div class="css-inspector__rule__selector-name">
+          <div data-if="!rule.editSelector">
+                        <span data-foreach="rule.selectors" data-foreach-key-name="selector" class="rule-selector selector ${selector.match}">${selector.selectorText} </span>{
+          </div>
+          <div data-if="rule.editSelector" class="rule-selector-edit" contenteditable="">${rule.rule.selectorText}
+          </div>
+          <div data-if="!rule.selectorMatch" class="rule-sector-wrong">Selector doesn't match the selected element
+          </div>
+        </div>
+      </div>
+      <a data-if="!rule.isStyle" class="css-inspector__href" href="${rule.loc}" title="${rule.loc}" target="_blank">${rule.locPop}</a>
+      <div data-use="css-properties-list" data-params="rule,rule"></div>
+      }
+    </div>
+    <!-- ancestor rules -->
+    <div data-foreach="ancestors" data-foreach-key-name="ancestor">
+      <!-- ancestor element link -->
+      <div data-if="ancestor.matches.length || ancestor.ancestorstyle">
+        <div class="css-inspector__rule-block__inherited-divider">
+          Inherited from
+          <span class="css-inspector__show-element" data-bind-dom-prop="__ancestor,ancestor.ancestor">${ancestor.elementRepresentation}</span>
+        </div>
+      </div>
+      <!-- ancestor element properties -->
+      <div data-if="ancestor.ancestorstyle">
+        <div data-type="ancestorstyle" data-bind-dom-prop="__css-viewer-rule,ancestor.ancestorstyle" class="css-inspector__rule-block ${ancestor.ancestorstyle.contenteditable} css-inspector__rule-block__inherited ${ancestor.ancestorstyle.selected}">
+          <div>
+            <span class="selector-style">element.style</span>{
+          </div>
+          <a data-if="!ancestor.ancestorstyle.isStyle" class="css-inspector__href" href="${rule.loc}" title="${rule.loc}" target="_blank">${rule.locPop}</a>
+          <div data-use="css-properties-list" data-params="rule,ancestor.ancestorstyle"></div>
+          }
+        </div>
+      </div>
+      <!-- ancestor rules -->
+      <div data-type="ancestor.matches" data-foreach="ancestor.matches" data-foreach-key-name="rule" data-bind-dom-prop="__css-viewer-rule,rule,__ancestor,ancestor" class="css-inspector__rule-block ${rule.contenteditable} css-inspector__rule-block__inherited ${rule.selected}">
+        <div data-use="css-rule" data-params="rule,rule"></div>
+        }
+      </div>
+    </div>
+  </div>
+  <div id="pseudo-states" class="css-inspector__container ${showPseudoStates}">
+    <div data-foreach="pseudoStates" data-foreach-key-name="pseudoState" class="css-inspector__container">
+      <div class="css-inspector__rule-block__inherited-divider">Pseudo ${pseudoState.name} state</div>
+      <div data-foreach="pseudoState.rules" data-foreach-key-name="rule" data-bind-dom-prop="__css-viewer-rule,rule" class="css-inspector__rule-block ${rule.contenteditable} ${rule.selected} css-inspector__pseudo-states">
+        <div data-use="css-rule" data-params="rule,rule"></div>
+        }
+      </div>
+    </div>
+  </div>
+  <div id="pseudo-elements" class="${showPseudoElements}">
+    <div data-foreach="pseudoElements" data-foreach-key-name="pseudoElement" class="css-inspector__container">
+      <div class="css-inspector__rule-block__inherited-divider">Pseudo ${pseudoElement.name} element</div>
+      <div data-foreach="pseudoElement.rules" data-foreach-key-name="rule" data-bind-dom-prop="__css-viewer-rule,rule" class="css-inspector__rule-block ${rule.contenteditable} ${rule.selected} css-inspector__pseudo-elements">
+        <div data-use="css-rule" data-params="rule,rule"></div>
+        }
+      </div>
+    </div>
+  </div>
+</div><template id="css-rule" data-tilepieces-component="tilepieces/css-inspector">
+  <!-- params : rule -->
+  <div class="css-inspector__rule__selector">
+    <div data-if="rule.parentRules.length">
+      <div data-foreach="rule.parentRules" data-foreach-key-name="pr">
+        ${pr.type} ${pr.conditionText}
+      </div>
+    </div>
+    <div class="css-inspector__rule__selector-name">
+            <span data-foreach="rule.selectors" data-foreach-key-name="selector" class="selector ${selector.match}">${selector.selectorText}</span>{
+    </div>
+  </div>
+  <a data-if="!rule.isStyle" class="css-inspector__href" href="#" title="${rule.loc}">${rule.locPop}</a>
+  <div data-use="css-properties-list" data-params="rule,rule"></div>
+</template>
+<section id="border-style" class="${isVisible}" data-tilepieces-component="tilepieces/border" style="display: none;">
+  <div class="tab-buttons tab-horizontal" id="tab-border">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#border-border" class="selected">Border</a>
+        <a href="#border-image">Border image</a>
+        <a href="#box-shadow">Box Shadow</a>
+        <a href="#outline">Outline</a>
+      </div>
+    </div>
+  </div>
+  <div id="border-border">
+    <fieldset>
+      <legend><a href="#property-border-border" tabindex="-1">Border:</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style">
+        <div id="property-border-border" class="input-css autocomplete " data-css-prop="border" data-css-prop-js="border" data-value="${border}" data-auto-global-suggestion="cssDefaults.border" data-bind="border" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-border-width" tabindex="-1">Border width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-width" class="info-round-icon" target="_blank"></a><button data-prop="borderWidth" class="border-width-link ${borderWidthLink} link-button">
+        <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+        </svg>
+      </button></legend>
+      <div class="input-css-style ${borderWidthLink}">
+        <div id="property-border-width" class="input-css autocomplete " data-css-prop="border-width" data-css-prop-js="borderWidth" data-value="${borderWidth}" data-auto-global-suggestion="cssDefaults.border-width" data-bind="borderWidth" contenteditable=""></div>
+      </div>
+      <fieldset class="${borderWidthUnlink}">
+        <legend>
+          <a href="#property-border-top-width" tabindex="-1">Border top width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-top-width" class="input-css autocomplete " data-css-prop="border-top-width" data-css-prop-js="borderTopWidth" data-value="${borderTopWidth}" data-auto-global-suggestion="cssDefaults.border-width" data-bind="borderTopWidth" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderWidthUnlink}">
+        <legend>
+          <a href="#property-border-left-width" tabindex="-1">Border left width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-left-width" class="input-css autocomplete " data-css-prop="border-left-width" data-css-prop-js="borderLeftWidth" data-value="${borderLeftWidth}" data-auto-global-suggestion="cssDefaults.border-width" data-bind="borderLeftWidth" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderWidthUnlink}">
+        <legend>
+          <a href="#property-border-bottom-width" tabindex="-1">Border bottom width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-bottom-width" class="input-css autocomplete " data-css-prop="border-bottom-width" data-css-prop-js="borderBottomWidth" data-value="${borderBottomWidth}" data-auto-global-suggestion="cssDefaults.border-width" data-bind="borderBottomWidth" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderWidthUnlink}">
+        <legend>
+          <a href="#property-border-right-width" tabindex="-1">Border right width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width" class="info-round-icon" target="_blank"></a></legend>
+        <div class="input-css-style">
+          <div id="property-border-right-width" class="input-css autocomplete " data-css-prop="border-right-width" data-css-prop-js="borderRightWidth" data-value="${borderRightWidth}" data-auto-global-suggestion="cssDefaults.border-width" data-bind="borderRightWidth" contenteditable=""></div>
+        </div>
+      </fieldset>
+    </fieldset>
+    <!-- border style -->
+    <fieldset>
+      <legend>
+        <a href="#property-border-style" tabindex="-1">border style:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style" class="info-round-icon" target="_blank"></a>
+        <button data-prop="borderStyle" class="border-width-link ${borderStyleLink} link-button">
+          <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+          </svg>
+        </button>
+      </legend>
+      <div class="input-css-style ${borderStyleLink}">
+        <div id="property-border-style" class="input-css autocomplete " data-css-prop="border-style" data-css-prop-js="borderStyle" data-value="${borderStyle}" data-auto-global-suggestion="cssDefaults.border-style" data-bind="borderStyle" contenteditable=""></div>
+      </div>
+      <fieldset class="${borderStyleUnlink}">
+        <legend>
+          <a href="#property-border-top-style" tabindex="-1">Border top style:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-style" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-top-style" class="input-css autocomplete " data-css-prop="border-top-style" data-css-prop-js="borderTopStyle" data-value="${borderTopStyle}" data-auto-global-suggestion="cssDefaults.border-top-style" data-bind="borderTopStyle" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderStyleUnlink}">
+        <legend>
+          <a href="#property-border-left-style" tabindex="-1">Border left style:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-style" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-left-style" class="input-css autocomplete " data-css-prop="border-left-style" data-css-prop-js="borderLeftStyle" data-value="${borderLeftStyle}" data-auto-global-suggestion="cssDefaults.border-left-style" data-bind="borderLeftStyle" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderStyleUnlink}">
+        <legend>
+          <a href="#property-border-bottom-style" tabindex="-1">border bottom style:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-style" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-bottom-style" class="input-css autocomplete " data-css-prop="border-bottom-style" data-css-prop-js="borderBottomStyle" data-value="${borderBottomStyle}" data-auto-global-suggestion="cssDefaults.border-bottom-style" data-bind="borderBottomStyle" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderStyleUnlink}">
+        <legend>
+          <a href="#property-border-right-style" tabindex="-1">border right style:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-style" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-right-style" class="input-css autocomplete " data-css-prop="border-right-style" data-css-prop-js="borderRightStyle" data-value="${borderRightStyle}" data-auto-global-suggestion="cssDefaults.border-right-style" data-bind="borderRightStyle" contenteditable=""></div>
+        </div>
+      </fieldset>
+    </fieldset>
+    <!-- border color -->
+    <fieldset>
+      <legend>
+        <a href="#property-border-color" tabindex="-1">border color</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-color" class="info-round-icon" target="_blank"></a>
+        <button data-prop="borderColor" class="border-width-link ${borderColorLink} link-button">
+          <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+          </svg>
+        </button>
+      </legend>
+      <div class="input-css-style ${borderColorLink}">
+        <span style="background:${realBorderColor}" data-css-prop="border-color" data-css-prop-js="borderColor" data-name="realBorderColor" class="color-button"></span>
+        <div id="property-border-color" class="input-css autocomplete" data-css-prop="border-color" data-css-prop-js="borderColor" data-value="${borderColor}" data-auto-global-suggestion="cssDefaults.border-color" data-bind="borderColor" contenteditable=""></div>
+      </div>
+      <fieldset class="${borderColorUnlink}">
+        <legend>
+          <a href="#property-border-top-color" tabindex="-1">border top color:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-color" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <span style="background:${realBorderTopColor}" data-css-prop="border-top-color" data-css-prop-js="borderTopColor" data-name="realBorderTopColor" class="color-button"></span>
+          <div id="property-border-top-color" class="input-css autocomplete " data-css-prop="border-top-color" data-css-prop-js="borderTopColor" data-value="${borderTopColor}" data-auto-global-suggestion="cssDefaults.border-color" data-bind="borderTopColor" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderColorUnlink}">
+        <legend>
+          <a href="#property-border-left-color" tabindex="-1">border left color:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-color" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <span style="background:${realBorderLeftColor}" data-css-prop="border-left-color" data-css-prop-js="borderLeftColor" data-name="realBorderLeftColor" class="color-button"></span>
+          <div id="property-border-left-color" class="input-css autocomplete " data-css-prop="border-left-color" data-css-prop-js="borderLeftColor" data-value="${borderLeftColor}" data-auto-global-suggestion="cssDefaults.border-color" data-bind="borderLeftColor" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderColorUnlink}">
+        <legend>
+          <a href="#property-border-bottom-color" tabindex="-1">border bottom color:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-color" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+        <span style="background:${realBorderBottomColor}" data-css-prop="border-bottom-color" data-css-prop-js="borderBottomColor" data-name="${realBorderBottomColor}" class="color-button"></span>
+          <div id="property-border-bottom-color" class="input-css autocomplete " data-css-prop="border-bottom-color" data-css-prop-js="borderBottomColor" data-value="${borderBottomColor}" data-auto-global-suggestion="cssDefaults.border-color" data-bind="borderBottomColor" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderColorUnlink}">
+        <legend>
+          <a href="#property-border-right-color" tabindex="-1">border right color:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-color" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+        <span style="background:${realBorderRightColor}" data-css-prop="border-right-color" data-css-prop-js="borderRightColor" data-name="realBorderRightColor" class="color-button"></span>
+          <div id="property-border-right-color" class="input-css autocomplete " data-css-prop="border-right-color" data-css-prop-js="borderRightColor" data-value="${borderRightColor}" data-auto-global-suggestion="cssDefaults.border-color" data-bind="borderRightColor" contenteditable=""></div>
+        </div>
+      </fieldset>
+    </fieldset>
+    <!-- border radius -->
+    <fieldset>
+      <legend>
+        <a href="#property-border-radius" tabindex="-1">border radius:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius" class="info-round-icon" target="_blank"></a>
+        <button data-prop="borderRadius" class="border-width-link ${borderRadiusLink} link-button">
+          <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+          </svg>
+        </button>
+      </legend>
+      <div class="input-css-style ${borderRadiusLink}">
+        <div id="property-border-radius" class="input-css autocomplete" data-css-prop="border-radius" data-css-prop-js="borderRadius" data-value="${borderRadius}" data-auto-global-suggestion="cssDefaults.border-radius" data-bind="borderRadius" contenteditable=""></div>
+      </div>
+      <fieldset class="${borderRadiusUnlink}">
+        <legend>
+          <a href="#property-border-top-left-radius" tabindex="-1">border top left radius:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-left-radius" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-top-left-radius" class="input-css autocomplete " data-css-prop="border-top-left-radius" data-css-prop-js="borderTopLeftRadius" data-value="${borderTopLeftRadius}" data-auto-global-suggestion="cssDefaults.border-radius" data-bind="borderTopLeftRadius" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderRadiusUnlink}">
+        <legend>
+          <a href="#property-border-top-right-radius" tabindex="-1">border top right radius:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-right-radius" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-top-right-radius" class="input-css autocomplete" data-css-prop="border-top-right-color" data-css-prop-js="borderTopRightRadius" data-value="${borderTopRightRadius}" data-auto-global-suggestion="cssDefaults.border-radius" data-bind="borderTopRightRadius" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderRadiusUnlink}">
+        <legend>
+          <a href="#property-border-bottom-right-radius" tabindex="-1">border bottom right radius:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-right-radius" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-bottom-right-radius" class="input-css autocomplete" data-css-prop="border-bottom-right-radius" data-css-prop-js="borderBottomRightRadius" data-value="${borderBottomRightRadius}" data-auto-global-suggestion="cssDefaults.border-radius" data-bind="borderBottomRightRadius" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderRadiusUnlink}">
+        <legend>
+          <a href="#property-border-bottom-left-radius" tabindex="-1">border bottom left radius:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-left-radius" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-bottom-left-radius" class="input-css autocomplete" data-css-prop="border-bottom-left-radius" data-css-prop-js="borderBottomLeftRadius" data-value="${borderBottomLeftRadius}" data-auto-global-suggestion="cssDefaults.border-radius" data-bind="borderBottomLeftRadius" contenteditable=""></div>
+        </div>
+      </fieldset>
+    </fieldset>
+  </div>
+  <div id="border-image" style="display:none">
+    <fieldset>
+      <legend>
+        <a href="#property-border-image" tabindex="-1">border image:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image" class="input-css autocomplete " data-css-prop="border-image" data-css-prop-js="borderImage" data-value="${borderImage}" data-auto-global-suggestion="cssDefaults.border-image" data-bind="borderImage" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <div>
+      Image type:
+      <select data-bind="imageType" class="image-type-select">
+        <option value="none">none</option>
+        <option value="url">url</option>
+        <option value="gradient">gradient</option>
+      </select>
+    </div>
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-source" tabindex="-1">border image source:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-source" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image-source" class="input-css autocomplete" data-css-prop="border-image-source" data-css-prop-js="borderImageSource" data-value="${borderImageSource}" data-auto-global-suggestion="cssDefaults.border-image-source" data-bind="borderImageSource" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <div class="border-image-source" data-if="hasUrl">
+      <img data-src="${imageSrc}">
+    </div>
+    <fieldset class="${hasGradient}">
+      <legend>Gradient</legend>
+      <div data-isolate="">
+        <section class="gradient">
+          <div class="gradient-inputs">
+            <select data-bind="gradientType">
+              <option value="linear-gradient">linear gradient</option>
+              <option value="repeating-linear-gradient">repeating linear gradient</option>
+              <option value="radial-gradient">radial gradient</option>
+              <option value="repeating-radial-gradient">repeating radial gradient</option>
+            </select>
+            <div class="gradient-parameters-wrapper">
+              <div class="input-css parameters" data-bind="parameters" contenteditable="">
+              </div>
+            </div>
+            <div class="knob ${knobIsVisible}">
+              <div class="knob-index"></div>
+            </div>
+          </div>
+          <div class="color-interpolation-slider ${canAdd}">
+            <div data-foreach="colorStops" data-foreach-key-name="colorStop" class="color-interpolation ${colorStop.endPos}" data-index="${colorStop.index}" style="left:${colorStop.endPos}">
+              <div class="color-interpolation-colors">
+                <div class="color-interpolation-left" style="background-color:${colorStop.c}"></div>
+                <div class="color-interpolation-right" style="background-color:${colorStop.nextColor}"></div>
+              </div>
+            </div>
+          </div>
+          <div class="gradient-image">
+            <div class="gradient-image-gradient" style="background-image:${declarationForView}"></div>
+            <div class="gradient-image-transparent"></div>
+          </div>
+          <div class="color-stops ${canAdd}">
+            <div data-foreach="colorStops" class="color-stop" data-foreach-key-name="colorStop" data-index="${colorStop.index}" data-color="${colorStop.c}" style="left:calc(${colorStop.stopPos} - 12px)">
+              <div class="color-stop-dragger"></div>
+              <button class="color-stop-button" style="background-color:${colorStop.c}" data-index="${colorStop.index}"></button>
+              <div class="remove-color-stop" data-if="colorStops.length>2" data-index="${colorStop.index}">-</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-slice" tabindex="-1">border image slice:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-slice" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image-slice" class="input-css autocomplete" data-css-prop="border-image-slice" data-css-prop-js="borderImageSlice" data-value="${borderImageSlice}" data-auto-global-suggestion="cssDefaults.border-image-slice" data-bind="borderImageSlice" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-width" tabindex="-1">border image width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-width" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image-width" class="input-css autocomplete" data-css-prop="border-image-width" data-css-prop-js="borderImageWidth" data-value="${borderImageWidth}" data-auto-global-suggestion="cssDefaults.border-image-width" data-bind="borderImageWidth" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-outset" tabindex="-1">border image outset:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-outset" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image-outset" class="input-css autocomplete" data-css-prop="border-image-outset" data-css-prop-js="borderImageOutset" data-value="${borderImageOutset}" data-auto-global-suggestion="cssDefaults.border-image-outset" data-bind="borderImageOutset" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-repeat" tabindex="-1">border image repeat:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-repeat" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image-repeat" class="input-css autocomplete" data-css-prop="border-image-repeat" data-css-prop-js="borderImageRepeat" data-value="${borderImageRepeat}" data-auto-global-suggestion="cssDefaults.border-image-repeat" data-bind="borderImageRepeat" contenteditable=""></div>
+      </div>
+    </fieldset>
+  </div>
+  <div id="box-shadow" style="display:none">
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-repeat" tabindex="-1">
+          box-shadow:
+          </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow" class="info-round-icon" target="_blank"></a><button class="add-box-shadow">Add</button>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-box-shadow" class="input-css autocomplete" data-css-prop="box-shadow" data-css-prop-js="boxShadow" data-value="${boxShadow}" data-auto-global-suggestion="cssDefaults.box-shadow" data-bind="boxShadow" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset data-foreach="boxShadows" data-foreach-key-name="boxShadowValue" data-index="${boxShadowValue.index}" class="shadow">
+      <legend>Box Shadow #${boxShadowValue.index}<button class="remove-box-shadow" data-index="${boxShadowValue.index}">Remove</button></legend>
+      
+      <div style="float:left;width:calc(100% - 220px)">
+        <div>
+          <select data-bind="boxShadowValue.type" data-shadow="type">
+            <option value="inset">inset</option>
+            <option value="outset">outset</option>
+          </select>
+        </div>
+        <label for="x-offset-${boxShadowValue.index}">offset X</label>
+        <div class="flex-box">
+          <input id="x-offset-${boxShadowValue.index}" data-index="${boxShadowValue.index}" data-shadow="offsetX" type="number" data-bind="boxShadowValue.offsetX">
+          <span>px</span>
+        </div>
+        <label for="y-offset-${boxShadowValue.index}">offset Y</label>
+        <div class="flex-box">
+          <input id="y-offset-${boxShadowValue.index}" data-index="${boxShadowValue.index}" data-shadow="offsetY" type="number" data-bind="boxShadowValue.offsetY">
+          <span>px</span>
+        </div>
+        <label for="blur-offset-${boxShadowValue.index}">blur</label>
+        <div class="flex-box">
+        <input id="blur-offset-${boxShadowValue.index}" type="number" data-index="${boxShadowValue.index}" min="0" step="0.5" data-shadow="blur" data-bind="boxShadowValue.blur">
+          <span>px</span>
+        </div>
+        <label for="spread-offset-${boxShadowValue.index}">spread</label>
+        <div class="flex-box">
+        <input id="spread-offset-${boxShadowValue.index}" type="number" data-index="${boxShadowValue.index}" min="0" step="0.5" data-shadow="spread" data-bind="boxShadowValue.spread">
+          <span>px</span>
+        </div>
+        
+      </div>
+      <div style="float:right">
+        <svg data-index="${boxShadowValue.index}" style="border:1px solid;display:block;margin:auto;width:200px;height:200px">
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+          <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+          <line x1="50%" y1="50%" x2="50%" y2="50%" stroke="black" stroke-width="2" class="line-test"></line>
+          <circle cx="50%" cy="50%" r="10" fill="lightblue" class="circle-test"></circle>
+        </svg><div style="float: right; margin-top: 1.3em;">Color<button data-shadow="color" class="color-button" data-index="${boxShadowValue.index}" style="background:${boxShadowValue.color};border-radius:0"></button></div>
+      </div>
+    </fieldset>
+  </div>
+  <div id="outline" style="display:none">
+    <fieldset>
+      <legend>
+        <a href="#property-outline" tabindex="-1">
+          outline:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-outline" class="input-css autocomplete" data-css-prop="outline" data-css-prop-js="outline" data-value="${outline}" data-auto-global-suggestion="cssDefaults.outline" data-bind="outline" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-outline-width" tabindex="-1">
+          outline width:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-outline-width" class="input-css autocomplete " data-css-prop="outline-width" data-css-prop-js="outlineWidth" data-value="${outlineWidth}" data-auto-global-suggestion="cssDefaults.outline-width" data-bind="outlineWidth" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-outline-style" tabindex="-1">
+          outline style:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-outline-style" class="input-css autocomplete " data-css-prop="outline-style" data-css-prop-js="outlineStyle" data-value="${outlineStyle}" data-auto-global-suggestion="cssDefaults.outline-style" data-bind="outlineStyle" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-outline-color" tabindex="-1">
+          outline color:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <span style="background:${realOutlineColor}" data-css-prop="outlineColor" data-css-prop-js="outlineColor" data-name="realOutlineColor" class="color-button"></span>
+        <div id="property-outline-color" class="input-css autocomplete" data-css-prop="outline-color" data-css-prop-js="outlineColor" data-value="${outlineColor}" data-auto-global-suggestion="cssDefaults.outline-color" data-bind="outlineColor" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-outline-offset" tabindex="-1">
+          outline offset:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-outline-offset" class="input-css autocomplete " data-css-prop="outline-offset" data-css-prop-js="outlineOffset" data-value="${outlineOffset}" data-auto-global-suggestion="cssDefaults.outline-offset" data-bind="outlineOffset" contenteditable=""></div>
+      </div>
+    </fieldset>
+  </div>
+</section>
+<section id="fonts" data-tilepieces-component="tilepieces/fonts" style="display:none">
+  
+  <div class="tab-buttons tab-horizontal" id="font-tabs">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#" id="add-font">+</a>
+        <a href="#" data-foreach="fonts" data-foreach-key-name="font" class="tab-link ${font.isSelected}" data-target-index="${font.index}">${font.mapped.fontFamily}</a>
+      </div>
+    </div>
+  </div>
+  <div data-foreach="fonts" data-foreach-key-name="font" class="font ${font.isSelected}" data-index="${font.index}" data-bind-object="__fontFaceRule,font.fontFaceRule">
+    <button data-if="!font.disabled" class="remove-font" data-index-font="${font.index}">- remove font</button>
+    <fieldset>
+      <legend><span>src</span>
+        <button data-if="!font.disabled" class="add-src" data-index-font="${font.index}">+</button>
+      </legend>
+
+      <fieldset data-foreach="font.srcResources" data-foreach-key-name="srcRes" class="src" data-index-src="${srcRes.index}">
+        <legend><span>${srcRes.type}</span>
+          <button data-if="!font.disabled" class="remove-src" data-index-font="${font.index}" data-index-src="${srcRes.index}">-
+          </button>
+        </legend>
+
+        <div data-if="!font.disabled">
+          <input type="radio" name="src_res_type_${font.index}_${srcRes.index}" data-bind="srcRes.type" class="change-src-type" value="local">local<br>
+          <input type="radio" name="src_res_type_${font.index}_${srcRes.index}" data-bind="srcRes.type" class="change-src-type" value="url">url
+        </div>
+        <div data-if="srcRes.type == 'local'">
+          local
+          <input class="change-src-local" data-bind="srcRes.local" ${font.disabled}="">
+        </div>
+        <div data-if="srcRes.type == 'url'">
+          <div class="flex-box"><input class="change-src-url" data-bind="srcRes.url" ${font.disabled}="" data-dropzone="">
+            <button class="search-button" data-index="${srcRes.index}">🔎</button>
+          </div>
+          format
+          <input class="change-src-format" data-bind="srcRes.format" ${font.disabled}="">
+        </div>
+      </fieldset>
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-family">font-family</label>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-family" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-family" class="font-family" data-bind="font.mapped.fontFamily" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-weight">font-weight</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-weight" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-weight" data-bind="font.mapped.fontWeight" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-style">font-style</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-style" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-style" data-bind="font.mapped.fontStyle" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-display">font-display</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-display" data-bind="font.mapped.fontDisplay" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-unicode-range">unicode-range</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/unicode-range" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-unicode-range" data-bind="font.mapped.unicodeRange" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-stretch">font-stretch</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-stretch" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-stretch" data-bind="font.mapped.fontStretch" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-variant">font-variant</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-variant" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-variant" data-bind="font.mapped.fontVariant" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-feature-settings">font-feature-settings</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-feature-settings" data-bind="font.mapped.fontFeatureSettings" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-variation-settings">font-variation-settings</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-variation-settings" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-variation-settings" data-bind="font.mapped.fontVariationSettings" ${font.disabled}="">
+    </fieldset>
+  </div>
+</section>
+<section id="background-box" class="${isVisible}" data-tilepieces-component="tilepieces/background" style="display: none;">
+  <fieldset>
+    <legend><a href="#background-color" tabindex="-1">Background color:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color" class="info-round-icon" target="_blank"></a></legend>
+    <div class="input-css-style">
+      <span id="background-color" style="background:${realBgColor}" data-css-prop="background-color" class="color-button"></span>
+      <div class="input-css autocomplete" data-css-prop="background-color" data-css-prop-js="backgroundColor" data-value="${backgroundColor}" data-auto-global-suggestion="cssDefaults.background-color" data-bind="backgroundColor" contenteditable=""></div>
+    </div>
+  </fieldset>
+  <div class="tab-component" id="background-tabs">
+    <div class="tab-buttons tab-horizontal">
+      <a class="tab-prev" href="javascript:void(0)">...</a>
+      <a class="tab-next" href="javascript:void(0)">...</a>
+      <div class="tab-buttons-wrap">
+        <div class="tab-buttons-inside">
+          <a href="javascript:void(0)" id="add-background">+</a>
+          <a data-foreach="backgrounds" href="#" data-foreach-key-name="background" class="tab-link ${background.isSelected}" data-target-index="${background.index}">${background.index}</a>
+        </div>
+      </div>
+    </div>
+    <h3>Images</h3>
+    <div data-foreach="backgrounds" data-foreach-key-name="b" class="backgrounds ${b.isSelected}" data-index="${b.index}">
+      <button data-if="b.index>0" class="move-background-up" data-index="${b.index}">↑</button>
+      <button data-if="b.index<backgrounds.length-1" class="move-background-down" data-index="${b.index}">↓</button>
+      <button data-if="backgrounds.length > 1" class="remove-background" data-index="${b.index}">- remove background
+      </button>
+      <select data-bind="b.imageType" class="image-type-select" data-index="${b.index}">
+        <option value="url">url</option>
+        <option value="gradient">gradient</option>
+      </select>
+      <div data-if="b.hasUrl">
+        <div data-dropzone="" data-type="url-background" data-index="${b.index}" class="div-dropzone">
+          <img data-src="${b.imageSrc}">
+        </div>
+      </div>
+      <fieldset>
+        <legend>
+          <a href="#background-image-${b.index}" tabindex="-1">Image:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-image" class="info-round-icon" target="_blank"></a></legend>
+        <div class="input-css-style">
+          <div id="background-image-${b.index}" class="input-css autocomplete" data-css-prop="background-image" data-css-prop-js="backgroundImage" data-value="${b.backgroundImage}" data-auto-global-suggestion="cssDefaults.background-image" data-bind="b.backgroundImage" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <div class="gradient-box" data-if="b.hasGradient" data-use="gradient-template" data-isolate="">
+      </div>
+      <fieldset>
+        <legend>
+          <a href="#background-position-x-${b.index}" tabindex="-1">X Position:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-position-x" class="info-round-icon" target="_blank"></a></legend>
+        <div class="input-css-style">
+          <div id="background-position-x-${b.index}" class="input-css autocomplete" data-css-prop="background-position-x" data-css-prop-js="backgroundPositionX" data-value="${b.backgroundPositionX}" data-auto-global-suggestion="cssDefaults.background-position-x" data-bind="b.backgroundPositionX" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <a href="#background-position-y-${b.index}" tabindex="-1">Y Position:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-position-y" class="info-round-icon" target="_blank"></a></legend>
+        <div class="input-css-style">
+          <div id="background-position-y-${b.index}" class="input-css autocomplete" data-css-prop="background-position-y" data-css-prop-js="backgroundPositionY" data-value="${b.backgroundPositionY}" data-auto-global-suggestion="cssDefaults.background-position-y" data-bind="b.backgroundPositionY" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <a href="#background-size-${b.index}" tabindex="-1">Size:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-size" class="info-round-icon" target="_blank"></a></legend>
+        <div class="input-css-style">
+          <div id="background-size-${b.index}" class="input-css autocomplete" data-css-prop="background-size" data-css-prop-js="backgroundSize" data-value="${b.backgroundSize}" data-auto-global-suggestion="cssDefaults.background-size" data-bind="b.backgroundSize" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <a href="#background-repeat-${b.index}" tabindex="-1">Repeat:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat" class="info-round-icon" target="_blank"></a></legend>
+        <div class="input-css-style">
+          <div id="background-repeat-${b.index}" class="input-css autocomplete" data-css-prop="background-repeat" data-css-prop-js="backgroundRepeat" data-value="${b.backgroundRepeat}" data-auto-global-suggestion="cssDefaults.background-repeat" data-bind="b.backgroundRepeat" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <a href="#background-attachment-${b.index}" tabindex="-1">Attachment:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment" class="info-round-icon" target="_blank"></a></legend>
+        <div class="input-css-style">
+          <div id="background-attachment-${b.index}" class="input-css autocomplete" data-css-prop="background-attachment" data-css-prop-js="backgroundAttachment" data-value="${b.backgroundAttachment}" data-auto-global-suggestion="cssDefaults.background-attachment" data-bind="b.backgroundAttachment" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <a href="#background-clip-${b.index}" tabindex="-1">Clip:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip" class="info-round-icon" target="_blank"></a></legend>
+        <div class="input-css-style">
+          <div id="background-clip-${b.index}" class="input-css autocomplete" data-css-prop="background-clip" data-css-prop-js="backgroundClip" data-value="${b.backgroundClip}" data-auto-global-suggestion="cssDefaults.background-clip" data-bind="b.backgroundClip" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <a href="#background-origin-${b.index}" tabindex="-1">Origin:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin" class="info-round-icon" target="_blank"></a></legend>
+        <div class="input-css-style">
+          <div id="background-origin-${b.index}" class="input-css autocomplete" data-css-prop="background-origin" data-css-prop-js="backgroundOrigin" data-value="${b.backgroundOrigin}" data-auto-global-suggestion="cssDefaults.background-origin" data-bind="b.backgroundOrigin" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <a href="#background-blend-mode-${b.index}" tabindex="-1">Background blend mode:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-blend-mode" class="info-round-icon" target="_blank"></a></legend>
+        <div class="input-css-style">
+          <div id="background-blend-mode-${b.index}" class="input-css autocomplete" data-css-prop="background-blend-mode" data-css-prop-js="backgroundBlendMode" data-value="${b.backgroundBlendMode}" data-auto-global-suggestion="cssDefaults.background-blend-mode" data-bind="b.backgroundBlendMode" contenteditable=""></div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</section>
+<section id="layout-box" class="${isVisible}" data-tilepieces-component="tilepieces/layout" style="display: none;">
+  <div class="tab-buttons tab-horizontal" id="tab-layout">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#layout" class="selected">Layout</a>
+        <a href="#box-model">Box model</a>
+      </div>
+    </div>
+  </div>
+  <div id="layout" class="selected">
+    <fieldset>
+      <legend><a href="#property-display" tabindex="-1">display:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-display" class="input-css autocomplete" data-css-prop="display" data-css-prop-js="display" data-value="${display}" data-auto-global-suggestion="cssDefaults.display" data-bind="display" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-float" tabindex="-1">float:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/float" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-float" class="input-css autocomplete" data-css-prop="float" data-css-prop-js="float" data-value="${float}" data-auto-global-suggestion="cssDefaults.float" data-bind="float" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-visibility" tabindex="-1">visibility:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/visibility" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-visibility" class="input-css autocomplete" data-css-prop="visibility" data-css-prop-js="visibility" data-value="${visibility}" data-auto-global-suggestion="cssDefaults.visibility" data-bind="visibility" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-opacity" tabindex="-1">opacity:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/opacity" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-opacity" class="input-css autocomplete" data-css-prop="opacity" data-css-prop-js="opacity" data-value="${opacity}" data-auto-global-suggestion="cssDefaults.opacity" data-bind-events="input" data-bind="opacity" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-overflow" tabindex="-1">overflow:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-overflow" class="input-css autocomplete" data-css-prop="overflow" data-css-prop-js="overflow" data-value="${overflow}" data-auto-global-suggestion="cssDefaults.overflow" data-bind="overflow" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-cursor" tabindex="-1">cursor:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-cursor" class="input-css autocomplete" data-css-prop="cursor" data-css-prop-js="cursor" data-value="${cursor}" data-auto-global-suggestion="cssDefaults.cursor" data-bind="cursor" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${inlineStyles}">
+      <legend><a href="#property-vertical-align" tabindex="-1">vertical-align:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style">
+        <div id="property-vertical-align" class="input-css autocomplete" data-css-prop="vertical-align" data-css-prop-js="verticalAlign" data-value="${verticalAlign}" data-auto-global-suggestion="cssDefaults.vertical-align" data-bind="verticalAlign" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <!-- LIST -->
+    <fieldset class="${listStyle}">
+      <legend><a href="#property-list-style-type" tabindex="-1">list-style-type:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-list-style-type" class="input-css autocomplete" data-css-prop="list-style-type" data-css-prop-js="listStyleType" data-value="${listStyleType}" data-auto-global-suggestion="cssDefaults.list-style-type" data-bind="listStyleType" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${listStyle}">
+      <legend><a href="#property-list-style-position" tabindex="-1">list-style-position:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-list-style-position" class="input-css autocomplete" data-css-prop="list-style-position" data-css-prop-js="listStylePosition" data-value="${listStylePosition}" data-auto-global-suggestion="cssDefaults.list-style-position" data-bind="listStylePosition" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${listStyle}">
+      <legend><a href="#property-list-style-image" tabindex="-1">list-style-image:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-image" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-list-style-image" class="input-css autocomplete" data-css-prop="list-style-image" data-css-prop-js="listStyleImage" data-value="${listStyleImage}" data-auto-global-suggestion="cssDefaults.list-style-image" data-bind="listStyleImage" contenteditable=""></div></div>
+    </fieldset>
+    <!-- BLOCK -->
+    <fieldset class="${displayBlock}">
+      <legend><a href="#property-clear" tabindex="-1">clear:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/clear" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-clear" class="input-css autocomplete" data-css-prop="clear" data-css-prop-js="clear" data-value="${clear}" data-auto-global-suggestion="cssDefaults.clear" data-bind="clear" contenteditable=""></div></div>
+    </fieldset>
+    <!-- FLEX -->
+    <fieldset class="${flexContainer}">
+      <legend><a href="#property-align-content" tabindex="-1">align-content:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content" class="info-round-icon" target="_blank"></a></legend>
+      <div class="flex-icons" data-key="align-content" data-css-prop-js="alignContent">
+        <button data-value="center" title="center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><rect transform="matrix(-1 0 0 1 10.5 2)" rx="1" fill="#000" height="3" width="8"></rect><rect transform="matrix(-1 0 0 1 10.5 8)" rx="1" fill="#000" height="3" width="8"></rect><path style="opacity:1;fill:#000;fill-opacity:1;stroke:#000;stroke-width:.97095;stroke-opacity:1" d="M1.469 6.485h10.05v.055H1.469z"></path></svg>
+        </button>
+        <button data-value="flex-start" title="flex-start">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><rect y="-9.5" x="-10.5" transform="scale(-1)" rx="1" fill="#000" height="3" width="8"></rect><path d="M10.5 4.5a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-2h8z" fill="#000"></path><path d="M1 3h11V2H1z" fill="#000"></path></svg>
+        </button>
+        <button data-value="flex-end" title="flex-end">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="8" height="3" fill="#000" rx="1" transform="matrix(-1 0 0 1 10.5 3.5)"></rect><path fill="#000" d="M10.5 8.5a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v2h8v-2z"></path><path fill="#000" d="M1 10h11v1H1z"></path></svg>
+        </button>
+        <button data-value="space-around" title="space-around">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="8" height="3" fill="#000" rx="1" transform="matrix(-1 0 0 1 10.5 2.75)"></rect><rect width="8" height="3" fill="#000" rx="1" transform="matrix(-1 0 0 1 10.5 7.25)"></rect><path fill="#000" d="M1 11h11v1H1zM1 1h11v1H1z"></path></svg>
+        </button>
+        <button data-value="space-between" title="space-between">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><path fill="#000" d="M10.5 1.5h-8v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2zm0 8a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v2h8v-2z"></path><path fill="#000" d="M1 11h11v1H1zM1 1h11v1H1z"></path></svg>
+        </button>
+        <button data-value="stretch" title="stretch">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><path d="M10.5 2h-8v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2zm0 6a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v3h8V8zM1 11h11v1H1zM1 1h11v1H1z" fill="#000"></path></svg>
+        </button>
+      </div>
+      <div class="input-css-style"><div id="property-align-content" class="input-css autocomplete" data-css-prop="align-content" data-css-prop-js="alignContent" data-value="${alignContent}" data-auto-global-suggestion="cssDefaults.align-content" data-bind="alignContent" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexOrGridChildren}">
+      <legend><a href="#property-align-self" tabindex="-1">align-self:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-self" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-align-self" class="input-css autocomplete" data-css-prop="align-self" data-css-prop-js="alignSelf" data-value="${alignSelf}" data-auto-global-suggestion="cssDefaults.align-self" data-bind="alignSelf" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexChildren}">
+      <legend><a href="#property-flex-basis" tabindex="-1">flex-basis:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-flex-basis" class="input-css autocomplete" data-css-prop="flex-basis" data-css-prop-js="flexBasis" data-value="${flexBasis}" data-auto-global-suggestion="cssDefaults.flex-basis" data-bind="flexBasis" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexContainer}">
+      <legend><a href="#property-flex-direction" tabindex="-1">flex-direction:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction" class="info-round-icon" target="_blank"></a></legend>
+      <div class="flex-icons" data-key="flex-direction" data-css-prop-js="flexDirection">
+        <button data-value="row" title="row">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13" style="transform: rotate(-90deg) scale(-1, 1)"><g clip-path="url(#a)"><rect x="2" y="2.816" width="4.607" height="2.738" rx=".5" stroke="#000"></rect><rect x="1.5" y="6.989" width="5.607" height="3.738" rx="1" fill="#000"></rect><path d="M9.461 1.5v7.63H8L10.002 12 12 9.13h-1.458V1.5h-1.08z" fill="#000"></path></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h13v13H0z"></path></clipPath></defs></svg>
+        </button>
+        <button data-value="row-reverse" title="row-reverse">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13" style="transform: rotate(-270deg)"><g clip-path="url(#a)"><rect x="2" y="2.816" width="4.607" height="2.738" rx=".5" stroke="#000"></rect><rect x="1.5" y="6.989" width="5.607" height="3.738" rx="1" fill="#000"></rect><path d="M9.461 1.5v7.63H8L10.002 12 12 9.13h-1.458V1.5h-1.08z" fill="#000"></path></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h13v13H0z"></path></clipPath></defs></svg>
+        </button>
+        <button data-value="column" title="column">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><g clip-path="url(#a)"><rect x="2" y="2.816" width="4.607" height="2.738" rx=".5" stroke="#000"></rect><rect x="1.5" y="6.989" width="5.607" height="3.738" rx="1" fill="#000"></rect><path d="M9.461 1.5v7.63H8L10.002 12 12 9.13h-1.458V1.5h-1.08z" fill="#000"></path></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h13v13H0z"></path></clipPath></defs></svg>
+        </button>
+        <button data-value="column-inverse" title="column-reverse">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13" style="transform: rotate(-180deg) scale(-1, 1)"><g clip-path="url(#a)"><rect x="2" y="2.816" width="4.607" height="2.738" rx=".5" stroke="#000"></rect><rect x="1.5" y="6.989" width="5.607" height="3.738" rx="1" fill="#000"></rect><path d="M9.461 1.5v7.63H8L10.002 12 12 9.13h-1.458V1.5h-1.08z" fill="#000"></path></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h13v13H0z"></path></clipPath></defs></svg>
+        </button>
+      </div>
+      <div class="input-css-style"><div id="property-flex-direction" class="input-css autocomplete" data-css-prop="flex-direction" data-css-prop-js="flexDirection" data-value="${flexDirection}" data-auto-global-suggestion="cssDefaults.flex-direction" data-bind="flexDirection" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexChildren}">
+      <legend><a href="#property-flex-grow" tabindex="-1">flex-grow:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-flex-grow" class="input-css autocomplete" data-css-prop="flex-grow" data-css-prop-js="flexGrow" data-value="${flexGrow}" data-auto-global-suggestion="cssDefaults.flex-grow" data-bind="flexGrow" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexChildren}">
+      <legend><a href="#property-flex-shrink" tabindex="-1">flex-shrink:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-flex-shrink" class="input-css autocomplete" data-css-prop="flex-shrink" data-css-prop-js="flexShrink" data-value="${flexShrink}" data-auto-global-suggestion="cssDefaults.flex-shrink" data-bind="flexShrink" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexContainer}">
+      <legend><a href="#property-flex-wrap" tabindex="-1">flex-wrap:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap" class="info-round-icon" target="_blank"></a></legend>
+      <div class="flex-icons" data-key="flex-wrap" data-css-prop-js="flexWrap">
+        <button data-value="nowrap" title="nowrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 5H2v3h1V5zM2 4a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2zM11 5h-1v3h1V5zm-1-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-1z" fill="#000"></path><path d="M5 5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5z" fill="#000"></path></svg>
+        </button>
+        <button data-value="wrap" title="wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 2H2v3h1V2zM2 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z" fill="#000"></path><path d="M1 8a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V8z" fill="#000"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11 2h-1v3h1V2zm-1-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-1z" fill="#000"></path><path d="M9 8a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V8zM5 2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V2z" fill="#000"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M7 8H6v3h1V8zM6 7a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H6z" fill="#000"></path></svg>
+        </button>
+      </div>
+      <div class="input-css-style"><div id="property-flex-wrap" class="input-css autocomplete" data-css-prop="flex-wrap" data-css-prop-js="flexWrap" data-value="${flexWrap}" data-auto-global-suggestion="cssDefaults.flex-wrap" data-bind="flexWrap" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexContainer}">
+      <legend><a href="#property-justify-content" tabindex="-1">justify-content:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content" class="info-round-icon" target="_blank"></a></legend>
+      <div class="flex-icons" data-key="justify-content" data-css-prop-js="justifyContent">
+        <button data-value="center" title="center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="3" height="6" x="2" y="3.5" fill="#000" rx="1"></rect><rect width="3" height="6" x="8" y="3.5" fill="#000" rx="1"></rect><path fill="#000" d="M6 1h1v11H6z"></path></svg>
+        </button>
+        <button data-value="flex-start" title="flex-start">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="3" height="6" x="6" y="3.5" fill="#000" rx="1"></rect><rect width="3" height="6" x="2" y="3.5" fill="#000" rx="1"></rect><path fill="#000" d="M1 1h1v11H1z"></path></svg>
+        </button>
+        <button data-value="flex-end" title="flex-end">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><rect transform="scale(-1 1)" rx="1" fill="#000" y="3.5" x="-7" height="6" width="3"></rect><rect transform="scale(-1 1)" rx="1" fill="#000" y="3.5" x="-11" height="6" width="3"></rect><path d="M12 1h-1v11h1z" fill="#000"></path></svg>
+        </button>
+        <button data-value="space-between" title="space-between">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="3" height="6" x="8" y="3.5" fill="#000" rx="1"></rect><rect width="3" height="6" x="2" y="3.5" fill="#000" rx="1"></rect><path fill="#000" d="M1 1h1v11H1zm10 0h1v11h-1z"></path></svg>
+        </button>
+        <button data-value="space-around" title="space-around">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="3" height="6" x="7.25" y="3.5" fill="#000" rx="1"></rect><rect width="3" height="6" x="2.75" y="3.5" fill="#000" rx="1"></rect><path fill="#000" d="M1 1h1v11H1zm10 0h1v11h-1z"></path></svg>
+        </button>
+        <button data-value="space-evenly" title="space-evenly">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="3" height="6" x="7" y="3.5" fill="#000" rx="1"></rect><rect width="3" height="6" x="3" y="3.5" fill="#000" rx="1"></rect><path fill="#000" d="M1 1h1v11H1zm10 0h1v11h-1z"></path></svg>
+        </button>
+      </div>
+      <div class="input-css-style"><div id="property-justify-content" class="input-css autocomplete" data-css-prop="justify-content" data-css-prop-js="justifyContent" data-value="${justifyContent}" data-auto-global-suggestion="cssDefaults.justify-content" data-bind="justifyContent" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexChildren}">
+      <legend><a href="#property-order" tabindex="-1">order:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/order" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-order" class="input-css autocomplete" data-css-prop="order" data-css-prop-js="order" data-value="${order}" data-auto-global-suggestion="cssDefaults.order" data-bind="order" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexOrGridContainer}">
+      <legend><a href="#property-align-items" tabindex="-1">align-items:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items" class="info-round-icon" target="_blank"></a></legend>
+      <div class="flex-icons" data-key="align-items" data-css-prop-js="alignItems">
+        <button data-value="center" title="center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect x="7" y="2.5" width="3" height="8" rx="1" fill="#000"></rect><rect x="3" y="3.5" width="3" height="6" rx="1" fill="#000"></rect><path fill="#000" d="M1 6h11v1H1z"></path></svg>        </button>
+        <button data-value="flex-start" title="flex-start">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><path d="M7 8.5a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-7H7zm-4-2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-5H3z" fill="#000"></path><path d="M1 2h11V1H1z" fill="#000"></path></svg>        </button>
+        <button data-value="flex-end" title="flex-end">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><path fill="#000" d="M7 4.5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7H7v-7zm-4 2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v5H3v-5z"></path><path fill="#000" d="M1 11h11v1H1z"></path></svg>        </button>
+        <button data-value="stretch" title="stretch">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><path fill="#000" d="M7 2h3v9H7zM3 2h3v9H3zM1 1h11v1H1zm0 10h11v1H1z"></path></svg>
+        </button>
+        <button data-value="baseline" title="baseline">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><path fill="#000" d="M1 11h11v1H1z"></path><path fill="#000" fill-rule="evenodd" d="M7.273 1H5.816L2.5 9.807h1.41l.932-2.578h3.262l.873 2.578h1.492L7.273 1zM5.248 6.08l1.243-3.403 1.17 3.403H5.248z" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+      <div class="input-css-style"><div id="property-align-items" class="input-css autocomplete" data-css-prop="align-items" data-css-prop-js="alignItems" data-value="${alignItems}" data-auto-global-suggestion="cssDefaults.align-items" data-bind="alignItems" contenteditable=""></div></div>
+    </fieldset>
+    <!-- TABLE -->
+    <fieldset class="${tableContainer}">
+      <legend><a href="#property-border-collapse" tabindex="-1">border-collapse:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-collapse" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-border-collapse" class="input-css autocomplete" data-css-prop="border-collapse" data-css-prop-js="borderCollapse" data-value="${borderCollapse}" data-auto-global-suggestion="cssDefaults.border-collapse" data-bind="borderCollapse" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${borderSpacingAllowed}">
+      <legend><a href="#property-border-spacing" tabindex="-1">border-spacing:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-spacing" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-border-spacing" class="input-css autocomplete" data-css-prop="border-spacing" data-css-prop-js="borderSpacing" data-value="${borderSpacing}" data-auto-global-suggestion="cssDefaults.border-spacing" data-bind="borderSpacing" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${tableContainer}">
+      <legend><a href="#property-caption-side" tabindex="-1">caption-side:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-caption-side" class="input-css autocomplete" data-css-prop="caption-side" data-css-prop-js="captionSide" data-value="${captionSide}" data-auto-global-suggestion="cssDefaults.caption-side" data-bind="captionSide" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${emptyCellsAllowed}">
+      <legend><a href="#property-empty-cells" tabindex="-1">empty-cells:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/empty-cells" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-empty-cells" class="input-css autocomplete" data-css-prop="empty-cells" data-css-prop-js="emptyCells" data-value="${emptyCells}" data-auto-global-suggestion="cssDefaults.empty-cells" data-bind="emptyCells" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${tableContainer}">
+      <legend><a href="#property-table-layout" tabindex="-1">table-layout:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-table-layout" class="input-css autocomplete" data-css-prop="table-layout" data-css-prop-js="tableLayout" data-value="${tableLayout}" data-auto-global-suggestion="cssDefaults.table-layout" data-bind="tableLayout" contenteditable=""></div></div>
+    </fieldset>
+    <!-- GRID -->
+    <fieldset class="grid-template-areas ${gridContainer}">
+      <legend>grid-template-areas:<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas" class="info-round-icon" target="_blank"></a></legend>
+      <button data-if="gridAreasTemplate.length" id="add-css-grid-column">+ Col</button>
+      <button data-if="gridAreasTemplate.length &amp;&amp; gridAreasTemplate[0].cells.length > 1" id="remove-css-grid-column">- Col
+      </button>
+      <div data-css-prop="grid-template-areas" data-foreach="gridAreasTemplate" data-foreach-key-name="row">
+        <div class="grid-row-area">
+          <input class="grid-row-area-label" data-foreach="row.cells" data-foreach-key-name="cell" data-row-index="${cell.index}" data-cell-index="${row.index}" data-bind="cell.label">
+        </div>
+      </div>
+      <button id="add-css-grid-row">+ Row</button>
+      <button id="remove-css-grid-row">- Row</button>
+    </fieldset>
+    <fieldset class="${gridChildren}">
+      <legend><a href="#property-grid-area" tabindex="-1">grid-area:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-area" class="input-css autocomplete" data-css-prop="grid-area" data-css-prop-js="gridArea" data-value="${gridArea}" data-auto-global-suggestion="cssDefaults.grid-area" data-bind="gridArea" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridContainer}">
+      <legend><a href="#property-grid-template-columns" tabindex="-1">grid-template-columns:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-template-columns" class="input-css autocomplete" data-css-prop="grid-template-columns" data-css-prop-js="gridTemplateColumns" data-value="${gridTemplateColumns}" data-auto-global-suggestion="cssDefaults.grid-template-columns" data-bind="gridTemplateColumns" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridContainer}">
+      <legend><a href="#property-grid-template-rows" tabindex="-1">grid-template-rows:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-template-rows" class="input-css autocomplete" data-css-prop="grid-template-rows" data-css-prop-js="gridTemplateRows" data-value="${gridTemplateRows}" data-auto-global-suggestion="cssDefaults.grid-template-rows" data-bind="gridTemplateRows" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridContainer}">
+      <legend><a href="#property-grid-auto-columns" tabindex="-1">grid-auto-columns:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-auto-columns" class="input-css autocomplete" data-css-prop="grid-auto-columns" data-css-prop-js="gridAutoColumns" data-value="${gridAutoColumns}" data-auto-global-suggestion="cssDefaults.grid-auto-columns" data-bind="gridAutoColumns" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridContainer}">
+      <legend><a href="#property-grid-auto-flow" tabindex="-1">grid-auto-flow:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-auto-flow" class="input-css autocomplete" data-css-prop="grid-auto-flow" data-css-prop-js="gridAutoFlow" data-value="${gridAutoFlow}" data-auto-global-suggestion="cssDefaults.grid-auto-flow" data-bind="gridAutoFlow" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridContainer}">
+      <legend><a href="#property-grid-auto-rows" tabindex="-1">grid-auto-rows:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-auto-rows" class="input-css autocomplete" data-css-prop="grid-auto-rows" data-css-prop-js="gridAutoRows" data-value="${gridAutoRows}" data-auto-global-suggestion="cssDefaults.grid-auto-rows" data-bind="gridAutoRows" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridChildren}">
+      <legend><a href="#property-grid-column-start" tabindex="-1">grid-column-start:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-column-start" class="input-css autocomplete" data-css-prop="grid-column-start" data-css-prop-js="gridColumnStart" data-value="${gridColumnStart}" data-auto-global-suggestion="cssDefaults.grid-column-start" data-bind="gridColumnStart" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridChildren}">
+      <legend><a href="#property-grid-column-end" tabindex="-1">grid-column-end:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-end" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-column-end" class="input-css autocomplete" data-css-prop="grid-column-end" data-css-prop-js="gridColumnEnd" data-value="${gridColumnEnd}" data-auto-global-suggestion="cssDefaults.grid-column-end" data-bind="gridColumnEnd" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexOrGridOrMultiContainer}">
+      <legend><a href="#property-column-gap" tabindex="-1">column-gap:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-gap" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-column-gap" class="input-css autocomplete" data-css-prop="column-gap" data-css-prop-js="columnGap" data-value="${columnGap}" data-auto-global-suggestion="cssDefaults.column-gap" data-bind="columnGap" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexOrGridOrMultiContainer}">
+      <legend><a href="#property-row-gap" tabindex="-1">row-gap:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-gap" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-row-gap" class="input-css autocomplete" data-css-prop="row-gap" data-css-prop-js="rowGap" data-value="${rowGap}" data-auto-global-suggestion="cssDefaults.row-gap" data-bind="rowGap" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridChildren}">
+      <legend><a href="#property-grid-row-start" tabindex="-1">grid-row-start:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-row-start" class="input-css autocomplete" data-css-prop="grid-row-start" data-css-prop-js="gridRowStart" data-value="${gridRowStart}" data-auto-global-suggestion="cssDefaults.grid-row-start" data-bind="gridRowStart" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridChildren}">
+      <legend><a href="#property-grid-row-end" tabindex="-1">grid-row-end:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-end" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-row-end" class="input-css autocomplete" data-css-prop="grid-row-end" data-css-prop-js="gridRowEnd" data-value="${gridRowEnd}" data-auto-global-suggestion="cssDefaults.grid-row-end" data-bind="gridRowEnd" contenteditable=""></div></div>
+    </fieldset>
+  </div>
+  <div id="box-model" style="display:none">
+    <fieldset>
+      <legend><a href="#property-position" tabindex="-1">position:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-position" class="input-css autocomplete" data-css-prop="position" data-css-prop-js="position" data-value="${position}" data-auto-global-suggestion="cssDefaults.position" data-bind="position" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-width" tabindex="-1">width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-width" class="input-css autocomplete" data-css-prop="width" data-css-prop-js="width" data-value="${width}" data-auto-global-suggestion="cssDefaults.width" data-bind="width" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-height" tabindex="-1">height:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/height" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-height" class="input-css autocomplete" data-css-prop="height" data-css-prop-js="height" data-value="${height}" data-auto-global-suggestion="cssDefaults.height" data-bind="height" contenteditable=""></div></div>
+    </fieldset>
+    <div>Computed Width &amp; Height: ${calculatedWidth} | ${calculatedHeight}</div><div id="show-measure-wrapper">
+      <div id="show-measure">
+      <div id="position" class="div ${positionVisible}">
+        <section class="label">
+          <span>position</span>
+        </section>
+        <div id="position-top" class="top">
+          <div class="input-css" data-css-prop="top" data-value="${top}" data-bind="top" contenteditable=""></div>
+        </div>
+        <div id="position-left" class="left">
+          <div class="input-css" data-css-prop="left" data-value="${left}" data-bind="left" contenteditable=""></div>
+        </div>
+        <div id="position-right" class="right">
+          <div class="input-css" data-css-prop="right" data-value="${right}" data-bind="right" contenteditable=""></div>
+        </div>
+        <div id="position-bottom" class="bottom">
+          <div class="input-css" data-css-prop="bottom" data-value="${bottom}" data-bind="bottom" contenteditable=""></div>
+        </div>
+        <div id="margin" class="div">
+          <section class="label ${marginLinked}">
+            <span>margin</span>
+            <button>
+              <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+              </svg>
+            </button>
+          </section>
+          <div id="margin-top" class="top">
+            <div class="input-css" data-linked="${marginLinked}" data-css-prop="margin-top" data-value="${marginTop}" data-bind="marginTop" contenteditable=""></div>
+          </div>
+          <div id="margin-left" class="left">
+            <div class="input-css" data-linked="${marginLinked}" data-css-prop="margin-left" data-value="${marginLeft}" data-bind="marginLeft" contenteditable=""></div>
+          </div>
+          <div id="margin-right" class="right">
+            <div class="input-css" data-linked="${marginLinked}" data-css-prop="margin-right" data-value="${marginRight}" data-bind="marginRight" contenteditable=""></div>
+          </div>
+          <div id="margin-bottom" class="bottom">
+            <div class="input-css" data-linked="${marginLinked}" data-css-prop="margin-bottom" data-value="${marginBottom}" data-bind="marginBottom" contenteditable=""></div>
+          </div>
+          <div id="border" class="div">
+            <section class="label ${borderLinked}">
+              <span>border</span>
+              <button>
+                <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+                </svg>
+              </button>
+            </section>
+            <div id="border-top" class="top">
+              <div class="input-css" data-linked="${borderLinked}" data-css-prop="border-top-width" data-value="${borderTopWidth}" data-bind="borderTopWidth" contenteditable=""></div>
+            </div>
+            <div id="border-left" class="left">
+              <div class="input-css" data-linked="${borderLinked}" data-css-prop="border-left-width" data-value="${borderLeftWidth}" data-bind="borderLeftWidth" contenteditable=""></div>
+            </div>
+            <div id="border-right" class="right">
+              <div class="input-css" data-linked="${borderLinked}" data-css-prop="border-right-width" data-value="${borderRightWidth}" data-bind="borderRightWidth" contenteditable=""></div>
+            </div>
+            <div id="border-bottom" class="bottom">
+              <div class="input-css" data-linked="${borderLinked}" data-css-prop="border-bottom-width" data-value="${borderBottomWidth}" data-bind="borderBottomWidth" contenteditable=""></div>
+            </div>
+            <div id="padding" class="div">
+              <section class="label ${paddingLinked}">
+                <span>padding</span>
+                <button>
+                  <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+                  </svg>
+                </button>
+              </section>
+              <div id="padding-top" class="top">
+                <div class="input-css" data-linked="${paddingLinked}" data-css-prop="padding-top" data-value="${paddingTop}" data-bind="paddingTop" contenteditable=""></div>
+              </div>
+              <div id="padding-left" class="left">
+                <div class="input-css" data-linked="${paddingLinked}" data-css-prop="padding-left" data-value="${paddingLeft}" data-bind="paddingLeft" contenteditable="true"></div>
+              </div>
+              <div id="padding-right" class="right">
+                <div class="input-css" data-linked="${paddingLinked}" data-css-prop="padding-right" data-value="${paddingRight}" data-bind="paddingRight" contenteditable="true"></div>
+              </div>
+              <div id="padding-bottom" class="bottom">
+                <div class="input-css" data-linked="${paddingLinked}" data-css-prop="padding-bottom" data-value="${paddingBottom}" data-bind="paddingBottom" contenteditable="true"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <fieldset>
+      <legend><a href="#property-box-sizing" tabindex="-1">box-sizing:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-box-sizing" class="input-css autocomplete" data-css-prop="box-sizing" data-css-prop-js="boxSizing" data-value="${boxSizing}" data-auto-global-suggestion="cssDefaults.box-sizing" data-bind="boxSizing" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-max-width" tabindex="-1">max-width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-width" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-max-width" class="input-css autocomplete" data-css-prop="max-width" data-css-prop-js="maxWidth" data-value="${maxWidth}" data-auto-global-suggestion="cssDefaults.max-width" data-bind="maxWidth" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-min-width" tabindex="-1">min-width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/min-width" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-min-width" class="input-css autocomplete" data-css-prop="min-width" data-css-prop-js="minWidth" data-value="${minWidth}" data-auto-global-suggestion="cssDefaults.min-width" data-bind="minWidth" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-max-height" tabindex="-1">max-height:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-height" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-max-height" class="input-css autocomplete" data-css-prop="max-height" data-css-prop-js="maxHeight" data-value="${maxHeight}" data-auto-global-suggestion="cssDefaults.min-height" data-bind="maxHeight" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-min-height" tabindex="-1">min-height:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/min-height" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-min-height" class="input-css autocomplete" data-css-prop="min-height" data-css-prop-js="minHeight" data-value="${minHeight}" data-auto-global-suggestion="cssDefaults.min-height" data-bind="minHeight" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${objectEl}">
+      <legend><a href="#property-object-fit" tabindex="-1">object-fit:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-object-fit" class="input-css autocomplete" data-css-prop="object-fit" data-css-prop-js="objectFit" data-value="${objectFit}" data-auto-global-suggestion="cssDefaults.object-fit" data-bind="objectFit" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${objectEl}">
+      <legend><a href="#property-object-position" tabindex="-1">object-position:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-position" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-object-position" class="input-css autocomplete" data-css-prop="object-position" data-css-prop-js="objectPosition" data-value="${objectPosition}" data-auto-global-suggestion="cssDefaults.object-position" data-bind="objectPosition" contenteditable=""></div></div>
+    </fieldset>
+  </div>
+</section>
+<section id="transform" class="${isVisible}" data-tilepieces-component="tilepieces/transform" style="display: none;">
+  <div class="tab-buttons tab-horizontal" id="transform-tabs">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#general-transform" class="selected">Transform</a>
+        <a href="#transform-functions">Functions</a>
+      </div>
+    </div>
+  </div>
+  <div id="general-transform">
+    <fieldset>
+      <legend>
+        <a href="#property-transform" tabindex="-1">
+          transform:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-transform" class="input-css autocomplete" data-css-prop="transform" data-css-prop-js="transform" data-value="${transform}" data-auto-global-suggestion="cssDefaults.transform" data-bind="transform" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-transform-origin" tabindex="-1">
+          transform-origin:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-transform-origin" class="input-css autocomplete" data-css-prop="transform-origin" data-css-prop-js="transformOrigin" data-value="${transformOrigin}" data-auto-global-suggestion="cssDefaults.transform-origin" data-bind="transformOrigin" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-transform-style" tabindex="-1">
+          transform-style:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-style" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-transform-style" class="input-css autocomplete" data-css-prop="transform-style" data-css-prop-js="transformStyle" data-value="${transformStyle}" data-auto-global-suggestion="cssDefaults.transform-style" data-bind="transformStyle" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-perspective" tabindex="-1">
+          perspective:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/perspective" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-perspective" class="input-css autocomplete" data-css-prop="perspective" data-css-prop-js="perspective" data-value="${perspective}" data-auto-global-suggestion="cssDefaults.perspective" data-bind="perspective" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-perspective-origin" tabindex="-1">
+          perspective-origin:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/perspective-origin" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-perspective-origin" class="input-css autocomplete" data-css-prop="perspective-origin" data-css-prop-js="perspectiveOrigin" data-value="${perspectiveOrigin}" data-auto-global-suggestion="cssDefaults.perspective-origin" data-bind="perspectiveOrigin" contenteditable=""></div>
+      </div>
+    </fieldset>
+  </div>
+  <div id="transform-functions" style="display:none">
+    <ul>
+      <li data-foreach="functions" data-foreach-key-name="f" data-index="${f.index}">
+        <span class="handler"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g><g><g><path style="fill:#727272;" d="M17.5,8.4c-0.4,0-0.7-0.1-1-0.4L12,3.4L7.5,7.8C7,8.4,6.1,8.4,5.6,7.8C5,7.3,5,6.4,5.6,5.9L11,0.5c0.5-0.5,1.4-0.5,1.9,0L18.4,6C19,6.6,19,7.4,18.4,8C18.2,8.2,17.8,8.4,17.5,8.4z"></path></g><g><path style="fill:#727272;" d="M12,11c-0.8,0-1.4-0.6-1.4-1.4l0-8.2c0-0.8,0.6-1.4,1.4-1.4c0.8,0,1.4,0.6,1.4,1.4l0,8.2C13.4,10.4,12.8,11,12,11z"></path></g></g><g><g><path style="fill:#727272;" d="M6.5,15.6c0.4,0,0.7,0.1,1,0.4l4.5,4.6l4.5-4.5c0.5-0.5,1.4-0.5,1.9,0c0.5,0.5,0.5,1.4,0,1.9L13,23.5c-0.5,0.5-1.4,0.5-1.9,0L5.6,18C5,17.4,5,16.6,5.6,16C5.8,15.8,6.2,15.6,6.5,15.6z"></path></g><g><path style="fill:#727272;" d="M12,13c0.8,0,1.4,0.6,1.4,1.4l0,8.2c0,0.8-0.6,1.4-1.4,1.4c-0.8,0-1.4-0.6-1.4-1.4l0-8.2C10.6,13.6,11.2,13,12,13z"></path></g></g></g></svg></span>
+        <fieldset>
+          <legend>${f.name}</legend>
+          <div class="input-css" data-type="transform-function" data-value="${f.value}" data-index="${f.index}" data-bind="f.value" contenteditable="">
+          </div>
+        </fieldset>
+        <button class="remove-function" data-index="${f.index}">- function</button>
+      </li>
+    </ul>
+    <div>
+      <select data-bind="transformNewType">
+        <option value="translate(0px,0px)">translate</option>
+        <option value="translateX(0px)">translateX</option>
+        <option value="translateY(0px)">translateY</option>
+        <option value="translateZ(0px)">translateZ</option>
+        <option value="translate3d(0px,0px,0px)">translate3d</option>
+        <option value="scale(1,1)">scale</option>
+        <option value="scaleX(1)">scaleX</option>
+        <option value="scaleY(1)">scaleY</option>
+        <option value="scaleZ(1)">scaleZ</option>
+        <option value="scale3d(1,1,1)">scale3d</option>
+        <option value="rotate(0deg)">rotate</option>
+        <option value="rotateX(0deg)">rotateX</option>
+        <option value="rotateY(0deg)">rotateY</option>
+        <option value="rotateZ(0deg)">rotateZ</option>
+        <option value="rotate3d(0,0,0,0deg)">rotate3d</option>
+        <option value="skew(0deg,0deg)">skew</option>
+        <option value="skewX(0deg)">skewX</option>
+        <option value="skewY(0deg)">skewY</option>
+        <option value="perspective(0px)">perspective</option>
+        <option value="matrix(1, 0, 0, 1, 0, 0)">matrix</option>
+        <option value="matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)">matrix3d</option>
+      </select>
+      <button class="add-function">+ function</button>
+    </div>
+  </div>
+</section>
+<section class="${isVisible}" id="animations" data-tilepieces-component="tilepieces/animations" style="display:none">
+  <div class="tab-buttons tab-horizontal" id="tab-animations" data-tilepieces-component="tilepieces/tabs">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#general-animations" class="selected">Animations</a>
+        <a href="#keyframes">@keyframes</a>
+      </div>
+    </div>
+  </div>
+  <div id="general-animations">
+    <fieldset>
+      <legend><a href="#input-animation" tabindex="-1">
+        <span class="h3">animation:</span></a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style">
+        <div class="input-css autocomplete" data-css-prop="animation" data-css-prop-js="animation" data-value="${animation}" data-auto-global-suggestion="cssDefaults.animation" data-bind="animation" contenteditable="" id="input-animation">
+        </div>
+      </div>
+    </fieldset>
+    <details>
+      <summary>
+        <span class="h3">animation properties
+        </span>
+      </summary>
+      <div class="details-open-summery-child" style="">
+        <fieldset>
+          <legend><a href="#input-animationName" tabindex="-1">animation-name:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-name" data-css-prop-js="animationName" data-value="${animationName}" data-auto-global-suggestion="cssDefaults.animation-name" data-bind="animationName" contenteditable="" id="input-animationName"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationDuration" tabindex="-1">animation-duration:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-duration" data-css-prop-js="animationDuration" data-value="${animationDuration}" data-auto-global-suggestion="cssDefaults.animation-duration" data-bind="animationDuration" contenteditable="" id="input-animationDuration"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationFunction" tabindex="-1">animation-timing-function:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-timing-function" data-css-prop-js="animationTimingFunction" data-value="${animationTimingFunction}" data-auto-global-suggestion="cssDefaults.animation-timing-function" data-bind="animationTimingFunction" contenteditable="" id="input-animationFunction"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationDelay" tabindex="-1">animation-delay:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-delay" data-css-prop-js="animationDelay" data-value="${animationDelay}" data-auto-global-suggestion="cssDefaults.animation-delay" data-bind="animationDelay" contenteditable="" id="input-animationDelay"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a tabindex="-1" href="#input-animationIterationCount">animation-iteration-count:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-iteration-count" data-css-prop-js="animationIterationCount" data-value="${animationIterationCount}" data-auto-global-suggestion="cssDefaults.animation-iteration-count" data-bind="animationIterationCount" contenteditable="" id="input-animationIterationCount"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationDirection" tabindex="-1">animation-direction:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-direction" data-css-prop-js="animationDirection" data-value="${animationDirection}" data-auto-global-suggestion="cssDefaults.animation-direction" data-bind="animationDirection" contenteditable="" id="input-animationDirection"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationFillMode" tabindex="-1">animation-fill-mode:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-fill-mode" data-css-prop-js="animationFillMode" data-value="${animationFillMode}" data-auto-global-suggestion="cssDefaults.animation-fill-mode" data-bind="animationFillMode" contenteditable="" id="input-animationFillMode"></div>
+          </div>
+
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationPlayState" tabindex="-1">animation-play-state: </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-play-state" data-css-prop-js="animationPlayState" data-value="${animationPlayState}" data-auto-global-suggestion="cssDefaults.animation-play-state" data-bind="animationPlayState" contenteditable="" id="input-animationPlayState"></div>
+          </div>
+        </fieldset>
+      </div>
+    </details>
+    <fieldset>
+      <legend><a tabindex="-1" href="#input-transition">
+        <span class="h3">transition:</span></a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style">
+        <div class="input-css autocomplete" data-css-prop="transition" data-css-prop-js="transition" data-value="${transition}" data-auto-global-suggestion="cssDefaults.transition" data-bind="transition" contenteditable="" id="input-transition"></div>
+      </div>
+    </fieldset>
+    <details>
+      <summary>
+        <span class="h3">transition properties</span>
+      </summary>
+      <div class="details-open-summery-child">
+        <fieldset>
+          <legend><a tabindex="-1" href="#input-transitionCssProperty">transition property:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="transition-property" data-css-prop-js="transitionProperty" data-value="${transitionProperty}" data-auto-global-suggestion="cssDefaults.transition-property" data-bind="transitionProperty" contenteditable="" id="input-transitionCssProperty"></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><a tabindex="-1" href="#input-TransitionDuration">transition duration:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="transition-duration" data-css-prop-js="transitionDuration" data-value="${transitionDuration}" data-auto-global-suggestion="cssDefaults.transition-duration" data-bind="transitionDuration" contenteditable="" id="input-TransitionDuration"></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><a tabindex="-1" href="#input-TransitionTimingFunction">transition timing function:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="transition-timing-function" data-css-prop-js="transitionTimingFunction" data-value="${transitionTimingFunction}" data-auto-global-suggestion="cssDefaults.transition-timing-function" data-bind="transitionTimingFunction" contenteditable="" id="input-TransitionTimingFunction"></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><a tabindex="-1" href="#input-transitionDelay">transition delay:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="transition-delay" data-css-prop-js="transitionDelay" data-value="${transitionDelay}" data-auto-global-suggestion="cssDefaults.transition-delay" data-bind="transitionDelay" contenteditable="" id="input-transitionDelay"></div>
+          </div>
+        </fieldset>
+      </div>
+    </details>
+  </div>
+  <div id="keyframes" style="display:none">
+    <div class="flex-box top-button-actions">
+      <button id="new-animation" class="button-bg-fill">New Animation</button>
+    </div>
+    <div data-foreach="animations" data-foreach-key-name="animation" class="animation__rule-block" data-bind-dom-prop="__animation,animation" data-index="${animation.index}">
+      <div class="animation__rule-block__inherited-divider flex-box-stroke">
+        <span data-bind="animation.name" ${animation.contenteditable}=""></span>
+        <button class="delete-animation component-properties-remove">-</button>
+        <button class="new-keyframe"><small>new keyframe</small></button>
+        <button class="open-animation component-properties-open">
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+  <path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg>
+        </button>
+      </div>
+      <div class="animation_keyframe ${animation.show} ${animation.contenteditable}">
+        <div data-foreach="animation.cssRules" data-foreach-key-name="keyframe" class="keyframe__rule-block" data-bind-dom-prop="__keyframe-rule,keyframe">
+          <div class="keyframe__rule__selector">
+            <div class="keyframe__rule__selector-name" data-bind="keyframe.keyText" ${animation.contenteditable}="">
+            </div>
+            <button class="delete-keyframe component-properties-remove" data-index="${keyframe.index}">-
+            </button>
+          </div>
+          <div data-use="css-properties-list" data-params="rule,keyframe"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><div tabindex="-1" class="modal-animation flex-modal" id="modal-new-animation" data-tilepieces-component="tilepieces/animations">
+  <section>
+    <div class="modal-animation-close"></div>
+    <form id="new-animation-form">
+      <label for="new-animation-name">
+        <span class="h4">new animation name</span>
+      </label>
+      <div class="flex-box">
+        <input name="new-animation-name" id="new-animation-name" title="" autocomplete="off" required="">
+        <small id="new-animation-error" style="display: none;" class="message-alert-error">Invalid syntax</small>
+        <div>
+          <button type="submit">create</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</div><div tabindex="-1" class="modal-animation flex-modal" id="modal-new-keyframe" data-tilepieces-component="tilepieces/animations">
+  <section>
+    <div class="modal-animation-close"></div>
+    <form id="new-keyframe-form">
+      <label for="new-animation-name">
+        <span class="h4">percentage position:</span>
+      </label>
+      <div class="flex-box">
+
+        <input name="new-animation-name" id="new-keyframe-name" type="number" min="0" max="100" required="">%
+
+        <small id="new-keyframe-error" style="" class="message-alert-error">Invalid syntax</small>
+        <div>
+          <button type="submit">insert</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>
+
+
+<section id="css-text" class="${isVisible}" data-tilepieces-component="tilepieces/css-text" style="display: none;">
+  <div class="tab-buttons tab-horizontal" id="tab-css-text">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#css-text-general" class="selected">Css Text</a>
+        <a href="#text-shadow-tab">Text Shadow</a>
+      </div>
+    </div>
+  </div>
+  <div id="css-text-general">
+    <fieldset>
+      <legend>
+        <a href="#property-font-family" tabindex="-1">
+          Font-family:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-font-family" class="input-css autocomplete" data-css-prop="font-family" data-css-prop-js="fontFamily" data-value="${fontFamily}" data-auto-global-suggestion="app.core.fontSuggestions" data-bind="fontFamily" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-font-size" tabindex="-1">
+          Font-size:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-font-size" class="input-css autocomplete" data-css-prop="font-size" data-css-prop-js="fontSize" data-value="${fontSize}" data-auto-global-suggestion="cssDefaults.font-size" data-bind="fontSize" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-font-weight" tabindex="-1">
+          Font-weight:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-font-weight" class="input-css autocomplete" data-css-prop="font-weight" data-css-prop-js="fontWeight" data-value="${fontWeight}" data-auto-global-suggestion="cssDefaults.font-weight" data-bind="fontWeight" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-font-style" tabindex="-1">
+          Font-style:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-style" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-font-style" class="input-css autocomplete" data-css-prop="font-style" data-css-prop-js="fontStyle" data-value="${fontStyle}" data-auto-global-suggestion="cssDefaults.font-style" data-bind="fontStyle" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-line-height" tabindex="-1">
+          Line-height:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-line-height" class="input-css autocomplete" data-css-prop="line-height" data-css-prop-js="lineHeight" data-value="${lineHeight}" data-auto-global-suggestion="cssDefaults.line-height" data-bind="lineHeight" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-text-align" tabindex="-1">
+          Text-align:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-align" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-text-align" class="input-css autocomplete" data-css-prop="text-align" data-css-prop-js="textAlign" data-value="${textAlign}" data-auto-global-suggestion="cssDefaults.text-align" data-bind="textAlign" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-color" tabindex="-1">
+          Color:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <span id="color" style="background:${realColor}" data-css-prop="color" class="color-button"></span>
+        <div id="property-color" class="input-css autocomplete" data-css-prop="color" data-css-prop-js="color" data-value="${color}" data-auto-global-suggestion="cssDefaults.color" data-bind="color" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-text-decoration" tabindex="-1">
+          Text-decoration:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-text-decoration" class="input-css autocomplete" data-css-prop="text-decoration" data-css-prop-js="textDecoration" data-value="${textDecoration}" data-auto-global-suggestion="cssDefaults.text-decoration" data-bind="textDecoration" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-text-transform" tabindex="-1">
+          Text-transform:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-text-transform" class="input-css autocomplete" data-css-prop="text-transform" data-css-prop-js="textTransform" data-value="${textTransform}" data-auto-global-suggestion="cssDefaults.text-transform" data-bind="textTransform" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-text-indent" tabindex="-1">
+          Text-indent:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-indent" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-text-indent" class="input-css autocomplete" data-css-prop="text-indent" data-css-prop-js="textIndent" data-value="${textIndent}" data-auto-global-suggestion="cssDefaults.text-indent" data-bind="textIndent" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-letter-spacing" tabindex="-1">
+          Letter-spacing:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-letter-spacing" class="input-css autocomplete" data-css-prop="letter-spacing" data-css-prop-js="letterSpacing" data-value="${letterSpacing}" data-auto-global-suggestion="cssDefaults.letter-spacing" data-bind="letterSpacing" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-word-spacing" tabindex="-1">
+          Word-spacing:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/word-spacing" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-word-spacing" class="input-css autocomplete" data-css-prop="word-spacing" data-css-prop-js="wordSpacing" data-value="${wordSpacing}" data-auto-global-suggestion="cssDefaults.word-spacing" data-bind="wordSpacing" contenteditable=""></div>
+      </div>
+    </fieldset>
+  </div>
+  <div id="text-shadow-tab" style="display:none">
+    <fieldset>
+      <legend>
+        <a href="#property-text-shadow" tabindex="-1">
+          Text-shadow:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow" class="info-round-icon" target="_blank"></a>
+        <button class="add-text-shadow">Add</button>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-text-shadow" class="input-css autocomplete" data-css-prop="text-shadow" data-css-prop-js="textShadow" data-value="${textShadow}" data-auto-global-suggestion="cssDefaults.text-shadow" data-bind="textShadow" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset data-foreach="textShadows" data-foreach-key-name="textShadowValue" class="text-shadow">
+      <legend>Text Shadow #${textShadowValue.index}</legend>
+      <button class="remove-text-shadow" data-index="${textShadowValue.index}">Remove</button>
+      <div style="float:left;width:calc(100% - 220px)">
+        <label for="x-offset-${textShadowValue.index}">X offset</label>
+        <div class="flex-box">
+          <input id="x-offset-${textShadowValue.index}" data-index="${textShadowValue.index}" data-text-shadow="offsetX" type="number" data-bind="textShadowValue.offsetX">
+            <span>px</span>
+        </div>
+        <label for="y-offset-${textShadowValue.index}">Y offset</label>
+        <div class="flex-box">
+        <input id="y-offset-${textShadowValue.index}" data-index="${textShadowValue.index}" data-text-shadow="offsetY" type="number" data-bind="textShadowValue.offsetY">
+          <span>px</span>
+        </div>
+        <label for="blur-offset-${textShadowValue.index}">Blur</label>
+        <div class="flex-box">
+          <input id="blur-offset-${textShadowValue.index}" type="number" data-index="${textShadowValue.index}" min="0" step="0.5" data-text-shadow="blur" data-bind="textShadowValue.blur">
+          <span>px</span>
+        </div>
+        <input data-bind="textShadowValue.blurToSlider" data-text-shadow="blur" data-index="${textShadowValue.index}" type="range" min="0" max="30" step="0.5">
+        <div data-text-shadow="color" class="color-button" data-index="${textShadowValue.index}" style="background:${textShadowValue.color}"></div>
+      </div>
+      <div style="float:right">
+        <svg id="svg-text-shadow-${textShadowValue.index}" data-index="${textShadowValue.index}" style="border:1px solid;display:block;margin:auto;width:200px;height:200px">
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+          <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+          <line x1="50%" y1="50%" x2="50%" y2="50%" stroke="black" stroke-width="2" class="line-test"></line>
+          <circle cx="50%" cy="50%" r="10" fill="lightblue" class="circle-test"></circle>
+        </svg>
+      </div>
+    </fieldset>
+  </div>
+</section>
+<div class="autocomplete-hint" data-tilepieces-component="tilepieces/autocomplete"></div>
+<script src="../bundle/css-viewer.bundle.js" data-tilepieces-component="tilepieces/css-viewer/bundle"></script>
+
+</body></html>

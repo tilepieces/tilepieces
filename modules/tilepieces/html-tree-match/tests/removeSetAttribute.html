@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>removeAttribute test</title>
+    <style>
+        .hide{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<input disabled>
+<textarea disabled></textarea>
+<!--<button id="hide-banner" onclick="hideBanner()" disabled>Hide Banner!</button>-->
+<button id="undo" onclick="undo()" disabled>Undo!</button>
+<button id="redo" onclick="redo()" disabled>Redo!</button>
+<script src="../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    // TESTING IF IMAGES ARE CORRECTLY REFERENCED
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+    }
+    a();
+    document.addEventListener("click",e=>{
+        if(e.target.disabled && e.target != undoEl && e.target != redoEl){
+            htmlMatch.removeAttribute(e.target,"disabled");
+        }
+        else if(!e.target.disabled && e.target != undoEl && e.target != redoEl){
+            htmlMatch.setAttribute(e.target,"disabled","");
+        }
+    });
+    window.addEventListener("DOM-change",function(){
+        if(htmlMatch.history.pointer != 0)
+            undoEl.removeAttribute("disabled");
+        else
+            undoEl.setAttribute("disabled","");
+        if(htmlMatch.history.pointer != htmlMatch.history.entries.length)
+            redoEl.removeAttribute("disabled");
+        else
+            redoEl.setAttribute("disabled","");
+    });
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+    }
+</script>
+</body>
+</html>

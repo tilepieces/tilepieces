@@ -1,0 +1,44 @@
+{
+  "name": "tilepieces/border",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "html/border.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "border.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
+    "script": {
+      "src": "border.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src/header",
+      "src/*.js",
+      "src/!(header)**/**/*.js"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/stylesheet",
+    "tilepieces/tabs",
+    "tilepieces/gradient",
+    "tilepieces/SVGtoXY",
+    "tilepieces/autocomplete"
+  ],
+  "components": {},
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": true,
+  "parseHTML": ""
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html><head><style>#general-settings { display: block !important; }</style>
+  <link href="../../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet">
+  <link href="../../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs">
+  <link href="../../../dialog/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialog">
+  <link href="../../../vertical-tab/vertical-tab.css" rel="stylesheet" data-tilepieces-component="tilepieces/vertical-tab">
+  <link href="../../css/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/package-manager" data-tilepieces-current-stylesheet="">
+</head><body>
+<div id="general-settings" style="display:none">
+  <fieldset>
+    <legend><span>Panels dock positions</span><a href="https://tilepieces.net/documentation/data-structures/general-settings.html#panel-position" class="info-round-icon" target="_blank"></a></legend>
+    <div>
+      <input type="radio" id="panel-free-position" name="panel-position" data-bind="globalSettings.panelPosition" value="free">
+      <label for="panel-free-position">Free</label>
+    </div>
+    <div>
+      <input type="radio" id="panel-dock-to-top" name="panel-position" data-bind="globalSettings.panelPosition" value="top">
+      <label for="panel-dock-to-top">dock to top</label>
+    </div>
+    <div>
+      <input type="radio" id="panel-dock-to-right" name="panel-position" data-bind="globalSettings.panelPosition" value="right">
+      <label for="panel-dock-to-right">dock to right</label>
+    </div>
+    <div>
+      <input type="radio" id="panel-dock-to-bottom" data-bind="globalSettings.panelPosition" name="panel-position" value="bottom">
+      <label for="panel-dock-to-bottom">dock to bottom</label>
+    </div>
+    <div>
+      <input type="radio" id="panel-dock-to-left" name="panel-position" value="left" data-bind="globalSettings.panelPosition">
+      <label for="panel-dock-to-left">dock to left</label>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend><input type="checkbox" data-bind="globalSettings.sandboxFrame">sandbox page(scripts will not be executed)
+      <a href="https://tilepieces.net/documentation/data-structures/general-settings.html#sandbox-frame" class="info-round-icon" target="_blank"></a></legend>
+  </fieldset>
+  <fieldset>
+    <legend><input type="checkbox" data-bind="globalSettings.relativePaths">relative paths
+      <a href="https://tilepieces.net/documentation/data-structures/general-settings.html#relative-paths" class="info-round-icon" target="_blank"></a></legend>
+  </fieldset>
+  <fieldset>
+    <legend><label for="global-component-path">component path<a href="https://tilepieces.net/documentation/data-structures/general-settings.html#component-paths" class="info-round-icon" target="_blank"></a></label></legend>
+    <input data-bind="globalSettings.componentPath" id="global-component-path">
+  </fieldset>
+  
+  <fieldset>
+    <legend><label for="global-miscDir">miscellaneous dir<a href="https://tilepieces.net/documentation/data-structures/general-settings.html#miscellaneous-dir" class="info-round-icon" target="_blank"></a></label></legend>
+    <input data-bind="globalSettings.miscDir" id="global-miscDir">
+  </fieldset>
+  <fieldset>
+    <legend><label for="global-delayUpdateFileMs">delay when update file<a href="https://tilepieces.net/documentation/data-structures/general-settings.html#delayUpdateFileMs" class="info-round-icon" target="_blank"></a></label></legend>
+    <input data-bind="globalSettings.delayUpdateFileMs" id="global-delayUpdateFileMs">
+  </fieldset>
+  <fieldset>
+    <legend>
+      <label for="global-imageTypeProcess">image type Process<a href="https://tilepieces.net/documentation/data-structures/general-settings.html#image-type-process" class="info-round-icon" target="_blank"></a></label>
+    </legend>
+    <select data-bind="globalSettings.imageTypeProcess" id="global-imageTypeProcess">
+      <option value="0">file system</option>
+      <option value="64">base64</option>
+    </select>
+  </fieldset>
+</div>
+</body></html>

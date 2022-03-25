@@ -1,0 +1,93 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  background: #fff;
+  color: rgb(102, 102, 102);
+}
+
+#project-tree-file-list.display {
+  display: block;
+}
+
+#project-tree-element {
+  display: none;
+}
+
+.project-tree-caret.project-tree-caret__open ~ #project-tree-element {
+  display: block;
+}
+
+#project-tree-add-file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+
+#project-wrapper {
+  margin: 8px;
+}
+
+.project-menu-tooltip {
+  font: 12px sans-serif;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 1px 1px #00000012;
+  position: absolute;
+  display: none;
+  -webkit-user-select: none;
+  user-select: none;
+  top: 0;
+  left: 0;
+  background: #fff;
+  z-index: 10;
+  outline: 0
+}
+
+.project-menu-tooltip div,
+.project-menu-tooltip li {
+  text-indent: 5px;
+  position: relative;
+  padding: 5px 5px 5px 0;
+}
+
+.project-menu-tooltip div[hidden] {
+  display: none
+}
+
+.project-menu-tooltip li:hover,
+.project-menu-tooltip li.selected,
+.project-menu-tooltip div:hover,
+.project-menu-tooltip div.selected {
+  background: #e0e0e0;
+}
+
+.project-menu-tooltip [disabled] {
+  display: none;
+}
+
+.project-menu-tooltip div > ul {
+  display: none;
+  padding: 0;
+  margin: 0;
+  background: white;
+  list-style: none;
+}
+
+#project-tree-create-file.selected {
+  padding-bottom: 1px;
+}
+
+.project-menu-tooltip div.selected > ul {
+  display: block;
+  margin-top: 5px;
+}
+
+.project-menu-tooltip .arrow {
+  display: inline-block;
+  float: right;
+}
+
+.project-menu-tooltip div.selected > .arrow {
+  transform: rotate(90deg);
+}

@@ -1,0 +1,48 @@
+{
+  "name": "tilepieces/project-explorer",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "project-explorer.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "project-explorer.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src/common",
+      "src/interfaceEvents",
+      "src/*.js"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/stylesheet",
+    "tilepieces/project-tree"
+  ],
+  "components": {
+    "tilepieces/project-explorer/bundle": {
+      "name": "tilepieces/project-explorer/bundle",
+      "path": "/bundle"
+    }
+  },
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "project-explorer.html"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

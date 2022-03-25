@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>createCurrentStyleSheet test</title>
+  <style>
+    .larger {
+      font-size: larger;
+      margin: 5px 0;
+      border-bottom: 1px solid #ccc
+    }
+
+    .large {
+      font-size: large;
+      margin: 5px 0;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success::before {
+      content: "\2713";
+      padding-right: 10px;
+    }
+
+    .error::before {
+      content: "\2715";
+      padding-right: 10px;
+    }
+  </style>
+</head>
+<body>
+<section id="log-section"></section>
+<iframe id="frame" style="display:none"></iframe>
+<script src="../../../html-tree-match/htmlTreeMatch.js" data-tilepieces-component="tilepieces/html-tree-match"></script>
+<script src="../../../css-split-value/splitCssValue.js" data-tilepieces-component="tilepieces/css-split-value"></script>
+<script src="../../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script>
+<script src="../../../css-specificity/cssSpecificity.js"
+        data-tilepieces-component="tilepieces/css-specificity"></script>
+<script src="../../../css-matcher/css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script>
+<script src="../../tilepieces-core.js" data-tilepieces-component="tilepieces/core"></script>
+<!-- test utils -->
+<script src="testUtils/assert.js"></script>
+<script src="testUtils/logOnDocument.js"></script>
+<script src="testUtils/compareDocuments.js"></script>
+<script src="testUtils/setTest.js"></script>
+<script src="testUtils/logError.js"></script>
+<script src="stylesheet/createCurrentStyleSheet.js"></script>
+<script>
+  setTest().then(async function () {
+    try {
+      await createCurrentStyleSheetTest();
+      logOnDocument("test success");
+      window.dispatchEvent(new Event("test-success"))
+    } catch (e) {
+      logError(e);
+    }
+  })
+    .catch(logError);
+</script>
+
+</body>
+</html>

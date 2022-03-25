@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <title>innerHTML ( WYSIWYG ) test</title>
+    <style>
+        .buttons{
+            position:absolute;
+            width:300px;
+            height:50px;
+            right:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+    <h1>A banner Title with a <span style="color: darkcyan">span</span></h1>
+    <h2>A banner subtitle with a <a href="#">Link in <b>bold</b></a></h2>
+    <div id="target">
+        Where Impro...
+    </div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src="">
+    <p>
+        A banner paragraph with a <b><span style="color: darkcyan">bold span</span></b>
+        and a <a href="#">Link in <i>italic</i></a>
+    </p>
+    <p>Cryptids of Cornwall:</p>
+
+    <dl>
+        <dt>Beast of Bodmin</dt>
+        <dd>A large feline inhabiting Bodmin Moor.</dd>
+
+        <dt>Morgawr</dt>
+        <dd>A sea serpent.</dd>
+
+        <dt>Owlman</dt>
+        <dd>A giant owl-like creature.</dd>
+    </dl>
+</div>
+<div class="buttons">
+<button id="add-link">Add a Link!</button>
+<button id="add-span">Add a Span!</button>
+<button id="undo" onclick="undo()" disabled="">Undo!</button>
+<button id="redo" onclick="redo()" disabled="">Redo!</button>
+</div>
+<script src="../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var addSpan = document.getElementById("add-span");
+    var addLink = document.getElementById("add-link");
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    var target = document.getElementById("target");
+    var buttons = document.querySelector(".buttons");
+    var text = "";
+    var lastEditable = null;
+    var noEditables = ["AUDIO", "VIDEO", "IMG", "IFRAME","CANVAS","SVG"];
+    addSpan.addEventListener("click",function(e){
+        if(!lastEditable || !lastEditable.el)
+            return;
+        var selection = window.getSelection();
+        var range = selection.getRangeAt(0);
+        if(!range) {
+            throw new Error("No range!");
+            return;
+        }
+        lastEditable.el.focus();
+        var span = document.createElement("span");
+        span.style.fontSize = "2em";
+        span.appendChild(document.createTextNode("\uFEFF"));
+        range.insertNode(span);
+        range.setStart(span.firstChild, 1);
+        range.collapse(true);
+        lastEditable.el.dispatchEvent(new Event('input'))
+    });
+    addLink.addEventListener("click",function(e){
+        if(!lastEditable || !lastEditable.el)
+            return;
+        var selection = window.getSelection();
+        var range = selection.getRangeAt(0);
+        if(!range) {
+            throw new Error("No range!");
+            return;
+        }
+        lastEditable.el.focus();
+        var a = document.createElement("a");
+        a.href="#";
+        a.appendChild(document.createTextNode("\uFEFF\uFEFF"));
+        range.insertNode(a);
+        range.setStart(a.firstChild, 1);
+        range.collapse(true);
+        lastEditable.el.dispatchEvent(new Event('input'))
+    });
+
+    document.body.addEventListener("click",e=>{
+        if(e.target == buttons || buttons.contains(e.target))
+            return;
+        if(e.target.nodeName == "BODY" || e.target.nodeName == "HTML")
+            return;
+        if(e.target.classList.contains("highlight-contenteditable-selection"))
+            return;
+        if(lastEditable && lastEditable.el && lastEditable.el.contains(e.target))
+            return;
+        e.stopPropagation();
+        e.preventDefault();
+        if(lastEditable) {
+            lastEditable.destroy && lastEditable.destroy();
+            lastEditable = null;
+        }
+        var found = htmlMatch.find(e.target);
+        if(!found.match){
+            console.error("no match for " ,e.target);
+            return;
+        }
+        if(noEditables.indexOf(e.target.nodeName)>-1)
+            return;
+        lastEditable = htmlMatch.contenteditable(e.target);
+        console.log(lastEditable, e.target);
+        if(!htmlMatch.firstSelection && lastEditable.el)
+            htmlMatch.firstSelection = {
+                lastRange : htmlMatch.getLastSelection(lastEditable.el),
+                editable : lastEditable.el
+            }
+    })
+    window.addEventListener("WYSIWYG-end",e=>lastEditable = null)
+    window.addEventListener("DOM-change",function(){
+        if(htmlMatch.history.pointer != 0)
+            undoEl.removeAttribute("disabled");
+        else
+            undoEl.setAttribute("disabled","");
+        if(htmlMatch.history.pointer != htmlMatch.history.entries.length)
+            redoEl.removeAttribute("disabled");
+        else
+            redoEl.setAttribute("disabled","");
+    });
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+    }
+    a();
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+    }
+</script>
+
+</body></html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #main {
+      width: 400px;
+      height: 150px;
+      border: 1px solid #c3c3c3;
+      display: flex;
+    }
+
+    #main div {
+      width: 70px;
+      height: 70px;
+    }
+
+
+    /* Standard syntax */
+    div#myRedDIV {
+      order: 2;
+    }
+
+    div#myBlueDIV {
+      order: 4;
+    }
+
+    div#myGreenDIV {
+      order: 3;
+    }
+
+    div#myPinkDIV {
+      order: 1;
+    }
+  </style>
+</head>
+<body>
+
+<h1>The order Property</h1>
+
+<div id="main">
+  <div style="background-color:coral;" id="myRedDIV">1</div>
+  <div style="background-color:lightblue;" id="myBlueDIV">2</div>
+  <div style="background-color:lightgreen;" id="myGreenDIV">3</div>
+  <div style="background-color:pink;" id="myPinkDIV">4</div>
+</div>
+
+</body>
+</html>

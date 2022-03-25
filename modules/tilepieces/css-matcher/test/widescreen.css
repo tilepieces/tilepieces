@@ -1,0 +1,8 @@
+body {
+  font-size: 1.3em;
+}
+
+section.articles {
+  max-width: 940px;
+  margin: auto;
+}

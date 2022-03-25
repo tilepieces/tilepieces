@@ -1,0 +1,29 @@
+{
+  "name": "tilepieces/dialog/confirm",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "confirm.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {},
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {}
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": []
+  },
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "components":{},
+  "interface": "",
+  "fixedHTML": true,
+  "parseHTML": ""
+}

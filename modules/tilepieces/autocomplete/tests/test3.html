@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+
+  <style>
+    div > input {
+      -webkit-appearance: none;
+      border: 0;
+    }
+
+    select {
+      -webkit-appearance: none;
+    }
+
+    span.autocomplete {
+      position: absolute;
+    }
+
+    .left-bottom {
+      bottom: 0;
+      left: 0;
+    }
+
+    .right-bottom {
+      bottom: 0;
+      right: 0;
+    }
+
+    .right-top {
+      top: 0;
+      right: 0;
+    }
+
+    .padding-1 {
+      padding: 5%;
+    }
+
+    .padding-2 {
+      padding: 10%;
+    }
+
+    .padding-3 {
+      padding: 15%;
+    }
+
+    #autocomplete-div {
+      position: relative;
+      box-sizing: content-box;
+      min-height: 100px
+    }
+
+    html, body {
+      height: 100%;
+    }
+  </style>
+  <link href="../autocomplete.css" rel="stylesheet"
+        data-tilepieces-component="tilepieces/autocomplete">
+</head>
+<body>
+<select id="change-position">
+  <option value="">left top</option>
+  <option value="left-bottom">left bottom</option>
+  <option value="right-bottom">right bottom</option>
+  <option value="right-top">right top</option>
+</select>
+<select id=padding>
+  <option value="">no padding</option>
+  <option value="padding-1">padding 5%</option>
+  <option value="padding-2">padding 10%</option>
+  <option value="padding-3">padding 15%</option>
+</select>
+<div id="autocomplete-div">
+  <span data-component="autocomplete" class=autocomplete contenteditable="">Catania</span>
+</div>
+<pre id="obj"></pre>
+<div class="autocomplete-hint" data-tilepieces-component="tilepieces/autocomplete"></div>
+<script src="../autocomplete.bundle.js" data-tilepieces-component="tilepieces/autocomplete"></script>
+<script>
+  var auto = document.querySelector("[data-component=autocomplete]");
+  autocomplete(document.body);
+  var provinceJSON;
+  (async function () {
+    var fetchProvince = await fetch("province.json");
+    provinceJSON = await fetchProvince.json();
+    var province = provinceJSON.map(v => v.descrizione);
+    console.log(province)
+    auto.__autocomplete_suggestions = province;
+  })();
+  obj = document.getElementById("obj");
+  auto.addEventListener("input", function (e) {
+    var provincia = provinceJSON.find(
+      v => v.descrizione.toLocaleLowerCase() == e.target.textContent.trim().toLocaleLowerCase());
+    if (!provincia) return;
+    obj.textContent = JSON.stringify(provincia, null, 4)
+  })
+  document.getElementById("change-position").addEventListener("change", function (e) {
+    auto.className = "autocomplete " + e.target.value;
+  })
+  adiv = document.getElementById("autocomplete-div")
+  document.getElementById("padding").addEventListener("change", function (e) {
+    adiv.className = e.target.value;
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "name": "tilepieces/element-panel",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "html/element-panel.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "css/css.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "element-panel.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src/header",
+      "src/*.js",
+      "src/!(header)**/**/*.js"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/stylesheet",
+    "tilepieces/css-specificity",
+    "tilepieces/tabs",
+    "tilepieces/drag"
+  ],
+  "components": {
+    "tilepieces/element-panel/bundle": {
+      "name": "tilepieces/element-panel/bundle",
+      "path": "/bundle"
+    }
+  },
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "element-panel.html"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

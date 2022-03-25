@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>test drag and drop</title>
+    
+
+    <style>
+        section{
+            background:cyan;
+            border:1px solid;
+        }
+        #target{
+            margin:40px auto;
+            width:50%;
+            background:white;
+            border:1px solid #ccc;
+            border-radius:5px;
+            padding:25%;
+        }
+    </style>
+<link href="../css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag"></head>
+<body>
+<main>Vattelapesca</main>
+
+<section>
+    <h1>Target:</h1>
+    <div id="target">
+        Target
+    </div>
+</section>
+<!-- dependencies -->
+
+<!-- module js -->
+
+
+
+
+<script src="../../offset/offset.js" data-tilepieces-component="tilepieces/offset"></script>
+<script src="../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../drag.js" data-tilepieces-component="tilepieces/drag"></script><script>
+    var d = __dropElement(document.getElementsByTagName("main")[0],{
+        target : "#target",
+        drop : true
+    });
+
+</script></body></html>

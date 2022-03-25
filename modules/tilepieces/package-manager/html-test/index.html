@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Package Manager</title>
+    
+<link href="../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet"><link href="../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs"><link href="../../dialog/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialog"><link href="../../vertical-tab/vertical-tab.css" rel="stylesheet" data-tilepieces-component="tilepieces/vertical-tab"><link href="../css/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/package-manager" data-tilepieces-current-stylesheet=""></head>
+<body>
+<nav class="tab-vertical" data-tilepieces-component="tilepieces/vertical-tab">
+  <button><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+	
+		<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:0.35;fill:#FFFFFF;" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+	<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+		C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+	<path style="fill: rgb(153, 153, 153);" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+		C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></button>
+    <div class="tab-buttons">
+      <div class="tab-buttons-wrap">
+          <div class="tab-buttons-inside"><a href="#projects-list" class="selected">Projects</a><a href="#current-project-data">Project Settings</a><a href="#general-settings">General Settings</a><a href="#component-settings">Component properties</a><a href="#local-components">Local Components</a><a href="#global-components">Global Components</a>
+            
+            
+              
+              
+          </div>
+      </div>
+  </div>
+</nav>
+
+<div id="projects">
+  <div id="projects-list">
+    <div class="flex-box top-button-actions">
+  <button id="new-project" class="button-bg-fill">+ Create</button>
+  <div class="upload-button"><label class="as-button"><span>
+  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.6 19.6" style="enable-background:new 0 0 19.6 19.6;" xml:space="preserve">
+  <g>
+  <path style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" d="M2.8,17.3h14"></path>
+  <polyline style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" points="13.8,6.3 9.8,2.3
+  5.8,6.3 	"></polyline>
+
+  <line style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="9.8" y1="2.3" x2="9.8" y2="13.2"></line>
+  </g> Upload
+  <input type="file" id="import-projects" accept=".zip"></input></svg>
+  </span>
+  Upload</label></div>
+  <button id="export-projects"><span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.6 19.6" style="enable-background:new 0 0 19.6 19.6;" xml:space="preserve">
+  <g>
+  <path style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" d="M16.8,2.3h-14"></path>
+  <polyline style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" points="5.8,13.3
+  9.8,17.3 13.8,13.3 	"></polyline>
+
+  <line style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="9.8" y1="6.4" x2="9.8" y2="17.3"></line>
+  </g>
+  </svg></span>Export</button>
+  </div>
+      <div>
+        <input type="checkbox" data-if="projects.length" class="toggle-projects" data-bind="projectsChecked" data-bind-dom-prop="__project,project">
+        <span class="select-all-checkboc-svg">
+        <svg version="1.1" id="square_check" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve">
+  <g>
+  <g>
+  <path style="fill:#999999;" d="M13.5,2.6H4.4c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7V4.4
+  C15.2,3.4,14.5,2.6,13.5,2.6z"></path>
+  <path style="fill:#FFFFFF;" d="M13.2,6c-0.3-0.3-0.9-0.3-1.2,0L8.2,9.7L6.4,7.9C6,7.5,5.5,7.5,5.1,7.9c-0.3,0.3-0.3,0.9,0,1.2
+  l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,6.9,13.5,6.3,13.2,6z"></path>
+  </g>
+  <g>
+  <path style="fill:#999999;" d="M28.6,2.6h-9.1c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7V4.4
+  C30.3,3.4,29.5,2.6,28.6,2.6z"></path>
+  <path style="fill:#FFFFFF;" d="M28.3,6c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7l-1.9-1.9c-0.3-0.3-0.9-0.3-1.2,0c-0.3,0.3-0.3,0.9,0,1.2
+  l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C28.6,6.9,28.6,6.3,28.3,6z"></path>
+  </g>
+  <g>
+  <path style="fill:#999999;" d="M28.6,17.8h-9.1c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7v-9.1
+  C30.3,18.6,29.5,17.8,28.6,17.8z"></path>
+  <path style="fill:#FFFFFF;" d="M28.3,21.2c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7L21.4,23c-0.3-0.3-0.9-0.3-1.2,0s-0.3,0.9,0,1.2
+  l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C28.6,22.1,28.6,21.5,28.3,21.2z"></path>
+  </g>
+  <g>
+  <path style="fill:#999999;" d="M13.5,17.8H4.4c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7v-9.1
+  C15.2,18.6,14.5,17.8,13.5,17.8z"></path>
+  <path style="fill:#FFFFFF;" d="M13.2,21.2c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7L6.4,23c-0.3-0.3-0.9-0.3-1.2,0c-0.3,0.3-0.3,0.9,0,1.2
+  l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,22.1,13.5,21.5,13.2,21.2z"></path>
+  </g>
+  </g>
+  </svg>
+        Select all</span>
+        <ul>
+  <li data-foreach="projects" data-foreach-key-name="project" class="project-list">
+  <input type="checkbox" class="toggle-projects" data-bind="project.checked" data-bind-dom-prop="__project,project">
+  <span data-bind-dom-prop="__project,project">${project.name}</span>
+  <button data-remove-project="" data-bind-dom-prop="__project,project" class="component-properties-remove">-</button>
+  <button data-if="project.name != projectName" class="project-name-open" data-bind-dom-prop="__project,project">Open</button>
+  </li>
+  </ul>
+      </div>
+  </div>
+  <div id="current-project-data" style="display:none">
+    <div ${hiddenattr}="">
+      <fieldset><legend><label>Files</label><button class="current-project-data__add-files">+</button></legend>
+          <div data-foreach="project.files" class="project-with-remove">
+              <input class="current-project-data__file-value" data-bind="key.value">
+              <button class="current-project-data__remove-files" data-index="${key.index}">-</button>
+          </div></fieldset><fieldset>
+          <legend><label for="component-path">components path</label></legend>
+          <input data-bind="project.componentPath" id="component-path">
+      </fieldset><fieldset>
+          <legend><label for="currentStyleSheetAttribute">current StyleSheet Attribute</label></legend>
+          <input data-bind="project.currentStyleSheetAttribute" id="currentStyleSheetAttribute">
+      </fieldset><fieldset>
+          <legend><label for="imageDir">imageDir</label></legend>
+          <input data-bind="project.imageDir" id="imageDir">
+      </fieldset><fieldset>
+          <legend><label for="miscDir">miscDir</label></legend>
+          <input data-bind="project.miscDir" id="miscDir">
+      </fieldset><fieldset>
+          <legend><label for="delayUpdateFileMs">delayUpdateFileMs</label></legend>
+          <input data-bind="project.delayUpdateFileMs" id="delayUpdateFileMs">
+      </fieldset><fieldset>
+          <legend>
+              <label for="imageTypeProcess">imageTypeProcess</label>
+          </legend>
+          <select data-bind="project.imageTypeProcess" id="imageTypeProcess">
+              <option value="0">file system</option>
+              <option value="64">base64</option>
+          </select>
+      </fieldset><fieldset>
+          <legend><input type="checkbox" data-bind="project.sandboxFrame">sandbox page(scripts will not be executed)</legend>
+
+      </fieldset></div></div>
+  <div id="general-settings" style="display:none">
+      <fieldset>
+        <legend>Panels dock positions</legend>
+        <div>
+            <input type="radio" id="panel-free-position" name="panel-position" data-bind="globalSettings.panelPosition" value="free">
+            <label for="panel-free-position">Free</label>
+        </div>
+        <div>
+            <input type="radio" id="panel-dock-to-right" name="panel-position" data-bind="globalSettings.panelPosition" value="right">
+            <label for="panel-dock-to-right">dock to right</label>
+        </div>
+        <div>
+            <input type="radio" id="panel-dock-to-bottom" data-bind="globalSettings.panelPosition" name="panel-position" value="bottom">
+            <label for="panel-dock-to-bottom">dock to bottom</label>
+        </div>
+        <div>
+            <input type="radio" id="panel-dock-to-left" name="panel-position" value="left" data-bind="globalSettings.panelPosition">
+            <label for="panel-dock-to-left">dock to left</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><input type="checkbox" data-bind="globalSettings.sandboxFrame">sandbox page(scripts will not be executed)</legend>
+      </fieldset>
+    </div>
+</div>
+<div id="components" style="">
+  <div id="component-settings" hidden="">
+      <form id="component-settings-form">
+          <div class="flex-box top-button-actions"><button data-if="iscomponent == 'hidden'" class="component-settings-save button-bg-fill">+ Create</button></div>
+          <!--<button data-if="iscomponent != 'hidden'"
+                  class="component-settings-save"
+                  type="submit" ${disabled}>Save</button>-->
+          <div ${iscomponent}="">
+
+              <div id="settings-component-metadata" style="">
+<details>
+  <summary><h2 style="display: inline;"><span> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Component metadata</h2></summary><fieldset>
+                      <legend><label for="component-properties-name">NAME:</label></legend>
+                      <input id="component-properties-name" name="component-properties-name" data-bind="name" disabled="">
+                  </fieldset><fieldset>
+                      <legend>
+                          <label for="component-properties-version">VERSION:</label>
+                      </legend>
+                      <input id="component-properties-version" name="component-properties-version" data-bind="version">
+                  </fieldset><fieldset>
+                      <legend>
+                          <label for="component-properties-author">AUTHOR:</label>
+                      </legend>
+                      <input id="component-properties-author" name="component-properties-author" data-bind="author">
+                  </fieldset><fieldset>
+                      <legend>
+                          <label for="component-properties-description">DESCRIPTION:</label>
+                      </legend>
+                      <input id="component-properties-description" name="component-properties-description" data-bind="description">
+                  </fieldset><fieldset>
+                      <legend>
+                          <label for="component-properties-repository">REPOSITORY:</label>
+                      </legend>
+                      <input id="component-properties-repository" name="component-properties-repository" data-bind="repository">
+                  </fieldset><fieldset>
+                      <legend>
+                          <label for="component-properties-website">WEBSITE:</label>
+                      </legend>
+                      <input id="component-properties-website" name="component-properties-website" data-bind="website">
+                  </fieldset>
+</details>
+
+
+
+
+
+
+
+              </div>
+              <div id="settings-component-file-links" style="">
+                  <details>
+  <summary><h2 style="display: inline;"><span> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Component properties</h2></summary><fieldset>
+                      <legend>
+                          <label for="component-properties-html">HTML:</label>
+                      </legend>
+                      <input id="component-properties-html" name="component-properties-html" data-bind="html">
+
+                      <iframe data-if="html" data-src="${iframePath}" style="max-width: 100%; width: 100%;"></iframe>
+                      <div>
+                          <label for="fixedHTML">Is fixed</label>
+                      <input type="checkbox" id="fixedHTML" data-bind="fixedHTML">
+                      </div>
+                  </fieldset><details open="">
+                      <summary><h3><span> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Dependencies: </h3></summary>
+
+<div class="details-open-summery-child">
+<label for="addDependenciesToBundles">
+                          <input id="addDependenciesToBundles" type="checkbox" data-bind="addDependenciesToBundles">
+                          add to bundle
+                      </label>
+                      <button data-add-component-property="dependencies" class="component-properties-add">+</button>
+                      <div data-foreach="dependencies" class="flex-box">
+                          <input data-bind="key.name">
+                          <button class="component-properties-remove-template component-properties-remove" data-index="${key.index}" data-remove-component-property="dependencies">-</button>
+                      </div></div>
+                  </details><details open="">
+                      <summary><h3>
+<span> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Bundles: </h3></summary>
+<div class="details-open-summery-child">
+
+<fieldset>
+                          <legend>STYLESHEET:
+                          <button data-add-component-property="bundle.stylesheet" class="component-properties-add">+</button></legend>
+
+                          <div data-foreach="bundle.stylesheet" class="flex-box">
+                              <input data-index="${key.index}" data-bind="key.name">:
+                              <input data-index="${key.index}" data-bind="key.value">
+                              <button class="component-properties-remove-bundle-stylesheet-attr component-properties-remove" data-index="${key.index}" data-remove-component-property="bundle.stylesheet">-</button>
+                          </div>
+                          <div>
+                          <label>header for stylesheet</label>
+                          <textarea data-bind="bundle.stylesheetHeader"></textarea>
+                          </div>
+                          <div>
+                          <label>footer for stylesheet</label>
+                          <textarea data-bind="bundle.stylesheetFooter"></textarea>
+                          </div>
+                      </fieldset>
+                      <fieldset>
+                          <legend>SCRIPT:<button data-add-component-property="bundle.script" class="component-properties-add">+</button></legend>
+
+                          <div data-foreach="bundle.script" class="flex-box">
+                              <input data-index="${key.index}" data-bind="key.name">:
+                              <input data-index="${key.index}" data-bind="key.value">
+                              <button data-index="${key.index}" data-remove-component-property="bundle.script" class="component-properties-remove">-</button>
+                          </div>
+                          <div>
+                          <label>header for script</label>
+                          <textarea data-bind="bundle.scriptHeader"></textarea>
+                          </div>
+                          <div>
+                          <label>footer for script</label>
+                          <textarea data-bind="bundle.scriptFooter"></textarea>
+                          </div>
+                      </fieldset> </div>
+                  </details><details open="">
+                      <summary><h3>
+<span> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Sources:</h3></summary>
+<div class="details-open-summery-child">
+
+
+                      <fieldset>
+                          <legend>STYLESHEETS:</legend>
+                          <button data-add-component-property="sources.stylesheet" class="component-properties-add">+</button>
+                          <button data-if="cangetfromdocument" class="get-styles-from-document">Create from document</button>
+                          <button data-if="sources.stylesheets.length" class="concatenate-sources" data-type="stylesheets">Concatenate</button>
+                          <button data-if="sources.stylesheets.length" class="minify-source-stylesheets">Minify</button>
+                          <div data-foreach="sources.stylesheets" data-foreach-key-name="style" class="flex-box">
+                              <input data-index="style.index" data-bind="style.value">
+                              <button class="component-properties-remove-stylesheet component-properties-remove" data-index="${style.index}" data-remove-component-property="sources.stylesheet">-</button>
+                          </div>
+                      </fieldset>
+                      <fieldset>
+                          <legend>SCRIPTS:</legend>
+                          <button data-add-component-property="sources.script" class="component-properties-add">+</button>
+                          <button data-if="cangetfromdocument" class="get-scripts-from-document">Create from document</button>
+                          <button data-if="sources.scripts.length" class="concatenate-sources" data-type="scripts">Concatenate</button>
+                          <button data-if="sources.scripts.length" class="minify-source-scripts">Minify</button>
+                          <div data-foreach="sources.scripts" data-foreach-key-name="script" class="flex-box">
+                              <input data-index="script.index" data-bind="script.value">
+                              <button class="component-properties-remove-script component-properties-remove" data-index="${script.index}" data-remove-component-property="sources.script">-</button>
+                          </div>
+                      </fieldset>
+                   </div></details><details open="">
+                      <summary><h3><span> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Miscellaneous:</h3></summary>
+<div class="details-open-summery-child">
+
+
+                      <button data-add-component-property="miscellaneous" class="component-properties-add">+</button>
+                      <div data-foreach="miscellaneous" class="flex-box">
+                          <input data-index="${key.index}" data-bind="key.src">
+                          <button data-index="${key.index}" class="component-properties-remove-miscellaneous component-properties-remove" data-remove-component-property="miscellaneous">-</button>
+                      </div> </div>
+                  </details>
+                  <fieldset>
+                      <legend>
+                          <input id="mergeMiscellaneous" type="checkbox" data-bind="mergeMiscellaneous"><label for="mergeMiscellaneous">MERGE MISCELLANEOUS:</label>
+                      </legend>
+
+                  </fieldset>
+                  <fieldset>
+                      <legend>INTERFACE:</legend>
+<div class="flex-box">
+
+
+                      <input id="component-properties-interface" name="component-properties-interface" data-bind="interface">
+                      <button data-if="cangetfromdocument" class="set-component-interface-as-document flex-box-button-border">Set this document</button> </div>
+                  </fieldset><fieldset>
+                      <legend>PARSEHTML FUNCTION FILE PATH:</legend>
+                      <input id="component-properties-parseHTML" name="component-properties-parseHTML" data-bind="parseHTML">
+                  </fieldset><fieldset>
+                      <legend>SELECTOR:</legend>
+                      <input id="component-properties-selector" name="component-properties-selector" data-bind="selector">
+                  </fieldset>
+</details>
+
+
+
+
+
+
+
+
+              </div>
+          </div>
+      </form>
+  </div>
+  <div id="local-components" hidden="">
+<div class="flex-box top-button-actions"> <button data-if="isComponent" class="add-new-local-component button-bg-fill" data-parent="${projectName}">+ Create</button>
+
+
+<div class="upload-button"><label class="as-button button-bg-fill"><input type="file" id="import-local-components" class="no-background"><span>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.6 19.6" style="enable-background:new 0 0 19.6 19.6;" xml:space="preserve">
+<g>
+<path style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" d="M2.8,17.3h14"></path>
+<polyline style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" points="13.8,6.3 9.8,2.3
+5.8,6.3 	"></polyline>
+
+<line style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="9.8" y1="2.3" x2="9.8" y2="13.2"></line>
+</g> Upload
+<input type="file" id="import-projects" accept=".zip"></input></svg>
+</span>Upload</label></div>
+      <button id="export-local-components" class="button-bg-fill"><span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.6 19.6" style="enable-background:new 0 0 19.6 19.6;" xml:space="preserve">
+<g>
+<path style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" d="M16.8,2.3h-14"></path>
+<polyline style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" points="5.8,13.3
+9.8,17.3 13.8,13.3 	"></polyline>
+
+<line style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="9.8" y1="6.4" x2="9.8" y2="17.3"></line>
+</g>
+</svg></span>Export</button> </div>
+      <div>
+          <input data-if="localComponents.length" type="checkbox" data-bind="componentsChecked" data-bind-dom-prop="__project,project"> <span class="select-all-checkboc-svg"> <svg version="1.1" id="square_check" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve">
+<g>
+<g>
+<path style="fill:#999999;" d="M13.5,2.6H4.4c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7V4.4
+C15.2,3.4,14.5,2.6,13.5,2.6z"></path>
+<path style="fill:#FFFFFF;" d="M13.2,6c-0.3-0.3-0.9-0.3-1.2,0L8.2,9.7L6.4,7.9C6,7.5,5.5,7.5,5.1,7.9c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,6.9,13.5,6.3,13.2,6z"></path>
+</g>
+<g>
+<path style="fill:#999999;" d="M28.6,2.6h-9.1c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7V4.4
+C30.3,3.4,29.5,2.6,28.6,2.6z"></path>
+<path style="fill:#FFFFFF;" d="M28.3,6c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7l-1.9-1.9c-0.3-0.3-0.9-0.3-1.2,0c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C28.6,6.9,28.6,6.3,28.3,6z"></path>
+</g>
+<g>
+<path style="fill:#999999;" d="M28.6,17.8h-9.1c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7v-9.1
+C30.3,18.6,29.5,17.8,28.6,17.8z"></path>
+<path style="fill:#FFFFFF;" d="M28.3,21.2c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7L21.4,23c-0.3-0.3-0.9-0.3-1.2,0s-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C28.6,22.1,28.6,21.5,28.3,21.2z"></path>
+</g>
+<g>
+<path style="fill:#999999;" d="M13.5,17.8H4.4c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7v-9.1
+C15.2,18.6,14.5,17.8,13.5,17.8z"></path>
+<path style="fill:#FFFFFF;" d="M13.2,21.2c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7L6.4,23c-0.3-0.3-0.9-0.3-1.2,0c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,22.1,13.5,21.5,13.2,21.2z"></path>
+</g>
+</g>
+</svg>
+Select all</span>
+
+          <ul class="list-components-root">
+              <li data-foreach="localComponents" data-foreach-key-name="component" class="component-list">
+                  <div data-use="project-component-UI" data-params="project,component">
+                  </div>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div id="global-components" style="" hidden="">
+<div class="flex-box top-button-actions">
+
+
+      <div class="upload-button"><label class="as-button button-bg-fill"><input type="file" id="import-global-components">
+<span>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.6 19.6" style="enable-background:new 0 0 19.6 19.6;" xml:space="preserve">
+<g>
+<path style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" d="M2.8,17.3h14"></path>
+<polyline style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" points="13.8,6.3 9.8,2.3
+5.8,6.3 	"></polyline>
+
+<line style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="9.8" y1="2.3" x2="9.8" y2="13.2"></line>
+</g> Upload
+<input type="file" id="import-projects" accept=".zip"></input></svg>
+</span>Upload</label></div>
+      <button id="export-global-components" class="button-bg-fill"><span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.6 19.6" style="enable-background:new 0 0 19.6 19.6;" xml:space="preserve">
+<g>
+<path style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" d="M16.8,2.3h-14"></path>
+<polyline style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" points="5.8,13.3
+9.8,17.3 13.8,13.3 	"></polyline>
+
+<line style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="9.8" y1="6.4" x2="9.8" y2="17.3"></line>
+</g>
+</svg></span>Export</button>  </div>
+      <div>
+          <input data-if="globalComponents.length" type="checkbox" data-bind="componentsChecked" data-bind-dom-prop="__project,project"><span class="select-all-checkboc-svg"> <svg version="1.1" id="square_check" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve">
+<g>
+<g>
+<path style="fill:#999999;" d="M13.5,2.6H4.4c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7V4.4
+C15.2,3.4,14.5,2.6,13.5,2.6z"></path>
+<path style="fill:#FFFFFF;" d="M13.2,6c-0.3-0.3-0.9-0.3-1.2,0L8.2,9.7L6.4,7.9C6,7.5,5.5,7.5,5.1,7.9c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,6.9,13.5,6.3,13.2,6z"></path>
+</g>
+<g>
+<path style="fill:#999999;" d="M28.6,2.6h-9.1c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7V4.4
+C30.3,3.4,29.5,2.6,28.6,2.6z"></path>
+<path style="fill:#FFFFFF;" d="M28.3,6c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7l-1.9-1.9c-0.3-0.3-0.9-0.3-1.2,0c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C28.6,6.9,28.6,6.3,28.3,6z"></path>
+</g>
+<g>
+<path style="fill:#999999;" d="M28.6,17.8h-9.1c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7v-9.1
+C30.3,18.6,29.5,17.8,28.6,17.8z"></path>
+<path style="fill:#FFFFFF;" d="M28.3,21.2c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7L21.4,23c-0.3-0.3-0.9-0.3-1.2,0s-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C28.6,22.1,28.6,21.5,28.3,21.2z"></path>
+</g>
+<g>
+<path style="fill:#999999;" d="M13.5,17.8H4.4c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7v-9.1
+C15.2,18.6,14.5,17.8,13.5,17.8z"></path>
+<path style="fill:#FFFFFF;" d="M13.2,21.2c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7L6.4,23c-0.3-0.3-0.9-0.3-1.2,0c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,22.1,13.5,21.5,13.2,21.2z"></path>
+</g>
+</g>
+</svg>
+Select all</span>
+          <ul class="list-components-root">
+              <li data-foreach="globalComponents" data-foreach-key-name="component" class="component-list">
+                  <div data-use="project-component-UI" data-params="project,component">
+                  </div>
+                  <div data-if="globalComponents.find(lp=>lp.name == project.name)" data-bind-dom-prop="__project,project" class="project-list-add-to-local">+</div>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>
+<!-- component/project UI template list -->
+<template id="project-component-UI">
+    <input type="checkbox" class="package-name" data-bind="project.checked" data-bind-dom-prop="__project,project">
+    <span data-bind-dom-prop="__project,project">${project.name}</span>
+    <button data-if="!project.noSet" data-bind-dom-prop="__project,project" class="set-component">set</button>
+    <button class="add-new-local-component" data-bind-dom-prop="__project,project" data-parent="${project.name}">+</button>
+    <button data-bind-dom-prop="__project,project" class="remove-component">-</button>
+    <button data-if="project.fixedHTML" data-bind-dom-prop="__project,project" class="set-fixed-HTML">update HTML</button>
+    <span class="as-detail" data-parent="${project.name}" onclick="this.classList.toggle('open')">▶</span>
+    <div class="global-local" hidden="">
+        <ul>
+            <li><b>Version</b>:${project.version}</li>
+            <li><b>Description</b>:${project.description}</li>
+            <li><b>Author</b>:${project.author}</li>
+            <li><b>Repository</b>:
+                <a href="${project.repository}" target="_blank">${project.repository}</a></li>
+            <li><b>Website</b>:
+                <a href="${project.website}" target="_blank">${project.website}</a></li>
+            <li data-if="project.components &amp;&amp; Object.keys(project.components).length">
+                <b>Components</b>
+                <span class="as-detail components-children" data-parent="${project.name}" data-bind-dom-prop="__project,project">▶</span>
+            </li>
+        </ul>
+    </div>
+</template>
+<template id="project-child">
+    <li data-use="project-component-UI" data-params="project,component">
+    </li>
+</template>
+<div class="tilepieces-dialog" id="tilepieces-alert-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <form id="tilepieces-dialog-alert-form">
+            <span id="tilepieces-alert-dialog-label"></span>
+            <div>
+                <button type="submit" id="tilepieces-alert-dialog-button">OK</button>
+            </div>
+        </form>
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><div class="tilepieces-dialog" id="tilepieces-confirm-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <span id="tilepieces-confirm-dialog-label"></span>
+        <div>
+            <button id="tilepieces-confirm-dialog-button">Ok</button>
+            <button id="tilepieces-reject-dialog-button">Cancel</button>
+        </div>
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><div class="tilepieces-dialog" id="tilepieces-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <!-- insert content here -->
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><div class="tilepieces-dialog" id="tilepieces-prompt-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <form id="tilepieces-dialog-prompt-form">
+            <label for="tilepieces-dialog-prompt">
+                <span id="tilepieces-prompt-dialog-label"></span>
+                <input name="tilepieces-dialog-prompt" id="tilepieces-dialog-prompt" title="" autocomplete="off" required="">
+            </label>
+            <div>
+                <button type="submit" id="tilepieces-prompt-dialog-button"></button>
+            </div>
+        </form>
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div>
+
+<script src="../../vertical-tab/vertical-tab.js" data-tilepieces-component="tilepieces/vertical-tab"></script></body></html>

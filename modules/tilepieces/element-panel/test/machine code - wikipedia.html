@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta description="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" itemprop="image primaryImageOfPage" content="">
+</head>
+<body><h1 id="firstHeading" class="firstHeading"
+          style="margin: 0px 0px 0.25em; padding: 0px; overflow: visible; border-bottom: 1px solid rgb(162, 169, 177); font-size: 1.8em; font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  Machine code</h1>
+<h1>
+  <div id="bodyContent" class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div id="siteSub" class="noprint" style="font-size: 12.88px;">From Wikipedia, the free encyclopedia</div>
+    <div id="contentSub"
+         style="font-size: 11.76px; line-height: 1.2em; margin: 0px 0px 1.4em 1em; color: rgb(84, 89, 93); width: auto;"></div>
+    <div id="contentSub2"
+         style="font-size: 11.76px; line-height: 1.2em; margin: 0px 0px 1.4em 1em; color: rgb(84, 89, 93); width: auto;"></div>
+    <div id="jump-to-nav"></div>
+    <a class="mw-jump-link" href="https://en.wikipedia.org/wiki/Machine_code#mw-head"
+       style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: block; clip: rect(1px, 1px, 1px, 1px); width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; position: absolute !important;">Jump
+      to navigation</a><a class="mw-jump-link" href="https://en.wikipedia.org/wiki/Machine_code#searchInput"
+                          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: block; clip: rect(1px, 1px, 1px, 1px); width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; position: absolute !important;">Jump
+    to search</a>
+    <div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output">
+        <div role="note" class="hatnote navigation-not-searchable"
+             style="font-style: italic; padding-left: 1.6em; margin-bottom: 0.5em;">For code that is completely internal
+          to some CPUs and normally inaccessible to programmers, see&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Microcode" title="Microcode"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Microcode</a>.
+        </div>
+        <table class="sidebar nomobile nowraplinks"
+               style="font-size: 12.32px; width: 22em; float: right; clear: right; margin: 0.5em 0px 1em 1em; background: rgb(248, 249, 250); border: 1px solid rgb(170, 170, 170); padding: 0.2em; text-align: center; line-height: 1.4em; border-collapse: collapse;">
+          <tbody>
+          <tr>
+            <th class="sidebar-title"
+                style="padding: 0.2em 0.8em; font-size: 17.864px; line-height: 1.2em; background-color: rgba(51, 153, 255, 0.15);">
+              <a href="https://en.wikipedia.org/wiki/Execution_(computing)" title="Execution (computing)"
+                 style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Program
+                execution</a></th>
+          </tr>
+          <tr>
+            <th class="sidebar-heading" style="padding: 0.1em 0.4em; background-color: rgba(51, 153, 255, 0.15);">
+              General concepts
+            </th>
+          </tr>
+          <tr>
+            <td class="sidebar-content" style="padding: 0px 0.5em 0.4em; text-align: left;">
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Computer_code"
+                                                     class="mw-redirect" title="Computer code"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Code</a>
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Translator_(computing)"
+                                                     title="Translator (computing)"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Translation</a>
+                  <ul
+                    style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                    <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Compiler" title="Compiler"
+                                                         style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Compiler</a>
+                      <ul
+                        style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                        <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Compile-time"
+                                                             class="mw-redirect" title="Compile-time"
+                                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Compile-time</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Optimizing_compiler"
+                                                         title="Optimizing compiler"
+                                                         style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Optimizing
+                      compiler</a></li>
+                  </ul>
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Intermediate_representation"
+                                                     title="Intermediate representation"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Intermediate
+                  representation</a>&nbsp;(IR)
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Execution_(computing)"
+                                                     title="Execution (computing)"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Execution</a>
+                  <ul
+                    style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                    <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Runtime_system"
+                                                         title="Runtime system"
+                                                         style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Runtime
+                      system</a>
+                      <ul
+                        style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                        <li style="margin-bottom: 0.1em;"><a
+                          href="https://en.wikipedia.org/wiki/Run_time_(program_lifecycle_phase)" class="mw-redirect"
+                          title="Run time (program lifecycle phase)"
+                          style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Runtime</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Executable"
+                                                         title="Executable"
+                                                         style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Executable</a>
+                    </li>
+                    <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Interpreter_(computing)"
+                                                         title="Interpreter (computing)"
+                                                         style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Interpreter</a>
+                    </li>
+                    <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Virtual_machine"
+                                                         title="Virtual machine"
+                                                         style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Virtual
+                      machine</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th class="sidebar-heading" style="padding: 0.1em 0.4em; background-color: rgba(51, 153, 255, 0.15);">Types
+              of code
+            </th>
+          </tr>
+          <tr>
+            <td class="sidebar-content" style="padding: 0px 0.5em 0.4em; text-align: left;">
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Source_code"
+                                                     title="Source code"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Source
+                  code</a></li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Object_code"
+                                                     title="Object code"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Object
+                  code</a></li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Bytecode" title="Bytecode"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Bytecode</a>
+                </li>
+                <li style="margin-bottom: 0.1em;"><a class="mw-selflink selflink"
+                                                     style="text-decoration: inherit; color: inherit; background: none; font-weight: bold; cursor: pointer; white-space: nowrap;">Machine
+                  code</a></li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Microcode" title="Microcode"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Microcode</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th class="sidebar-heading" style="padding: 0.1em 0.4em; background-color: rgba(51, 153, 255, 0.15);">
+              Compilation strategies
+            </th>
+          </tr>
+          <tr>
+            <td class="sidebar-content" style="padding: 0px 0.5em 0.4em; text-align: left;">
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Just-in-time_compilation"
+                                                     title="Just-in-time compilation"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Just-in-time</a>&nbsp;(JIT)
+                  <ul
+                    style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                    <li style="margin-bottom: 0.1em;"><a
+                      href="https://en.wikipedia.org/wiki/Tracing_just-in-time_compilation"
+                      title="Tracing just-in-time compilation"
+                      style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Tracing
+                      just-in-time</a></li>
+                  </ul>
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Ahead-of-time_compilation"
+                                                     title="Ahead-of-time compilation"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Ahead-of-time</a>&nbsp;(AOT)
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Source-to-source_compiler"
+                                                     title="Source-to-source compiler"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Transcompilation</a>
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Dynamic_recompilation"
+                                                     title="Dynamic recompilation"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Recompilation</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th class="sidebar-heading" style="padding: 0.1em 0.4em; background-color: rgba(51, 153, 255, 0.15);">
+              Notable runtimes
+            </th>
+          </tr>
+          <tr>
+            <td class="sidebar-content" style="padding: 0px 0.5em 0.4em; text-align: left;">
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Android_Runtime"
+                                                     title="Android Runtime"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Android
+                  Runtime</a>&nbsp;(ART)
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Common_Language_Runtime"
+                                                     title="Common Language Runtime"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Common
+                  Language Runtime</a>&nbsp;(CLR) and&nbsp;<a
+                  href="https://en.wikipedia.org/wiki/Mono_(software)#Code_Execution_Engine" title="Mono (software)"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Mono</a>
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Crt0" title="Crt0"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">crt0</a>
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Java_virtual_machine"
+                                                     title="Java virtual machine"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Java
+                  virtual machine</a>&nbsp;(JVM)
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Objective-C"
+                                                     title="Objective-C"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Objective-C</a>&nbsp;and&nbsp;<a
+                  href="https://en.wikipedia.org/wiki/Swift_(programming_language)" title="Swift (programming language)"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Swift</a>
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/V8_(JavaScript_engine)"
+                                                     title="V8 (JavaScript engine)"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">V8</a>&nbsp;and&nbsp;<a
+                  href="https://en.wikipedia.org/wiki/Node.js" title="Node.js"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Node.js</a>
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/CPython" title="CPython"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">CPython</a>&nbsp;and&nbsp;<a
+                  href="https://en.wikipedia.org/wiki/PyPy" title="PyPy"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">PyPy</a>
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Zend_Engine"
+                                                     title="Zend Engine"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Zend
+                  Engine</a>&nbsp;(PHP)
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th class="sidebar-heading" style="padding: 0.1em 0.4em; background-color: rgba(51, 153, 255, 0.15);">
+              Notable compilers &amp; toolchains
+            </th>
+          </tr>
+          <tr>
+            <td class="sidebar-content" style="padding: 0px 0.5em 0.4em; text-align: left;">
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/GNU_Compiler_Collection"
+                                                     title="GNU Compiler Collection"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">GNU
+                  Compiler Collection</a>&nbsp;(GCC)
+                </li>
+                <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/LLVM" title="LLVM"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">LLVM</a>&nbsp;and&nbsp;<a
+                  href="https://en.wikipedia.org/wiki/Clang" title="Clang"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Clang</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="sidebar-navbar" style="text-align: right; font-size: 14.168px; padding: 0px 0.4em 0.4em;">
+              <div class="navbar plainlinks hlist navbar-mini" style="display: inline; font-size: 12.4678px;">
+                <ul
+                  style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0px; padding: 0px; display: inline-block; white-space: nowrap; line-height: inherit;">
+                  <li class="nv-view" style="margin: 0px; display: inline; word-spacing: -0.125em;"><a
+                    href="https://en.wikipedia.org/wiki/Template:Program_execution" title="Template:Program execution"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><abbr
+                    title="View this template"
+                    style="border-bottom: none; cursor: inherit; text-decoration: inherit; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;">v</abbr></a>
+                  </li>
+                  <li class="nv-talk" style="margin: 0px; display: inline; word-spacing: -0.125em;"><a
+                    href="https://en.wikipedia.org/wiki/Template_talk:Program_execution"
+                    title="Template talk:Program execution"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><abbr
+                    title="Discuss this template"
+                    style="border-bottom: none; cursor: inherit; text-decoration: inherit; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;">t</abbr></a>
+                  </li>
+                  <li class="nv-edit" style="margin: 0px; display: inline; word-spacing: -0.125em;"><a
+                    class="external text"
+                    href="https://en.wikipedia.org/w/index.php?title=Template:Program_execution&amp;action=edit"
+                    style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-repeat: no-repeat; padding-right: 13px; background-size: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; background-color: initial !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important;"><abbr
+                    title="Edit this template"
+                    style="border-bottom: none; cursor: inherit; text-decoration: inherit; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;">e</abbr></a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="thumb tright" style="clear: right; float: right; margin: 0.5em 0px 1.3em 1.4em; width: auto;">
+          <div class="thumbinner"
+               style="min-width: 100px; border: 1px solid rgb(200, 204, 209); padding: 3px; background-color: rgb(248, 249, 250); font-size: 13.16px; text-align: center; overflow: hidden; width: 222px;">
+            <a href="https://en.wikipedia.org/wiki/File:W65C816S_Machine_Code_Monitor.jpeg" class="image"
+               style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><img alt=""
+                                                                                                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/W65C816S_Machine_Code_Monitor.jpeg/220px-W65C816S_Machine_Code_Monitor.jpeg"
+                                                                                                  decoding="async"
+                                                                                                  width="220"
+                                                                                                  height="175"
+                                                                                                  class="thumbimage"
+                                                                                                  srcset="//upload.wikimedia.org/wikipedia/commons/thumb/c/c0/W65C816S_Machine_Code_Monitor.jpeg/330px-W65C816S_Machine_Code_Monitor.jpeg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/c0/W65C816S_Machine_Code_Monitor.jpeg/440px-W65C816S_Machine_Code_Monitor.jpeg 2x"
+                                                                                                  data-file-width="1368"
+                                                                                                  data-file-height="1089"
+                                                                                                  style="border: 1px solid rgb(200, 204, 209); vertical-align: middle; background-color: rgb(255, 255, 255);"></a>
+            <div class="thumbcaption"
+                 style="border: 0px; line-height: 1.4em; padding: 3px; font-size: 12.3704px; text-align: left;">
+              <div class="magnify" style="float: right; margin-left: 3px; margin-right: 0px;"><a
+                href="https://en.wikipedia.org/wiki/File:W65C816S_Machine_Code_Monitor.jpeg" class="internal"
+                title="Enlarge"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: url(&quot;/w/resources/src/mediawiki.skinning/images/magnify-clip-ltr.svg?8330e&quot;); display: block; text-indent: 15px; white-space: nowrap; overflow: hidden; width: 15px; height: 11px; user-select: none;"></a>
+              </div>
+              Machine language monitor in a&nbsp;<a href="https://en.wikipedia.org/wiki/W65C816S" class="mw-redirect"
+                                                    title="W65C816S"
+                                                    style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;">W65C816S</a>&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Single-board_computer" title="Single-board computer"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;">single-board computer</a>,
+              displaying&nbsp;<a href="https://en.wikipedia.org/wiki/Disassembler" title="Disassembler"
+                                 style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;">code
+              disassembly</a>, as well as processor register and memory dumps.
+            </div>
+          </div>
+        </div>
+        <p style="margin: 0.5em 0px;">In&nbsp;<a href="https://en.wikipedia.org/wiki/Computer_programming"
+                                                 title="Computer programming"
+                                                 style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">computer
+          programming</a>,&nbsp;<b>machine code</b>&nbsp;is any&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Low-level_programming_language" title="Low-level programming language"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">low-level
+          programming language</a>, consisting of&nbsp;<b>machine language</b>&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Instruction_set_architecture" title="Instruction set architecture"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">instructions</a>,
+          which is used to control a computer's&nbsp;<a href="https://en.wikipedia.org/wiki/Central_processing_unit"
+                                                        title="Central processing unit"
+                                                        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">central
+            processing unit</a>&nbsp;(CPU). Each instruction causes the CPU to perform a very specific task, such as a
+          load, a store, a&nbsp;<a href="https://en.wikipedia.org/wiki/Jump_instruction" class="mw-redirect"
+                                   title="Jump instruction"
+                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">jump</a>,
+          or an&nbsp;<a href="https://en.wikipedia.org/wiki/Arithmetic_logic_unit" title="Arithmetic logic unit"
+                        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">arithmetic
+            logic unit</a>&nbsp;(ALU) operation on one or more units of data in the CPU's&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Processor_register" title="Processor register"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">registers</a>&nbsp;or&nbsp;<a
+            href="https://en.wikipedia.org/wiki/CPU_cache" title="CPU cache"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">memory</a>.
+        </p>
+        <p style="margin: 0.5em 0px;">Machine code is a strictly numerical language which is designed to run as fast as
+          possible, and may be considered as the lowest-level representation of a&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Compiler" title="Compiler"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">compiled</a>&nbsp;or&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Assembly_language" title="Assembly language"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">assembled</a>&nbsp;computer
+          program or as a primitive and&nbsp;<a href="https://en.wikipedia.org/wiki/Computer_hardware"
+                                                title="Computer hardware"
+                                                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">hardware</a>-dependent
+          programming language. While it is possible to write programs directly in machine code, managing individual
+          bits and calculating numerical&nbsp;<a href="https://en.wikipedia.org/wiki/Memory_address"
+                                                 title="Memory address"
+                                                 style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">addresses</a>&nbsp;and
+          constants manually is tedious and error-prone. For this reason, programs are very rarely written directly in
+          machine code in modern contexts, but may be done for low level&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Debugging" title="Debugging"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">debugging</a>,
+          program&nbsp;<a href="https://en.wikipedia.org/wiki/Patch_(computing)" title="Patch (computing)"
+                          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">patching</a>&nbsp;(especially
+          when assembler source is not available) and assembly language&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Disassembly" class="mw-redirect" title="Disassembly"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">disassembly</a>.
+        </p>
+        <p style="margin: 0.5em 0px;">The majority of practical programs today are written in&nbsp;<a
+          href="https://en.wikipedia.org/wiki/High-level_programming_language" title="High-level programming language"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">higher-level
+          languages</a>&nbsp;or assembly language. The source code is then translated to executable machine code by
+          utilities such as&nbsp;<a href="https://en.wikipedia.org/wiki/Compiler" title="Compiler"
+                                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">compilers</a>,&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Assembler_(computing)" class="mw-redirect" title="Assembler (computing)"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">assemblers</a>,
+          and&nbsp;<a href="https://en.wikipedia.org/wiki/Linker_(computing)" title="Linker (computing)"
+                      style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">linkers</a>,
+          with the important exception of&nbsp;<a href="https://en.wikipedia.org/wiki/Interpreted_language"
+                                                  class="mw-redirect" title="Interpreted language"
+                                                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">interpreted</a>&nbsp;programs,<sup
+            id="cite_ref-1" class="reference"
+            style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+            href="https://en.wikipedia.org/wiki/Machine_code#cite_note-1"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[1]</a></sup>&nbsp;which
+          are not translated into machine code. However, the&nbsp;<i><a
+            href="https://en.wikipedia.org/wiki/Interpreter_(computing)" title="Interpreter (computing)"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">interpreter</a></i>&nbsp;itself,
+          which may be seen as an executor or processor performing the instructions of the source code, typically
+          consists of directly executable machine code (generated from assembly or high-level language source code).</p>
+        <p style="margin: 0.5em 0px;">Machine code is by definition the lowest level of programming detail visible to
+          the programmer, but internally many processors use&nbsp;<a href="https://en.wikipedia.org/wiki/Microcode"
+                                                                     title="Microcode"
+                                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">microcode</a>&nbsp;or
+          optimise and transform machine code instructions into sequences of&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Micro-operation" title="Micro-operation"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">micro-ops</a>.
+          This is not generally considered to be a machine code.</p></div>
+    </div>
+  </div>
+</h1>
+<h2 id="mw-toc-heading"
+    style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border: 0px; font-size: 13.3px; font-family: sans-serif; line-height: 1.3; display: inline;">
+  Contents</h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output">
+        <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"
+             style="border: 1px solid rgb(162, 169, 177); background-color: rgb(248, 249, 250); padding: 7px; font-size: 13.3px; display: table;">
+          <input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox"
+                 style="margin: 0px; position: absolute; opacity: 0; z-index: -1; display: none;">
+          <div class="toctitle" lang="en" dir="ltr" style="text-align: center; direction: ltr;"><span
+            class="toctogglespan" style="font-size: 12.502px;"><label class="toctogglelabel" for="toctogglecheckbox"
+                                                                      style="cursor: pointer; color: rgb(6, 69, 173);"></label></span>
+          </div>
+          <ul style="list-style: none; margin: 0.3em 0px; padding: 0px;">
+            <li class="toclevel-1 tocsection-1" style="margin-bottom: 0.1em;"><a
+              href="https://en.wikipedia.org/wiki/Machine_code#Instruction_set"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                  style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">1</span><span
+              class="toctext" style="display: table-cell; text-decoration: inherit;">Instruction set</span></a></li>
+            <li class="toclevel-1 tocsection-2" style="margin-bottom: 0.1em;"><a
+              href="https://en.wikipedia.org/wiki/Machine_code#Programs"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                  style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">2</span><span
+              class="toctext" style="display: table-cell; text-decoration: inherit;">Programs</span></a></li>
+            <li class="toclevel-1 tocsection-3" style="margin-bottom: 0.1em;"><a
+              href="https://en.wikipedia.org/wiki/Machine_code#Assembly_languages"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                  style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3</span><span
+              class="toctext" style="display: table-cell; text-decoration: inherit;">Assembly languages</span></a></li>
+            <li class="toclevel-1 tocsection-4" style="margin-bottom: 0.1em;"><a
+              href="https://en.wikipedia.org/wiki/Machine_code#Example"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                  style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">4</span><span
+              class="toctext" style="display: table-cell; text-decoration: inherit;">Example</span></a></li>
+            <li class="toclevel-1 tocsection-5" style="margin-bottom: 0.1em;"><a
+              href="https://en.wikipedia.org/wiki/Machine_code#Relationship_to_microcode"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                  style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">5</span><span
+              class="toctext"
+              style="display: table-cell; text-decoration: inherit;">Relationship to microcode</span></a></li>
+            <li class="toclevel-1 tocsection-6" style="margin-bottom: 0.1em;"><a
+              href="https://en.wikipedia.org/wiki/Machine_code#Relationship_to_bytecode"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                  style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">6</span><span
+              class="toctext" style="display: table-cell; text-decoration: inherit;">Relationship to bytecode</span></a>
+            </li>
+            <li class="toclevel-1 tocsection-7" style="margin-bottom: 0.1em;"><a
+              href="https://en.wikipedia.org/wiki/Machine_code#Storing_in_memory"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                  style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">7</span><span
+              class="toctext" style="display: table-cell; text-decoration: inherit;">Storing in memory</span></a></li>
+            <li class="toclevel-1 tocsection-8" style="margin-bottom: 0.1em;"><a
+              href="https://en.wikipedia.org/wiki/Machine_code#Readability_by_humans"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                  style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">8</span><span
+              class="toctext" style="display: table-cell; text-decoration: inherit;">Readability by humans</span></a>
+            </li>
+            <li class="toclevel-1 tocsection-9" style="margin-bottom: 0.1em;"><a
+              href="https://en.wikipedia.org/wiki/Machine_code#See_also"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                  style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">9</span><span
+              class="toctext" style="display: table-cell; text-decoration: inherit;">See also</span></a></li>
+            <li class="toclevel-1 tocsection-10" style="margin-bottom: 0.1em;"><a
+              href="https://en.wikipedia.org/wiki/Machine_code#Notes_and_references"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                  style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">10</span><span
+              class="toctext" style="display: table-cell; text-decoration: inherit;">Notes and references</span></a>
+            </li>
+            <li class="toclevel-1 tocsection-11" style="margin-bottom: 0.1em;"><a
+              href="https://en.wikipedia.org/wiki/Machine_code#Further_reading"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                  style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">11</span><span
+              class="toctext" style="display: table-cell; text-decoration: inherit;">Further reading</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</h1>
+<h2
+  style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  <span class="mw-headline" id="Instruction_set">Instruction set</span><span class="mw-editsection"
+                                                                             style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+  class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+  href="https://en.wikipedia.org/w/index.php?title=Machine_code&amp;action=edit&amp;section=1"
+  title="Edit section: Instruction set"
+  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+  class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output">
+        <div role="note" class="hatnote navigation-not-searchable"
+             style="font-style: italic; padding-left: 1.6em; margin-bottom: 0.5em;">Main article:&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Instruction_set" class="mw-redirect" title="Instruction set"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Instruction
+          set</a></div>
+        <p style="margin: 0.5em 0px;">Every processor or processor family has its own&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Instruction_set" class="mw-redirect" title="Instruction set"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">instruction
+          set</a>. Instructions are patterns of&nbsp;<a href="https://en.wikipedia.org/wiki/Bit" title="Bit"
+                                                        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">bits</a>,
+          digits or characters that correspond to machine commands. Thus, the instruction set is specific to a class of
+          processors using (mostly) the same architecture. Successor or derivative processor designs often include
+          instructions of a predecessor and may add new additional instructions. Occasionally, a successor design will
+          discontinue or alter the meaning of some instruction code (typically because it is needed for new purposes),
+          affecting code compatibility to some extent; even compatible processors may show slightly different behavior
+          for some instructions, but this is rarely a problem. Systems may also differ in other details, such as memory
+          arrangement, operating systems, or&nbsp;<a href="https://en.wikipedia.org/wiki/Peripheral" title="Peripheral"
+                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">peripheral
+            devices</a>. Because a program normally relies on such factors, different systems will typically not run the
+          same machine code, even when the same type of processor is used.</p>
+        <p style="margin: 0.5em 0px;">A processor's instruction set may have all instructions of the same length, or it
+          may have variable-length instructions. How the patterns are organized varies with the particular architecture
+          and type of instruction. Most instructions have one or more&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Opcode" title="Opcode"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">opcode</a>&nbsp;fields
+          which specifies the basic instruction type (such as arithmetic, logical,&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Branch_(computer_science)" title="Branch (computer science)"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">jump</a>,
+          etc.), the operation (such as add or compare), and other fields that may give the type of the&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Operand" title="Operand"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">operand</a>(s),
+          the&nbsp;<a href="https://en.wikipedia.org/wiki/Addressing_mode" title="Addressing mode"
+                      style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">addressing
+            mode</a>(s), the addressing offset(s) or index, or the operand value itself (such constant operands
+          contained in an instruction are called&nbsp;<i>immediate</i>).<sup id="cite_ref-2" class="reference"
+                                                                             style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+            href="https://en.wikipedia.org/wiki/Machine_code#cite_note-2"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[2]</a></sup>
+        </p>
+        <p style="margin: 0.5em 0px;">Not all machines or individual instructions have explicit operands. An&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Accumulator_machine" class="mw-redirect" title="Accumulator machine"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">accumulator
+          machine</a>&nbsp;has a combined left operand and result in an implicit accumulator for most arithmetic
+          instructions. Other architectures (such as 8086 and the x86-family) have accumulator versions of common
+          instructions, with the accumulator regarded as one of the general registers by longer instructions. A&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Stack_machine" title="Stack machine"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">stack
+            machine</a>&nbsp;has most or all of its operands on an implicit stack. Special purpose instructions also
+          often lack explicit operands (CPUID in the x86 architecture writes values into four implicit destination
+          registers, for instance). This distinction between explicit and implicit operands is important in code
+          generators, especially in the&nbsp;<a href="https://en.wikipedia.org/wiki/Register_allocation"
+                                                title="Register allocation"
+                                                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">register
+            allocation</a>&nbsp;and live range tracking parts. A good code optimizer can track implicit as well as
+          explicit operands which may allow more frequent&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Constant_propagation" class="mw-redirect" title="Constant propagation"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">constant
+            propagation</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Constant_folding" title="Constant folding"
+                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">constant
+            folding</a>&nbsp;of registers (a register assigned the result of a constant expression freed up by replacing
+          it by that constant) and other code enhancements.</p></div>
+    </div>
+  </div>
+</h1>
+<h2
+  style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  <span class="mw-headline" id="Programs">Programs</span><span class="mw-editsection"
+                                                               style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+  class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+  href="https://en.wikipedia.org/w/index.php?title=Machine_code&amp;action=edit&amp;section=2"
+  title="Edit section: Programs"
+  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+  class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output"><p style="margin: 0.5em 0px;">A&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Computer_program" title="Computer program"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">computer
+        program</a>&nbsp;is a list of instructions that can be executed by a&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Central_processing_unit" title="Central processing unit"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">central
+        processing unit</a>&nbsp;(CPU). A program's execution is done in order for the CPU that is executing it to solve
+        a problem and thus accomplish a result. While simple processors are able to execute instructions one after
+        another,&nbsp;<a href="https://en.wikipedia.org/wiki/Superscalar" class="mw-redirect" title="Superscalar"
+                         style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">superscalar</a>&nbsp;processors
+        are capable of executing many instructions simultaneously.</p>
+        <p style="margin: 0.5em 0px;"><a href="https://en.wikipedia.org/wiki/Program_flow" class="mw-redirect"
+                                         title="Program flow"
+                                         style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Program
+          flow</a>&nbsp;may be influenced by special 'jump' instructions that transfer execution to an address (and
+          hence instruction) other than the next numerically sequential address. Whether these&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Conditional_branch" class="mw-redirect" title="Conditional branch"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Conditional
+            jumps</a>&nbsp;occur is dependent upon a condition such as a value being greater than, less than, or equal
+          to another value.</p></div>
+    </div>
+  </div>
+</h1>
+<h2
+  style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  <span class="mw-headline" id="Assembly_languages">Assembly languages</span><span class="mw-editsection"
+                                                                                   style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+  class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+  href="https://en.wikipedia.org/w/index.php?title=Machine_code&amp;action=edit&amp;section=3"
+  title="Edit section: Assembly languages"
+  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+  class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output">
+        <div role="note" class="hatnote navigation-not-searchable"
+             style="font-style: italic; padding-left: 1.6em; margin-bottom: 0.5em;">Main article:&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Assembly_language" title="Assembly language"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Assembly
+          language</a></div>
+        <p style="margin: 0.5em 0px;">A much more human friendly rendition of machine language, called&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Assembly_language" title="Assembly language"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">assembly
+          language</a>, uses&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Assembly_language#Opcode_mnemonics_and_extended_mnemonics"
+          title="Assembly language"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">mnemonic
+          codes</a>&nbsp;to refer to machine code instructions, rather than using the instructions' numeric values
+          directly, and uses&nbsp;<a href="https://en.wikipedia.org/wiki/Symbol_table" title="Symbol table"
+                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">symbolic
+            names</a>&nbsp;to refer to storage locations and sometimes&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Processor_register" title="Processor register"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">registers</a>.
+          For example, on the&nbsp;<a href="https://en.wikipedia.org/wiki/Zilog_Z80" title="Zilog Z80"
+                                      style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Zilog
+            Z80</a>&nbsp;processor, the machine code&nbsp;<code
+            style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">00000101</code>,
+          which causes the CPU to decrement the&nbsp;<code
+            style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">B</code>&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Processor_register" title="Processor register"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">processor
+            register</a>, would be represented in assembly language as&nbsp;<code
+            style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">DEC
+            B</code>.</p></div>
+    </div>
+  </div>
+</h1>
+<h2
+  style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  <span class="mw-headline" id="Example">Example</span><span class="mw-editsection"
+                                                             style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+  class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+  href="https://en.wikipedia.org/w/index.php?title=Machine_code&amp;action=edit&amp;section=4"
+  title="Edit section: Example"
+  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+  class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output"><p style="margin: 0.5em 0px;">The&nbsp;<a
+        href="https://en.wikipedia.org/wiki/MIPS_architecture" title="MIPS architecture"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">MIPS
+        architecture</a>&nbsp;provides a specific example for a machine code whose instructions are always 32 bits long.
+        The general type of instruction is given by the&nbsp;<i>op</i>&nbsp;(operation) field, the highest 6 bits.
+        J-type (jump) and I-type (immediate) instructions are fully specified by&nbsp;<i>op</i>. R-type (register)
+        instructions include an additional field&nbsp;<i>funct</i>&nbsp;to determine the exact operation. The fields
+        used in these types are:</p>
+        <pre
+          style="font-family: monospace, monospace; line-height: 1.3; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); padding: 1em; white-space: pre-wrap; overflow-x: hidden; overflow-wrap: break-word;">   6      5     5     5     5      6 bits
+[  op  |  rs |  rt |  rd |shamt| funct]  R-type
+[  op  |  rs |  rt | address/immediate]  I-type
+[  op  |        target address        ]  J-type
+</pre>
+        <p style="margin: 0.5em 0px;"><i>rs</i>,&nbsp;<i>rt</i>, and&nbsp;<i>rd</i>&nbsp;indicate register operands;&nbsp;<i>shamt</i>&nbsp;gives
+          a shift amount; and the&nbsp;<i>address</i>&nbsp;or&nbsp;<i>immediate</i>&nbsp;fields contain an operand
+          directly.</p>
+        <p style="margin: 0.5em 0px;">For example, adding the registers 1 and 2 and placing the result in register 6 is
+          encoded:</p>
+        <pre
+          style="font-family: monospace, monospace; line-height: 1.3; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); padding: 1em; white-space: pre-wrap; overflow-x: hidden; overflow-wrap: break-word;">[  op  |  rs |  rt |  rd |shamt| funct]
+    0     1     2     6     0     32     decimal
+ 000000 00001 00010 00110 00000 100000   binary
+</pre>
+        <p style="margin: 0.5em 0px;">Load a value into register 8, taken from the memory cell 68 cells after the
+          location listed in register 3:</p>
+        <pre
+          style="font-family: monospace, monospace; line-height: 1.3; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); padding: 1em; white-space: pre-wrap; overflow-x: hidden; overflow-wrap: break-word;">[  op  |  rs |  rt | address/immediate]
+   35     3     8           68           decimal
+ 100011 00011 01000 00000 00001 000100   binary
+</pre>
+        <p style="margin: 0.5em 0px;">Jumping to the address 1024:</p>
+        <pre
+          style="font-family: monospace, monospace; line-height: 1.3; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); padding: 1em; white-space: pre-wrap; overflow-x: hidden; overflow-wrap: break-word;">[  op  |        target address        ]
+    2                 1024               decimal
+ 000010 00000 00000 00000 10000 000000   binary
+</pre>
+      </div>
+    </div>
+  </div>
+</h1>
+<h2
+  style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  <span class="mw-headline" id="Relationship_to_microcode">Relationship to microcode</span><span class="mw-editsection"
+                                                                                                 style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+  class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+  href="https://en.wikipedia.org/w/index.php?title=Machine_code&amp;action=edit&amp;section=5"
+  title="Edit section: Relationship to microcode"
+  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+  class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output"><p style="margin: 0.5em 0px;">In some&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Computer_architecture" title="Computer architecture"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">computer
+        architectures</a>, the machine code is implemented by an even more fundamental underlying layer called&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Microcode" title="Microcode"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">microcode</a>,
+        providing a common machine language interface across a line or family of different models of computer with
+        widely different underlying&nbsp;<a href="https://en.wikipedia.org/wiki/Dataflow" title="Dataflow"
+                                            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">dataflows</a>.
+        This is done to facilitate&nbsp;<a href="https://en.wikipedia.org/wiki/Porting" title="Porting"
+                                           style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">porting</a>&nbsp;of
+        machine language programs between different models. An example of this use is the IBM&nbsp;<a
+          href="https://en.wikipedia.org/wiki/System/360" class="mw-redirect" title="System/360"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">System/360</a>&nbsp;family
+        of computers and their successors. With dataflow path widths of 8&nbsp;bits to 64&nbsp;bits and beyond, they
+        nevertheless present a common architecture at the machine language level across the entire line.</p>
+        <p style="margin: 0.5em 0px;">Using microcode to implement an&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Emulator" title="Emulator"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">emulator</a>&nbsp;enables
+          the computer to present the architecture of an entirely different computer. The System/360 line used this to
+          allow porting programs from earlier IBM machines to the new family of computers, e.g. an&nbsp;<a
+            href="https://en.wikipedia.org/wiki/IBM_1400_series" title="IBM 1400 series"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">IBM
+            1401/1440/1460</a>&nbsp;emulator on the IBM S/360 model 40.</p></div>
+    </div>
+  </div>
+</h1>
+<h2
+  style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  <span class="mw-headline" id="Relationship_to_bytecode">Relationship to bytecode</span><span class="mw-editsection"
+                                                                                               style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+  class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+  href="https://en.wikipedia.org/w/index.php?title=Machine_code&amp;action=edit&amp;section=6"
+  title="Edit section: Relationship to bytecode"
+  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+  class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output"><p style="margin: 0.5em 0px;">Machine code is generally different from&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Bytecode" title="Bytecode"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">bytecode</a>&nbsp;(also
+        known as p-code), which is either executed by an interpreter or itself compiled into machine code for faster
+        (direct) execution. An exception is when a processor is designed to use a particular bytecode directly as its
+        machine code, such as is the case with&nbsp;<a href="https://en.wikipedia.org/wiki/Java_processor"
+                                                       title="Java processor"
+                                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Java
+          processors</a>.</p>
+        <p style="margin: 0.5em 0px;">Machine code and assembly code are sometimes called&nbsp;<i><a
+          href="https://en.wikipedia.org/wiki/Native_(computing)" title="Native (computing)"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">native</a>&nbsp;code</i>&nbsp;when
+          referring to platform-dependent parts of language features or libraries.<sup id="cite_ref-3" class="reference"
+                                                                                       style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+            href="https://en.wikipedia.org/wiki/Machine_code#cite_note-3"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[3]</a></sup>
+        </p></div>
+    </div>
+  </div>
+</h1>
+<h2
+  style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  <span class="mw-headline" id="Storing_in_memory">Storing in memory</span><span class="mw-editsection"
+                                                                                 style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+  class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+  href="https://en.wikipedia.org/w/index.php?title=Machine_code&amp;action=edit&amp;section=7"
+  title="Edit section: Storing in memory"
+  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+  class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output"><p style="margin: 0.5em 0px;">The&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Harvard_architecture" title="Harvard architecture"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Harvard
+        architecture</a>&nbsp;is a computer architecture with physically separate storage and signal pathways for the
+        code (instructions) and&nbsp;<a href="https://en.wikipedia.org/wiki/Data_(computing)" title="Data (computing)"
+                                        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">data</a>.
+        Today, most processors implement such separate signal pathways for performance reasons but implement a&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Modified_Harvard_architecture" title="Modified Harvard architecture"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Modified
+          Harvard architecture</a>,<sup class="noprint Inline-Template Template-Fact"
+                                        style="line-height: 1; font-size: 11.2px; white-space: nowrap;">[<i><a
+          href="https://en.wikipedia.org/wiki/Wikipedia:Citation_needed" title="Wikipedia:Citation needed"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span
+          title="This claim needs references to reliable sources. (March 2014)">citation needed</span></a></i>]</sup>&nbsp;so
+        they can support tasks like loading an&nbsp;<a href="https://en.wikipedia.org/wiki/Executable"
+                                                       title="Executable"
+                                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">executable</a>&nbsp;program
+        from&nbsp;<a href="https://en.wikipedia.org/wiki/Data_storage_device" class="mw-redirect"
+                     title="Data storage device"
+                     style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">disk
+          storage</a>&nbsp;as data and then executing it. Harvard architecture is contrasted to the&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Von_Neumann_architecture" title="Von Neumann architecture"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Von
+          Neumann architecture</a>, where data and code are stored in the same memory which is read by the processor
+        allowing the computer to execute commands.</p>
+        <p style="margin: 0.5em 0px;">From the point of view of a&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Process_(computing)" title="Process (computing)"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">process</a>,
+          the&nbsp;<i>code space</i>&nbsp;is the part of its&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Virtual_address_space" title="Virtual address space"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">address
+            space</a>&nbsp;where the code in execution is stored. In&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Computer_multitasking" title="Computer multitasking"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">multitasking</a>&nbsp;systems
+          this comprises the program's&nbsp;<a href="https://en.wikipedia.org/wiki/Code_segment" title="Code segment"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">code
+            segment</a>&nbsp;and usually&nbsp;<a href="https://en.wikipedia.org/wiki/Shared_libraries"
+                                                 class="mw-redirect" title="Shared libraries"
+                                                 style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">shared
+            libraries</a>. In&nbsp;<a href="https://en.wikipedia.org/wiki/Thread_(computing)" title="Thread (computing)"
+                                      style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">multi-threading</a>&nbsp;environment,
+          different threads of one process share code space along with data space, which reduces the overhead of&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Context_switching" class="mw-redirect" title="Context switching"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">context
+            switching</a>&nbsp;considerably as compared to process switching.</p></div>
+    </div>
+  </div>
+</h1>
+<h2
+  style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  <span class="mw-headline" id="Readability_by_humans">Readability by humans</span><span class="mw-editsection"
+                                                                                         style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+  class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+  href="https://en.wikipedia.org/w/index.php?title=Machine_code&amp;action=edit&amp;section=8"
+  title="Edit section: Readability by humans"
+  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+  class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output"><p style="margin: 0.5em 0px;">Pamela Samuelson wrote that machine code is so
+        unreadable that the&nbsp;<a href="https://en.wikipedia.org/wiki/United_States_Copyright_Office"
+                                    title="United States Copyright Office"
+                                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">United
+          States Copyright Office</a>&nbsp;cannot identify whether a particular encoded program is an original work of
+        authorship;<sup id="cite_ref-4" class="reference"
+                        style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+          href="https://en.wikipedia.org/wiki/Machine_code#cite_note-4"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[4]</a></sup>&nbsp;however,
+        the US Copyright Office&nbsp;<i>does</i>&nbsp;allow for copyright registration of computer programs<sup
+          id="cite_ref-5" class="reference"
+          style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+          href="https://en.wikipedia.org/wiki/Machine_code#cite_note-5"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[5]</a></sup>&nbsp;and
+        a program's machine code can sometimes be&nbsp;<a href="https://en.wikipedia.org/wiki/Decompiler"
+                                                          title="Decompiler"
+                                                          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">decompiled</a>&nbsp;in
+        order to make its functioning more easily understandable to humans.<sup id="cite_ref-6" class="reference"
+                                                                                style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+          href="https://en.wikipedia.org/wiki/Machine_code#cite_note-6"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[6]</a></sup>&nbsp;However,
+        the output of a decompiler or disassembler will be missing the comments and symbolic references, so while the
+        output may be easier to read than the object code, it will still be more difficult than the original source
+        code. This problem does not exist for object-code formats like&nbsp;<a
+          href="https://en.wikipedia.org/wiki/SQUOZE" title="SQUOZE"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">SQUOZE</a>,
+        where the source code is included in the file.</p>
+        <p style="margin: 0.5em 0px;">Cognitive science professor&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Douglas_Hofstadter" title="Douglas Hofstadter"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Douglas
+          Hofstadter</a>&nbsp;has compared machine code to&nbsp;<a href="https://en.wikipedia.org/wiki/Genetic_code"
+                                                                   title="Genetic code"
+                                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">genetic
+          code</a>, saying that "Looking at a program written in machine language is vaguely comparable to looking at a&nbsp;<a
+          href="https://en.wikipedia.org/wiki/DNA" title="DNA"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">DNA</a>&nbsp;molecule
+          atom by atom."<sup id="cite_ref-7" class="reference"
+                             style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+            href="https://en.wikipedia.org/wiki/Machine_code#cite_note-7"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[7]</a></sup>
+        </p></div>
+    </div>
+  </div>
+</h1>
+<h2
+  style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  <span class="mw-headline" id="See_also">See also</span><span class="mw-editsection"
+                                                               style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+  class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+  href="https://en.wikipedia.org/w/index.php?title=Machine_code&amp;action=edit&amp;section=9"
+  title="Edit section: See also"
+  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+  class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output">
+        <table role="presentation" class="mbox-small plainlinks sistersitebox"
+               style="font-size: 12.32px; clear: right; float: right; margin: 4px 0px 4px 1em; width: 238px; line-height: 1.25em; background-color: rgb(249, 249, 249); border: 1px solid rgb(170, 170, 170); color: rgb(0, 0, 0);">
+          <tbody>
+          <tr>
+            <td class="mbox-image" style="border: none; padding: 2px 0px 2px 0.9em; text-align: center;"><img alt=""
+                                                                                                              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Wiktionary-logo-en-v2.svg/40px-Wiktionary-logo-en-v2.svg.png"
+                                                                                                              decoding="async"
+                                                                                                              width="40"
+                                                                                                              height="40"
+                                                                                                              class="noviewer"
+                                                                                                              srcset="//upload.wikimedia.org/wikipedia/commons/thumb/9/99/Wiktionary-logo-en-v2.svg/60px-Wiktionary-logo-en-v2.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/9/99/Wiktionary-logo-en-v2.svg/80px-Wiktionary-logo-en-v2.svg.png 2x"
+                                                                                                              data-file-width="512"
+                                                                                                              data-file-height="512"
+                                                                                                              style="border: 0px; vertical-align: middle;">
+            </td>
+            <td class="mbox-text plainlist" style="border: none; padding: 0.25em 0.9em; width: 157.616px;">Look up&nbsp;<i><b><a
+              href="https://en.wiktionary.org/wiki/machine_code" class="extiw" title="wiktionary:machine code"
+              style="text-decoration-line: none; color: rgb(51, 102, 187); background: none;">machine code</a></b></i>&nbsp;in
+              Wiktionary, the free dictionary.
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <ul
+          style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+          <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Assembly_language"
+                                               title="Assembly language"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Assembly
+            language</a></li>
+          <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Endianness" title="Endianness"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Endianness</a>
+          </li>
+          <li style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/List_of_programming_languages_by_type#Machine_languages"
+            title="List of programming languages by type"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">List
+            of machine languages</a></li>
+          <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Machine_code_monitor"
+                                               title="Machine code monitor"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Machine
+            code monitor</a></li>
+          <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Overhead_code" class="mw-redirect"
+                                               title="Overhead code"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Overhead
+            code</a></li>
+          <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/P-code_machine"
+                                               title="P-code machine"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">P-code
+            machine</a></li>
+          <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Reduced_instruction_set_computing"
+                                               class="mw-redirect" title="Reduced instruction set computing"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Reduced
+            instruction set computing</a>&nbsp;(RISC)
+          </li>
+          <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Very_long_instruction_word"
+                                               title="Very long instruction word"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Very
+            long instruction word</a></li>
+          <li style="margin-bottom: 0.1em;">Teaching Machine Code:&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Micro-Professor_MPF-I" title="Micro-Professor MPF-I"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Micro-Professor
+            MPF-I</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</h1>
+<h2
+  style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  <span class="mw-headline" id="Notes_and_references">Notes and references</span><span class="mw-editsection"
+                                                                                       style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+  class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+  href="https://en.wikipedia.org/w/index.php?title=Machine_code&amp;action=edit&amp;section=10"
+  title="Edit section: Notes and references"
+  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+  class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output">
+        <div class="reflist" style="font-size: 12.6px; margin-bottom: 0.5em; list-style-type: decimal;">
+          <div class="mw-references-wrap">
+            <ol class="references"
+                style="margin: 0.3em 0px 0px 3.2em; padding: 0px; list-style-image: none; counter-reset: mw-ref-extends-parent 0 list-item 0; font-size: 12.6px; list-style-type: inherit;">
+              <li id="cite_note-1"
+                  style="margin-bottom: 0.1em; counter-increment: mw-ref-extends-parent 1; counter-reset: mw-ref-extends-child 0;">
+                <span class="mw-cite-backlink" style="user-select: none;"><b><a
+                  href="https://en.wikipedia.org/wiki/Machine_code#cite_ref-1" aria-label="Jump up" title="Jump up"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">^</a></b></span>&nbsp;<span
+                class="reference-text">Such as many versions of&nbsp;<a href="https://en.wikipedia.org/wiki/BASIC"
+                                                                        title="BASIC"
+                                                                        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">BASIC</a>, especially early ones, as well as&nbsp;<a
+                href="https://en.wikipedia.org/wiki/Smalltalk" title="Smalltalk"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Smalltalk</a>,&nbsp;<a
+                href="https://en.wikipedia.org/wiki/MATLAB" title="MATLAB"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">MATLAB</a>,&nbsp;<a
+                href="https://en.wikipedia.org/wiki/Perl_(programming_language)" class="mw-redirect"
+                title="Perl (programming language)"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Perl</a>,&nbsp;<a
+                href="https://en.wikipedia.org/wiki/Python_(programming_language)" title="Python (programming language)"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Python</a>,&nbsp;<a
+                href="https://en.wikipedia.org/wiki/Ruby_(programming_language)" title="Ruby (programming language)"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Ruby</a>&nbsp;and other special purpose or&nbsp;<a
+                href="https://en.wikipedia.org/wiki/Scripting_language" title="Scripting language"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">scripting languages</a>.</span>
+              </li>
+              <li id="cite_note-2"
+                  style="margin-bottom: 0.1em; counter-increment: mw-ref-extends-parent 1; counter-reset: mw-ref-extends-child 0;">
+                <span class="mw-cite-backlink" style="user-select: none;"><b><a
+                  href="https://en.wikipedia.org/wiki/Machine_code#cite_ref-2" aria-label="Jump up" title="Jump up"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">^</a></b></span>&nbsp;<span
+                class="reference-text"><cite id="CITEREFKjell" class="citation web cs1"
+                                             style="font-style: inherit; overflow-wrap: break-word;">Kjell, Bradley.&nbsp;<a
+                rel="nofollow" class="external text"
+                href="http://programmedlessons.org/AssemblyTutorial/Chapter-11/ass11_2.html"
+                style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">"Immediate Operand"</a>.</cite><span
+                title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=unknown&amp;rft.btitle=Immediate+Operand&amp;rft.aulast=Kjell&amp;rft.aufirst=Bradley&amp;rft_id=http%3A%2F%2Fprogrammedlessons.org%2FAssemblyTutorial%2FChapter-11%2Fass11_2.html&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AMachine+code"
+                class="Z3988"></span></span></li>
+              <li id="cite_note-3"
+                  style="margin-bottom: 0.1em; counter-increment: mw-ref-extends-parent 1; counter-reset: mw-ref-extends-child 0;">
+                <span class="mw-cite-backlink" style="user-select: none;"><b><a
+                  href="https://en.wikipedia.org/wiki/Machine_code#cite_ref-3" aria-label="Jump up" title="Jump up"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">^</a></b></span>&nbsp;<span
+                class="reference-text"><cite class="citation web cs1"
+                                             style="font-style: inherit; overflow-wrap: break-word;"><a rel="nofollow"
+                                                                                                        class="external text"
+                                                                                                        href="http://www.developer.com/net/cplus/article.php/2197621/Managed-Unmanaged-Native-What-Kind-of-Code-Is-This.htm"
+                                                                                                        style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">"Managed, Unmanaged, Native: What Kind of Code Is This?"</a>.&nbsp;<i>developer.com</i><span
+                class="reference-accessdate">. Retrieved&nbsp;<span class="nowrap" style="white-space: nowrap;">2008-09-02</span></span>.</cite><span
+                title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=unknown&amp;rft.jtitle=developer.com&amp;rft.atitle=Managed%2C+Unmanaged%2C+Native%3A+What+Kind+of+Code+Is+This%3F&amp;rft_id=http%3A%2F%2Fwww.developer.com%2Fnet%2Fcplus%2Farticle.php%2F2197621%2FManaged-Unmanaged-Native-What-Kind-of-Code-Is-This.htm&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AMachine+code"
+                class="Z3988"></span></span></li>
+              <li id="cite_note-4"
+                  style="margin-bottom: 0.1em; counter-increment: mw-ref-extends-parent 1; counter-reset: mw-ref-extends-child 0;">
+                <span class="mw-cite-backlink" style="user-select: none;"><b><a
+                  href="https://en.wikipedia.org/wiki/Machine_code#cite_ref-4" aria-label="Jump up" title="Jump up"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">^</a></b></span>&nbsp;<span
+                class="reference-text"><cite id="CITEREFSamuelson1984" class="citation journal cs1"
+                                             style="font-style: inherit; overflow-wrap: break-word;">Samuelson, Pamela (Sep 1984).&nbsp;<a
+                rel="nofollow" class="external text" href="https://scholarship.law.berkeley.edu/facpubs/333"
+                style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">"CONTU Revisited: The Case against Copyright Protection for Computer Programs in Machine-Readable Form"</a>.&nbsp;<i>Duke Law Journal</i>.&nbsp;<b>1984</b>&nbsp;(4): 663–769.&nbsp;<a
+                href="https://en.wikipedia.org/wiki/Doi_(identifier)" class="mw-redirect" title="Doi (identifier)"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">doi</a>:<a
+                rel="nofollow" class="external text" href="https://doi.org/10.2307%2F1372418"
+                style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">10.2307/1372418</a>.&nbsp;<a
+                href="https://en.wikipedia.org/wiki/JSTOR_(identifier)" class="mw-redirect" title="JSTOR (identifier)"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">JSTOR</a>&nbsp;<a
+                rel="nofollow" class="external text" href="https://www.jstor.org/stable/1372418"
+                style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">1372418</a>.&nbsp;<a
+                href="https://en.wikipedia.org/wiki/PMID_(identifier)" class="mw-redirect" title="PMID (identifier)"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">PMID</a>&nbsp;<a
+                rel="nofollow" class="external text" href="https://pubmed.ncbi.nlm.nih.gov/10268940"
+                style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">10268940</a>.</cite><span
+                title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.jtitle=Duke+Law+Journal&amp;rft.atitle=CONTU+Revisited%3A+The+Case+against+Copyright+Protection+for+Computer+Programs+in+Machine-Readable+Form&amp;rft.volume=1984&amp;rft.issue=4&amp;rft.pages=663-769&amp;rft.date=1984-09&amp;rft_id=info%3Apmid%2F10268940&amp;rft_id=%2F%2Fwww.jstor.org%2Fstable%2F1372418%23id-name%3DJSTOR&amp;rft_id=info%3Adoi%2F10.2307%2F1372418&amp;rft.aulast=Samuelson&amp;rft.aufirst=Pamela&amp;rft_id=https%3A%2F%2Fscholarship.law.berkeley.edu%2Ffacpubs%2F333&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AMachine+code"
+                class="Z3988"></span></span></li>
+              <li id="cite_note-5"
+                  style="margin-bottom: 0.1em; counter-increment: mw-ref-extends-parent 1; counter-reset: mw-ref-extends-child 0;">
+                <span class="mw-cite-backlink" style="user-select: none;"><b><a
+                  href="https://en.wikipedia.org/wiki/Machine_code#cite_ref-5" aria-label="Jump up" title="Jump up"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">^</a></b></span>&nbsp;<span
+                class="reference-text"><cite class="citation web cs1"
+                                             style="font-style: inherit; overflow-wrap: break-word;"><a rel="nofollow"
+                                                                                                        class="external text"
+                                                                                                        href="http://www.copyright.gov/circs/circ61.pdf"
+                                                                                                        style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;//upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 18px;">"Copyright Registration for Computer Programs"</a>&nbsp;<span
+                class="cs1-format" style="font-size: 11.97px;">(PDF)</span>. US Copyright Office. August 2008<span
+                class="reference-accessdate">. Retrieved&nbsp;<span class="nowrap" style="white-space: nowrap;">February 23,</span>&nbsp;2014</span>.</cite><span
+                title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=unknown&amp;rft.btitle=Copyright+Registration+for+Computer+Programs&amp;rft.pub=US+Copyright+Office&amp;rft.date=2008-08&amp;rft_id=http%3A%2F%2Fwww.copyright.gov%2Fcircs%2Fcirc61.pdf&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AMachine+code"
+                class="Z3988"></span></span></li>
+              <li id="cite_note-6"
+                  style="margin-bottom: 0.1em; counter-increment: mw-ref-extends-parent 1; counter-reset: mw-ref-extends-child 0;">
+                <span class="mw-cite-backlink" style="user-select: none;"><b><a
+                  href="https://en.wikipedia.org/wiki/Machine_code#cite_ref-6" aria-label="Jump up" title="Jump up"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">^</a></b></span>&nbsp;<span
+                class="reference-text"><cite class="citation news cs1"
+                                             style="font-style: inherit; overflow-wrap: break-word;"><a rel="nofollow"
+                                                                                                        class="external text"
+                                                                                                        href="http://whatis.techtarget.com/definition/decompile"
+                                                                                                        style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">"What is decompile? - Definition from WhatIs.com"</a>.&nbsp;<i>WhatIs.com</i><span
+                class="reference-accessdate">. Retrieved&nbsp;<span class="nowrap" style="white-space: nowrap;">2016-12-26</span></span>.</cite><span
+                title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.jtitle=WhatIs.com&amp;rft.atitle=What+is+decompile%3F+-+Definition+from+WhatIs.com&amp;rft_id=http%3A%2F%2Fwhatis.techtarget.com%2Fdefinition%2Fdecompile&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AMachine+code"
+                class="Z3988"></span></span></li>
+              <li id="cite_note-7"
+                  style="margin-bottom: 0.1em; counter-increment: mw-ref-extends-parent 1; counter-reset: mw-ref-extends-child 0;">
+                <span class="mw-cite-backlink" style="user-select: none;"><b><a
+                  href="https://en.wikipedia.org/wiki/Machine_code#cite_ref-7" aria-label="Jump up" title="Jump up"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">^</a></b></span>&nbsp;<span
+                class="reference-text"><cite id="CITEREFD._Hofstadter1980" class="citation journal cs1"
+                                             style="font-style: inherit; overflow-wrap: break-word;">D. Hofstadter (1980). "Gödel, Escher, Bach: An Eternal Golden Braid": 290.</cite><span
+                title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=G%C3%B6del%2C+Escher%2C+Bach%3A+An+Eternal+Golden+Braid&amp;rft.pages=290&amp;rft.date=1980&amp;rft.au=D.+Hofstadter&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AMachine+code"
+                class="Z3988"></span></span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</h1>
+<h2
+  style="margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  <span class="mw-headline" id="Further_reading">Further reading</span><span class="mw-editsection"
+                                                                             style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+  class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+  href="https://en.wikipedia.org/w/index.php?title=Machine_code&amp;action=edit&amp;section=11"
+  title="Edit section: Further reading"
+  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+  class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+<h1>
+  <div class="vector-body"
+       style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif; font-weight: 400;">
+    <div class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+      <div class="mw-parser-output">
+        <ul
+          style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+          <li style="margin-bottom: 0.1em;"><cite id="CITEREFHennessyPatterson,_David_A.1994" class="citation book cs1"
+                                                  style="font-style: inherit; overflow-wrap: break-word;"><a
+            href="https://en.wikipedia.org/wiki/John_L._Hennessy" title="John L. Hennessy"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Hennessy,
+            John L.</a>;&nbsp;<a href="https://en.wikipedia.org/wiki/David_A._Patterson_(scientist)" class="mw-redirect"
+                                 title="David A. Patterson (scientist)"
+                                 style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Patterson,
+            David A.</a>&nbsp;(1994).&nbsp;<span class="cs1-lock-registration" title="Free registration required"><a
+            rel="nofollow" class="external text" href="https://archive.org/details/computerorganiza00henn"
+            style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: linear-gradient(transparent, transparent), url(&quot;//upload.wikimedia.org/wikipedia/commons/d/d6/Lock-gray-alt-2.svg&quot;); background-position: right 0.1em center; background-size: initial, 9px; background-repeat: repeat, no-repeat; background-attachment: initial, initial; background-origin: initial, initial; background-clip: initial, initial; padding-right: 13px;"><i>Computer Organization and Design. The Hardware/Software Interface</i></a></span>.
+            Morgan Kaufmann Publishers.&nbsp;<a href="https://en.wikipedia.org/wiki/ISBN_(identifier)"
+                                                class="mw-redirect" title="ISBN (identifier)"
+                                                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">ISBN</a>&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Special:BookSources/1-55860-281-X"
+              title="Special:BookSources/1-55860-281-X"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">
+              <bdi>1-55860-281-X</bdi>
+            </a>.</cite><span
+            title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Computer+Organization+and+Design.+The+Hardware%2FSoftware+Interface.&amp;rft.pub=Morgan+Kaufmann+Publishers&amp;rft.date=1994&amp;rft.isbn=1-55860-281-X&amp;rft.aulast=Hennessy&amp;rft.aufirst=John+L.&amp;rft.au=Patterson%2C+David+A.&amp;rft_id=https%3A%2F%2Farchive.org%2Fdetails%2Fcomputerorganiza00henn&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AMachine+code"
+            class="Z3988"></span></li>
+          <li style="margin-bottom: 0.1em;"><cite id="CITEREFTanenbaum1999" class="citation book cs1"
+                                                  style="font-style: inherit; overflow-wrap: break-word;"><a
+            href="https://en.wikipedia.org/wiki/Andrew_S._Tanenbaum" title="Andrew S. Tanenbaum"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Tanenbaum,
+            Andrew S.</a>&nbsp;(1999).&nbsp;<i>Structured Computer Organization</i>. Prentice Hall.&nbsp;<a
+            href="https://en.wikipedia.org/wiki/ISBN_(identifier)" class="mw-redirect" title="ISBN (identifier)"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">ISBN</a>&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Special:BookSources/0-13-020435-8"
+            title="Special:BookSources/0-13-020435-8"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">
+            <bdi>0-13-020435-8</bdi>
+          </a>.</cite><span
+            title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Structured+Computer+Organization&amp;rft.pub=Prentice+Hall&amp;rft.date=1999&amp;rft.isbn=0-13-020435-8&amp;rft.aulast=Tanenbaum&amp;rft.aufirst=Andrew+S.&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AMachine+code"
+            class="Z3988"></span></li>
+          <li style="margin-bottom: 0.1em;"><cite id="CITEREFBrookshear2007" class="citation book cs1"
+                                                  style="font-style: inherit; overflow-wrap: break-word;">Brookshear, J.
+            Glenn (2007).&nbsp;<i>Computer Science: An Overview</i>. Addison Wesley.&nbsp;<a
+              href="https://en.wikipedia.org/wiki/ISBN_(identifier)" class="mw-redirect" title="ISBN (identifier)"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">ISBN</a>&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Special:BookSources/978-0-321-38701-1"
+              title="Special:BookSources/978-0-321-38701-1"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">
+              <bdi>978-0-321-38701-1</bdi>
+            </a>.</cite></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</h1>
+</body>
+</html>

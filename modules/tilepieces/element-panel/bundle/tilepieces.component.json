@@ -1,0 +1,40 @@
+{
+  "name": "tilepieces/element-panel/bundle",
+  "description": "",
+  "version": "",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": true,
+  "bundle": {
+    "stylesheet": {
+      "href": "element-panel.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "element-panel.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [
+      "placeholder-search"
+    ],
+    "scripts": [
+      "placeholder-search"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/element-panel"
+  ],
+  "components": {},
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

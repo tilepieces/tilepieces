@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test html tree builder</title>
+
+
+  <link href="../css.css" rel="stylesheet" data-tilepieces-component="html-tree-builder">
+</head>
+<body>
+<iframe src="/"></iframe>
+<h1>Pop-up info widget - web components</h1>
+
+<form>
+  <div>
+    <label for="cvc">Enter your CVC
+      <popup-info img="img/alt.png"
+                  data-text="Your card validation code (CVC) is an extra security feature — it is the last 3 or 4 numbers on the back of your card."></popup-info>
+    </label>
+    <input type="text" id="cvc">
+  </div>
+</form>
+<p is="word-count"></p>
+<p is="word-count2"></p>
+<popup-info img="img/alt.png"
+            data-text="Your card validation code (CVC) is an extra security feature — it is the last 3 or 4 numbers on the back of your card.">
+  <h1>With children</h1>
+</popup-info>
+<p is="word-count"><span>With child</span></p>
+<p is="word-count2"><span>With child</span> and text</p>
+<div id="overlay" tabindex="-1"></div>
+
+
+<script id="popup-info-shadow">
+  // Create a class for the element
+  class PopUpInfo extends HTMLElement {
+    constructor() {
+      // Always call super first in constructor
+      super();
+
+      // Create a shadow root
+      const shadow = this.attachShadow({mode: 'open'});
+
+      // Create spans
+      const wrapper = document.createElement('span');
+      wrapper.setAttribute('class', 'wrapper');
+
+      const icon = document.createElement('span');
+      icon.setAttribute('class', 'icon');
+      icon.setAttribute('tabindex', 0);
+
+      const info = document.createElement('span');
+      info.setAttribute('class', 'info');
+
+      // Take attribute content and put it inside the info span
+      const text = this.getAttribute('data-text');
+      info.textContent = text;
+
+      // Insert icon
+      let imgUrl;
+      if (this.hasAttribute('img')) {
+        imgUrl = this.getAttribute('img');
+      } else {
+        imgUrl = 'img/default.png';
+      }
+
+      const img = document.createElement('img');
+      img.src = imgUrl;
+      icon.appendChild(img);
+
+      // Create some CSS to apply to the shadow dom
+      const style = document.createElement('style');
+      console.log(style.isConnected);
+
+      style.textContent = `
+      .wrapper {
+        position: relative;
+      }
+
+      .info {
+        font-size: 0.8rem;
+        width: 200px;
+        display: inline-block;
+        border: 1px solid black;
+        padding: 10px;
+        background: white;
+        border-radius: 10px;
+        opacity: 0;
+        transition: 0.6s all;
+        position: absolute;
+        bottom: 20px;
+        left: 10px;
+        z-index: 3;
+      }
+
+      img {
+        width: 1.2rem;
+      }
+
+      .icon:hover + .info, .icon:focus + .info {
+        opacity: 1;
+      }
+    `;
+
+      // Attach the created elements to the shadow dom
+      shadow.appendChild(style);
+      console.log(style.isConnected);
+      shadow.appendChild(wrapper);
+      wrapper.appendChild(icon);
+      wrapper.appendChild(info);
+    }
+  }
+
+  // Define the new element
+  customElements.define('popup-info', PopUpInfo);
+</script>
+<script id="word-count-shadow">
+  class WordCount extends HTMLParagraphElement {
+    constructor() {
+      // Always call super first in constructor
+      super();
+
+      // count words in element's parent element
+      var wcParent = this.parentNode;
+
+      function countWords(node) {
+        var text = node.innerText || node.textContent
+        return text.trim().split(/\s+/g).length;
+      }
+
+      var count = 'Words: ' + countWords(wcParent);
+
+      // Create a shadow root
+      var shadow = this.attachShadow({mode: 'open'});
+
+      // Create text node and add word count to it
+      var text = document.createElement('span');
+      text.textContent = count;
+
+      // Append it to the shadow root
+      shadow.appendChild(text);
+
+      // Update count when element content changes
+      setInterval(function () {
+        var count = 'Words: ' + countWords(wcParent);
+        text.textContent = count;
+      }, 200)
+    }
+  }
+
+  // Define the new element
+  customElements.define('word-count', WordCount, {extends: 'p'});
+</script>
+<script id="word-count-2-shadow">
+  class WordCount2 extends HTMLParagraphElement {
+    constructor() {
+      // Always call super first in constructor
+      super();
+
+      // count words in element's parent element
+      var wcParent = this.parentNode;
+
+      function countWords(node) {
+        var text = node.innerText || node.textContent
+        return text.trim().split(/\s+/g).length;
+      }
+
+      var count = 'Words: ' + countWords(wcParent);
+
+      // Create a shadow root
+      var shadow = this.attachShadow({mode: 'closed'});
+
+      // Create text node and add word count to it
+      var text = document.createElement('span');
+      text.textContent = count;
+
+      // Append it to the shadow root
+      shadow.appendChild(text);
+
+      // Update count when element content changes
+      setInterval(function () {
+        var count = 'Words: ' + countWords(wcParent);
+        text.textContent = count;
+      }, 200)
+    }
+  }
+
+  // Define the new element
+  customElements.define('word-count2', WordCount2, {extends: 'p'});
+</script>
+
+
+<script src="../html-tree-builder.bundle.js" data-tilepieces-component="html-tree-builder"></script>
+<script>
+  var html = htmlTreeBuilder(overlay, document);
+  console.log(html);
+  window.addEventListener("html-tree-builder-click", e => console.log(e.detail));
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>InnerHTML test</title>
+    <style>
+        .red{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    <span>Some points</span>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<button id="inn" onclick="inn()" disabled>InnerHTML test!</button>
+<button id="add" onclick="addColor()">add red class to span</button>
+<button id="undo" onclick="undo()" disabled>Undo!</button>
+<button id="redo" onclick="redo()" disabled>Redo!</button>
+<script src="../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var innEl = document.getElementById("inn");
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    // TESTING IF IMAGES ARE CORRECTLY REFERENCED
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+        innEl.removeAttribute("disabled");
+        var uno = htmlMatch.match(document.querySelector(".banner"));
+    }
+    a();
+    var count = 0;
+    function inn(){
+        if(innEl.disabled)
+            return;
+        htmlMatch.innerHTML(document.querySelector(".banner"),"<span>a simple test #</span>"+count);
+        count++;
+        //innEl.setAttribute("disabled","");
+    }
+    function addColor(){
+        htmlMatch.addClass(document.querySelector(".banner span"),"red");
+    }
+    window.addEventListener("DOM-change",function(){
+        if(htmlMatch.history.pointer != 0)
+            undoEl.removeAttribute("disabled");
+        else
+            undoEl.setAttribute("disabled","");
+        if(htmlMatch.history.pointer != htmlMatch.history.entries.length)
+            redoEl.removeAttribute("disabled");
+        else
+            redoEl.setAttribute("disabled","");
+    });
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+    }
+</script>
+</body>
+</html>

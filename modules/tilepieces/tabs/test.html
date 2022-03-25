@@ -1,0 +1,19 @@
+<link href="tabs.css" rel="stylesheet"/>
+<div class="tab-buttons tab-horizontal" id="tabtest">
+  <a class=tab-prev href="javascript:void(0)">...</a>
+  <a class=tab-next href="javascript:void(0)">...</a>
+  <div class="tab-buttons-wrap">
+    <div class="tab-buttons-inside">
+      <a href="#one" class="selected">Tab 1</a>
+      <a href="#two">Tab 2</a>
+    </div>
+  </div>
+</div>
+<div id="one">one</div>
+<div id="two" style="display:none">two</div>
+<script src="tabs.js"></script>
+<script>
+  tilepieces_tabs({
+    el: tabtest
+  })
+</script>

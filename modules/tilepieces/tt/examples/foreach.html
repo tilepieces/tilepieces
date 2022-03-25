@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TT Foreach example</title>
+  <meta description="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" itemprop="image primaryImageOfPage" content="">
+</head>
+<body>
+<ul>
+  <li data-foreach="array1">
+    <div>Name <span>${key.name}</span></div>
+    <div>Value <span>${key.value}</span></div>
+  </li>
+</ul>
+<ul>
+  <li data-foreach="array2" data-foreach-key-name="prop">
+    <div>Name <span>${prop.name}</span></div>
+    <div>Value <span>${prop.value}</span></div>
+    <ul>
+      <li data-foreach="prop.array" data-foreach-key-name="propNested">
+        <div>Name <span>${propNested.name}</span></div>
+        <div>Value <span>${propNested.value}</span></div>
+      </li>
+    </ul>
+  </li>
+</ul>
+<script src="../tt.js" data-tilepieces-component="tt"></script>
+<script>
+  let array1 = [{
+    name: "array1_1",
+    value: 10
+  },
+    {
+      name: "array1_2",
+      value: 100
+    }];
+  let array2 = [{
+    name: "array2_1",
+    value: 0,
+    array: [{
+      name: "array2_1_0_nested",
+      value: 0
+    }]
+  },
+    {
+      name: "array2_2",
+      value: 10,
+      array: [{
+        name: "array2_2_0_nested",
+        value: 1
+      }, {
+        name: "array2_2_0_nested",
+        value: 2
+      }]
+    }]
+  let scope = {array1, array2};
+  let template = new TT(document.body, scope);
+</script>
+</body>
+</html>

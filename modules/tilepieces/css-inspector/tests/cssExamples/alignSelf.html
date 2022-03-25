@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    section.one {
+      display: flex;
+      align-items: center;
+      height: 120px;
+      background: beige;
+    }
+
+    .one div {
+      height: 60px;
+      background: cyan;
+      margin: 5px;
+    }
+
+    .one div:nth-child(3) {
+      align-self: flex-end;
+      background: pink;
+    }
+
+    #main {
+      width: 220px;
+      height: 300px;
+      border: 1px solid black;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    #main div {
+      flex: 1;
+    }
+
+    #myBlueDiv {
+      align-self: center;
+    }
+  </style>
+</head>
+<body>
+<section class="one">
+  <div>Item #1</div>
+  <div>Item #2</div>
+  <div>Item #3</div>
+</section>
+<div id="main">
+  <div style="background-color:coral;">RED</div>
+  <div style="background-color:lightblue;" id="myBlueDiv">BLUE</div>
+  <div style="background-color:lightgreen;">Green div with more content.</div>
+</div>
+
+<p><b>Note:</b> The align-self property overrides the container's align-items property.</p>
+</body>
+</html>

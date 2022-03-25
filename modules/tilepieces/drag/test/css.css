@@ -1,0 +1,117 @@
+#overlay{
+    border:1px solid #ccc;
+    padding:10px;
+    margin:20px 0;
+    background:#fff;
+    user-select:none;
+}
+.html-tree-builder{
+    overflow:auto;
+    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    position:relative;
+    padding:0 10px;
+}
+.html-tree-builder .no-pad{
+    padding:0;
+    min-width:0;
+}
+ul.html-tree-builder, .html-tree-builder ul{
+    margin:0;
+    padding:0;
+}
+.html-tree-builder li{
+    list-style:none;
+    padding-left:15px;
+}
+.html-tree-builder li > *:not(ul){
+    position:relative;
+    z-index:1;
+}
+.html-tree-builder li span.menu-toggle{
+    position:absolute;
+    left:0;
+    display:none;
+    width:100%;
+    z-index:0;
+    color: #a894a6;
+}
+.html-tree-builder li span.menu-toggle span{
+    cursor:pointer;
+}
+.element-after.html-tree-builder__highlight > b,
+.element-before.html-tree-builder__highlight > b{
+    position:relative;
+    z-index:1;
+}
+.html-tree-builder .html-tree-builder__highlight > span.menu-toggle{
+    display:block;
+    background-color:lightblue;
+}
+.html-tree-builder__caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    padding:0;
+    vertical-align: middle;
+    border-top: 6px dashed;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    cursor:pointer;
+    margin-bottom:3px;
+}
+.html-tree-builder__doctype{
+    color:#ccc;
+}
+.html-tree-builder__caret{
+    transform: rotate(-90deg);
+}
+.html-tree-builder__caret.open{
+    transform: rotate(0deg);
+}
+.html-tree-builder__caret ~ ul{
+    display:none;
+}
+.html-tree-builder__caret.open ~ ul{
+    display:block;
+}
+.html-tree-builder-element::after{
+    content:attr(data-tag-name);
+    position:relative;
+    z-index:1;
+}
+
+.html-tree-builder-attributes{
+    display:inline-block;
+    min-width: 0.7em;
+    min-height: 0.7em;
+    padding-left:0.7em;
+}
+.html-tree-builder-element {
+    color: #a894a6;
+}
+span.html-tree-builer__tag-span {
+    color: #881280;
+}
+.html-tree-builder-attribute .attribute-key{
+    color:#a15314
+}
+.html-tree-builder-attribute .attribute-value{
+    color:#1a1aa6
+}
+.html-tree-builder-node-value{
+    color: #222;
+}
+.element-after,.element-before{
+    color:orangered;
+}
+.html-tree-builder-comment{
+    color:green;
+}
+.html-tree-builder-comment:before{
+    content:"<!--"
+}
+.html-tree-builder-comment:after{
+    content:"-->"
+}
+

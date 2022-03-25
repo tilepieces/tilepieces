@@ -1,0 +1,41 @@
+{
+  "name": "tilepieces/tabs",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "tabs.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "tabs.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": []
+  },
+  "dependencies": [],
+  "components": {
+    "tilepieces/tabs/template": {
+      "name": "tilepieces/tabs/template",
+      "path": "/components/tabs/template"
+    }
+  },
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "svg-ico-freccia.svg"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

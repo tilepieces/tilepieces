@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table, td, th {
+      border: 1px solid black;
+    }
+
+    #table1 {
+      border-collapse: separate;
+    }
+
+    #table2 {
+      border-collapse: collapse;
+    }
+
+    .collapse {
+      border-collapse: collapse;
+    }
+
+    .separate {
+      border-collapse: separate;
+    }
+
+    table.mozilla {
+      display: inline-table;
+      margin: 1em;
+      border: dashed 5px;
+    }
+
+    table.mozilla th,
+    table.mozilla td {
+      border-width: 3px;
+      border-style: solid;
+    }
+
+    .fx {
+      border-color: orange blue;
+    }
+
+    .gk {
+      border-color: black red;
+    }
+
+    .ed {
+      border-color: blue gold;
+    }
+
+    .tr {
+      border-color: aqua;
+    }
+
+    .sa {
+      border-color: silver blue;
+    }
+
+    .wk {
+      border-color: gold blue;
+    }
+
+    .ch {
+      border-color: red yellow green blue;
+    }
+
+    .bk {
+      border-color: navy blue teal aqua;
+    }
+
+    .op {
+      border-color: red;
+    }
+  </style>
+</head>
+<body>
+
+<h2>border-collapse: separate (default):</h2>
+<table id="table1">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+  <tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+  </tr>
+  <tr>
+    <td>Lois</td>
+    <td>Griffin</td>
+  </tr>
+</table>
+
+<h2>border-collapse: collapse:</h2>
+<table id="table2">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+  <tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+  </tr>
+  <tr>
+    <td>Lois</td>
+    <td>Griffin</td>
+  </tr>
+</table>
+<table class="separate mozilla">
+  <caption><code>border-collapse: separate</code></caption>
+  <tbody>
+  <tr>
+    <th>Browser</th>
+    <th>Layout Engine</th>
+  </tr>
+  <tr>
+    <td class="fx">Firefox</td>
+    <td class="gk">Gecko</td>
+  </tr>
+  <tr>
+    <td class="ed">Edge</td>
+    <td class="tr">EdgeHTML</td>
+  </tr>
+  <tr>
+    <td class="sa">Safari</td>
+    <td class="wk">Webkit</td>
+  </tr>
+  <tr>
+    <td class="ch">Chrome</td>
+    <td class="bk">Blink</td>
+  </tr>
+  <tr>
+    <td class="op">Opera</td>
+    <td class="bk">Blink</td>
+  </tr>
+  </tbody>
+</table>
+<table class="collapse mozilla">
+  <caption><code>border-collapse: collapse</code></caption>
+  <tbody>
+  <tr>
+    <th>Browser</th>
+    <th>Layout Engine</th>
+  </tr>
+  <tr>
+    <td class="fx">Firefox</td>
+    <td class="gk">Gecko</td>
+  </tr>
+  <tr>
+    <td class="ed">Edge</td>
+    <td class="tr">EdgeHTML</td>
+  </tr>
+  <tr>
+    <td class="sa">Safari</td>
+    <td class="wk">Webkit</td>
+  </tr>
+  <tr>
+    <td class="ch">Chrome</td>
+    <td class="bk">Blink</td>
+  </tr>
+  <tr>
+    <td class="op">Opera</td>
+    <td class="bk">Blink</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

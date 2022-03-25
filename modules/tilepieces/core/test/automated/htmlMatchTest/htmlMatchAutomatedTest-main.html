@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML MATCH Automated Test main</title>
+  <style>
+    .larger {
+      font-size: larger;
+      margin: 5px 0;
+      border-bottom: 1px solid #ccc
+    }
+
+    .large {
+      font-size: large;
+      margin: 5px 0;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success::before {
+      content: "\2713";
+      padding-right: 10px;
+    }
+
+    .error::before {
+      content: "\2715";
+      padding-right: 10px;
+    }
+  </style>
+</head>
+<body>
+<section id="waiting"></section>
+<section id=log-section></section>
+<iframe id="test-frame" style="display:none"></iframe>
+<script src="../testUtils/logOnDocument.js"></script>
+<script>
+  const htmlTests = [
+    "addRemoveClass.html",
+    "afterBeforeAppendPrependTest.html",
+    "contenteditable.html",
+    "contenteditable2.html",
+    "innerHTML.html",
+    "insertAdjacentElementTest.html",
+    "move.html",
+    "outerHTML.html",
+    "removeChildTest.html",
+    "replaceWith.html",
+    "setRemoveAttribute.html",
+    "styleTest.html",
+    "table.html",
+    "textContent.html"
+  ];
+  const testFrame = document.getElementById("test-frame");
+  const waitingSection = document.getElementById("waiting");
+
+  function test(src) {
+    return new Promise((resolve, reject) => {
+      testFrame.onload = function () {
+        var title = testFrame.contentDocument.title;
+        waitingSection.innerHTML = src + " loaded. testing " + title;
+        testFrame.contentWindow.addEventListener("test-success", () => {
+          resolve(title)
+        });
+        testFrame.contentWindow.addEventListener("test-error", e => {
+          reject(title + " - " + e.detail);
+        });
+      }
+      testFrame.src = src;
+    })
+  }
+
+  (async () => {
+    var passed = 0;
+    var errors = 0;
+    for (var i = 0; i < htmlTests.length; i++) {
+      var testSrc = htmlTests[i];
+      waitingSection.innerHTML = "loading " + testSrc;
+      try {
+        var testResult = await test(testSrc);
+        logOnDocument(
+          testSrc + " - " + testResult
+          , "success");
+        passed++;
+      } catch (e) {
+        logOnDocument("error on " + e, "error");
+        errors++;
+      }
+    }
+    waitingSection.innerHTML = "all test loaded ";
+    logOnDocument("total tests: " + htmlTests.length);
+    logOnDocument("test passed: " + passed, "success");
+    logOnDocument("test errors: " + errors, "error");
+  })()
+</script>
+</body>
+</html>

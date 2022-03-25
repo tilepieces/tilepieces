@@ -1,0 +1,44 @@
+{
+  "name": "tilepieces/css-text",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "html/css-text.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "css-text.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "css-text.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src/header",
+      "src/*.js",
+      "src/!(header)**/**/*.js"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/stylesheet",
+    "tilepieces/autocomplete",
+    "tilepieces/css-input",
+    "tilepieces/SVGtoXY",
+    "tilepieces/tabs"
+  ],
+  "components": {},
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": true,
+  "parseHTML": ""
+}

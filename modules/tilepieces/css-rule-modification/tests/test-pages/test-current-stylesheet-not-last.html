@@ -1,0 +1,133 @@
+<!-- test to understand what happen when current stylesheet can't override css rules -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test1</title>
+    <style id="current-stylesheet">
+        @media (prefers-reduced-motion:no-preference) {
+            /*
+            @keyframes slidein {
+                from {
+                    transform: translateX(0%);
+                }
+
+                to {
+                    transform: translateX(100%);
+                }
+            }*/
+            @-webkit-keyframes slidein {
+                from {
+                    transform: translateX(0%);
+                }
+
+                to {
+                    transform: translateX(100%);
+                }
+            }
+            @keyframes identifier {
+                0% {
+                    top: 0;
+                    left: 0;
+                }
+                30% {
+                    top: 50px;
+                }
+                68%, 72% {
+                    left: 50px;
+                }
+                100% {
+                    top: 100px;
+                    left: 100%;
+                }
+            }
+            @keyframes identifier2 {
+                0% {
+                    top: 0;
+                }
+                50% {
+                    top: 30px;
+                    left: 20px;
+                }
+                50% {
+                    top: 10px;
+                }
+                100% {
+                    top: 0;
+                }
+            }
+            @keyframes identifier3 {
+                0% {
+                    top: 0;
+                }
+                52% {
+                    top: 30px;
+                    left: 20px;
+                }
+                50% {
+                    top: 10px;
+                }
+                100% {
+                    top: 0;
+                }
+            }
+            @keyframes colorful-diagonal-slide {
+                from {
+                    left: 0;
+                    top: 0;
+                }
+
+                10% {
+                    background-color: blue;
+                }
+
+                10% {
+                    background-color: green;
+                }
+
+                25%, 75% {
+                    background-color: red;
+                }
+
+                100% {
+                    left: 100px;
+                    top: 100px;
+                }
+
+            }
+        }
+    </style>
+    <style>
+        #example-element {
+            background-color: #1766aa;
+            margin: 20px;
+            border: 5px solid #333;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            animation-name: slidein;
+            animation-duration : 1s;
+            animation-iteration-count : infinite;
+        }
+    </style>
+</head>
+<body>
+Test @media (prefers-reduced-motion:no-preference): <span id="media-test"></span>
+<div id="example-element"></div>
+<button onclick="deletesi()">delete</button>
+<button onclick="add()">add</button>
+<script>
+    document.getElementById("media-test").textContent = window.matchMedia("(prefers-reduced-motion:no-preference)").matches;
+</script>
+<script>
+    var mediaRule = document.styleSheets[0].cssRules[0];
+    var rule = mediaRule.cssRules[0];
+    function deletesi(){
+        mediaRule.deleteRule(0);
+    }
+    function add(){
+        mediaRule.insertRule(rule.cssText,0);
+    }
+</script>
+</body>
+</html>

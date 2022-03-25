@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+
+  <link href="../autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete">
+  <style>
+    div > input {
+      -webkit-appearance: none;
+      border: 0;
+    }
+
+    select {
+      -webkit-appearance: none;
+    }
+  </style>
+</head>
+<body>
+<input data-component="tilepieces/autocomplete" class=autocomplete type="text">
+<pre id="obj"></pre>
+
+
+<div class="autocomplete-hint" data-tilepieces-component="tilepieces/autocomplete"></div>
+<script src="../autocomplete.bundle.js" data-tilepieces-component="tilepieces/autocomplete"></script
+>
+<script>
+  var auto = document.querySelector("[data-component=autocomplete]");
+  autocomplete(document.body);
+  var provinceJSON;
+  (async function () {
+    var fetchProvince = await fetch("province.json");
+    provinceJSON = await fetchProvince.json();
+    var province = provinceJSON.map(v => v.descrizione);
+    console.log(province)
+    auto.__autocomplete_suggestions = province;
+  })();
+
+  auto.addEventListener("change", function (e) {
+    var provincia = provinceJSON.find(
+      v => v.descrizione.toLocaleLowerCase() == e.target.value.toLocaleLowerCase());
+    if (!provincia) return;
+    document.getElementById("obj").textContent = JSON.stringify(provincia, null, 4)
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "name": "tilepieces/core",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {},
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
+    "script": {
+      "src": "tilepieces-core.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/css-matcher",
+    "tilepieces/html-tree-match"
+  ],
+  "components": [],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

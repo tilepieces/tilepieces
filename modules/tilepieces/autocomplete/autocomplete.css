@@ -1,0 +1,39 @@
+[data-component="autocomplete"] {
+  background: transparent !important;
+}
+
+.autocomplete-hint {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate3d(0, 0, 0);
+  overflow: auto;
+  min-width: 110px;
+  background: white;
+  z-index: 32;
+}
+
+.autocomplete-hint dl {
+  margin: 0;
+}
+
+.autocomplete-hint dt {
+  padding: 0.1em;
+  font-size: 0.8em;
+}
+
+.autocomplete-hint dt:hover,
+.autocomplete-hint dt.selected {
+  background: lightcyan;
+}
+
+.autocomplete-hint b {
+  font-size: 1.1rem;
+}
+
+
+
+
+

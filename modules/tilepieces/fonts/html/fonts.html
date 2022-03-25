@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html><head>
+  <link href="../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs">
+  <link href="../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet">
+  <link href="../../dropzone/dropzone.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/dropzone">
+  <link href="../fonts.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/fonts">
+</head>
+<body style="margin:0">
+<section id="fonts" data-tilepieces-component="tilepieces/fonts">
+  
+  <div class="tab-buttons tab-horizontal" id="font-tabs">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#" id="add-font">+</a>
+        <a href="#" data-foreach="fonts" data-foreach-key-name="font" class="tab-link ${font.isSelected}" data-target-index="${font.index}">${font.mapped.fontFamily}</a>
+      </div>
+    </div>
+  </div>
+  <div data-foreach="fonts" data-foreach-key-name="font" class="font ${font.isSelected}" data-index="${font.index}" data-bind-object="__fontFaceRule,font.fontFaceRule">
+    <button data-if="!font.disabled" class="remove-font" data-index-font="${font.index}">- remove font</button>
+    <fieldset>
+      <legend><span>src</span>
+        <button data-if="!font.disabled" class="add-src" data-index-font="${font.index}">+</button>
+      </legend>
+
+      <fieldset data-foreach="font.srcResources" data-foreach-key-name="srcRes" class="src" data-index-src="${srcRes.index}">
+        <legend><span>${srcRes.type}</span>
+          <button data-if="!font.disabled" class="remove-src" data-index-font="${font.index}" data-index-src="${srcRes.index}">-
+          </button>
+        </legend>
+
+        <div data-if="!font.disabled">
+          <input type="radio" name="src_res_type_${font.index}_${srcRes.index}" data-bind="srcRes.type" class="change-src-type" value="local">local<br>
+          <input type="radio" name="src_res_type_${font.index}_${srcRes.index}" data-bind="srcRes.type" class="change-src-type" value="url">url
+        </div>
+        <div data-if="srcRes.type == 'local'">
+          local
+          <input class="change-src-local" data-bind="srcRes.local" ${font.disabled}="">
+        </div>
+        <div data-if="srcRes.type == 'url'">
+          <div class="flex-box"><input class="change-src-url" data-bind="srcRes.url" ${font.disabled}="" data-dropzone="">
+            <button class="search-button" data-index="${srcRes.index}">🔎</button>
+          </div>
+          format
+          <input class="change-src-format" data-bind="srcRes.format" ${font.disabled}="">
+        </div>
+      </fieldset>
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-family">font-family</label>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-family" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-family" class="font-family" data-bind="font.mapped.fontFamily" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-weight">font-weight</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-weight" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-weight" data-bind="font.mapped.fontWeight" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-style">font-style</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-style" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-style" data-bind="font.mapped.fontStyle" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-display">font-display</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-display" data-bind="font.mapped.fontDisplay" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-unicode-range">unicode-range</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/unicode-range" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-unicode-range" data-bind="font.mapped.unicodeRange" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-stretch">font-stretch</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-stretch" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-stretch" data-bind="font.mapped.fontStretch" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-variant">font-variant</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-variant" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-variant" data-bind="font.mapped.fontVariant" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-feature-settings">font-feature-settings</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-feature-settings" data-bind="font.mapped.fontFeatureSettings" ${font.disabled}="">
+    </fieldset>
+    <fieldset>
+      <legend><label for="font-font-variation-settings">font-variation-settings</label><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-variation-settings" class="info-round-icon" target="_blank"></a></legend>
+      <input id="font-font-variation-settings" data-bind="font.mapped.fontVariationSettings" ${font.disabled}="">
+    </fieldset>
+  </div>
+</section>
+<script src="../../tabs/tabs.js" data-tilepieces-component="tilepieces/tabs"></script>
+<script src="../../dropzone/dropzone.bundle.js" data-tilepieces-component="tilepieces/dropzone"></script>
+<script src="../fonts.bundle.js" data-tilepieces-component="tilepieces/fonts"></script>
+
+</body></html>

@@ -1,0 +1,43 @@
+{
+  "name": "tilepieces/screen-dimensions-panel",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "screen-dimensions.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "css/css.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "js/screen-dimensions.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": []
+  },
+  "dependencies": [
+    "tilepieces/stylesheet"
+  ],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "screen-dimensions.html"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": true,
+  "parseHTML": "",
+  "components": {
+    "tilepieces/screen-dimensions-panel/bundle": {
+      "path": "/components/screen-dimensions-panel/bundle",
+      "name": "tilepieces/screen-dimensions-panel/bundle"
+    }
+  }
+}

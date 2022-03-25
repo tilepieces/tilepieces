@@ -1,0 +1,32 @@
+#show-measure div:not(.div) { display: inline-block; }
+#show-measure-wrapper { width: 100%; overflow-x: auto; }
+#show-measure { min-width: 600px; }
+#show-measure .div { box-sizing: border-box; position: relative; padding: 3em 4em; }
+#show-measure .div#content { padding: calc(24px + 1.5em) 0px; }
+#show-measure .label span { padding: 2px; }
+#show-measure .label { position: absolute; top: 0px; left: 0px; font-size: 0.6rem; color: black; }
+#show-measure .label button { background: transparent; padding: 0px; border: 1px solid rgb(204, 204, 204); outline: none; margin-top: 2px; clear: both; display: block; }
+#show-measure .label.selected button { background: gray; }
+#show-measure .label svg { vertical-align: middle; cursor: pointer; }
+#show-measure .top { position: absolute; top: 0px; left: 50%; transform: translateX(-50%); }
+#show-measure .left { position: absolute; top: 50%; transform: translateY(-50%); left: 2px; }
+#show-measure .right { position: absolute; top: 50%; transform: translateY(-50%); right: 0px; }
+#show-measure .bottom { position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); }
+#show-measure div.focus { z-index: 99; }
+#position.false, #position.undefined { display: block; padding: 0px; }
+#position.false > div:not(.div), #position.undefined > div:not(.div) { display: none; }
+#margin { background-color: rgb(249, 204, 157); border: 1px dotted; }
+#margin div[contenteditable]:focus { background-color: rgb(249, 204, 157); }
+#border { background-color: rgb(253, 221, 155); border: 1px solid; }
+#border div[contenteditable]:focus { background-color: rgb(253, 221, 155); }
+#show-measure #padding { background-color: rgb(194, 207, 138); border: 1px dotted rgb(204, 204, 204); padding-top: 5em; }
+#padding div[contenteditable]:focus { background-color: rgb(194, 207, 138); }
+#content { background-color: rgb(139, 181, 192); border: 1px solid rgb(204, 204, 204); text-align: center; }
+#layout-box .hide:not(#position), #layout-box .false:not(#position), #layout-box .undefined:not(#position) { display: none; }
+#layout .grid-row-area { display: inline-flex; }
+#layout .grid-row-area input { width: auto; }
+.flex-icons button { margin-bottom: 0.5em; }
+.flex-icons svg { width: 1.5em; height: 1.5em; }
+.flex-icons .selected svg * { fill: blue !important; }
+#layout, #box-model { padding: 0px 1em; }
+legend > a.info-round-icon:first-child { letter-spacing: 0px; margin-top: 0px; background-repeat: no-repeat; padding: 0px; }

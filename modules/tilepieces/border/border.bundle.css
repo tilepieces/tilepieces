@@ -1,0 +1,8 @@
+#border-style .false, #border-style .undefined { display: none; }
+#border-style .link-button.false { display: block; }
+#border-style .link-button.true { background: rgb(222, 222, 222); border: 1px solid rgb(203, 203, 203); }
+#border-border, #border-image, #box-shadow, #outline { padding: 0px 1em; }
+.add-box-shadow { margin: 0.5em 0px 0px 0.5em; }
+fieldset.shadow div > div { margin: 0.2em 0px; }
+.border-image-source{border: 1px solid; border-radius: 10px; text-align: center; padding: 0.4em; }
+.border-image-source > img { max-height: 100px; }

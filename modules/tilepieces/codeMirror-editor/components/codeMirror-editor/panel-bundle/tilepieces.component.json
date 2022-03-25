@@ -1,0 +1,40 @@
+{
+  "name": "tilepieces/codeMirror-editor/panel-bundle",
+  "description": "",
+  "version": "",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": true,
+  "bundle": {
+    "stylesheet": {
+      "href": "codeMirror-editor.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "codeMirror-editor.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [
+      "css.css"
+    ],
+    "scripts": [
+      "src"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/codemirror"
+  ],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": "",
+  "components": []
+}

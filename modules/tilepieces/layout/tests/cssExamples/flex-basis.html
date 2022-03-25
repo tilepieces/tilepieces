@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .container {
+      font-family: arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .flex {
+      background: #6AB6D8;
+      padding: 10px;
+      margin-bottom: 50px;
+      border: 3px solid #2E86BB;
+      color: white;
+      font-size: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .flex:after {
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      top: 100%;
+      margin-top: 10px;
+      width: 100%;
+      color: #333;
+      font-size: 18px;
+    }
+
+    .flex1 {
+      flex-basis: auto;
+    }
+
+    .flex1:after {
+      content: 'auto';
+    }
+
+    .flex2 {
+      flex-basis: max-content;
+    }
+
+    .flex2:after {
+      content: 'max-content';
+    }
+
+    .flex3 {
+      flex-basis: min-content;
+    }
+
+    .flex3:after {
+      content: 'min-content';
+    }
+
+    .flex4 {
+      flex-basis: fit-content;
+    }
+
+    .flex4:after {
+      content: 'fit-content';
+    }
+
+    .flex5 {
+      flex-basis: content;
+    }
+
+    .flex5:after {
+      content: 'content';
+    }
+
+    .flex6 {
+      flex-basis: fill;
+    }
+
+    .flex6:after {
+      content: 'fill';
+    }
+
+    #main {
+      width: 300px;
+      height: 100px;
+      border: 1px solid #c3c3c3;
+      display: flex;
+    }
+
+    #main div {
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: 50px;
+    }
+
+    #main div:nth-of-type(2) {
+      flex-basis: 100px;
+    }
+  </style>
+</head>
+<body>
+<ul class="container">
+  <li class="flex flex1">1: flex-basis test</li>
+  <li class="flex flex2">2: flex-basis test</li>
+  <li class="flex flex3">3: flex-basis test</li>
+  <li class="flex flex4">4: flex-basis test</li>
+  <li class="flex flex5">5: flex-basis test</li>
+</ul>
+
+<ul class="container">
+  <li class="flex flex6">6: flex-basis test</li>
+</ul>
+
+<h1>The flex-basis Property</h1>
+
+<p>Set the initial length of the flex items to 50 pixels, with an exception; set the initial length of the second flex
+  item to 100 pixels:</p>
+<div id="main">
+  <div style="background-color:coral;">50px</div>
+  <div style="background-color:lightblue;">100px</div>
+  <div style="background-color:khaki;">50px</div>
+  <div style="background-color:pink;">50px</div>
+  <div style="background-color:lightgrey;">50px</div>
+</div>
+
+
+</body>
+</html>

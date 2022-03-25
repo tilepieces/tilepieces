@@ -1,0 +1,96 @@
+<style>
+  .flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  .row {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  }
+
+  .row-reverse {
+    -webkit-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+  }
+
+  .row-reverse li {
+    background: gold;
+  }
+
+  .column {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    float: left;
+  }
+
+  .column li {
+    background: deepskyblue;
+  }
+
+  .column-reverse {
+    -webkit-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+    float: right;
+  }
+
+  .column-reverse li {
+    background: lightgreen;
+  }
+
+  .flex-item {
+    background: tomato;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+
+    line-height: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+  }
+</style>
+<h2>This example is taken from <a href="https://codepen.io/HugoGiraudel/pen/4ab4d7e6e21b63ee0ba51bdd7b3b2abb">https://codepen.io/HugoGiraudel/pen/4ab4d7e6e21b63ee0ba51bdd7b3b2abb</a>
+</h2>
+<ul class="flex-container row">
+  <li class="flex-item">1</li>
+  <li class="flex-item">2</li>
+  <li class="flex-item">3</li>
+  <li class="flex-item">4</li>
+  <li class="flex-item">5</li>
+</ul>
+
+<ul class="flex-container row-reverse">
+  <li class="flex-item">1</li>
+  <li class="flex-item">2</li>
+  <li class="flex-item">3</li>
+  <li class="flex-item">4</li>
+  <li class="flex-item">5</li>
+</ul>
+
+<ul class="flex-container column">
+  <li class="flex-item">1</li>
+  <li class="flex-item">2</li>
+  <li class="flex-item">3</li>
+  <li class="flex-item">4</li>
+  <li class="flex-item">5</li>
+</ul>
+
+<ul class="flex-container column-reverse">
+  <li class="flex-item">1</li>
+  <li class="flex-item">2</li>
+  <li class="flex-item">3</li>
+  <li class="flex-item">4</li>
+  <li class="flex-item">5</li>
+</ul>

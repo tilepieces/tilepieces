@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html><head>
+  
+  
+  
+  
+  
+  
+<link href="../../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet"><link href="../../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs"><link href="../../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input"><link href="../../../gradient/gradient.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/gradient"><link href="../../../drag/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag"><link href="../../../autocomplete/autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete"><link href="../../border.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/border"></head>
+<body style="MARGIN:0">
+
+
+
+
+
+
+
+
+
+
+
+
+<template id="gradient-template" data-tilepieces-component="tilepieces/gradient">
+<section class="gradient">
+  <div class="gradient-inputs">
+    <select data-bind="gradientType">
+      <option value="linear-gradient">linear gradient</option>
+      <option value="repeating-linear-gradient">repeating linear gradient</option>
+      <option value="radial-gradient">radial gradient</option>
+      <option value="repeating-radial-gradient">repeating radial gradient</option>
+    </select>
+    <div class="gradient-parameters-wrapper">
+      <div class="input-css parameters" data-bind="parameters" contenteditable="">
+      </div>
+    </div>
+    <div class="knob ${knobIsVisible}">
+      <div class="knob-index"></div>
+    </div>
+  </div>
+  <div class="color-interpolation-slider ${canAdd}">
+    <div data-foreach="colorStops" data-foreach-key-name="colorStop" class="color-interpolation ${colorStop.endPos}" data-index="${colorStop.index}" style="left:${colorStop.endPos}">
+      <div class="color-interpolation-colors">
+        <div class="color-interpolation-left" style="background-color:${colorStop.c}"></div>
+        <div class="color-interpolation-right" style="background-color:${colorStop.nextColor}"></div>
+      </div>
+    </div>
+  </div>
+  <div class="gradient-image">
+    <div class="gradient-image-gradient" style="background-image:${declarationForView}"></div>
+    <div class="gradient-image-transparent"></div>
+  </div>
+  <div class="color-stops ${canAdd}">
+    <div data-foreach="colorStops" class="color-stop" data-foreach-key-name="colorStop" data-index="${colorStop.index}" data-color="${colorStop.c}" style="left:calc(${colorStop.stopPos} - 12px)">
+      <div class="color-stop-dragger"></div>
+      <button class="color-stop-button" style="background-color:${colorStop.c}" data-index="${colorStop.index}"></button>
+      <div class="remove-color-stop" data-if="colorStops.length>2" data-index="${colorStop.index}">-</div>
+    </div>
+  </div>
+</section></template><div class="autocomplete-hint" data-tilepieces-component="tilepieces/autocomplete"></div><section id="border-style" class="${isVisible}" data-tilepieces-component="tilepieces/border">
+  <div class="tab-buttons tab-horizontal" id="tab-border">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#border-border" class="selected">Border</a>
+        <a href="#border-image">Border image</a>
+        <a href="#box-shadow">Box Shadow</a>
+        <a href="#outline">Outline</a>
+      </div>
+    </div>
+  </div>
+  <div id="border-border">
+    <fieldset>
+      <legend><a href="#property-border-border" tabindex="-1">Border:</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style">
+        <div id="property-border-border" class="input-css autocomplete " data-css-prop="border" data-css-prop-js="border" data-value="${border}" data-auto-global-suggestion="cssDefaults.border" data-bind="border" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-border-width" tabindex="-1">Border width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-width" class="info-round-icon" target="_blank"></a><button data-prop="borderWidth" class="border-width-link ${borderWidthLink} link-button">
+        <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+        </svg>
+      </button></legend>
+      <div class="input-css-style ${borderWidthLink}">
+        <div id="property-border-width" class="input-css autocomplete " data-css-prop="border-width" data-css-prop-js="borderWidth" data-value="${borderWidth}" data-auto-global-suggestion="cssDefaults.border-width" data-bind="borderWidth" contenteditable=""></div>
+      </div>
+      <fieldset class="${borderWidthUnlink}">
+        <legend>
+          <a href="#property-border-top-width" tabindex="-1">Border top width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-top-width" class="input-css autocomplete " data-css-prop="border-top-width" data-css-prop-js="borderTopWidth" data-value="${borderTopWidth}" data-auto-global-suggestion="cssDefaults.border-width" data-bind="borderTopWidth" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderWidthUnlink}">
+        <legend>
+          <a href="#property-border-left-width" tabindex="-1">Border left width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-left-width" class="input-css autocomplete " data-css-prop="border-left-width" data-css-prop-js="borderLeftWidth" data-value="${borderLeftWidth}" data-auto-global-suggestion="cssDefaults.border-width" data-bind="borderLeftWidth" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderWidthUnlink}">
+        <legend>
+          <a href="#property-border-bottom-width" tabindex="-1">Border bottom width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-bottom-width" class="input-css autocomplete " data-css-prop="border-bottom-width" data-css-prop-js="borderBottomWidth" data-value="${borderBottomWidth}" data-auto-global-suggestion="cssDefaults.border-width" data-bind="borderBottomWidth" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderWidthUnlink}">
+        <legend>
+          <a href="#property-border-right-width" tabindex="-1">Border right width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width" class="info-round-icon" target="_blank"></a></legend>
+        <div class="input-css-style">
+          <div id="property-border-right-width" class="input-css autocomplete " data-css-prop="border-right-width" data-css-prop-js="borderRightWidth" data-value="${borderRightWidth}" data-auto-global-suggestion="cssDefaults.border-width" data-bind="borderRightWidth" contenteditable=""></div>
+        </div>
+      </fieldset>
+    </fieldset>
+    <!-- border style -->
+    <fieldset>
+      <legend>
+        <a href="#property-border-style" tabindex="-1">border style:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style" class="info-round-icon" target="_blank"></a>
+        <button data-prop="borderStyle" class="border-width-link ${borderStyleLink} link-button">
+          <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+          </svg>
+        </button>
+      </legend>
+      <div class="input-css-style ${borderStyleLink}">
+        <div id="property-border-style" class="input-css autocomplete " data-css-prop="border-style" data-css-prop-js="borderStyle" data-value="${borderStyle}" data-auto-global-suggestion="cssDefaults.border-style" data-bind="borderStyle" contenteditable=""></div>
+      </div>
+      <fieldset class="${borderStyleUnlink}">
+        <legend>
+          <a href="#property-border-top-style" tabindex="-1">Border top style:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-style" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-top-style" class="input-css autocomplete " data-css-prop="border-top-style" data-css-prop-js="borderTopStyle" data-value="${borderTopStyle}" data-auto-global-suggestion="cssDefaults.border-top-style" data-bind="borderTopStyle" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderStyleUnlink}">
+        <legend>
+          <a href="#property-border-left-style" tabindex="-1">Border left style:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-style" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-left-style" class="input-css autocomplete " data-css-prop="border-left-style" data-css-prop-js="borderLeftStyle" data-value="${borderLeftStyle}" data-auto-global-suggestion="cssDefaults.border-left-style" data-bind="borderLeftStyle" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderStyleUnlink}">
+        <legend>
+          <a href="#property-border-bottom-style" tabindex="-1">border bottom style:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-style" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-bottom-style" class="input-css autocomplete " data-css-prop="border-bottom-style" data-css-prop-js="borderBottomStyle" data-value="${borderBottomStyle}" data-auto-global-suggestion="cssDefaults.border-bottom-style" data-bind="borderBottomStyle" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderStyleUnlink}">
+        <legend>
+          <a href="#property-border-right-style" tabindex="-1">border right style:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-style" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-right-style" class="input-css autocomplete " data-css-prop="border-right-style" data-css-prop-js="borderRightStyle" data-value="${borderRightStyle}" data-auto-global-suggestion="cssDefaults.border-right-style" data-bind="borderRightStyle" contenteditable=""></div>
+        </div>
+      </fieldset>
+    </fieldset>
+    <!-- border color -->
+    <fieldset>
+      <legend>
+        <a href="#property-border-color" tabindex="-1">border color</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-color" class="info-round-icon" target="_blank"></a>
+        <button data-prop="borderColor" class="border-width-link ${borderColorLink} link-button">
+          <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+          </svg>
+        </button>
+      </legend>
+      <div class="input-css-style ${borderColorLink}">
+        <span style="background:${realBorderColor}" data-css-prop="border-color" data-css-prop-js="borderColor" data-name="realBorderColor" class="color-button"></span>
+        <div id="property-border-color" class="input-css autocomplete" data-css-prop="border-color" data-css-prop-js="borderColor" data-value="${borderColor}" data-auto-global-suggestion="cssDefaults.border-color" data-bind="borderColor" contenteditable=""></div>
+      </div>
+      <fieldset class="${borderColorUnlink}">
+        <legend>
+          <a href="#property-border-top-color" tabindex="-1">border top color:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-color" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <span style="background:${realBorderTopColor}" data-css-prop="border-top-color" data-css-prop-js="borderTopColor" data-name="realBorderTopColor" class="color-button"></span>
+          <div id="property-border-top-color" class="input-css autocomplete " data-css-prop="border-top-color" data-css-prop-js="borderTopColor" data-value="${borderTopColor}" data-auto-global-suggestion="cssDefaults.border-color" data-bind="borderTopColor" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderColorUnlink}">
+        <legend>
+          <a href="#property-border-left-color" tabindex="-1">border left color:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-color" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <span style="background:${realBorderLeftColor}" data-css-prop="border-left-color" data-css-prop-js="borderLeftColor" data-name="realBorderLeftColor" class="color-button"></span>
+          <div id="property-border-left-color" class="input-css autocomplete " data-css-prop="border-left-color" data-css-prop-js="borderLeftColor" data-value="${borderLeftColor}" data-auto-global-suggestion="cssDefaults.border-color" data-bind="borderLeftColor" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderColorUnlink}">
+        <legend>
+          <a href="#property-border-bottom-color" tabindex="-1">border bottom color:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-color" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+        <span style="background:${realBorderBottomColor}" data-css-prop="border-bottom-color" data-css-prop-js="borderBottomColor" data-name="${realBorderBottomColor}" class="color-button"></span>
+          <div id="property-border-bottom-color" class="input-css autocomplete " data-css-prop="border-bottom-color" data-css-prop-js="borderBottomColor" data-value="${borderBottomColor}" data-auto-global-suggestion="cssDefaults.border-color" data-bind="borderBottomColor" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderColorUnlink}">
+        <legend>
+          <a href="#property-border-right-color" tabindex="-1">border right color:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-color" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+        <span style="background:${realBorderRightColor}" data-css-prop="border-right-color" data-css-prop-js="borderRightColor" data-name="realBorderRightColor" class="color-button"></span>
+          <div id="property-border-right-color" class="input-css autocomplete " data-css-prop="border-right-color" data-css-prop-js="borderRightColor" data-value="${borderRightColor}" data-auto-global-suggestion="cssDefaults.border-color" data-bind="borderRightColor" contenteditable=""></div>
+        </div>
+      </fieldset>
+    </fieldset>
+    <!-- border radius -->
+    <fieldset>
+      <legend>
+        <a href="#property-border-radius" tabindex="-1">border radius:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius" class="info-round-icon" target="_blank"></a>
+        <button data-prop="borderRadius" class="border-width-link ${borderRadiusLink} link-button">
+          <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+          </svg>
+        </button>
+      </legend>
+      <div class="input-css-style ${borderRadiusLink}">
+        <div id="property-border-radius" class="input-css autocomplete" data-css-prop="border-radius" data-css-prop-js="borderRadius" data-value="${borderRadius}" data-auto-global-suggestion="cssDefaults.border-radius" data-bind="borderRadius" contenteditable=""></div>
+      </div>
+      <fieldset class="${borderRadiusUnlink}">
+        <legend>
+          <a href="#property-border-top-left-radius" tabindex="-1">border top left radius:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-left-radius" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-top-left-radius" class="input-css autocomplete " data-css-prop="border-top-left-radius" data-css-prop-js="borderTopLeftRadius" data-value="${borderTopLeftRadius}" data-auto-global-suggestion="cssDefaults.border-radius" data-bind="borderTopLeftRadius" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderRadiusUnlink}">
+        <legend>
+          <a href="#property-border-top-right-radius" tabindex="-1">border top right radius:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-right-radius" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-top-right-radius" class="input-css autocomplete" data-css-prop="border-top-right-color" data-css-prop-js="borderTopRightRadius" data-value="${borderTopRightRadius}" data-auto-global-suggestion="cssDefaults.border-radius" data-bind="borderTopRightRadius" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderRadiusUnlink}">
+        <legend>
+          <a href="#property-border-bottom-right-radius" tabindex="-1">border bottom right radius:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-right-radius" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-bottom-right-radius" class="input-css autocomplete" data-css-prop="border-bottom-right-radius" data-css-prop-js="borderBottomRightRadius" data-value="${borderBottomRightRadius}" data-auto-global-suggestion="cssDefaults.border-radius" data-bind="borderBottomRightRadius" contenteditable=""></div>
+        </div>
+      </fieldset>
+      <fieldset class="${borderRadiusUnlink}">
+        <legend>
+          <a href="#property-border-bottom-left-radius" tabindex="-1">border bottom left radius:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-left-radius" class="info-round-icon" target="_blank"></a>
+        </legend>
+        <div class="input-css-style">
+          <div id="property-border-bottom-left-radius" class="input-css autocomplete" data-css-prop="border-bottom-left-radius" data-css-prop-js="borderBottomLeftRadius" data-value="${borderBottomLeftRadius}" data-auto-global-suggestion="cssDefaults.border-radius" data-bind="borderBottomLeftRadius" contenteditable=""></div>
+        </div>
+      </fieldset>
+    </fieldset>
+  </div>
+  <div id="border-image" style="display:none">
+    <fieldset>
+      <legend>
+        <a href="#property-border-image" tabindex="-1">border image:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image" class="input-css autocomplete " data-css-prop="border-image" data-css-prop-js="borderImage" data-value="${borderImage}" data-auto-global-suggestion="cssDefaults.border-image" data-bind="borderImage" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <div>
+      Image type:
+      <select data-bind="imageType" class="image-type-select">
+        <option value="none">none</option>
+        <option value="url">url</option>
+        <option value="gradient">gradient</option>
+      </select>
+    </div>
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-source" tabindex="-1">border image source:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-source" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image-source" class="input-css autocomplete" data-css-prop="border-image-source" data-css-prop-js="borderImageSource" data-value="${borderImageSource}" data-auto-global-suggestion="cssDefaults.border-image-source" data-bind="borderImageSource" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <div class="border-image-source" data-if="hasUrl">
+      <img data-src="${imageSrc}">
+    </div>
+    <fieldset class="${hasGradient}">
+      <legend>Gradient</legend>
+      <div data-isolate="">
+        <section class="gradient">
+          <div class="gradient-inputs">
+            <select data-bind="gradientType">
+              <option value="linear-gradient">linear gradient</option>
+              <option value="repeating-linear-gradient">repeating linear gradient</option>
+              <option value="radial-gradient">radial gradient</option>
+              <option value="repeating-radial-gradient">repeating radial gradient</option>
+            </select>
+            <div class="gradient-parameters-wrapper">
+              <div class="input-css parameters" data-bind="parameters" contenteditable="">
+              </div>
+            </div>
+            <div class="knob ${knobIsVisible}">
+              <div class="knob-index"></div>
+            </div>
+          </div>
+          <div class="color-interpolation-slider ${canAdd}">
+            <div data-foreach="colorStops" data-foreach-key-name="colorStop" class="color-interpolation ${colorStop.endPos}" data-index="${colorStop.index}" style="left:${colorStop.endPos}">
+              <div class="color-interpolation-colors">
+                <div class="color-interpolation-left" style="background-color:${colorStop.c}"></div>
+                <div class="color-interpolation-right" style="background-color:${colorStop.nextColor}"></div>
+              </div>
+            </div>
+          </div>
+          <div class="gradient-image">
+            <div class="gradient-image-gradient" style="background-image:${declarationForView}"></div>
+            <div class="gradient-image-transparent"></div>
+          </div>
+          <div class="color-stops ${canAdd}">
+            <div data-foreach="colorStops" class="color-stop" data-foreach-key-name="colorStop" data-index="${colorStop.index}" data-color="${colorStop.c}" style="left:calc(${colorStop.stopPos} - 12px)">
+              <div class="color-stop-dragger"></div>
+              <button class="color-stop-button" style="background-color:${colorStop.c}" data-index="${colorStop.index}"></button>
+              <div class="remove-color-stop" data-if="colorStops.length>2" data-index="${colorStop.index}">-</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-slice" tabindex="-1">border image slice:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-slice" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image-slice" class="input-css autocomplete" data-css-prop="border-image-slice" data-css-prop-js="borderImageSlice" data-value="${borderImageSlice}" data-auto-global-suggestion="cssDefaults.border-image-slice" data-bind="borderImageSlice" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-width" tabindex="-1">border image width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-width" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image-width" class="input-css autocomplete" data-css-prop="border-image-width" data-css-prop-js="borderImageWidth" data-value="${borderImageWidth}" data-auto-global-suggestion="cssDefaults.border-image-width" data-bind="borderImageWidth" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-outset" tabindex="-1">border image outset:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-outset" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image-outset" class="input-css autocomplete" data-css-prop="border-image-outset" data-css-prop-js="borderImageOutset" data-value="${borderImageOutset}" data-auto-global-suggestion="cssDefaults.border-image-outset" data-bind="borderImageOutset" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-repeat" tabindex="-1">border image repeat:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-repeat" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-border-image-repeat" class="input-css autocomplete" data-css-prop="border-image-repeat" data-css-prop-js="borderImageRepeat" data-value="${borderImageRepeat}" data-auto-global-suggestion="cssDefaults.border-image-repeat" data-bind="borderImageRepeat" contenteditable=""></div>
+      </div>
+    </fieldset>
+  </div>
+  <div id="box-shadow" style="display:none">
+    <fieldset>
+      <legend>
+        <a href="#property-border-image-repeat" tabindex="-1">
+          box-shadow:
+          </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow" class="info-round-icon" target="_blank"></a><button class="add-box-shadow">Add</button>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-box-shadow" class="input-css autocomplete" data-css-prop="box-shadow" data-css-prop-js="boxShadow" data-value="${boxShadow}" data-auto-global-suggestion="cssDefaults.box-shadow" data-bind="boxShadow" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset data-foreach="boxShadows" data-foreach-key-name="boxShadowValue" data-index="${boxShadowValue.index}" class="shadow">
+      <legend>Box Shadow #${boxShadowValue.index}</legend>
+      <button class="remove-box-shadow" data-index="${boxShadowValue.index}">Remove</button>
+      <div style="float:left;width:calc(100% - 220px)">
+        <div>
+          <select data-bind="boxShadowValue.type" data-shadow="type">
+            <option value="inset">inset</option>
+            <option value="outset">outset</option>
+          </select>
+        </div>
+        <label for="x-offset-${boxShadowValue.index}">offset X</label>
+        <div class="flex-box">
+          <input id="x-offset-${boxShadowValue.index}" data-index="${boxShadowValue.index}" data-shadow="offsetX" type="number" data-bind="boxShadowValue.offsetX">
+          <span>px</span>
+        </div>
+        <label for="y-offset-${boxShadowValue.index}">offset Y</label>
+        <div class="flex-box">
+          <input id="y-offset-${boxShadowValue.index}" data-index="${boxShadowValue.index}" data-shadow="offsetY" type="number" data-bind="boxShadowValue.offsetY">
+          <span>px</span>
+        </div>
+        <label for="blur-offset-${boxShadowValue.index}">blur</label>
+        <div class="flex-box">
+        <input id="blur-offset-${boxShadowValue.index}" type="number" data-index="${boxShadowValue.index}" min="0" step="0.5" data-shadow="blur" data-bind="boxShadowValue.blur">
+          <span>px</span>
+        </div>
+        <label for="spread-offset-${boxShadowValue.index}">spread</label>
+        <div class="flex-box">
+        <input id="spread-offset-${boxShadowValue.index}" type="number" data-index="${boxShadowValue.index}" min="0" step="0.5" data-shadow="spread" data-bind="boxShadowValue.spread">
+          <span>px</span>
+        </div>
+        <button data-shadow="color" class="color-button" data-index="${boxShadowValue.index}" style="background:${boxShadowValue.color}"></button>
+      </div>
+      <div style="float:right">
+        <svg data-index="${boxShadowValue.index}" style="border:1px solid;display:block;margin:auto;width:200px;height:200px">
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+          <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+          <line x1="50%" y1="50%" x2="50%" y2="50%" stroke="black" stroke-width="2" class="line-test"></line>
+          <circle cx="50%" cy="50%" r="10" fill="lightblue" class="circle-test"></circle>
+        </svg>
+      </div>
+    </fieldset>
+  </div>
+  <div id="outline" style="display:none">
+    <fieldset>
+      <legend>
+        <a href="#property-outline" tabindex="-1">
+          outline:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-outline" class="input-css autocomplete" data-css-prop="outline" data-css-prop-js="outline" data-value="${outline}" data-auto-global-suggestion="cssDefaults.outline" data-bind="outline" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-outline-width" tabindex="-1">
+          outline width:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-outline-width" class="input-css autocomplete " data-css-prop="outline-width" data-css-prop-js="outlineWidth" data-value="${outlineWidth}" data-auto-global-suggestion="cssDefaults.outline-width" data-bind="outlineWidth" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-outline-style" tabindex="-1">
+          outline style:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-outline-style" class="input-css autocomplete " data-css-prop="outline-style" data-css-prop-js="outlineStyle" data-value="${outlineStyle}" data-auto-global-suggestion="cssDefaults.outline-style" data-bind="outlineStyle" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-outline-color" tabindex="-1">
+          outline color:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <span style="background:${realOutlineColor}" data-css-prop="outlineColor" data-css-prop-js="outlineColor" data-name="realOutlineColor" class="color-button"></span>
+        <div id="property-outline-color" class="input-css autocomplete" data-css-prop="outline-color" data-css-prop-js="outlineColor" data-value="${outlineColor}" data-auto-global-suggestion="cssDefaults.outline-color" data-bind="outlineColor" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-outline-offset" tabindex="-1">
+          outline offset:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-outline-offset" class="input-css autocomplete " data-css-prop="outline-offset" data-css-prop-js="outlineOffset" data-value="${outlineOffset}" data-auto-global-suggestion="cssDefaults.outline-offset" data-bind="outlineOffset" contenteditable=""></div>
+      </div>
+    </fieldset>
+  </div>
+</section><script src="../../../tabs/tabs.js" data-tilepieces-component="tilepieces/tabs"></script><script src="../../../css-input/css-input.bundle.js" data-tilepieces-component="tilepieces/css-input"></script><script src="../../../gradient/gradient.bundle.js" data-tilepieces-component="tilepieces/gradient"></script><script src="../../../events/index.js" data-tilepieces-component="tilepieces/events"></script><script src="../../../offset/offset.js" data-tilepieces-component="tilepieces/offset"></script><script src="../../../drag/drag.js" data-tilepieces-component="tilepieces/drag"></script><script src="../../../SVGtoXY/SVGtoXY.js" data-tilepieces-component="tilepieces/SVGtoXY"></script><script src="../../../autocomplete/autocomplete.bundle.js" data-tilepieces-component="tilepieces/autocomplete"></script><script src="../../border.bundle.js" data-tilepieces-component="tilepieces/border"></script></body></html>

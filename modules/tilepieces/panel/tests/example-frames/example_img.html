@@ -1,0 +1,24 @@
+<title>Example Image Window</title>
+Create Image:
+<input type="file" id="openImg" />
+<div>Last Created = <span></span></div>
+<script src="example_script.js"></script>
+<script>
+    console.log("example window loaded");
+    var opener = window.opener || window.parent;
+    console.log(window.parent,window.opener);
+    console.log(opener);
+    console.log(document.currentScript);
+    var openImg = document.getElementById("openImg");
+    var targetLast = document.querySelector("div").children[0];
+    openImg.addEventListener("change",function(e){
+        if(!e.target.files.length)
+            return;
+        var img = document.createElement("img");
+        img.src = window.URL.createObjectURL(e.target.files[0]);
+        opener.eventInterface.dispatch("img-selected",{
+            img : img
+        });
+        targetLast.textContent = "Created a " + JSON.stringify(e.target.files) + "\non " + new Date();
+    });
+</script>

@@ -1,0 +1,24 @@
+body { background: rgb(255, 255, 255); margin: 0px; }
+body :not(.tab-vertical) button svg { vertical-align: middle; margin: 0px 5px; }
+button:hover { background: rgb(231, 231, 231); }
+button:disabled, details.disabled { opacity: 0.4; cursor: not-allowed; }
+button.selected { background: lightgrey; border: 1px solid black; color: rgb(255, 255, 255); }
+details.disabled summary { pointer-events: none; user-select: none; }
+#components ul { list-style: none; margin: 0px; padding: 0px; box-sizing: border-box; }
+#components > ul ul { padding-left: 1em; }
+#components li .as-detail { cursor: pointer; display: inline-block; width: auto; }
+#components li .as-detail svg { transform: rotate(90deg); vertical-align: top; }
+#components .as-detail.open svg { transform: rotate(180deg); }
+#components .as-detail.open + [hidden] { display: block; }
+#components li { }
+#components li > * { display: inline-block; }
+#components li > ul { width: 100%; }
+#components li iframe { width: 100%; }
+#components li > button { }
+#insertion-mode-block { position: sticky; top: 0px; background: rgb(255, 255, 255); padding: 1em 0px; z-index: 2; }
+details summary svg { vertical-align: top; }
+#standard-tags div.flex-box-stroke { align-items: normal; display: inline-flex; }
+#standard-tags div.flex-box-stroke button { font-size: 1.1em; }
+body > :not(nav) { padding-left: 1em !important; padding-right: 1em !important; }
+.tab-horizontal.tab-buttons { margin-bottom: 0px; }
+.component-root a { color: rgb(102, 102, 102); text-decoration: none; }

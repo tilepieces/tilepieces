@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta description="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" itemprop="image primaryImageOfPage" content="">
+  <meta name="twitter:card" content="">
+  <meta name="twitter:domain" content="">
+  <meta name="twitter:title" property="og:title" itemprop="name" content="">
+  <meta name="twitter:description" property="og:description" itemprop="description" content="">
+</head>
+<body style="background:#fff"><h1>This document log the element selected:</h1>
+<section id="log-section"></section>
+<script>const opener = window.opener || window.parent;
+const tilepieces = opener.tilepieces;
+const logSection = document.getElementById("log-section");
+
+opener.addEventListener("highlight-click", e => {
+  var el = tilepieces.elementSelected;
+  if (el.nodeType == 1)
+    logSection.textContent = `<${el.nodeName} ${[...el.attributes].map(v => v.nodeName + "=" + v.nodeValue).join(" ")}>`;
+  else if (el.nodeType == 3)
+    logSection.textContent = "<text node/>";
+  else
+    logSection.textContent = "";
+});
+opener.addEventListener("deselect-element", e => {
+  logSection.textContent = "";
+});
+</script>
+</body>
+</html>

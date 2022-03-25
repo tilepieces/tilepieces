@@ -1,0 +1,236 @@
+<div id="component-settings" hidden="">
+  <form id="component-settings-form">
+    <div class="flex-box top-button-actions"><button data-if="iscomponent == 'hidden'" class="component-settings-save button-bg-fill">+ Create</button></div>
+    <div ${iscomponent}="">
+
+      <div id="settings-component-metadata" style="">
+        <details>
+          <summary><h2 style="display: inline;"><span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 23 23">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Component metadata</h2></summary><fieldset>
+          <legend><label for="component-properties-name">NAME:</label></legend>
+          <input id="component-properties-name" name="component-properties-name" data-bind="name" disabled="">
+        </fieldset><fieldset>
+          <legend>
+            <label for="component-properties-version">VERSION:</label>
+          </legend>
+          <input id="component-properties-version" name="component-properties-version" data-bind="version">
+        </fieldset><fieldset>
+          <legend>
+            <label for="component-properties-author">AUTHOR:</label>
+          </legend>
+          <input id="component-properties-author" name="component-properties-author" data-bind="author">
+        </fieldset><fieldset>
+          <legend>
+            <label for="component-properties-description">DESCRIPTION:</label>
+          </legend>
+          <input id="component-properties-description" name="component-properties-description" data-bind="description">
+        </fieldset><fieldset>
+          <legend>
+            <label for="component-properties-repository">REPOSITORY:</label>
+          </legend>
+          <input id="component-properties-repository" name="component-properties-repository" data-bind="repository">
+        </fieldset><fieldset>
+          <legend>
+            <label for="component-properties-website">WEBSITE:</label>
+          </legend>
+          <input id="component-properties-website" name="component-properties-website" data-bind="website">
+        </fieldset>
+        </details>
+
+
+
+
+
+
+
+      </div>
+      <div id="settings-component-file-links" style="">
+        <details>
+          <summary><h2 style="display: inline;"><span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 23 23">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Component properties</h2></summary><fieldset>
+          <legend>
+            <label for="component-properties-html">HTML:</label>
+          </legend>
+          <input id="component-properties-html" name="component-properties-html" data-bind="html">
+
+          <iframe data-if="html" data-src="${iframePath}" style="max-width: 100%; width: 100%;"></iframe>
+          <div>
+            <label for="fixedHTML">Is fixed</label>
+            <input type="checkbox" id="fixedHTML" data-bind="fixedHTML">
+          </div>
+        </fieldset><details>
+          <summary><h3><span> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 23 23">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Dependencies: </h3></summary>
+
+          <div class="details-open-summery-child">
+            <label for="addDependenciesToBundles">
+              <input id="addDependenciesToBundles" type="checkbox" data-bind="addDependenciesToBundles">
+              add to bundle
+            </label>
+            <button data-add-component-property="dependencies" class="component-properties-add">+</button>
+            <div data-foreach="dependencies" class="flex-box">
+              <input data-bind="key.name">
+              <button class="component-properties-remove-template component-properties-remove" data-index="${key.index}" data-remove-component-property="dependencies">-</button>
+            </div></div>
+        </details><details>
+          <summary><h3>
+<span> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 23 23">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Bundles: </h3></summary>
+          <div class="details-open-summery-child">
+
+            <fieldset>
+              <legend>STYLESHEET:
+                <button data-add-component-property="bundle.stylesheet" class="component-properties-add">+</button></legend>
+
+              <div data-foreach="bundle.stylesheet" class="flex-box">
+                <input data-index="${key.index}" data-bind="key.name">:
+                <input data-index="${key.index}" data-bind="key.value">
+                <button class="component-properties-remove-bundle-stylesheet-attr component-properties-remove" data-index="${key.index}" data-remove-component-property="bundle.stylesheet">-</button>
+              </div>
+              <div>
+                <label>header for stylesheet</label>
+                <textarea data-bind="bundle.stylesheetHeader"></textarea>
+              </div>
+              <div>
+                <label>footer for stylesheet</label>
+                <textarea data-bind="bundle.stylesheetFooter"></textarea>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>SCRIPT:<button data-add-component-property="bundle.script" class="component-properties-add">+</button></legend>
+
+              <div data-foreach="bundle.script" class="flex-box">
+                <input data-index="${key.index}" data-bind="key.name">:
+                <input data-index="${key.index}" data-bind="key.value">
+                <button data-index="${key.index}" data-remove-component-property="bundle.script" class="component-properties-remove">-</button>
+              </div>
+              <div>
+                <label>header for script</label>
+                <textarea data-bind="bundle.scriptHeader"></textarea>
+              </div>
+              <div>
+                <label>footer for script</label>
+                <textarea data-bind="bundle.scriptFooter"></textarea>
+              </div>
+            </fieldset> </div>
+        </details><details>
+          <summary><h3>
+<span> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 23 23">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Sources:</h3></summary>
+          <div class="details-open-summery-child">
+
+
+            <fieldset>
+              <legend>STYLESHEETS:</legend>
+              <button data-add-component-property="sources.stylesheet" class="component-properties-add">+</button>
+              <button data-if="sources.stylesheets.length" class="concatenate-sources" data-type="stylesheets">Concatenate</button>
+              <div data-foreach="sources.stylesheets" data-foreach-key-name="style" class="flex-box">
+                <input data-index="style.index" data-bind="style.value">
+                <button class="component-properties-remove-stylesheet component-properties-remove" data-index="${style.index}" data-remove-component-property="sources.stylesheet">-</button>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>SCRIPTS:</legend>
+              <button data-add-component-property="sources.script" class="component-properties-add">+</button>
+              <button data-if="sources.scripts.length" class="concatenate-sources" data-type="scripts">Concatenate</button>
+              <button data-if="sources.scripts.length" class="minify-source-scripts">Minify</button>
+              <div data-foreach="sources.scripts" data-foreach-key-name="script" class="flex-box">
+                <input data-index="script.index" data-bind="script.value">
+                <button class="component-properties-remove-script component-properties-remove" data-index="${script.index}" data-remove-component-property="sources.script">-</button>
+              </div>
+            </fieldset>
+          </div></details><details>
+          <summary><h3><span> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>Miscellaneous:</h3></summary>
+          <div class="details-open-summery-child">
+
+
+            <button data-add-component-property="miscellaneous" class="component-properties-add">+</button>
+            <div data-foreach="miscellaneous" class="flex-box">
+              <input data-index="${key.index}" data-bind="key.src">
+              <button data-index="${key.index}" class="component-properties-remove-miscellaneous component-properties-remove" data-remove-component-property="miscellaneous">-</button>
+            </div> </div>
+        </details>
+          <fieldset>
+            <legend>
+              <input id="mergeMiscellaneous" type="checkbox" data-bind="mergeMiscellaneous"><label for="mergeMiscellaneous">MERGE MISCELLANEOUS:</label>
+            </legend>
+
+          </fieldset>
+          <fieldset>
+            <legend>INTERFACE:</legend>
+            <div class="flex-box">
+
+
+              <input id="component-properties-interface" name="component-properties-interface" data-bind="interface">
+            </div>
+          </fieldset><fieldset>
+          <legend>PARSEHTML FUNCTION FILE PATH:</legend>
+          <input id="component-properties-parseHTML" name="component-properties-parseHTML" data-bind="parseHTML">
+        </fieldset><fieldset>
+          <legend>SELECTOR:</legend>
+          <input id="component-properties-selector" name="component-properties-selector" data-bind="selector">
+        </fieldset>
+        </details>
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,46 @@
+<div id="current-project-data" style="display:none" data-tilepieces-component="tilepieces/package-manager/current-project-data">
+  <div ${hiddenattr}="">
+    <fieldset>
+      <legend><input type="checkbox" data-bind="project.sandboxFrame">sandbox page<a href="#" class="info-round-icon" target="_blank"></a>
+      </legend>
+    </fieldset>
+    <fieldset>
+      <legend><input type="checkbox" data-bind="project.relativePaths">relative paths
+        <a href="#" class="info-round-icon" target="_blank"></a></legend>
+    </fieldset>
+    <fieldset>
+      <legend><label for="component-path">component path<a href="#" class="info-round-icon" target="_blank"></a></label></legend>
+      <input data-bind="project.componentPath" id="component-path">
+    </fieldset>
+    <fieldset>
+      <legend><label for="currentStyleSheetAttribute">current styleSheet Attribute<a href="#" class="info-round-icon" target="_blank"></a></label></legend>
+      <input data-bind="project.currentStyleSheetAttribute" id="currentStyleSheetAttribute">
+    </fieldset>
+    <fieldset>
+      <legend><label for="miscDir">miscellaneous dir<a href="#" class="info-round-icon" target="_blank"></a></label></legend>
+      <input data-bind="project.miscDir" id="miscDir">
+    </fieldset>
+    <fieldset>
+      <legend><label for="delayUpdateFileMs">delay when update file<a href="#" class="info-round-icon" target="_blank"></a></label></legend>
+      <input data-bind="project.delayUpdateFileMs" id="delayUpdateFileMs">
+    </fieldset>
+    <fieldset>
+      <legend>
+        <label for="imageTypeProcess">image type Process<a href="#" class="info-round-icon" target="_blank"></a></label>
+      </legend>
+      <select data-bind="project.imageTypeProcess" id="imageTypeProcess">
+        <option value="0">file system</option>
+        <option value="64">base64</option>
+      </select>
+    </fieldset>
+    <fieldset>
+      <legend><span>Files<a href="#" class="info-round-icon" target="_blank"></a></span>
+        <button class="current-project-data__add-files">+</button>
+      </legend>
+      <div data-foreach="project.files" class="project-with-remove">
+        <input class="current-project-data__file-value" data-bind="key.value">
+        <button class="current-project-data__remove-files" data-index="${key.index}">-</button>
+      </div>
+    </fieldset>
+  </div>
+</div>

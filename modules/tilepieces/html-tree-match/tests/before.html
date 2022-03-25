@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>addClass test</title>
+    <style>
+        .buttons{
+            position:absolute;
+            width:300px;
+            height:50px;
+            right:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <div class="banner">
+        <h1>A banner Title</h1>
+        <h2>A banner subtitle</h2>
+        Some points
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <img alt="An image should be here" src=""/>
+        <p>
+            A banner paragraph
+        </p>
+    </div>
+</section>
+<div class="buttons">
+<button id="hide-banner" onclick="addBanner()" disabled>add a Banner!</button>
+<button id="undo" onclick="undo()" disabled>Undo!</button>
+<button id="redo" onclick="redo()" disabled>Redo!</button>
+</div>
+<script src="../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var count = 1;
+    var addBannerEl = document.getElementById("hide-banner");
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    var sectionSafe = document.querySelector("section");
+    window.addEventListener("DOM-change",function(){
+        if(htmlMatch.history.pointer != 0)
+            undoEl.removeAttribute("disabled");
+        else
+            undoEl.setAttribute("disabled","");
+        if(htmlMatch.history.pointer != htmlMatch.history.entries.length)
+            redoEl.removeAttribute("disabled");
+        else
+            redoEl.setAttribute("disabled","");
+    });
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+        addBannerEl.removeAttribute("disabled");
+    }
+    a();
+    function addBanner(){
+        if(addBannerEl.disabled)
+            return;
+        var toAppend = document.querySelector(".banner").cloneNode(true);
+        // to test both fragment and normal nodes
+        var frag;
+        if(count%2) {
+            frag = document.createDocumentFragment()
+            frag.append(toAppend);
+        }
+        else frag = toAppend;
+        toAppend.querySelector("h1").textContent = "A banner Title" + (count++);
+        htmlMatch.before(sectionSafe,frag);
+    }
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+    }
+</script>
+</body>
+</html>

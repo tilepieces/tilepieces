@@ -1,0 +1,22 @@
+#fonts.true, #fonts true {
+  display: block;
+}
+
+#fonts.false, #fonts false {
+  display: none;
+}
+
+#fonts .font {
+  display: none;
+  padding:0 1em;
+}
+
+#fonts .font.selected {
+  display: block;
+}
+#fonts a.info-round-icon{
+  margin-top:0
+}
+.remove-font{
+  margin-bottom:1em;
+}

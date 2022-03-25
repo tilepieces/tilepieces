@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html><head>
+  <link href="../../drag/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag">
+  <link href="../css/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/panel">
+</head>
+<body>
+<button id="showDock1">showDock1</button>
+<button id="showDock2">showDock2</button>
+<div class="panel-element">
+    <div class="panel-handler">
+        <span class="panel-title">Title 1</span>
+    </div>
+    <span class="panel-minimize">_</span>
+    <span class="panel-eject"></span>
+    <span class="panel-close">X</span>
+    <iframe data-src="example-frames/example.html"></iframe>
+    <div class="panel-prevent-iframe-mousedown"></div>
+</div>
+<div class="panel-element" data-alt-popup="example-frames/example-frame-pop.html">
+    <div class="panel-handler">
+        <span class="panel-title">Title 2</span>
+    </div>
+    <span class="panel-minimize">_</span>
+    <span class="panel-eject"></span>
+    <span class="panel-close">X</span>
+    <iframe data-src="example-frames/example_img.html"></iframe>
+    <div class="panel-prevent-iframe-mousedown"></div>
+</div>
+<div class="panel-element">
+    <div class="panel-handler">
+        <span class="panel-title">Example frame</span>
+    </div>
+    <span class="panel-minimize">_</span>
+    <span class="panel-eject"></span>
+    <span class="panel-close">X</span>
+    <iframe data-src="example-frames/example-frame.html"></iframe>
+    <div class="panel-prevent-iframe-mousedown"></div>
+</div>
+<div class="panel-element" data-alt-popup="example-frames/example-frame.html">
+    <div class="panel-handler">
+        <span class="panel-title">Example frame popup</span>
+    </div>
+    <span class="panel-minimize">_</span>
+    <span class="panel-eject"></span>
+    <span class="panel-close">X</span>
+    <iframe data-src="example-frames/example-frame.html"></iframe>
+    <div class="panel-prevent-iframe-mousedown"></div>
+</div>
+<div id="target"></div>
+<div id="targetappend"></div>
+<script src="../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../../drag/drag.js" data-tilepieces-component="tilepieces/drag"></script>
+<script src="../panel.js" data-tilepieces-component="tilepieces/panel"></script>
+<script>
+    var panelEls = document.querySelectorAll(".panel-element");
+    var panels = [];
+    [...panelEls].forEach(v=>panels.push(panel(v,false,true)));
+    showDock1.addEventListener("click",e=>{
+        panels[0].show()
+    })
+    showDock2.addEventListener("click",e=>{
+        panels[1].show()
+    })
+    window.eventInterface = events();
+    window.eventInterface.on("component-selected",function(e){
+        console.log(e);
+        target.textContent = e.newElHTML;
+        targetappend.appendChild(e.newHtml);
+    });
+    window.eventInterface.on("img-selected",function(e){
+        console.log(e);
+        targetappend.appendChild(e.img);
+    });
+
+    window.addEventListener("window-popup-open",e=>console.log(e.detail));
+    window.addEventListener("window-popup-close",e=>console.log(e.detail));
+    panels[2].show()
+    panels[3].show();
+</script></body></html>

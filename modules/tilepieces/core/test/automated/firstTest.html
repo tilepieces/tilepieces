@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>createCurrentStyleSheet first test</title>
+</head>
+<body>
+<section id=log-section></section>
+<iframe id=frame></iframe>
+<script src="../../../html-tree-match/htmlTreeMatch.js" data-tilepieces-component="tilepieces/html-tree-match"></script>
+<script src="../../../css-split-value/splitCssValue.js" data-tilepieces-component="tilepieces/css-split-value"></script>
+<script src="../../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script>
+<script src="../../../css-specificity/cssSpecificity.js"
+        data-tilepieces-component="tilepieces/css-specificity"></script>
+<script src="../../../css-matcher/css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script>
+<script src="../../tilepieces-core.js" data-tilepieces-component="tilepieces/core"></script>
+<!-- test utils -->
+<script src="testUtils/assert.js"></script>
+<script src="testUtils/logOnDocument.js"></script>
+<script src="testUtils/compareDocuments.js"></script>
+<script>
+  let htmltext, htmltext2, htmltext3;
+  let htmlMatchText, htmlMatchText2, htmlMatchText3;
+  let testFrameUrl = "test-frame.html";
+  let frame = document.getElementById("frame");
+  frame.addEventListener("load", async () => {
+    try {
+      var html = await fetch(testFrameUrl);
+      var htmlText = await html.text();
+      tilepieces.core = await TilepiecesCore().init(frame.contentDocument, htmlText);
+      var doc = tilepieces.core.currentDocument;
+      var docSource = tilepieces.core.htmlMatch.source;
+      logOnDocument("compare initial document");
+      var match0 = compareDocuments();
+      tilepieces.core.htmlMatch.insertAdjacentElement(doc.body, "append", doc.createElement("a"));
+      logOnDocument("compare after insertAdjacentElement");
+      var match1 = compareDocuments();
+      tilepieces.core.createCurrentStyleSheet("a{color:red;text-decoration: none;}a:hover{color:black;}");
+      var currentStyleSheet = doc.head.querySelector("style");
+      var currentStyleSheetMatch = tilepieces.core.htmlMatch.find(currentStyleSheet);
+      logOnDocument(
+        assert(tilepieces.core.currentStyleSheet.ownerNode == currentStyleSheet &&
+          tilepieces.core.matchCurrentStyleSheetNode == currentStyleSheetMatch.match,
+          "currentStyleSheet is setted correctly ( comparing nodes )"), "success");
+      logOnDocument("compare after createCurrentStyleSheet");
+      var match2 = compareDocuments();
+      // undo
+      tilepieces.core.undo();
+      logOnDocument("compare after undo");
+      compareDocuments(match1);
+      logOnDocument(
+        assert(tilepieces.core.currentStyleSheet == null &&
+          tilepieces.core.matchCurrentStyleSheetNode == null,
+          "currentStyleSheet is setted correctly"), "success");
+      // undo
+      tilepieces.core.undo();
+      logOnDocument("compare after undo");
+      compareDocuments(match0);
+      logOnDocument(assert(tilepieces.core.history.pointer == 0, "assert pointer is 0"), "success");
+      // undo has no effect
+      tilepieces.core.undo();
+      logOnDocument("compare after undo ( no effect )");
+      compareDocuments(match0);
+      logOnDocument(assert(tilepieces.core.history.pointer == 0, "assert pointer is 0"), "success");
+      // redo
+      await tilepieces.core.redo();
+      logOnDocument("compare after redo");
+      compareDocuments(match1);
+      // redo
+      await tilepieces.core.redo();
+      logOnDocument("compare after redo");
+      compareDocuments(match2);
+      logOnDocument(
+        assert(tilepieces.core.currentStyleSheet == currentStyleSheet.sheet &&
+          tilepieces.core.matchCurrentStyleSheetNode == currentStyleSheetMatch.match,
+          "currentStyleSheet is setted correctly ( comparing sheets )"), "success");
+      // redo has no effect
+      await tilepieces.core.redo();
+      logOnDocument("compare after redo ( no effect )");
+      compareDocuments(match2);
+      logOnDocument(assert(tilepieces.core.history.pointer == 2, "assert pointer is 2"), "success");
+      logOnDocument("test success");
+      window.dispatchEvent(new Event("test-success"))
+    } catch (e) {
+      console.error(e);
+      logOnDocument(e.err || e.error || e.toString(), "error");
+    }
+  });
+  frame.src = testFrameUrl;
+</script>
+</body>
+</html>

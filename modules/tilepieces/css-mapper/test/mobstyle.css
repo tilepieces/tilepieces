@@ -1,0 +1,9 @@
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:white;
+    box-sizing:border-box;
+    box-shadow: 0 10px 10px -9px rgba(0,0,0,0.33);
+}

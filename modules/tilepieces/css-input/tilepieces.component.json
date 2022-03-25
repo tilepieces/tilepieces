@@ -1,0 +1,40 @@
+{
+  "name": "tilepieces/css-input",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "css-input.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
+    "script": {
+      "src": "css-input.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src/header",
+      "src/*.js",
+      "src/!(header)**/**/*.js"
+    ]
+  },
+  "dependencies": [],
+  "components": {},
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "image_plus_icon.svg"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

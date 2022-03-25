@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>addRemoveClass test</title>
+    <style>
+        .hide{
+            display:none;
+        }
+        .yellow{
+            background:yellow;
+        }
+        .red{
+            background:red;
+        }
+        .list-style-none{
+            list-style:none;
+        }
+        .p{
+            font:1.3em/1.6em sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<button id="h1Yellow" onclick="h1Yellow()">Toggle H1 yellow background</button>
+<button id="h2Red" onclick="h2Red()">Toggle H2 red background</button>
+<button id="ulli" onclick="ulli()">Toggle UL list style</button>
+<button id="p" onclick="p()">Toggle P font size</button>
+<button id="undo" onclick="undo()" disabled>Undo!</button>
+<button id="redo" onclick="redo()" disabled>Redo!</button>
+<script src="../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var banner = document.querySelector(".banner");
+    var h1 = document.querySelector("h1");
+    var h2 = document.querySelector("h2");
+    var ul = document.querySelector("ul");
+    var pEl = document.querySelector("p");
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    // TESTING IF IMAGES ARE CORRECTLY REFERENCED
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+        var uno = htmlMatch.match(document.querySelector(".banner"));
+
+    }
+    a();
+    function h1Yellow(){
+        if(h1.classList.contains("yellow"))
+            htmlMatch.removeClass(h1,"yellow");
+        else
+            htmlMatch.addClass(h1,"yellow");
+    }
+    function h2Red(){
+        if(h2.classList.contains("red"))
+            htmlMatch.removeClass(h2,"red");
+        else
+            htmlMatch.addClass(h2,"red");
+    }
+    function p(){
+        if(pEl.classList.contains("p"))
+            htmlMatch.removeClass(pEl,"p");
+        else
+            htmlMatch.addClass(pEl,"p");
+    }
+    function ulli(){
+        if(ul.classList.contains("list-style-none"))
+            htmlMatch.removeClass(ul,"list-style-none");
+        else
+            htmlMatch.addClass(ul,"list-style-none");
+    }
+    window.addEventListener("DOM-change",function(){
+        if(htmlMatch.history.pointer != 0)
+            undoEl.removeAttribute("disabled");
+        else
+            undoEl.setAttribute("disabled","");
+        if(htmlMatch.history.pointer != htmlMatch.history.entries.length)
+            redoEl.removeAttribute("disabled");
+        else
+            redoEl.setAttribute("disabled","");
+    });
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+    }
+</script>
+</body>
+</html>

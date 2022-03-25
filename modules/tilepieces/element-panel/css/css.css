@@ -1,0 +1,179 @@
+html {
+  height: 100%;
+}
+
+body {
+  background: rgb(255, 255, 255);
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#wrapper {
+  height: calc(100% - 44px);
+  overflow: auto;
+}
+
+#main, #children, #component-interface {
+  padding: 0 1em 0.5em
+}
+
+#attributes-view .attr-sel {
+  background-color: lightcyan;
+}
+
+#moving-panel-multiselection.open {
+  display: block;
+}
+
+#moving-panel button.selected {
+  background-color: rgb(143, 143, 143);
+}
+
+#moving-panel-multiselection {
+  position: relative;
+}
+
+#moving-panel-multiselection button.ok {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#element-sum {
+  margin: 0;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  box-sizing: border-box;
+  background: white;
+  box-shadow: rgb(199, 199, 199) 0px 0px 15px 0px;
+}
+
+.element-sum-tag-name {
+  color: rgb(136, 18, 128);
+}
+
+.element-sum-classes {
+  color: rgb(153, 69, 0);
+}
+
+.element-sum-id {
+  color: rgb(34, 34, 34);
+}
+
+#component-interface {
+  position: relative;
+  flex-direction: column;
+  height: calc(100% - 62px);
+}
+
+#component-interface fieldset {
+  margin-bottom: 0
+}
+
+.component-interface-iframe-container {
+  height: 100%;
+  display: none;
+  position: relative
+}
+
+#component-interface select {
+  width: 100%;
+}
+
+#component-interface iframe {
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  pointer-events: none;
+  box-sizing: content-box;
+  border: 0px;
+}
+
+#component-interface iframe.selected {
+  visibility: visible;
+  pointer-events: all;
+  display: flex;
+}
+
+.hidden > * {
+  display: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+}
+
+.component-interface-iframe-container.selected {
+  display: block;
+}
+
+#attributes small:not([hidden]) {
+  display: block;
+  color: red;
+  padding: 0.4em;
+}
+
+#attributes-view li input.attribute-name {
+  border: 0px;
+}
+
+#classes legend {
+  background-color: rgb(255, 255, 255);
+}
+
+#classes .attributes-mask label {
+  display: inline-block;
+  margin: 1em 1em 1em 0px;
+}
+
+fieldset.attributes {
+  padding: 0px;
+  border: 0px;
+}
+
+.flex-box .search-button {
+  display: none;
+}
+
+.flex-box.src-box .search-button {
+  display: block;
+}
+
+#component-interface:not([hidden]) {
+  display: flex;
+}
+
+#children a {
+  text-decoration: none;
+  display: block;
+  padding: 0.4em;
+  width: 100%;
+}
+
+#children a:hover {
+  background-color: lightcyan;
+}
+
+#children li {
+  display: flex;
+}
+
+span.children-grabber {
+  display: block;
+  padding: 0.4em 0px;
+  cursor: grab;
+}
+
+#element-sum a {
+  text-transform: none;
+}
+
+#element-sum .tab-buttons-wrap {
+  border: 0
+}

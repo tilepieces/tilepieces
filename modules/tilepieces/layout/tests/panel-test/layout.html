@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html><head>
+  
+  <link href="../../../autocomplete/autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete"><link href="../../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input"><link href="../../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs"><link href="../../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet"><link href="../../layout.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/layout">
+  
+  
+</head>
+<body style="margin:0">
+<div class="autocomplete-hint" data-tilepieces-component="tilepieces/autocomplete"></div>
+<section id="layout-box" class="${isVisible}" data-tilepieces-component="tilepieces/layout">
+  <div class="tab-buttons tab-horizontal" id="tab-layout">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#layout" class="selected">Layout</a>
+        <a href="#box-model">Box model</a>
+      </div>
+    </div>
+  </div>
+  <div id="layout" class="selected">
+    <fieldset>
+      <legend><a href="#property-display" tabindex="-1">display:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-display" class="input-css autocomplete" data-css-prop="display" data-css-prop-js="display" data-value="${display}" data-auto-global-suggestion="cssDefaults.display" data-bind="display" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-float" tabindex="-1">float:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/float" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-float" class="input-css autocomplete" data-css-prop="float" data-css-prop-js="float" data-value="${float}" data-auto-global-suggestion="cssDefaults.float" data-bind="float" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-visibility" tabindex="-1">visibility:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/visibility" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-visibility" class="input-css autocomplete" data-css-prop="visibility" data-css-prop-js="visibility" data-value="${visibility}" data-auto-global-suggestion="cssDefaults.visibility" data-bind="visibility" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-opacity" tabindex="-1">opacity:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/opacity" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-opacity" class="input-css autocomplete" data-css-prop="opacity" data-css-prop-js="opacity" data-value="${opacity}" data-auto-global-suggestion="cssDefaults.opacity" data-bind-events="input" data-bind="opacity" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-overflow" tabindex="-1">overflow:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-overflow" class="input-css autocomplete" data-css-prop="overflow" data-css-prop-js="overflow" data-value="${overflow}" data-auto-global-suggestion="cssDefaults.overflow" data-bind="overflow" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-cursor" tabindex="-1">cursor:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-cursor" class="input-css autocomplete" data-css-prop="cursor" data-css-prop-js="cursor" data-value="${cursor}" data-auto-global-suggestion="cssDefaults.cursor" data-bind="cursor" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${inlineStyles}">
+      <legend><a href="#property-vertical-align" tabindex="-1">vertical-align:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style">
+        <div id="property-vertical-align" class="input-css autocomplete" data-css-prop="vertical-align" data-css-prop-js="verticalAlign" data-value="${verticalAlign}" data-auto-global-suggestion="cssDefaults.vertical-align" data-bind="verticalAlign" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <!-- LIST -->
+    <fieldset class="${listStyle}">
+      <legend><a href="#property-list-style-type" tabindex="-1">list-style-type:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-list-style-type" class="input-css autocomplete" data-css-prop="list-style-type" data-css-prop-js="listStyleType" data-value="${listStyleType}" data-auto-global-suggestion="cssDefaults.list-style-type" data-bind="listStyleType" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${listStyle}">
+      <legend><a href="#property-list-style-position" tabindex="-1">list-style-position:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-list-style-position" class="input-css autocomplete" data-css-prop="list-style-position" data-css-prop-js="listStylePosition" data-value="${listStylePosition}" data-auto-global-suggestion="cssDefaults.list-style-position" data-bind="listStylePosition" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${listStyle}">
+      <legend><a href="#property-list-style-image" tabindex="-1">list-style-image:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-image" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-list-style-image" class="input-css autocomplete" data-css-prop="list-style-image" data-css-prop-js="listStyleImage" data-value="${listStyleImage}" data-auto-global-suggestion="cssDefaults.list-style-image" data-bind="listStyleImage" contenteditable=""></div></div>
+    </fieldset>
+    <!-- BLOCK -->
+    <fieldset class="${displayBlock}">
+      <legend><a href="#property-clear" tabindex="-1">clear:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/clear" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-clear" class="input-css autocomplete" data-css-prop="clear" data-css-prop-js="clear" data-value="${clear}" data-auto-global-suggestion="cssDefaults.clear" data-bind="clear" contenteditable=""></div></div>
+    </fieldset>
+    <!-- FLEX -->
+    <fieldset class="${flexContainer}">
+      <legend><a href="#property-align-content" tabindex="-1">align-content:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content" class="info-round-icon" target="_blank"></a></legend>
+      <div class="flex-icons" data-key="align-content" data-css-prop-js="alignContent">
+        <button data-value="center" title="center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><rect transform="matrix(-1 0 0 1 10.5 2)" rx="1" fill="#000" height="3" width="8"></rect><rect transform="matrix(-1 0 0 1 10.5 8)" rx="1" fill="#000" height="3" width="8"></rect><path style="opacity:1;fill:#000;fill-opacity:1;stroke:#000;stroke-width:.97095;stroke-opacity:1" d="M1.469 6.485h10.05v.055H1.469z"></path></svg>
+        </button>
+        <button data-value="flex-start" title="flex-start">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><rect y="-9.5" x="-10.5" transform="scale(-1)" rx="1" fill="#000" height="3" width="8"></rect><path d="M10.5 4.5a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-2h8z" fill="#000"></path><path d="M1 3h11V2H1z" fill="#000"></path></svg>
+        </button>
+        <button data-value="flex-end" title="flex-end">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="8" height="3" fill="#000" rx="1" transform="matrix(-1 0 0 1 10.5 3.5)"></rect><path fill="#000" d="M10.5 8.5a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v2h8v-2z"></path><path fill="#000" d="M1 10h11v1H1z"></path></svg>
+        </button>
+        <button data-value="space-around" title="space-around">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="8" height="3" fill="#000" rx="1" transform="matrix(-1 0 0 1 10.5 2.75)"></rect><rect width="8" height="3" fill="#000" rx="1" transform="matrix(-1 0 0 1 10.5 7.25)"></rect><path fill="#000" d="M1 11h11v1H1zM1 1h11v1H1z"></path></svg>
+        </button>
+        <button data-value="space-between" title="space-between">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><path fill="#000" d="M10.5 1.5h-8v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2zm0 8a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v2h8v-2z"></path><path fill="#000" d="M1 11h11v1H1zM1 1h11v1H1z"></path></svg>
+        </button>
+        <button data-value="stretch" title="stretch">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><path d="M10.5 2h-8v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2zm0 6a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v3h8V8zM1 11h11v1H1zM1 1h11v1H1z" fill="#000"></path></svg>
+        </button>
+      </div>
+      <div class="input-css-style"><div id="property-align-content" class="input-css autocomplete" data-css-prop="align-content" data-css-prop-js="alignContent" data-value="${alignContent}" data-auto-global-suggestion="cssDefaults.align-content" data-bind="alignContent" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexOrGridChildren}">
+      <legend><a href="#property-align-self" tabindex="-1">align-self:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-self" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-align-self" class="input-css autocomplete" data-css-prop="align-self" data-css-prop-js="alignSelf" data-value="${alignSelf}" data-auto-global-suggestion="cssDefaults.align-self" data-bind="alignSelf" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexChildren}">
+      <legend><a href="#property-flex-basis" tabindex="-1">flex-basis:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-flex-basis" class="input-css autocomplete" data-css-prop="flex-basis" data-css-prop-js="flexBasis" data-value="${flexBasis}" data-auto-global-suggestion="cssDefaults.flex-basis" data-bind="flexBasis" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexContainer}">
+      <legend><a href="#property-flex-direction" tabindex="-1">flex-direction:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction" class="info-round-icon" target="_blank"></a></legend>
+      <div class="flex-icons" data-key="flex-direction" data-css-prop-js="flexDirection">
+        <button data-value="row" title="row">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13" style="transform: rotate(-90deg) scale(-1, 1)"><g clip-path="url(#a)"><rect x="2" y="2.816" width="4.607" height="2.738" rx=".5" stroke="#000"></rect><rect x="1.5" y="6.989" width="5.607" height="3.738" rx="1" fill="#000"></rect><path d="M9.461 1.5v7.63H8L10.002 12 12 9.13h-1.458V1.5h-1.08z" fill="#000"></path></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h13v13H0z"></path></clipPath></defs></svg>
+        </button>
+        <button data-value="row-reverse" title="row-reverse">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13" style="transform: rotate(-270deg)"><g clip-path="url(#a)"><rect x="2" y="2.816" width="4.607" height="2.738" rx=".5" stroke="#000"></rect><rect x="1.5" y="6.989" width="5.607" height="3.738" rx="1" fill="#000"></rect><path d="M9.461 1.5v7.63H8L10.002 12 12 9.13h-1.458V1.5h-1.08z" fill="#000"></path></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h13v13H0z"></path></clipPath></defs></svg>
+        </button>
+        <button data-value="column" title="column">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><g clip-path="url(#a)"><rect x="2" y="2.816" width="4.607" height="2.738" rx=".5" stroke="#000"></rect><rect x="1.5" y="6.989" width="5.607" height="3.738" rx="1" fill="#000"></rect><path d="M9.461 1.5v7.63H8L10.002 12 12 9.13h-1.458V1.5h-1.08z" fill="#000"></path></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h13v13H0z"></path></clipPath></defs></svg>
+        </button>
+        <button data-value="column-inverse" title="column-reverse">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13" style="transform: rotate(-180deg) scale(-1, 1)"><g clip-path="url(#a)"><rect x="2" y="2.816" width="4.607" height="2.738" rx=".5" stroke="#000"></rect><rect x="1.5" y="6.989" width="5.607" height="3.738" rx="1" fill="#000"></rect><path d="M9.461 1.5v7.63H8L10.002 12 12 9.13h-1.458V1.5h-1.08z" fill="#000"></path></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h13v13H0z"></path></clipPath></defs></svg>
+        </button>
+      </div>
+      <div class="input-css-style"><div id="property-flex-direction" class="input-css autocomplete" data-css-prop="flex-direction" data-css-prop-js="flexDirection" data-value="${flexDirection}" data-auto-global-suggestion="cssDefaults.flex-direction" data-bind="flexDirection" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexChildren}">
+      <legend><a href="#property-flex-grow" tabindex="-1">flex-grow:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-flex-grow" class="input-css autocomplete" data-css-prop="flex-grow" data-css-prop-js="flexGrow" data-value="${flexGrow}" data-auto-global-suggestion="cssDefaults.flex-grow" data-bind="flexGrow" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexChildren}">
+      <legend><a href="#property-flex-shrink" tabindex="-1">flex-shrink:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-flex-shrink" class="input-css autocomplete" data-css-prop="flex-shrink" data-css-prop-js="flexShrink" data-value="${flexShrink}" data-auto-global-suggestion="cssDefaults.flex-shrink" data-bind="flexShrink" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexContainer}">
+      <legend><a href="#property-flex-wrap" tabindex="-1">flex-wrap:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap" class="info-round-icon" target="_blank"></a></legend>
+      <div class="flex-icons" data-key="flex-wrap" data-css-prop-js="flexWrap">
+        <button data-value="nowrap" title="nowrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 5H2v3h1V5zM2 4a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2zM11 5h-1v3h1V5zm-1-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-1z" fill="#000"></path><path d="M5 5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5z" fill="#000"></path></svg>
+        </button>
+        <button data-value="wrap" title="wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 2H2v3h1V2zM2 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z" fill="#000"></path><path d="M1 8a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V8z" fill="#000"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11 2h-1v3h1V2zm-1-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-1z" fill="#000"></path><path d="M9 8a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V8zM5 2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V2z" fill="#000"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M7 8H6v3h1V8zM6 7a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H6z" fill="#000"></path></svg>
+        </button>
+      </div>
+      <div class="input-css-style"><div id="property-flex-wrap" class="input-css autocomplete" data-css-prop="flex-wrap" data-css-prop-js="flexWrap" data-value="${flexWrap}" data-auto-global-suggestion="cssDefaults.flex-wrap" data-bind="flexWrap" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexContainer}">
+      <legend><a href="#property-justify-content" tabindex="-1">justify-content:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content" class="info-round-icon" target="_blank"></a></legend>
+      <div class="flex-icons" data-key="justify-content" data-css-prop-js="justifyContent">
+        <button data-value="center" title="center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="3" height="6" x="2" y="3.5" fill="#000" rx="1"></rect><rect width="3" height="6" x="8" y="3.5" fill="#000" rx="1"></rect><path fill="#000" d="M6 1h1v11H6z"></path></svg>
+        </button>
+        <button data-value="flex-start" title="flex-start">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="3" height="6" x="6" y="3.5" fill="#000" rx="1"></rect><rect width="3" height="6" x="2" y="3.5" fill="#000" rx="1"></rect><path fill="#000" d="M1 1h1v11H1z"></path></svg>
+        </button>
+        <button data-value="flex-end" title="flex-end">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><rect transform="scale(-1 1)" rx="1" fill="#000" y="3.5" x="-7" height="6" width="3"></rect><rect transform="scale(-1 1)" rx="1" fill="#000" y="3.5" x="-11" height="6" width="3"></rect><path d="M12 1h-1v11h1z" fill="#000"></path></svg>
+        </button>
+        <button data-value="space-between" title="space-between">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="3" height="6" x="8" y="3.5" fill="#000" rx="1"></rect><rect width="3" height="6" x="2" y="3.5" fill="#000" rx="1"></rect><path fill="#000" d="M1 1h1v11H1zm10 0h1v11h-1z"></path></svg>
+        </button>
+        <button data-value="space-around" title="space-around">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="3" height="6" x="7.25" y="3.5" fill="#000" rx="1"></rect><rect width="3" height="6" x="2.75" y="3.5" fill="#000" rx="1"></rect><path fill="#000" d="M1 1h1v11H1zm10 0h1v11h-1z"></path></svg>
+        </button>
+        <button data-value="space-evenly" title="space-evenly">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect width="3" height="6" x="7" y="3.5" fill="#000" rx="1"></rect><rect width="3" height="6" x="3" y="3.5" fill="#000" rx="1"></rect><path fill="#000" d="M1 1h1v11H1zm10 0h1v11h-1z"></path></svg>
+        </button>
+      </div>
+      <div class="input-css-style"><div id="property-justify-content" class="input-css autocomplete" data-css-prop="justify-content" data-css-prop-js="justifyContent" data-value="${justifyContent}" data-auto-global-suggestion="cssDefaults.justify-content" data-bind="justifyContent" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexChildren}">
+      <legend><a href="#property-order" tabindex="-1">order:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/order" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-order" class="input-css autocomplete" data-css-prop="order" data-css-prop-js="order" data-value="${order}" data-auto-global-suggestion="cssDefaults.order" data-bind="order" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexOrGridContainer}">
+      <legend><a href="#property-align-items" tabindex="-1">align-items:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items" class="info-round-icon" target="_blank"></a></legend>
+      <div class="flex-icons" data-key="align-items" data-css-prop-js="alignItems">
+        <button data-value="center" title="center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><rect x="7" y="2.5" width="3" height="8" rx="1" fill="#000"></rect><rect x="3" y="3.5" width="3" height="6" rx="1" fill="#000"></rect><path fill="#000" d="M1 6h11v1H1z"></path></svg>        </button>
+        <button data-value="flex-start" title="flex-start">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none"><path d="M7 8.5a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-7H7zm-4-2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-5H3z" fill="#000"></path><path d="M1 2h11V1H1z" fill="#000"></path></svg>        </button>
+        <button data-value="flex-end" title="flex-end">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><path fill="#000" d="M7 4.5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7H7v-7zm-4 2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v5H3v-5z"></path><path fill="#000" d="M1 11h11v1H1z"></path></svg>        </button>
+        <button data-value="stretch" title="stretch">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><path fill="#000" d="M7 2h3v9H7zM3 2h3v9H3zM1 1h11v1H1zm0 10h11v1H1z"></path></svg>
+        </button>
+        <button data-value="baseline" title="baseline">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 13"><path fill="#000" d="M1 11h11v1H1z"></path><path fill="#000" fill-rule="evenodd" d="M7.273 1H5.816L2.5 9.807h1.41l.932-2.578h3.262l.873 2.578h1.492L7.273 1zM5.248 6.08l1.243-3.403 1.17 3.403H5.248z" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+      <div class="input-css-style"><div id="property-align-items" class="input-css autocomplete" data-css-prop="align-items" data-css-prop-js="alignItems" data-value="${alignItems}" data-auto-global-suggestion="cssDefaults.align-items" data-bind="alignItems" contenteditable=""></div></div>
+    </fieldset>
+    <!-- TABLE -->
+    <fieldset class="${tableContainer}">
+      <legend><a href="#property-border-collapse" tabindex="-1">border-collapse:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-collapse" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-border-collapse" class="input-css autocomplete" data-css-prop="border-collapse" data-css-prop-js="borderCollapse" data-value="${borderCollapse}" data-auto-global-suggestion="cssDefaults.border-collapse" data-bind="borderCollapse" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${borderSpacingAllowed}">
+      <legend><a href="#property-border-spacing" tabindex="-1">border-spacing:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-spacing" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-border-spacing" class="input-css autocomplete" data-css-prop="border-spacing" data-css-prop-js="borderSpacing" data-value="${borderSpacing}" data-auto-global-suggestion="cssDefaults.border-spacing" data-bind="borderSpacing" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${tableContainer}">
+      <legend><a href="#property-caption-side" tabindex="-1">caption-side:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-caption-side" class="input-css autocomplete" data-css-prop="caption-side" data-css-prop-js="captionSide" data-value="${captionSide}" data-auto-global-suggestion="cssDefaults.caption-side" data-bind="captionSide" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${emptyCellsAllowed}">
+      <legend><a href="#property-empty-cells" tabindex="-1">empty-cells:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/empty-cells" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-empty-cells" class="input-css autocomplete" data-css-prop="empty-cells" data-css-prop-js="emptyCells" data-value="${emptyCells}" data-auto-global-suggestion="cssDefaults.empty-cells" data-bind="emptyCells" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${tableContainer}">
+      <legend><a href="#property-table-layout" tabindex="-1">table-layout:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-table-layout" class="input-css autocomplete" data-css-prop="table-layout" data-css-prop-js="tableLayout" data-value="${tableLayout}" data-auto-global-suggestion="cssDefaults.table-layout" data-bind="tableLayout" contenteditable=""></div></div>
+    </fieldset>
+    <!-- GRID -->
+    <fieldset class="grid-template-areas ${gridContainer}">
+      <legend>grid-template-areas:<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas" class="info-round-icon" target="_blank"></a></legend>
+      <button data-if="gridAreasTemplate.length" id="add-css-grid-column">+ Col</button>
+      <button data-if="gridAreasTemplate.length &amp;&amp; gridAreasTemplate[0].cells.length > 1" id="remove-css-grid-column">- Col
+      </button>
+      <div data-css-prop="grid-template-areas" data-foreach="gridAreasTemplate" data-foreach-key-name="row">
+        <div class="grid-row-area">
+          <input class="grid-row-area-label" data-foreach="row.cells" data-foreach-key-name="cell" data-row-index="${cell.index}" data-cell-index="${row.index}" data-bind="cell.label">
+        </div>
+      </div>
+      <button id="add-css-grid-row">+ Row</button>
+      <button id="remove-css-grid-row" data-if="gridAreasTemplate.length">- Row</button>
+    </fieldset>
+    <fieldset class="${gridChildren}">
+      <legend><a href="#property-grid-area" tabindex="-1">grid-area:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-area" class="input-css autocomplete" data-css-prop="grid-area" data-css-prop-js="gridArea" data-value="${gridArea}" data-auto-global-suggestion="cssDefaults.grid-area" data-bind="gridArea" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridContainer}">
+      <legend><a href="#property-grid-template-columns" tabindex="-1">grid-template-columns:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-template-columns" class="input-css autocomplete" data-css-prop="grid-template-columns" data-css-prop-js="gridTemplateColumns" data-value="${gridTemplateColumns}" data-auto-global-suggestion="cssDefaults.grid-template-columns" data-bind="gridTemplateColumns" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridContainer}">
+      <legend><a href="#property-grid-template-rows" tabindex="-1">grid-template-rows:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-template-rows" class="input-css autocomplete" data-css-prop="grid-template-rows" data-css-prop-js="gridTemplateRows" data-value="${gridTemplateRows}" data-auto-global-suggestion="cssDefaults.grid-template-rows" data-bind="gridTemplateRows" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridContainer}">
+      <legend><a href="#property-grid-auto-columns" tabindex="-1">grid-auto-columns:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-auto-columns" class="input-css autocomplete" data-css-prop="grid-auto-columns" data-css-prop-js="gridAutoColumns" data-value="${gridAutoColumns}" data-auto-global-suggestion="cssDefaults.grid-auto-columns" data-bind="gridAutoColumns" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridContainer}">
+      <legend><a href="#property-grid-auto-flow" tabindex="-1">grid-auto-flow:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-auto-flow" class="input-css autocomplete" data-css-prop="grid-auto-flow" data-css-prop-js="gridAutoFlow" data-value="${gridAutoFlow}" data-auto-global-suggestion="cssDefaults.grid-auto-flow" data-bind="gridAutoFlow" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridContainer}">
+      <legend><a href="#property-grid-auto-rows" tabindex="-1">grid-auto-rows:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-auto-rows" class="input-css autocomplete" data-css-prop="grid-auto-rows" data-css-prop-js="gridAutoRows" data-value="${gridAutoRows}" data-auto-global-suggestion="cssDefaults.grid-auto-rows" data-bind="gridAutoRows" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridChildren}">
+      <legend><a href="#property-grid-column-start" tabindex="-1">grid-column-start:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-column-start" class="input-css autocomplete" data-css-prop="grid-column-start" data-css-prop-js="gridColumnStart" data-value="${gridColumnStart}" data-auto-global-suggestion="cssDefaults.grid-column-start" data-bind="gridColumnStart" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridChildren}">
+      <legend><a href="#property-grid-column-end" tabindex="-1">grid-column-end:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-end" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-column-end" class="input-css autocomplete" data-css-prop="grid-column-end" data-css-prop-js="gridColumnEnd" data-value="${gridColumnEnd}" data-auto-global-suggestion="cssDefaults.grid-column-end" data-bind="gridColumnEnd" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexOrGridOrMultiContainer}">
+      <legend><a href="#property-column-gap" tabindex="-1">column-gap:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-gap" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-column-gap" class="input-css autocomplete" data-css-prop="column-gap" data-css-prop-js="columnGap" data-value="${columnGap}" data-auto-global-suggestion="cssDefaults.column-gap" data-bind="columnGap" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${flexOrGridOrMultiContainer}">
+      <legend><a href="#property-row-gap" tabindex="-1">row-gap:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-gap" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-row-gap" class="input-css autocomplete" data-css-prop="row-gap" data-css-prop-js="rowGap" data-value="${rowGap}" data-auto-global-suggestion="cssDefaults.row-gap" data-bind="rowGap" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridChildren}">
+      <legend><a href="#property-grid-row-start" tabindex="-1">grid-row-start:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-row-start" class="input-css autocomplete" data-css-prop="grid-row-start" data-css-prop-js="gridRowStart" data-value="${gridRowStart}" data-auto-global-suggestion="cssDefaults.grid-row-start" data-bind="gridRowStart" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${gridChildren}">
+      <legend><a href="#property-grid-row-end" tabindex="-1">grid-row-end:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-end" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-grid-row-end" class="input-css autocomplete" data-css-prop="grid-row-end" data-css-prop-js="gridRowEnd" data-value="${gridRowEnd}" data-auto-global-suggestion="cssDefaults.grid-row-end" data-bind="gridRowEnd" contenteditable=""></div></div>
+    </fieldset>
+  </div>
+  <div id="box-model" style="display:none">
+    <fieldset>
+      <legend><a href="#property-position" tabindex="-1">position:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-position" class="input-css autocomplete" data-css-prop="position" data-css-prop-js="position" data-value="${position}" data-auto-global-suggestion="cssDefaults.position" data-bind="position" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-width" tabindex="-1">width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-width" class="input-css autocomplete" data-css-prop="width" data-css-prop-js="width" data-value="${width}" data-auto-global-suggestion="cssDefaults.width" data-bind="width" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-height" tabindex="-1">height:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/height" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-height" class="input-css autocomplete" data-css-prop="height" data-css-prop-js="height" data-value="${height}" data-auto-global-suggestion="cssDefaults.height" data-bind="height" contenteditable=""></div></div>
+    </fieldset>
+    <div>Computed Width &amp; Height: ${calculatedWidth} | ${calculatedHeight}</div><div id="show-measure-wrapper">
+      <div id="show-measure">
+      <div id="position" class="div ${positionVisible}">
+        <section class="label">
+          <span>position</span>
+        </section>
+        <div id="position-top" class="top">
+          <div class="input-css" data-css-prop="top" data-value="${top}" data-bind="top" contenteditable=""></div>
+        </div>
+        <div id="position-left" class="left">
+          <div class="input-css" data-css-prop="left" data-value="${left}" data-bind="left" contenteditable=""></div>
+        </div>
+        <div id="position-right" class="right">
+          <div class="input-css" data-css-prop="right" data-value="${right}" data-bind="right" contenteditable=""></div>
+        </div>
+        <div id="position-bottom" class="bottom">
+          <div class="input-css" data-css-prop="bottom" data-value="${bottom}" data-bind="bottom" contenteditable=""></div>
+        </div>
+        <div id="margin" class="div">
+          <section class="label ${marginLinked}">
+            <span>margin</span>
+            <button>
+              <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+              </svg>
+            </button>
+          </section>
+          <div id="margin-top" class="top">
+            <div class="input-css" data-linked="${marginLinked}" data-css-prop="margin-top" data-value="${marginTop}" data-bind="marginTop" contenteditable=""></div>
+          </div>
+          <div id="margin-left" class="left">
+            <div class="input-css" data-linked="${marginLinked}" data-css-prop="margin-left" data-value="${marginLeft}" data-bind="marginLeft" contenteditable=""></div>
+          </div>
+          <div id="margin-right" class="right">
+            <div class="input-css" data-linked="${marginLinked}" data-css-prop="margin-right" data-value="${marginRight}" data-bind="marginRight" contenteditable=""></div>
+          </div>
+          <div id="margin-bottom" class="bottom">
+            <div class="input-css" data-linked="${marginLinked}" data-css-prop="margin-bottom" data-value="${marginBottom}" data-bind="marginBottom" contenteditable=""></div>
+          </div>
+          <div id="border" class="div">
+            <section class="label ${borderLinked}">
+              <span>border</span>
+              <button>
+                <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+                </svg>
+              </button>
+            </section>
+            <div id="border-top" class="top">
+              <div class="input-css" data-linked="${borderLinked}" data-css-prop="border-top-width" data-value="${borderTopWidth}" data-bind="borderTopWidth" contenteditable=""></div>
+            </div>
+            <div id="border-left" class="left">
+              <div class="input-css" data-linked="${borderLinked}" data-css-prop="border-left-width" data-value="${borderLeftWidth}" data-bind="borderLeftWidth" contenteditable=""></div>
+            </div>
+            <div id="border-right" class="right">
+              <div class="input-css" data-linked="${borderLinked}" data-css-prop="border-right-width" data-value="${borderRightWidth}" data-bind="borderRightWidth" contenteditable=""></div>
+            </div>
+            <div id="border-bottom" class="bottom">
+              <div class="input-css" data-linked="${borderLinked}" data-css-prop="border-bottom-width" data-value="${borderBottomWidth}" data-bind="borderBottomWidth" contenteditable=""></div>
+            </div>
+            <div id="padding" class="div">
+              <section class="label ${paddingLinked}">
+                <span>padding</span>
+                <button>
+                  <svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m19.818 8.9715c-1.4849-1.4849-3.8891-1.2021-5.9397-1.2728 0.14142 0.14142 0.42426 0.28284 0.6364 0.49497 0.35355 0.35355 0.6364 0.77782 0.84853 1.2728 1.1314 0 2.3335-0.070711 3.182 0.77782 0.42426 0.42426 0.70711 1.1314 0.77782 1.7678 0 1.4142-1.1314 2.5456-2.5456 2.5456h-3.677c-0.56568 0-1.3435-0.35355-1.7678-0.77782-0.98995-0.98995-0.84853-2.1213-0.42426-3.2527h-1.8385c-0.49497 1.6263-0.42426 3.2527 0.84853 4.5255 0.84853 0.84853 1.9799 1.2728 3.0406 1.2021h3.677c1.2728 0 2.4749-0.35355 3.3941-1.2728 1.4142-1.6971 1.3435-4.4548-0.21213-6.0104zm-11.597 5.5154h-1.2728c-0.56569 0-1.3435-0.35355-1.7678-0.77782-0.42426-0.42426-0.70711-1.1314-0.77782-1.7678 0-1.4142 1.2021-2.6163 2.5456-2.5456h3.677c0.56568 0 1.3435 0.35355 1.7678 0.77782 0.98995 0.98995 0.77782 2.192 0.42426 3.2527h1.8385c0.49498-1.6263 0.42426-3.2527-0.84853-4.5255-0.84853-0.84853-1.9799-1.2728-3.0406-1.2021h-3.677c-2.4042 0-4.3134 1.9092-4.2426 4.2426 0 2.2627 1.9092 4.3134 4.1719 4.1719h2.687c-0.28284-0.14142-0.49497-0.35355-0.70711-0.56568-0.35355-0.35355-0.6364-0.6364-0.77782-1.0607z"></path>
+                  </svg>
+                </button>
+              </section>
+              <div id="padding-top" class="top">
+                <div class="input-css" data-linked="${paddingLinked}" data-css-prop="padding-top" data-value="${paddingTop}" data-bind="paddingTop" contenteditable=""></div>
+              </div>
+              <div id="padding-left" class="left">
+                <div class="input-css" data-linked="${paddingLinked}" data-css-prop="padding-left" data-value="${paddingLeft}" data-bind="paddingLeft" contenteditable="true"></div>
+              </div>
+              <div id="padding-right" class="right">
+                <div class="input-css" data-linked="${paddingLinked}" data-css-prop="padding-right" data-value="${paddingRight}" data-bind="paddingRight" contenteditable="true"></div>
+              </div>
+              <div id="padding-bottom" class="bottom">
+                <div class="input-css" data-linked="${paddingLinked}" data-css-prop="padding-bottom" data-value="${paddingBottom}" data-bind="paddingBottom" contenteditable="true"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <fieldset>
+      <legend><a href="#property-box-sizing" tabindex="-1">box-sizing:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-box-sizing" class="input-css autocomplete" data-css-prop="box-sizing" data-css-prop-js="boxSizing" data-value="${boxSizing}" data-auto-global-suggestion="cssDefaults.box-sizing" data-bind="boxSizing" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-max-width" tabindex="-1">max-width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-width" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-max-width" class="input-css autocomplete" data-css-prop="max-width" data-css-prop-js="maxWidth" data-value="${maxWidth}" data-auto-global-suggestion="cssDefaults.max-width" data-bind="maxWidth" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-min-width" tabindex="-1">min-width:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/min-width" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-min-width" class="input-css autocomplete" data-css-prop="min-width" data-css-prop-js="minWidth" data-value="${minWidth}" data-auto-global-suggestion="cssDefaults.min-width" data-bind="minWidth" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-max-height" tabindex="-1">max-height:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-height" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-max-height" class="input-css autocomplete" data-css-prop="max-height" data-css-prop-js="maxHeight" data-value="${maxHeight}" data-auto-global-suggestion="cssDefaults.min-height" data-bind="maxHeight" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset>
+      <legend><a href="#property-min-height" tabindex="-1">min-height:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/min-height" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-min-height" class="input-css autocomplete" data-css-prop="min-height" data-css-prop-js="minHeight" data-value="${minHeight}" data-auto-global-suggestion="cssDefaults.min-height" data-bind="minHeight" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${objectEl}">
+      <legend><a href="#property-object-fit" tabindex="-1">object-fit:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-object-fit" class="input-css autocomplete" data-css-prop="object-fit" data-css-prop-js="objectFit" data-value="${objectFit}" data-auto-global-suggestion="cssDefaults.object-fit" data-bind="objectFit" contenteditable=""></div></div>
+    </fieldset>
+    <fieldset class="${objectEl}">
+      <legend><a href="#property-object-position" tabindex="-1">object-position:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-position" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style"><div id="property-object-position" class="input-css autocomplete" data-css-prop="object-position" data-css-prop-js="objectPosition" data-value="${objectPosition}" data-auto-global-suggestion="cssDefaults.object-position" data-bind="objectPosition" contenteditable=""></div></div>
+    </fieldset>
+  </div>
+</section>
+<script src="../../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../../../autocomplete/autocomplete.bundle.js" data-tilepieces-component="tilepieces/autocomplete"></script>
+<script src="../../../css-input/css-input.bundle.js" data-tilepieces-component="tilepieces/css-input"></script>
+<script src="../../../tabs/tabs.js" data-tilepieces-component="tilepieces/tabs"></script>
+<script src="../../layout.bundle.js" data-tilepieces-component="tilepieces/layout"></script>
+
+</body></html>

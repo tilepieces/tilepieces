@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    h1 {
+      border: 5px solid red;
+    }
+
+    h2 {
+      border: 4px dotted blue;
+    }
+
+    div {
+      border: double;
+    }
+
+    #frameselect {
+      position: absolute;
+      right: 0;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+<select id="frameselect">
+  <option value="test-page.html">test-page.html</option>
+  <option value="border-style.html">border-style.html</option>
+  <option value="border-color.html">border-color.html</option>
+  <option value="border-image.html">border-image.html</option>
+  <option value="box-shadow.html">box-shadow.html</option>
+</select>
+<h1>A heading with a solid red border</h1>
+
+<h2>A heading with a dotted blue border</h2>
+
+<div>A div element with a double border.</div>
+<script>
+  frameselect.addEventListener("change", function (e) {
+    window.location = frameselect.value;
+  })
+</script>
+</body>
+</html>

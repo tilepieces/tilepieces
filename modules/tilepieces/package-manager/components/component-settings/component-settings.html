@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html><head><style>#component-settings[hidden] { display: block; }</style><link href="../../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet"><link href="../../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs"><link href="../../../dialog/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialog"><link href="../../../vertical-tab/vertical-tab.css" rel="stylesheet" data-tilepieces-component="tilepieces/vertical-tab"><link href="../../css/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/package-manager" data-tilepieces-current-stylesheet=""></head>
+<body>
+<div id="component-settings" hidden="">
+  <form id="component-settings-form">
+    <div class="flex-box top-button-actions">
+      <button data-if="iscomponent == 'hidden' && __project" class="component-settings-save button-bg-fill">+ Create</button></div>
+    <div ${iscomponent}="">
+
+      <div id="settings-component-metadata" style="">
+        <details>
+          <summary><h2 style="display: inline;">Component metadata</h2></summary><fieldset>
+          <legend><label for="component-properties-name">NAME:</label></legend>
+          <input id="component-properties-name" name="component-properties-name" data-bind="name" disabled="">
+        </fieldset><fieldset>
+          <legend>
+            <label for="component-properties-version">VERSION:</label>
+          </legend>
+          <input id="component-properties-version" name="component-properties-version" data-bind="version">
+        </fieldset><fieldset>
+          <legend>
+            <label for="component-properties-author">AUTHOR:</label>
+          </legend>
+          <input id="component-properties-author" name="component-properties-author" data-bind="author">
+        </fieldset><fieldset>
+          <legend>
+            <label for="component-properties-description">DESCRIPTION:</label>
+          </legend>
+          <input id="component-properties-description" name="component-properties-description" data-bind="description">
+        </fieldset><fieldset>
+          <legend>
+            <label for="component-properties-repository">REPOSITORY:</label>
+          </legend>
+          <input id="component-properties-repository" name="component-properties-repository" data-bind="repository">
+        </fieldset><fieldset>
+          <legend>
+            <label for="component-properties-website">WEBSITE:</label>
+          </legend>
+          <input id="component-properties-website" name="component-properties-website" data-bind="website">
+        </fieldset>
+        </details>
+
+
+
+
+
+
+
+      </div>
+      <div id="settings-component-file-links" style="">
+        <details>
+          <summary><h2 style="display: inline;">Component properties</h2></summary><fieldset>
+          <legend>
+            <label for="component-properties-html">HTML:</label>
+          </legend>
+          <div class="html-info">
+            <input id="component-properties-html" name="component-properties-html" data-bind="html">
+            <a class="svg-link" href="#"><svg data-if="html"
+                                              xmlns="http://www.w3.org/2000/svg"
+                                              width="15px" height="15px" viewBox="0 0 15 15">
+              <g>
+                <g>
+                  <g>
+                    <path style="fill:#666;" d="M8.8,10c-1.1,0-2.3-0.5-3-1.5C5.6,8.3,5.7,7.8,5.9,7.6c0.3-0.2,0.7-0.1,0.9,0.1
+                      c0.8,1.1,2.4,1.3,3.5,0.5c0.1-0.1,2.1-2.1,2.1-2.1c0.9-1,0.9-2.6-0.1-3.5s-2.5-0.9-3.5,0L7.8,3.7c-0.3,0.3-0.6,0.3-0.9,0
+                      c-0.3-0.3-0.3-0.6,0-0.9L8,1.7c1.4-1.4,3.8-1.4,5.2,0c1.5,1.4,1.5,3.8,0.1,5.3c0,0-2.1,2.1-2.3,2.3C10.4,9.8,9.6,10,8.8,10z"/>
+                  </g>
+                  <g>
+                    <path style="fill:#666;" d="M4.5,14.3c-0.9,0-1.9-0.4-2.6-1.1c-1.5-1.4-1.5-3.8-0.1-5.3c0,0,2.1-2.1,2.3-2.2
+                      c0.8-0.6,1.8-0.9,2.8-0.7c1,0.1,1.9,0.7,2.4,1.4c0.2,0.3,0.1,0.7-0.1,0.9C8.8,7.6,8.4,7.5,8.2,7.3c-0.4-0.6-1-0.9-1.6-1
+                      C5.9,6.1,5.3,6.3,4.7,6.8C4.6,6.8,2.6,8.9,2.6,8.9c-0.9,1-0.9,2.6,0.1,3.5s2.5,0.9,3.5,0l1.1-1.1c0.3-0.3,0.6-0.3,0.9,0
+                      c0.3,0.3,0.3,0.6,0,0.9L7,13.3C6.3,14,5.4,14.3,4.5,14.3z"/>
+                  </g>
+                </g>
+              </g>
+            </svg></a>
+          </div>
+          <iframe data-if="html" data-src="${iframePath}" style="max-width: 100%; width: 100%;" sandbox="allow-same-origin"></iframe>
+          <div>
+            <label for="fixedHTML">Is fixed</label>
+            <input type="checkbox" id="fixedHTML" data-bind="fixedHTML">
+          </div>
+        </fieldset><details>
+          <summary><h3>Dependencies: </h3></summary>
+
+          <div class="details-open-summery-child">
+            <label for="addDependenciesToBundles">
+              <input id="addDependenciesToBundles" type="checkbox" data-bind="addDependenciesToBundles">
+              add to bundle
+            </label>
+            <button data-add-component-property="dependencies" class="component-properties-add">+</button>
+            <div data-foreach="dependencies" class="flex-box">
+              <input data-bind="key.name">
+              <button class="component-properties-remove-template component-properties-remove" data-index="${key.index}" data-remove-component-property="dependencies">-</button>
+            </div></div>
+        </details><details>
+          <summary><h3>
+Bundles: </h3></summary>
+          <div class="details-open-summery-child">
+
+            <fieldset>
+              <legend>STYLESHEET:
+                <button data-add-component-property="bundle.stylesheet" class="component-properties-add">+</button></legend>
+
+              <div data-foreach="bundle.stylesheet" class="flex-box">
+                <input data-index="${key.index}" data-bind="key.name">:
+                <input data-index="${key.index}" data-bind="key.value">
+                <button class="component-properties-remove-bundle-stylesheet-attr component-properties-remove" data-index="${key.index}" data-remove-component-property="bundle.stylesheet">-</button>
+              </div>
+              <div>
+                <label>header for stylesheet</label>
+                <textarea data-bind="bundle.stylesheetHeader"></textarea>
+              </div>
+              <div>
+                <label>footer for stylesheet</label>
+                <textarea data-bind="bundle.stylesheetFooter"></textarea>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>SCRIPT:<button data-add-component-property="bundle.script" class="component-properties-add">+</button></legend>
+
+              <div data-foreach="bundle.script" class="flex-box">
+                <input data-index="${key.index}" data-bind="key.name">:
+                <input data-index="${key.index}" data-bind="key.value">
+                <button data-index="${key.index}" data-remove-component-property="bundle.script" class="component-properties-remove">-</button>
+              </div>
+              <div>
+                <label>header for script</label>
+                <textarea data-bind="bundle.scriptHeader"></textarea>
+              </div>
+              <div>
+                <label>footer for script</label>
+                <textarea data-bind="bundle.scriptFooter"></textarea>
+              </div>
+            </fieldset> </div>
+        </details><details>
+          <summary><h3>
+Sources:</h3></summary>
+          <div class="details-open-summery-child">
+
+
+            <fieldset>
+              <legend>STYLESHEETS:</legend>
+              <button data-add-component-property="sources.stylesheet" class="component-properties-add">+</button>
+              <button data-if="sources.stylesheets.length" class="concatenate-sources" data-type="stylesheets">Concatenate</button>
+              <div data-foreach="sources.stylesheets" data-foreach-key-name="style" class="flex-box">
+                <input data-index="style.index" data-bind="style.value">
+                <button class="component-properties-remove-stylesheet component-properties-remove" data-index="${style.index}" data-remove-component-property="sources.stylesheet">-</button>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>SCRIPTS:</legend>
+              <button data-add-component-property="sources.script" class="component-properties-add">+</button>
+              <button data-if="sources.scripts.length" class="concatenate-sources" data-type="scripts">Concatenate</button>
+              <button data-if="sources.scripts.length" class="minify-source-scripts">Minify</button>
+              <div data-foreach="sources.scripts" data-foreach-key-name="script" class="flex-box">
+                <input data-index="script.index" data-bind="script.value">
+                <button class="component-properties-remove-script component-properties-remove" data-index="${script.index}" data-remove-component-property="sources.script">-</button>
+              </div>
+            </fieldset>
+          </div></details><details>
+          <summary><h3>Miscellaneous:</h3></summary>
+          <div class="details-open-summery-child">
+
+
+            <button data-add-component-property="miscellaneous" class="component-properties-add">+</button>
+            <div data-foreach="miscellaneous" class="flex-box">
+              <input data-index="${key.index}" data-bind="key.src">
+              <button data-index="${key.index}" class="component-properties-remove-miscellaneous component-properties-remove" data-remove-component-property="miscellaneous">-</button>
+            </div> </div>
+        </details>
+          <fieldset>
+            <legend>
+              <input id="mergeMiscellaneous" type="checkbox" data-bind="mergeMiscellaneous"><label for="mergeMiscellaneous">MERGE MISCELLANEOUS:</label>
+            </legend>
+
+          </fieldset>
+          <fieldset>
+            <legend>INTERFACE:</legend>
+            <div class="flex-box">
+
+
+              <input id="component-properties-interface" name="component-properties-interface" data-bind="interface">
+            </div>
+          </fieldset><fieldset>
+          <legend>PARSEHTML FUNCTION FILE PATH:</legend>
+          <input id="component-properties-parseHTML" name="component-properties-parseHTML" data-bind="parseHTML">
+        </fieldset><fieldset>
+          <legend>SELECTOR:</legend>
+          <input id="component-properties-selector" name="component-properties-selector" data-bind="selector">
+        </fieldset>
+        </details>
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </form>
+</div>
+</body></html>

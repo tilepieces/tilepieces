@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TT binding example</title>
+</head>
+<body>
+<section>
+  <input id="name">
+  <input id="surname">
+  <button id="change">change</button>
+  <h1>Hello ${user.name} ${user.surname}!</h1>
+</section>
+<script src="../tt.js"></script>
+<script>
+  let scope = {
+    user: {
+      name: "",
+      surname: ""
+    }
+  };
+  let section = document.querySelector("section");
+  let template = new TT(section, scope);
+  document.getElementById("change").onclick = ()=>{
+    scope.user.name = document.getElementById("name").value;
+    scope.user.surname = document.getElementById("surname").value;
+    template.set("",scope)
+  };
+</script>
+</body>
+</html>

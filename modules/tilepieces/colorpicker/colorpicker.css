@@ -1,0 +1,7 @@
+#colorpicker{
+    display:none;
+    min-width: 503px;
+    min-height: 570px;
+    z-index:45;
+    top:50px;
+}

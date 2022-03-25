@@ -1,0 +1,92 @@
+<!DOCTYPE >
+<html>
+<head></head>
+<body><textarea id="test" style="width:100%;height:30vh"></textarea>
+<div>code-pressed-keydown:<span id="code-pressed-keydown"></span></div>
+<div>code-pressed-keyup:<span id="code-pressed-keyup"></span></div>
+<div id="key-combinations">
+  <h3>keyboard shortcuts</h3>
+  <div>
+    Canc = "delete"
+    <input type="checkbox" id="del" disabled="">
+  </div>
+  <div>
+    Ctrl+c = "copy"
+    <input type="checkbox" id="copy" disabled="">
+  </div>
+  <div>
+    Ctrl+x = "cut"
+    <input type="checkbox" id="cut" disabled="">
+  </div>
+  <div>
+    Ctrl+v = "paste"
+    <input type="checkbox" id="paste" disabled="">
+  </div>
+  <label for="undo">
+    Ctrl+z || Alt+arrowLeftKey = "undo"
+    <input type="checkbox" id="undo" disabled="">
+  </label>
+  <div>
+    Ctrl+y || Alt+arrowRightKey = "redo"
+    <input type="checkbox" id="redo" disabled="">
+  </div>
+  <div>
+    Mousedown+Ctrl = selection
+    <input type="checkbox" id="selection" disabled="">
+  </div>
+  <div>
+    Mousedown+Shift = Multi selection
+    <input type="checkbox" id="multiselection" disabled="">
+  </div>
+</div>
+<script src="../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../shortcuts.bundle.js" data-tilepieces-component="tilepieces/shortcuts"></script>
+<script>
+  var keydownInput = document.getElementById("code-pressed-keydown");
+  var keyupInput = document.getElementById("code-pressed-keyup");
+  var keyCombinationsInput = [...document.getElementById("key-combinations").querySelectorAll("input")];
+
+  function emptyAllChecked() {
+    keyCombinationsInput.forEach((v) => v.checked = false);
+  }
+
+  var shortcuts = new Shortcuts(test, {firingOnlyAtTarget: true, preventDefaultOnMeta: false});
+  shortcuts.on("down", (e) => keydownInput.innerHTML = e.key);
+  shortcuts.on("up", (e) => keyupInput.innerHTML = e.key);
+  shortcuts.on("copy", (e) => {
+    emptyAllChecked();
+    copy.checked = true;
+  });
+  shortcuts.on("cut", (e) => {
+    emptyAllChecked();
+    cut.checked = true;
+  });
+  shortcuts.on("paste", (e) => {
+    emptyAllChecked();
+    paste.checked = true;
+  });
+  shortcuts.on("undo", (e) => {
+    emptyAllChecked();
+    undo.checked = true;
+    e.preventDefault();
+  });
+  shortcuts.on("redo", (e) => {
+    emptyAllChecked();
+    redo.checked = true;
+    e.preventDefault();
+  });
+  shortcuts.on("selection", (e) => {
+    emptyAllChecked();
+    selection.checked = true;
+  });
+  shortcuts.on("multiselection", (e) => {
+    emptyAllChecked();
+    multiselection.checked = true;
+  });
+  shortcuts.on("delete", (e) => {
+    emptyAllChecked();
+    del.checked = true;
+  });
+</script>
+</body>
+</html>

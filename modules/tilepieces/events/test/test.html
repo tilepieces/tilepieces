@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>events test</title>
+</head>
+<body>
+
+<script src="../index.js" data-tilepieces-component="tilepieces/events"></script><script>
+    var x  = events();
+    var y = events();
+    x.on("move",function(e){
+        console.log("x ->" + e);
+    });
+    y.on("move",function(e){
+        console.log("y ->" + e);
+    });
+    x.dispatch("move","this is x calling");
+    y.dispatch("move","this is y calling");
+</script>
+
+</body></html>

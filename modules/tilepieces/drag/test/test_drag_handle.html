@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>test drag element</title>
+    
+
+    <style>
+        html,body{
+            height:100%;
+        }
+    </style>
+    <style>
+        #draggable{
+            position:absolute;
+            left:200px;
+            top:100px;
+        }
+        #draggable, #draggable2 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+        #draggable p { cursor: move; }
+        .ui-widget-header {
+            border: 1px solid #dddddd;
+            background: #e9e9e9;
+            color: #333333;
+            font-weight: bold;
+        }
+        .ui-widget-content {
+            border: 1px solid #dddddd;
+            background: #ffffff;
+            color: #333333;
+        }
+    </style>
+<link href="../css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag"></head>
+<body>
+<div id="draggable" class="ui-widget-content">
+    <p class="ui-widget-header __drag-cursor-grab">I can be dragged only by this handle</p>
+</div>
+
+<div id="draggable2" class="ui-widget-content">
+    <p class="ui-widget-header __drag-cursor-grab">You can drag me around…</p>
+    <p>…but you can't drag me by this handle.</p>
+</div>
+<!-- dependencies -->
+
+<!-- module js -->
+
+
+
+<script src="../../offset/offset.js" data-tilepieces-component="tilepieces/offset"></script>
+<script src="../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../drag.js" data-tilepieces-component="tilepieces/drag"></script>
+
+<script>
+    var d = __dragElement(document.getElementById("draggable"),{
+        handle : "p"
+    });
+    var d2 = __dragElement(document.getElementById("draggable2"),{
+        handle : ".ui-widget-header"
+    });
+</script></body></html>

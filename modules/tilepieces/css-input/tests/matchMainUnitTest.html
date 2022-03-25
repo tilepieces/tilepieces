@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      font-size: 1.6em;
+    }
+  </style>
+
+  <link href="../css-input.css" rel="stylesheet"
+        data-tilepieces-component="tilepieces/css-input">
+</head>
+<body>
+<fieldset>
+  <legend>t</legend>
+  <div class="input-css autocomplete" contenteditable="">100px solid rgb(255, 0, 0)</div>
+</fieldset>
+<fieldset>
+  <legend>one</legend>
+  <div class="input-css autocomplete" contenteditable="">background:
+    url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7) 0 0 no-repeat;
+  </div>
+</fieldset>
+<fieldset>
+  <legend>one</legend>
+  <div class="input-css autocomplete" contenteditable="">
+    url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7) 0 0 no-repeat
+    red,linear-gradient(10% rgb(0,0,0),100% rgba(0,0,0,0))
+  </div>
+</fieldset>
+<fieldset>
+  <legend>t</legend>
+  <div class="input-css autocomplete" contenteditable="">linear-gradient(10% rgb(0,0,0),100% rgba(0,0,0,0))</div>
+</fieldset>
+<script src="../css-input.bundle.js"
+        data-tilepieces-component="tilepieces/css-input"></script>
+<script>
+  inputCss(document.body);
+</script>
+
+</body>
+</html>

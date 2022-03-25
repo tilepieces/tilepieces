@@ -1,0 +1,168 @@
+body {
+  background: white;
+}
+
+#css-inspector {
+  box-sizing: border-box;
+  background: white;
+  font-family: sans-serif;
+}
+
+.css-inspector__menu-bar {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.css-inspector__menu-bar > span {
+  display: inline-block;
+  font-size: 1.5em;
+  width: 32px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pseudo-trigger-selected {
+  background: #ccc;
+}
+
+.css-inspector__container {
+  overflow: auto;
+}
+
+.css-inspector__element {
+  margin: 10px;
+}
+
+.css-inspector__rule-block {
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+  padding: 0.3em;
+  position: relative;
+}
+
+.css-inspector__rule-block.selected {
+  box-shadow: inset 0 0 16px 0 rgba(78, 78, 78, 0.31)
+}
+
+.css-inspector__rule-block:not(.contenteditable) {
+  box-shadow: none !important;
+  background-color: rgba(78, 78, 78, 0.14);
+}
+
+.css-inspector__rule-block:not(.contenteditable) .input-css-placeholder,
+.css-inspector__rule-block .rule__property:not(.contenteditable) .input-css-placeholder {
+  display: none
+}
+
+/* important! */
+#css-inspector__search {
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.css-inspector__search__selected {
+  background-color: #ffff84;
+}
+
+.css-inspector__rule-block .css-inspector__rule__selector-no-match,
+.css-inspector__rule-block .selector-style {
+  color: #ccc;
+}
+
+.css-inspector__rule-block .not_inherited_property {
+  opacity: 0.6;
+}
+
+.css-inspector__rule-block .property_not_present {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.css-inspector__rule-block__key.css-inspector__rule-block__strike,
+.css-inspector__rule-block__strike div {
+  text-decoration: line-through;
+}
+
+.editing .css-inspector__rule-block__key.css-inspector__rule-block__strike,
+.editing .css-inspector__rule-block__strike div {
+  text-decoration: none;
+}
+
+.css-inspector__rule-block__inherited-divider {
+  background-color: #f3f3f3;
+  border-bottom: 1px solid #ccc;
+  font-size: 0.8em;
+  padding: 4px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.css-inspector__show-element {
+  border: 1px solid #ccc;
+  background: white;
+}
+
+.css-inspector__href {
+  position: absolute;
+  right: 0;
+  font-size: 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+  max-width: 25%;
+  top: 0;
+  text-decoration: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.css-inspector__hide,
+#css-inspector .false,
+#css-inspector.false,
+#css-inspector .undefined {
+  display: none;
+}
+
+.css-inspector__disabled {
+  opacity: 0.3;
+  cursor: default !important;
+}
+
+.css-inspector__view {
+  width: 100%;
+  background-color: #f3f3f3;
+  border-bottom: 1px solid #bdbdbd;
+}
+/*
+.autocomplete-hint {
+  min-width: 250px;
+  font-size: 13px;
+}*/
+
+.css-inspector__rule-block .rule-block__add-property {
+  visibility: hidden;
+}
+
+.css-inspector__rule-block.selected.contenteditable .rule-block__add-property {
+  visibility: visible;
+}
+
+.is-not-inherited {
+  opacity: 0.4;
+}
+
+.editing .is-not-inherited {
+  opacity: 1;
+}
+
+#css-inspector .selector.false {
+  color: #a3a3a3;
+  display: inline;
+}
+
+.rule-sector-wrong {
+  font-size: 0.5em;
+  color: #ff5954;
+}
+
+/* #1a73e8 */

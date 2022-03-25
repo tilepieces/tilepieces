@@ -1,0 +1,11 @@
+@supports (display: grid) {
+  div.support-test {
+    display: grid;
+  }
+}
+
+@supports not (display: grid) {
+  div.support-test {
+    float: right;
+  }
+}

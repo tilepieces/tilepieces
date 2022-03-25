@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>merge cells test</title>
+    <style>
+        .buttons{
+            position:absolute;
+            width:300px;
+            height:50px;
+            right:0;
+            top:0;
+        }
+    </style>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+</head>
+<body>
+<h1>Click on a cell to abilitate buttons</h1>
+<h2>HTML Table</h2>
+
+<table>
+    <tr>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Country</th>
+    </tr>
+    <tr>
+        <td>Alfreds Futterkiste</td>
+        <td>Maria Anders</td>
+        <td>Germany</td>
+    </tr>
+    <tr>
+        <td>Centro comercial Moctezuma</td>
+        <td>Francisco Chang</td>
+        <td>Mexico</td>
+    </tr>
+    <tr>
+        <td>Ernst Handel</td>
+        <td>Roland Mendel</td>
+        <td>Austria</td>
+    </tr>
+    <tr>
+        <td>Island Trading</td>
+        <td>Helen Bennett</td>
+        <td>UK</td>
+    </tr>
+    <tr>
+        <td>Laughing Bacchus Winecellars</td>
+        <td>Yoshi Tannamuri</td>
+        <td>Canada</td>
+    </tr>
+    <tr>
+        <td>Magazzini Alimentari Riuniti</td>
+        <td>Giovanni Rovelli</td>
+        <td>Italy</td>
+    </tr>
+</table>
+<div class="buttons">
+    <button id="merge-cell-row-backwards"
+            onclick="mergeCellRow(event,'backward')" disabled>merge cell row backwards</button>
+    <button id="merge-cell-row-frontward"
+            onclick="mergeCellRow(event,'frontward')" disabled>merge cell row frontward</button>
+    <button id="merge-cell-column-backwards"
+            onclick="mergeCellColumn(event,'backward')" disabled>merge cell column backwards</button>
+    <button id="merge-cell-column-frontward"
+            onclick="mergeCellColumn(event,'frontward')" disabled>merge cell column frontward</button>
+    <button id="delete-column" onclick="deleteColumn()" disabled>remove column!</button>
+    <button id="undo" onclick="undo()" disabled>Undo!</button>
+    <button id="redo" onclick="redo()" disabled>Redo!</button>
+</div>
+<script src="../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var mergeCellRowBackwardsButton = document.getElementById("merge-cell-row-backwards");
+    var mergeCellRowFrontwardButton = document.getElementById("merge-cell-row-frontward");
+    var mergeCellColumnBackwardsButton = document.getElementById("merge-cell-column-backwards");
+    var mergeCellColumnFrontwardButton = document.getElementById("merge-cell-column-frontward");
+    var table = document.querySelector("table");
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    var highlightOverDiv = document.createElement("div");
+    highlightOverDiv.setAttribute("style",`position: fixed;
+    transform: translate3d(0px, 0px, 0px);
+    background: lightcyan; opacity: 0.4;
+    z-index: 7;
+    top: 0px;
+    left: 0px;
+    box-shadow: rgb(0, 161, 255) 0px 0px 0px 1px;
+    pointer-events: none;`);
+    document.body.appendChild(highlightOverDiv);
+    let tableCell;
+    window.addEventListener("DOM-change",function(){
+        if(htmlMatch.history.pointer != 0)
+            undoEl.removeAttribute("disabled");
+        else
+            undoEl.setAttribute("disabled","");
+        if(htmlMatch.history.pointer != htmlMatch.history.entries.length)
+            redoEl.removeAttribute("disabled");
+        else
+            redoEl.setAttribute("disabled","");
+    });
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+        document.addEventListener("click",e=>{
+            var target = e.target;
+            if(target.tagName == "TD" || target.tagName == "TH"){
+                var b = target.getBoundingClientRect();
+                highlightOverDiv.style.width = b.width + "px";
+                highlightOverDiv.style.height = b.height + "px";
+                highlightOverDiv.style.transform = "translate3d(" + b.x + "px," + b.y + "px,0)";
+                var rowPosition = [...table.rows].indexOf(target.parentNode);
+                var cellPosition = [...target.parentNode.cells].indexOf(target);
+                if(rowPosition>0 )
+                    mergeCellRowBackwardsButton.removeAttribute("disabled");
+                else
+                    mergeCellRowBackwardsButton.setAttribute("disabled","");
+                if(rowPosition < table.rows.length-1
+                        && target.rowSpan != table.rows.length)
+                    mergeCellRowFrontwardButton.removeAttribute("disabled");
+                else
+                    mergeCellRowFrontwardButton.setAttribute("disabled","");
+                if(cellPosition>0)
+                    mergeCellColumnBackwardsButton.removeAttribute("disabled");
+                else
+                    mergeCellColumnBackwardsButton.setAttribute("disabled","");
+                if(cellPosition<target.parentNode.cells.length-1 &&
+                        target.colSpan != target.parentNode.cells.length)
+                    mergeCellColumnFrontwardButton.removeAttribute("disabled");
+                else
+                    mergeCellColumnFrontwardButton.setAttribute("disabled","");
+                tableCell = target;
+            }
+            else {
+                tableCell = null;
+                mergeCellRowBackwardsButton.setAttribute("disabled","");
+                mergeCellRowFrontwardButton.setAttribute("disabled","");
+                mergeCellColumnBackwardsButton.setAttribute("disabled","");
+                mergeCellColumnFrontwardButton.setAttribute("disabled","");
+                highlightOverDiv.style.transform = "translate3d(-9999px,-9999px,0)";
+            }
+        })
+    }
+    a();
+    function mergeCellRow(event,type){
+        if(event.target.disabled || !tableCell)
+            return;
+        htmlMatch.mergeRowCell(tableCell,type);
+    }
+    function mergeCellColumn(event,type){
+        if(event.target.disabled || !tableCell)
+            return;
+        htmlMatch.mergeColumnCell(tableCell,type);
+    }
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+    }
+</script>
+</body>
+</html>

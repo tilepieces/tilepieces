@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+
+  <style>
+    span.key,
+    span.value {
+      min-width: 8px;
+      display: inline-block;
+      padding: 4px;
+    }
+  </style>
+  <link href="../autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete">
+</head>
+<body>
+<div>
+  <!--<input class="key" type="text" />-->
+  <span class="key autocomplete" contenteditable=""></span>
+  &nbsp;:&nbsp;
+  <!--<input class="value" type="text" />-->
+  <span class="value autocomplete" contenteditable=""></span>
+</div>
+
+
+<script src="properties.js"></script>
+
+
+<div class="autocomplete-hint" data-tilepieces-component="tilepieces/autocomplete"></div>
+<script src="../autocomplete.bundle.js" data-tilepieces-component="tilepieces/autocomplete"></script>
+<script>
+  var key = document.querySelector(".key");
+  var valueD = document.querySelector(".value");
+  var styles = [];
+  for (var k in document.body.style) {
+    if (k == "cssFloat")
+      continue;
+    if (isNaN(k)) {
+      var value = "";
+      for (var i = 0; i < k.length; i++) {
+        if (k.charAt(i) === k.charAt(i).toUpperCase())
+          value += "-" + k.charAt(i).toLowerCase();
+        else
+          value += k.charAt(i)
+      }
+      styles.push(value);
+    }
+
+  }
+  autocomplete(document.body);
+  key.__autocomplete_suggestions = styles;
+  key.addEventListener("blur", function (e) {
+    valueD.__autocomplete_suggestions = cssDefaultProperties[key.textContent.trim()] || [];
+    console.log(valueD.__autocomplete_suggestions);
+  })
+
+</script>
+</body>
+</html>

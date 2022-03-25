@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title></title><style data-tilepieces-current-stylesheet="">button.selected { background: rgb(125, 125, 125); color: rgb(255, 255, 255); }</style></head><body><div id="tags"><button id="a"><a href="javascript:void(0)">a</a></button><button id="b" class="selected"><b>b</b></button><button id="em"><em>em</em></button><button id="span">span</button><button id="mark"><mark>mark</mark></button><button id="u"><u>u</u></button></div><div id="utf8"><button><span style="font-family: &quot;Times New Roman&quot;; font-size: 20px; text-align: start;">😃</span></button><button><span style="font-family: &quot;Times New Roman&quot;; font-size: 20px; text-align: start;">😂</span></button><button><span style="font-family: &quot;Times New Roman&quot;; font-size: 20px; text-align: start;">😁</span></button><button><span style="font-family: &quot;Times New Roman&quot;; font-size: 20px; text-align: start;">😀</span></button></div><iframe style="width: 100%; height: 80vh;"></iframe><script src="../../css-specificity/cssSpecificity.js" data-tilepieces-component="tilepieces/css-specificity"></script><script src="../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script><script src="../../css-split-value/splitCssValue.js" data-tilepieces-component="tilepieces/css-split-value"></script><script src="../../css-matcher/css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script><script src="../../html-tree-match/htmlTreeMatch.js" data-tilepieces-component="tilepieces/html-tree-match"></script><script src="../../core/tilepieces-core.js" data-tilepieces-component="tilepieces/core"></script><script src="../wysiwyg.bundle.js" data-tilepieces-component="tilepieces/wysiwyg"></script><script src="../../test-utils/test-utils.bundle.js" data-tilepieces-component="tilepieces/test-utils"></script><script>setTest(null,document.querySelector("iframe")).then(res=>{
+  buttonsTag = document.querySelectorAll("#tags button")
+  buttonsTag.forEach(b=>{
+  var tagName = b.textContent.trim().toUpperCase();
+  wysiwyg
+    .buttonTextLevelTag(b,
+                        tagName,
+                        tagName == "A" ? [{name: "href", value: "#"}] : []);
+  });
+  var doc = tilepieces.core.currentDocument;
+  buttonsUTF8 = document.querySelectorAll("#utf8 button");
+  buttonsUTF8.forEach(v=>v.addEventListener("click",e=>{
+    wysiwyg.insertString(e.target.textContent);
+  }));
+  tilepieces.contenteditable = true;
+  tilepieces.core.contenteditable(doc.body);
+});</script></body></html>

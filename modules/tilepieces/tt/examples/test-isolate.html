@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<section>
+  <div>
+    <span>${name}</span>:
+    <span>${value}</span>
+  </div>
+  <div data-isolate>
+    <div>This element is isolated:</div>
+    <span>${name}</span>:
+    <span>${value}</span>
+  </div>
+</section>
+<script src="../tt.js"></script>
+<script>
+  let scope = {
+    name: "an",
+    value: "example"
+  }
+  let el = document.body.children[0];
+  let t = new TT(el, scope);
+</script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+{
+  "name": "tilepieces",
+  "description": "tilepieces main project",
+  "version": "0.1.0",
+  "author": "Simone Di Nuovo",
+  "website": "https://tilepieces.net",
+  "repository": "https://github.com/tilepieces/tilepieces",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {},
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {}
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": []
+  },
+  "dependencies": [],
+  "components": {
+    "tilepieces/css-matcher": {
+      "path": "/css-matcher",
+      "name": "tilepieces/css-matcher"
+    },
+    "tilepieces/css-mapper": {
+      "path": "/css-mapper",
+      "name": "tilepieces/css-mapper"
+    },
+    "tilepieces/css-split-value": {
+      "path": "/css-split-value",
+      "name": "tilepieces/css-split-value"
+    },
+    "tilepieces/codemirror": {
+      "path": "/codemirror",
+      "name": "tilepieces/codemirror"
+    },
+    "tilepieces/autocomplete": {
+      "path": "/autocomplete",
+      "name": "tilepieces/autocomplete"
+    },
+    "tilepieces/css-input": {
+      "path": "/css-input",
+      "name": "tilepieces/css-input"
+    },
+    "tilepieces/css-specificity": {
+      "path": "/css-specificity",
+      "name": "tilepieces/css-specificity"
+    },
+    "tilepieces/test-utils": {
+      "path": "/test-utils",
+      "name": "tilepieces/test-utils"
+    },
+    "tilepieces/dialog": {
+      "path": "/dialog",
+      "name": "tilepieces/dialog"
+    },
+    "tilepieces/events": {
+      "path": "/events",
+      "name": "tilepieces/events"
+    },
+    "tilepieces/offset": {
+      "path": "/offset",
+      "name": "tilepieces/offset"
+    },
+    "tilepieces/drag": {
+      "path": "/drag",
+      "name": "tilepieces/drag"
+    },
+    "tilepieces/dropzone": {
+      "path": "/dropzone",
+      "name": "tilepieces/dropzone"
+    },
+    "tilepieces/gradient": {
+      "path": "/gradient",
+      "name": "tilepieces/gradient"
+    },
+    "tilepieces/jszip": {
+      "path": "/jszip",
+      "name": "tilepieces/jszip"
+    },
+    "tilepieces/panel": {
+      "path": "/panel",
+      "name": "tilepieces/panel"
+    },
+    "tilepieces/shortcuts": {
+      "path": "/shortcuts",
+      "name": "tilepieces/shortcuts"
+    },
+    "tilepieces/project-tree": {
+      "path": "/project-tree",
+      "name": "tilepieces/project-tree"
+    },
+    "tilepieces/SVGtoXY": {
+      "path": "/SVGtoXY",
+      "name": "tilepieces/SVGtoXY"
+    },
+    "tilepieces/tabs": {
+      "path": "/tabs",
+      "name": "tilepieces/tabs"
+    },
+    "tilepieces/terser": {
+      "path": "/terser",
+      "name": "tilepieces/terser"
+    },
+    "tilepieces/html-tree-match": {
+      "path": "/html-tree-match",
+      "name": "tilepieces/html-tree-match"
+    },
+    "tilepieces/core": {
+      "path": "/core",
+      "name": "tilepieces/core"
+    },
+    "tilepieces/storage-interface-http": {
+      "path": "/storage-interface-http",
+      "name": "tilepieces/storage-interface-http"
+    },
+    "tilepieces/stylesheet": {
+      "path": "/stylesheet",
+      "name": "tilepieces/stylesheet"
+    },
+    "tilepieces/vanilla-picker": {
+      "path": "/vanilla-picker",
+      "name": "tilepieces/vanilla-picker"
+    },
+    "tilepieces/tt": {
+      "path": "/tt",
+      "name": "tilepieces/tt"
+    },
+    "tilepieces/wysiwyg": {
+      "path": "/wysiwyg",
+      "name": "tilepieces/wysiwyg"
+    },
+    "tilepieces/codeMirror-editor": {
+      "path": "/codeMirror-editor",
+      "name": "tilepieces/codeMirror-editor"
+    },
+    "tilepieces/colorpicker": {
+      "path": "/colorpicker",
+      "name": "tilepieces/colorpicker"
+    },
+    "tilepieces/dialogReader": {
+      "path": "/dialogReader",
+      "name": "tilepieces/dialogReader"
+    },
+    "tilepieces/framework": {
+      "path": "/framework",
+      "name": "tilepieces/framework"
+    },
+    "tilepieces/css-rule-modification": {
+      "path": "/css-rule-modification",
+      "name": "tilepieces/css-rule-modification"
+    },
+    "tilepieces/animations": {
+      "path": "/animations",
+      "name": "tilepieces/animations"
+    },
+    "tilepieces/background": {
+      "path": "/background",
+      "name": "tilepieces/background"
+    },
+    "tilepieces/border": {
+      "path": "/border",
+      "name": "tilepieces/border"
+    },
+    "tilepieces/css-text": {
+      "path": "/css-text",
+      "name": "tilepieces/css-text"
+    },
+    "tilepieces/css-inspector": {
+      "path": "/css-inspector",
+      "name": "tilepieces/css-inspector"
+    },
+    "tilepieces/fonts": {
+      "path": "/fonts",
+      "name": "tilepieces/fonts"
+    },
+    "tilepieces/layout": {
+      "path": "/layout",
+      "name": "tilepieces/layout"
+    },
+    "tilepieces/transform": {
+      "path": "/transform",
+      "name": "tilepieces/transform"
+    },
+    "tilepieces/css-viewer": {
+      "path": "/css-viewer",
+      "name": "tilepieces/css-viewer"
+    },
+    "tilepieces/component-panel": {
+      "path": "/component-panel",
+      "name": "tilepieces/component-panel"
+    },
+    "tilepieces/element-panel": {
+      "path": "/element-panel",
+      "name": "tilepieces/element-panel"
+    },
+    "tilepieces/html-tree-builder": {
+      "path": "/html-tree-builder",
+      "name": "tilepieces/html-tree-builder"
+    },
+    "tilepieces/html-inspector": {
+      "path": "/html-inspector",
+      "name": "tilepieces/html-inspector"
+    },
+    "tilepieces/panel-history": {
+      "path": "/panel-history",
+      "name": "tilepieces/panel-history"
+    },
+    "tilepieces/project-explorer": {
+      "path": "/project-explorer",
+      "name": "tilepieces/project-explorer"
+    },
+    "tilepieces/package-manager": {
+      "path": "/package-manager",
+      "name": "tilepieces/package-manager"
+    },
+    "tilepieces/vertical-tab": {
+      "path": "/vertical-tab",
+      "name": "tilepieces/vertical-tab"
+    },
+    "tilepieces/screen-dimensions-panel": {
+      "path": "/screen-dimensions-panel",
+      "name": "tilepieces/screen-dimensions-panel"
+    },
+    "tilepieces/test-storage-api": {
+      "path": "/test-storage-api",
+      "name": "tilepieces/test-storage-api"
+    }
+  },
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

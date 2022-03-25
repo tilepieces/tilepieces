@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test html tree builder - test page</title>
+
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #example {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #overlay {
+      border: 1px solid #ccc;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+      box-sizing: border-box;
+      height: 220px;
+      overflow: auto;
+    }
+  </style>
+  <link href="../css.css" rel="stylesheet" data-tilepieces-component="html-tree-builder">
+</head>
+<body>
+<iframe id="example"></iframe>
+<div id="overlay" tabindex="-1"></div>
+
+
+<script src="../html-tree-builder.bundle.js" data-tilepieces-component="html-tree-builder"></script>
+<script>
+  var example = document.getElementById("example");
+  example.src = "test-files/test-file-1.html";
+  example.addEventListener("load", function (e) {
+    var html = htmlTreeBuilder(overlay, example.contentDocument);
+  })
+</script>
+</body>
+</html>

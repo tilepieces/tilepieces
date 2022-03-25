@@ -1,0 +1,9 @@
+#background-box .false, #background-box.undefined { display: none; }
+#background-box .backgrounds { display: none; }
+#background-box .backgrounds.selected { display: block; }
+.div-dropzone { border: 1px solid; border-radius: 10px; text-align: center; padding: 0.4em; }
+#background-box .tab-buttons { padding-left: 0px; padding-right: 0px; }
+.div-dropzone > img { max-height: 100px; }
+#background-tabs h3, #background-tabs .backgrounds { padding: 0px 1em; }
+#background-box > fieldset { padding: 0px 1em; }
+#background-box .tab-horizontal .tab-buttons-inside { padding: 1px 0px; }

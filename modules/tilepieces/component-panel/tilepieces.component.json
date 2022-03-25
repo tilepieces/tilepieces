@@ -1,0 +1,49 @@
+{
+  "name": "tilepieces/component-panel",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "component-panel.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "css/css.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "component-panel.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src/header",
+      "src/*.js",
+      "src/!(header)**/**/*.js"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/stylesheet",
+    "tilepieces/tabs"
+  ],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "component-panel.html",
+    "component-panel-pop.html"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": "",
+  "components": {
+    "tilepieces/component-panel/bundle": {
+      "name": "tilepieces/component-panel/bundle",
+      "path": "/bundle"
+    }
+  }
+}

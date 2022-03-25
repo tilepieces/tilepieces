@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="../lib/drag/dist/__drag.css" rel="stylesheet" data-frontart-component="drag"
+        data-frontart-version="1.0.14">
+  <link href="../lib/resizable/index.css" rel="stylesheet" data-frontart-component="resizable"
+        data-frontart-version="1.0.0">
+  <link href="../lib/dockable/css/css.css" rel="stylesheet" data-frontart-component="dockable"
+        data-frontart-version="1.0.0">
+  <style>
+    #table-template-2 table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #table-template-2 td, #table-template-2 th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    #table-template-2 tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    thead {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+<div class="dockable-element" id="dockable">
+  <div class="dockable-handler">
+    <span class="dockable-title">TABLE TEST INTERFACE</span>
+  </div>
+  <span class="dockable-eject"></span>
+  <span class="dockable-close">X</span>
+  <iframe data-src="../interface.html"></iframe>
+  <div class="dockable-prevent-iframe-mousedown"></div>
+</div>
+<div id="table-template-1">
+  <h2>Table #1</h2>
+  <table>
+    <tbody>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!-- TEST BODY -->
+<div id="table-template-2">
+  <h2>Table #2 ( taken from
+    <a target="_blank" href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro">
+      www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro
+    </a></h2>
+  <table>
+    <tbody>
+    <tr>
+      <th>Company</th>
+      <th>Contact</th>
+      <th>Country</th>
+    </tr>
+    <tr>
+      <td>Alfreds Futterkiste</td>
+      <td>Maria Anders</td>
+      <td>Germany</td>
+    </tr>
+    <tr>
+      <td>Centro comercial Moctezuma</td>
+      <td>Francisco Chang</td>
+      <td>Mexico</td>
+    </tr>
+    <tr>
+      <td>Ernst Handel</td>
+      <td>Roland Mendel</td>
+      <td>Austria</td>
+    </tr>
+    <tr>
+      <td>Island Trading</td>
+      <td>Helen Bennett</td>
+      <td>UK</td>
+    </tr>
+    <tr>
+      <td>Laughing Bacchus Winecellars</td>
+      <td>Yoshi Tannamuri</td>
+      <td>Canada</td>
+    </tr>
+    <tr>
+      <td>Magazzini Alimentari Riuniti</td>
+      <td>Giovanni Rovelli</td>
+      <td>Italy</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div id="table-template-3">
+  <h2>Table #3</h2>
+  <table>
+    <caption>A caption</caption>
+    <thead>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+<!-- TEST BODY -->
+<template id="frontart-resizable" data-frontart-component="resizable">
+  <div class="frontart-resizable">
+    <div class="nw"></div>
+    <div class="n"></div>
+    <div class="ne"></div>
+    <div class="e"></div>
+    <div class="se"></div>
+    <div class="s"></div>
+    <div class="sw"></div>
+    <div class="w"></div>
+  </div>
+</template>
+<script src="../lib/ft/ft.js" data-frontart-component="ft" data-frontart-version="1.0.0"></script>
+<script src="../lib/offset/offset.js" data-frontart-component="offset" data-frontart-version="1.0.0"></script>
+<script src="../lib/events/index.js" data-frontart-component="events" data-frontart-version="1.0.0"></script>
+<script src="../lib/drag/dist/__drag.js" data-frontart-component="drag" data-frontart-version="1.0.14"></script>
+<script src="../lib/resizable/index.js" data-frontart-component="resizable" data-frontart-version="1.0.0"></script>
+<script src="../lib/dockable/index.js" data-frontart-component="dockable" data-frontart-version="1.0.0"></script>
+<script src="../lib/css-parser/css-parser.js" data-frontart-component="css-parser"
+        data-frontart-version="1.0.0"></script>
+<script src="../lib/HTMLTreeMatch/HTMLTreeMatch.js" data-frontart-component="HTMLTreeMatch"
+        data-frontart-version="0.0.1"></script>
+<script src="../lib/cssspecifity/cssSpecifity.js" data-frontart-component="cssspecifity"
+        data-frontart-version="1.0.1"></script>
+<script src="../lib/css-matcher/css-matcher.js" data-frontart-component="css-matcher"
+        data-frontart-version="1.0.0"></script>
+<script src="../lib/frontart-core/frontart-core.js" data-frontart-component="frontart-core"
+        data-frontart-version="0.0.1"></script>
+<script>
+  var DOMtoDock = document.getElementById("dockable");
+  var interfaceFrame = DOMtoDock.querySelector("iframe");
+  /* DOCKING IFRAME */
+  var dock = dockable(DOMtoDock);
+  dock.show();
+  var frontartApp = {
+    core: null,
+    currentElement: null
+  };
+  (async () => {
+    var html = await fetch(document.location);
+    var htmltext = await html.text();
+    frontartApp.core = await frontArtCore().init(document, htmltext);
+    document.addEventListener("click", function (e) {
+      if (e.target.closest("table")) {
+        interfaceFrame.contentWindow.dispatchEvent(
+          new CustomEvent("activated", {
+            detail: {
+              target: e.target,
+              document: document,
+              window: window
+            }
+          })
+        )
+      } else
+        interfaceFrame.contentWindow.dispatchEvent(new Event("deactivated"))
+    })
+  })();
+</script>
+</body>
+</html>

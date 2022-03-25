@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+  <title>tilepieces colorpicker test</title>
+  
+<link href="../../drag/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag"><link href="../../panel/css/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/panel"><link href="../colorpicker.css" rel="stylesheet" data-tilepieces-component="tilepieces/colorpicker"></head>
+<body>
+<div class="panel-element" data-tilepieces-component="panel-html-template" id="colorpicker">
+    <div class="panel-handler">
+        <span class="panel-title">Colorpicker</span>
+    </div>
+    <span class="panel-minimize">_</span>
+    <span class="panel-eject"></span>
+    <span class="panel-close">X</span>
+    <iframe data-src="../colorpicker.html"></iframe>
+    <div class="panel-prevent-iframe-mousedown"></div>
+</div>
+<script src="../../css-specificity/cssSpecificity.js" data-tilepieces-component="tilepieces/css-specificity"></script><script src="../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script><script src="../../css-split-value/splitCssValue.js" data-tilepieces-component="tilepieces/css-split-value"></script><script src="../../css-matcher/css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script><script src="../../html-tree-match/htmlTreeMatch.js" data-tilepieces-component="tilepieces/html-tree-match"></script><script src="../../core/tilepieces-core.js" data-tilepieces-component="tilepieces/core"></script><script src="../../events/index.js" data-tilepieces-component="tilepieces/events"></script><script src="../../offset/offset.js" data-tilepieces-component="tilepieces/offset"></script><script src="../../drag/drag.js" data-tilepieces-component="tilepieces/drag"></script><script src="../../panel/panel.js" data-tilepieces-component="tilepieces/panel"></script><script src="../front.js" data-tilepieces-component="tilepieces/colorpicker"></script><script>tilepieces.colorPicker("#fff").onChange(c=>{
+  console.log(c)
+  document.body.style.backgroundColor= c.hex
+});</script></body></html>

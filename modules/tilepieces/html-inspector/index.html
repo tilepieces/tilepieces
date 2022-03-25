@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html><head><title>Html Inspector</title>
+  <link href="bundle/html-inspector.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/html-inspector/bundle">
+</head>
+<body>
+<div class="tab-buttons tab-horizontal" data-tilepieces-component="tilepieces/tabs/template">
+  <a class="tab-prev" href="javascript:void(0)">...</a>
+  <a class="tab-next" href="javascript:void(0)">...</a>
+  <div class="tab-buttons-wrap">
+    <div class="tab-buttons-inside">
+      
+      
+    <a id="search-trigger" href="javascript:void(0)">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <g>
+          <path style="fill:#727272;" d="M9.8,2.5l1.6,1.6c1.1-1.1,2.6-1.8,4.2-1.8c1.6,0,3.1,0.6,4.2,1.8c1.1,1.1,1.7,2.7,1.7,4.3
+		c0,1.6-0.6,3.1-1.7,4.3s-2.6,1.8-4.2,1.8c-1.6,0-3.1-0.6-4.2-1.8c-1.1-1.1-1.7-2.7-1.7-4.3c0-1.6,0.6-3.1,1.7-4.3L9.8,2.5 M9.8,2.5
+		C8.3,4,7.4,6.1,7.4,8.3c0,4.6,3.6,8.3,8.1,8.3c2.2,0,4.3-0.9,5.7-2.4c1.5-1.5,2.4-3.6,2.4-5.9C23.7,3.8,20,0,15.6,0
+		C13.3,0,11.3,1,9.8,2.5L9.8,2.5z"></path>
+          <path style="fill:#727272;" d="M0.7,23.5c-0.6-0.6-0.6-1.5,0-2.1l5.6-5.7l3.3-3.4l1.8,2.3l-3.1,3.2l-5.6,5.8
+		C2.2,24.1,1.3,24.1,0.7,23.5z"></path>
+        </g>
+      </svg>
+    </a><a id="multiselect" href="javascript:void(0)">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" height="24" width="24">
+      <g>
+        <g>
+          <path style="fill:#ccc;" d="M13.5,2.6H4.4c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7V4.4
+C15.2,3.4,14.5,2.6,13.5,2.6z"></path>
+          <path style="fill:#fff;" d="M13.2,6c-0.3-0.3-0.9-0.3-1.2,0L8.2,9.7L6.4,7.9C6,7.5,5.5,7.5,5.1,7.9c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,6.9,13.5,6.3,13.2,6z"></path>
+        </g>
+        <g>
+          <path style="fill:#999999;" d="M28.6,2.6h-9.1c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7V4.4
+C30.3,3.4,29.5,2.6,28.6,2.6z"></path>
+          <path style="fill:#FFFFFF;" d="M28.3,6c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7l-1.9-1.9c-0.3-0.3-0.9-0.3-1.2,0c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C28.6,6.9,28.6,6.3,28.3,6z"></path>
+        </g>
+        <g>
+          <path style="fill:#ccc;" d="M28.6,17.8h-9.1c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7v-9.1
+C30.3,18.6,29.5,17.8,28.6,17.8z"></path>
+          <path style="fill:#FFFFFF;" d="M28.3,21.2c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7L21.4,23c-0.3-0.3-0.9-0.3-1.2,0s-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C28.6,22.1,28.6,21.5,28.3,21.2z"></path>
+        </g>
+        <g>
+          <path style="fill:#999999;" d="M13.5,17.8H4.4c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7v-9.1
+C15.2,18.6,14.5,17.8,13.5,17.8z"></path>
+          <path style="fill:#FFFFFF;" d="M13.2,21.2c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7L6.4,23c-0.3-0.3-0.9-0.3-1.2,0c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,22.1,13.5,21.5,13.2,21.2z"></path>
+        </g>
+      </g>
+    </svg>
+    </a><a id="css" href="#css-view" class="menu-bar-tabs">CSS</a><a id="js" href="#js-view" class="menu-bar-tabs">JS</a></div>
+  </div>
+</div><div class="menu-bar">
+  <div id="search-bar">
+    <input id="find-button" placeholder="Find by Css selector">
+    <span id="search-bar-entries"><b></b>/<sub></sub></span>
+    <button id="search-bar-up" disabled="">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 17 17" style="enable-background:new 0 0 17 17;transform: rotate(-90deg);">
+        <g>
+          <path style="fill:#999999;" d="M12.5,9.4l-6.4,6.4c-0.5,0.5-1.2,0.5-1.7,0l0,0C4,15.2,4,14.5,4.5,14l6.4-6.4c0.5-0.5,1.2-0.5,1.7,0   l0,0C13,8.1,13,8.9,12.5,9.4z"></path>
+          <path style="fill:#999999;" d="M12.5,7.6L6.2,1.3C5.7,0.8,5,0.8,4.5,1.3l0,0C4,1.8,4,2.5,4.5,3l6.4,6.4c0.5,0.5,1.2,0.5,1.7,0l0,0   C13,8.9,13,8.1,12.5,7.6z"></path>
+        </g>
+      </svg>
+    </button>
+    <button id="search-bar-down" disabled="">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17" style="enable-background:new 0 0 17 17;transform: rotate(90deg);">
+        <g>
+          <path style="fill:#999999;" d="M12.5,9.4l-6.4,6.4c-0.5,0.5-1.2,0.5-1.7,0l0,0C4,15.2,4,14.5,4.5,14l6.4-6.4c0.5-0.5,1.2-0.5,1.7,0   l0,0C13,8.1,13,8.9,12.5,9.4z"></path>
+          <path style="fill:#999999;" d="M12.5,7.6L6.2,1.3C5.7,0.8,5,0.8,4.5,1.3l0,0C4,1.8,4,2.5,4.5,3l6.4,6.4c0.5,0.5,1.2,0.5,1.7,0l0,0   C13,8.9,13,8.1,12.5,7.6z"></path>
+        </g>
+      </svg>
+    </button>
+  </div>
+</div>
+<div id="overlay" tabindex="-1">
+  <div id="overlay-inner"></div>
+  <div class="frontart-tooltip" tabindex="-1">
+    <div data-name="add-attribute">Add Attribute</div>
+    <div data-name="edit-attribute">Edit Attribute</div>
+    <div data-name="edit-inner-html">Edit inner HTML</div>
+    <div data-name="edit-outer-html">Edit outer HTML</div>
+    <div data-name="delete-element">Delete element</div>
+    <div data-name="set-as-current-stylesheet">Set as Current Stylesheet</div>
+    <div data-name="save">save</div>
+    <hr>
+    <div data-name="cut-element">Cut Element</div>
+    <div data-name="copy-element">Copy Element</div>
+    <div data-name="paste-element">
+      <span class="not-multiselected">Paste Element</span><span class="multiselected">Paste Elements</span>
+    </div>
+    <hr>
+    <div data-name="expand-recursively">Expand recursively</div>
+    <div data-name="collapse-children">Collapse children</div>
+    <div data-name="scroll-into-view">Scroll Into View</div>
+    <section class="multiselection-tooltip">
+      <div data-name="delete-element">Delete elements</div>
+      <div data-name="cut-element">Cut Elements</div>
+      <div data-name="copy-element">Copy Elements</div>
+      <div data-name="paste-element">Paste Elements</div>
+    </section>
+  </div>
+</div>
+<div id="css-view" style="display:none">
+  <button id="add-stylesheet">+</button>
+  <ul class="html-tree-builder" id="css-view-list" tabindex="-1"></ul>
+  <div class="frontart-tooltip" id="css-view-tooltip" tabindex="-1">
+    <div data-name="reveal">reveal in inspector</div>
+    <div data-name="remove-element">remove</div>
+    <div data-name="set-as-current">set as current stylesheet</div>
+    <div data-name="edit">edit</div>
+    <div data-name="save">save</div>
+  </div>
+  <template id="add-stylesheet-modal-template">
+    <form id="add-stylesheet-form">
+      <fieldset>
+        <legend><label for="add-stylesheet-tag">Tag type:</label></legend>
+        <select id="add-stylesheet-tag" name="add-stylesheet-tag">
+          <option value="link" selected="">link</option>
+          <option value="style">style</option>
+        </select>
+      </fieldset>
+      <fieldset id="add-stylesheet-href-field">
+        <legend><label for="add-stylesheet-href">Href:</label></legend>
+        <input id="add-stylesheet-href" name="add-stylesheet-href">
+      </fieldset>
+      <fieldset>
+        <legend><label for="add-stylesheet-current">is current stylesheet</label></legend>
+        <input type="checkbox" id="add-stylesheet-current" name="add-stylesheet-current" checked="">
+      </fieldset>
+      <div>
+        <button type="submit">OK</button>
+      </div>
+    </form>
+  </template>
+</div>
+<div id="js-view" style="display:none">
+  <button id="add-script">+</button>
+  <ul class="html-tree-builder" id="js-view-list" tabindex="-1"></ul>
+  <div class="frontart-tooltip" id="js-view-tooltip" tabindex="-1">
+    <div data-name="reveal">reveal in inspector</div>
+    <div data-name="remove-element">remove</div>
+    <div data-name="edit">edit</div>
+  </div>
+  <template id="add-script-modal-template">
+    <form id="add-script-form">
+      <fieldset id="add-script-src-field">
+        <legend><label for="add-script-src-enable">Src:</label></legend>
+        <input id="add-script-src-enable" type="checkbox" name="add-script-src-enable">
+        <input id="add-script-src" name="add-script-src">
+      </fieldset>
+      <div>
+        <button type="submit">OK</button>
+      </div>
+    </form>
+  </template>
+</div>
+<div id="dependencies-view" style="display:none">dependencies view</div>
+<div class="tilepieces-dialog" id="tilepieces-alert-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+  <div class="tilepieces-dialog-content">
+    <form id="tilepieces-dialog-alert-form">
+      <span id="tilepieces-alert-dialog-label"></span>
+      <div>
+        <button type="submit" id="tilepieces-alert-dialog-button">OK</button>
+      </div>
+    </form>
+  </div>
+  <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div>
+<div class="tilepieces-dialog" id="tilepieces-confirm-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+  <div class="tilepieces-dialog-content">
+    <span id="tilepieces-confirm-dialog-label"></span>
+    <div>
+      <button id="tilepieces-confirm-dialog-button">Ok</button>
+      <button id="tilepieces-reject-dialog-button">Cancel</button>
+    </div>
+  </div>
+  <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div>
+<div class="tilepieces-dialog" id="tilepieces-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+  <div class="tilepieces-dialog-content">
+    <!-- insert content here -->
+  </div>
+  <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div>
+<div class="tilepieces-dialog" id="tilepieces-prompt-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+  <div class="tilepieces-dialog-content">
+    <form id="tilepieces-dialog-prompt-form">
+      <label for="tilepieces-dialog-prompt">
+        <span id="tilepieces-prompt-dialog-label"></span>
+        <input name="tilepieces-dialog-prompt" id="tilepieces-dialog-prompt" title="" autocomplete="off" required="">
+      </label>
+      <div>
+        <button type="submit" id="tilepieces-prompt-dialog-button"></button>
+      </div>
+    </form>
+  </div>
+  <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div>
+<script src="bundle/html-inspector.bundle.js" data-tilepieces-component="tilepieces/html-inspector/bundle"></script>
+
+</body></html>

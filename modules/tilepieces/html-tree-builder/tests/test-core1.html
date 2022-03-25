@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test html tree builder</title>
+
+
+  <style>
+    .yellow {
+      background: yellow;
+    }
+
+    #find-button {
+      width: 100%;
+      height: 30px;
+      border: 1px solid #ccc;
+    }
+
+    #search-bar {
+      position: relative;
+      display: flex;
+    }
+
+    #search-bar > * {
+      flex-grow: 1
+    }
+
+    #search-bar button {
+      background: lightgrey;
+      color: #333;
+    }
+
+    #search-bar button.selected {
+      background: grey;
+      color: #fff;
+    }
+
+    #search-bar div {
+      position: relative;
+      display: flex;
+      flex-grow: 14;
+    }
+
+    #search-bar-entries {
+      display: none;
+    }
+  </style>
+  <link href="../css.css" rel="stylesheet" data-tilepieces-component="html-tree-builder">
+</head>
+<body>
+<div class="event w3c_topstory expand_block">
+  <div class="headline">
+    <h3 class="h4 tPadding0 bPadding0 summary">
+      <span class="expand_section"><a href="#"><img src="/2008/site/images/ico-minus" width="9" height="9"
+                                                    alt="Collapse">W3C Strategic Highlights, Spring 2019</a></span>
+    </h3>
+    <p class="date">
+      <span class="dtstart published" title="2019-04-23T13:29:45Z"> 23 April 2019 </span> | <a
+      title="Archive: W3C Strategic Highlights, Spring 2019"
+      href="https://www.w3.org/blog/news/archives/7724">Archive</a>
+    </p>
+  </div>
+  <div class="description expand_description"><p><a class="imageLink" href="https://www.w3.org/2019/04/w3c-highlights/"><img
+    src="https://www.w3.org/2019/Talks/ac-slides/ac2019-jeff-ceo/pipeline-2019.png"
+    alt="Pipeline of innovation [Lightbulb design credit: Freepik]" width="200"></a>W3C released today its <a
+    href="https://www.w3.org/2019/04/w3c-highlights/">W3C Strategic Highlights – Spring 2019</a>, a comprehensive survey
+    of the essential work W3C conducts to achieve a Web for All, and select recent work in many areas where the Web can
+    solve arising problems for real people.</p>
+    <p>To the pipeline of innovations
+      to
+      enable
+      the Web to scale to meet the new challenges and opportunities,
+      we are making recent additions:</p>
+    <ul class="show_items">
+      <li> W3C <a href="https://www.w3.org/2019/04/pressrelease-wps.html.en">chartered a Web Payment Security Interest
+        Group</a> to foster greater coordination and ultimately enhance the security and interoperability of Web
+        payments.
+      </li>
+      <li> Web &amp; Networks: what is needed for the Web to take advantage of 5G, QUIC, and Edge Computing changing the
+        topology of network-based services? We have started to flesh out a group charter in the wake of the W3C Web5G
+        workshop in May 2018.
+      </li>
+      <p>As the Web evolves continuously, some groups are looking for ways for specifications to do so as well.
+        So-called “evergreen recommendations” or “living standards” aim to track continuous development (and
+        maintenance) of features, on a feature-by-feature basis, while getting review and patent commitments.</p>
+      <p>Continued progress in many areas demonstrates the vitality of the W3C and the Web community. We see the
+        maturation and further development of an incredible number of new technologies coming to the Web.</p>
+    </ul>
+  </div>
+</div>
+<div id="search-bar">
+  <input id="find-button" placeholder="Find by Css selector">
+  <span id="search-bar-entries"><b></b>/<sub></sub></span>
+  <button id="search-bar-up" disabled="">^</button>
+  <button id="search-bar-down" disabled="">v</button>
+</div>
+<div id="overlay" tabindex="-1"></div>
+
+
+<script src="../components/css-specificity/cssSpecificity.js" data-tilepieces-component="css-specificity"></script>
+<script src="../components/css-matcher/css-matcher.js" data-tilepieces-component="css-matcher"></script>
+<script src="../components/css-mapper/css-mapper.bundle.js" data-tilepieces-component="css-mapper"></script>
+<script src="../components/html-tree-match/htmlTreeMatch.js" data-tilepieces-component="html-tree-match"></script>
+<script src="../components/wt/wt.js" data-tilepieces-component="wt"></script>
+<script src="../components/tilepieces-core/tilepieces-core.js" data-tilepieces-component="tilepieces-core"></script>
+<script src="../html-tree-builder.bundle.js" data-tilepieces-component="html-tree-builder"></script>
+<script>
+  // core integration
+  let core;
+  (async () => {
+    var html = await fetch(location.href);
+    var htmltext = await html.text();
+    core = await tilepiecesCore().init(document, htmltext);
+  })();
+</script>
+<script>
+  var html = htmlTreeBuilder(overlay, document);
+  var searchBar = document.getElementById("search-bar");
+  var searchBarEntries = document.getElementById("search-bar-entries");
+  var searchBarUp = document.getElementById("search-bar-up");
+  var searchBarDown = document.getElementById("search-bar-down");
+  var findButton = document.getElementById("find-button");
+  var selected = searchBar.children[1];
+  var pointer = 0;
+  var selectionText = "";
+  var selections = [];
+  var currentEl;
+
+  function changeSelection(index) {
+    searchBarEntries.children[0].textContent = index + 1;
+    var value = selections[index];
+    if (value == currentEl)
+      return;
+    currentEl = value;
+    if (currentEl.nodeType == 1)
+      html.select(currentEl);
+    else
+      html.select(currentEl.parentNode);
+  }
+
+  searchBarUp.addEventListener("click", function (e) {
+    if (e.target.disabled)
+      return;
+    pointer = pointer ? pointer - 1 : selections.length - 1;
+    changeSelection(pointer)
+  });
+  searchBarDown.addEventListener("click", function (e) {
+    if (e.target.disabled)
+      return;
+    pointer = pointer < selections.length - 1 ? pointer + 1 : 0;
+    changeSelection(pointer)
+  });
+  searchBar.addEventListener("click", function (e) {
+    if (e.target.nodeName != "BUTTON" ||
+      e.target.parentNode != searchBar ||
+      e.target == selected)
+      return;
+    selected.classList.remove("selected");
+    e.target.classList.add("selected");
+    selected = e.target;
+  });
+  findButton.addEventListener("keydown", function (e) {
+    if (e.key != "Enter")
+      return;
+    selectionText = findButton.value.trim();
+    if (!selectionText) {
+      searchBarDown.disabled = true;
+      searchBarUp.disabled = true;
+      searchBarEntries.style.display = "none";
+      pointer = 0;
+      selections = [];
+      html.select(document);
+      return;
+    }
+    selections = document.querySelectorAll(selectionText);
+    searchBarEntries.children[0].textContent = selections.length ? "1" : "0";
+    searchBarEntries.children[1].textContent = selections.length ? selections.length : "0";
+    searchBarEntries.style.display = "block";
+    if (!selections.length)
+      return;
+    searchBarDown.disabled = false;
+    searchBarUp.disabled = false;
+    changeSelection(0);
+  })
+</script>
+</body>
+</html>

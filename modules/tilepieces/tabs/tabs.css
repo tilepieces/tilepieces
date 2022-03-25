@@ -1,0 +1,11 @@
+.tab-horizontal.tab-buttons { position: relative; padding: 0em 0px 0px; font: 1.3em sans-serif; margin-bottom: 1em; overflow-x: hidden; }
+.tab-horizontal.tab-buttons > a { position: absolute; text-decoration: none; color: rgb(51, 51, 51); display: none; font-size: 1.2em; z-index: 2; background: url("/modules/tilepieces/tabs/svg-ico-freccia.svg") 50% 60% / 35% no-repeat scroll rgb(255, 255, 255); text-indent: -9999px; padding: 0.6em 0.9em 0.3em; height: calc(100% - 3px); box-sizing: border-box; }
+.tab-horizontal.tab-buttons > a:hover { }
+.tab-horizontal.tab-buttons > .tab-prev { left: 0px; transform: rotate(180deg); background-position-y: 38%;}
+.tab-horizontal.tab-buttons > .tab-next { right: 0px; }
+.tab-horizontal .tab-buttons-wrap { position: relative;  border-bottom: 2px solid #e8e8e8;}
+.tab-horizontal .tab-buttons-inside { transform: translateX(0px); transition: transform 0.2s ease 0s; user-select: none; white-space: nowrap; padding: 0.6em 0px 0.3em; }
+.tab-horizontal .tab-buttons-inside a { text-decoration: none; cursor: pointer; border-radius: 0px; position: relative; text-transform: capitalize; font-size: 1em; color: rgb(153, 153, 153); padding: 0.6em 1em 0.3em; }
+.tab-horizontal .tab-buttons-wrap .tab-buttons-inside a.selected { color: rgb(102, 102, 102); background: none 0% 0% repeat scroll transparent; }
+.tab-horizontal .tab-buttons-wrap .tab-buttons-inside a.selected::after {content: "";position: absolute;top: 100%;border-bottom: 2px solid rgb(102, 102, 102);left: 0;width: 100%;}
+.tab-horizontal .tab-buttons-inside a:hover { background: transparent; color: rgb(102, 102, 102);}

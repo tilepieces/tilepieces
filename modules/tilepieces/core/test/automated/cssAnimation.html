@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>css animation api test</title>
+  <style>
+    .larger {
+      font-size: larger;
+      margin: 5px 0;
+      border-bottom: 1px solid #ccc
+    }
+
+    .large {
+      font-size: large;
+      margin: 5px 0;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success::before {
+      content: "\2713";
+      padding-right: 10px;
+    }
+
+    .error::before {
+      content: "\2715";
+      padding-right: 10px;
+    }
+  </style>
+</head>
+<body>
+<section id=log-section></section>
+<button onclick="undo()" id="undo">undo</button>
+<button onclick="redo()" id="redo">redo</button>
+<pre id="keyframetext"></pre>
+<iframe id=frame></iframe>
+<script src="../../../html-tree-match/htmlTreeMatch.js" data-tilepieces-component="tilepieces/html-tree-match"></script>
+<script src="../../../css-split-value/splitCssValue.js" data-tilepieces-component="tilepieces/css-split-value"></script>
+<script src="../../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script>
+<script src="../../../css-specificity/cssSpecificity.js"
+        data-tilepieces-component="tilepieces/css-specificity"></script>
+<script src="../../../css-matcher/css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script>
+<script src="../../tilepieces-core.js" data-tilepieces-component="tilepieces/core"></script>
+<!-- test utils -->
+<script src="testUtils/assert.js"></script>
+<script src="testUtils/logOnDocument.js"></script>
+<script src="testUtils/getDocuments.js"></script>
+<script src="testUtils/compareDocuments.js"></script>
+<script src="testUtils/setTest.js"></script>
+<script src="testUtils/logError.js"></script>
+<script src="testUtils/historyComparison.js"></script>
+<script src="htmlMatch/addHeadNode.js"></script>
+<script src="stylesheet/setCurrentStyleSheet.js"></script>
+<script>
+  function undo() {
+    tilepieces.core.undo();
+    var style = tilepieces.core.currentStyleSheet;
+    var rule = style && style.cssRules[0];
+    if (rule) {
+      keyframetext.innerHTML = rule.cssText;
+    } else if (style)
+      keyframetext.innerHTML = "no rule, but style";
+    else
+      keyframetext.innerHTML = "";
+  }
+
+  function redo() {
+    tilepieces.core.redo();
+    var style = tilepieces.core.currentStyleSheet;
+    var rule = style && style.cssRules[0];
+    if (rule) {
+      keyframetext.innerHTML = rule.cssText;
+    } else if (style)
+      keyframetext.innerHTML = "no rule, but style";
+    else
+      keyframetext.innerHTML = "";
+  }
+
+  var styleTextExpected = [ // history-1
+    "",
+    "@keyframes a-test {}",
+    "@keyframes a-test {0% { }}",
+    "@keyframes a-test{0%{}  100%{}}",
+    "@keyframes a-test-2{0%{}  100%{}}",
+    "@keyframes a-test{0%{}  100%{}}",
+    `@keyframes a-test{0%{transform: translate(0px,0px);}100%{}}`,
+    "@keyframes a-test{0%{transform: translate(0px,0px);}100%{transform: translate(100%,100%);}}",
+    `@keyframes a-test{0%{transform: translate(0px,0px);}100%{transform: translate(100%,100%);}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px,0px);}100%{transform: translate(100%,100%);}50%{}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px,0px);}50%{transform: translate(100%,100%);}50%{}50%{}}`,
+    "@keyframes a-test{0%{transform: translate(0px,0px);}50%{transform: translate(100%,100%);}50%{}}",
+    `@keyframes a-test{0%{transform: translate(0px,0px);}100%{transform: translate(100%,100%);}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px,0px);}100%{transform: translate(100%,100%);}75%{transform: translate(75%,75%);}50%{}}`,
+    `@keyframes a-test { 0% { transform: translate(0px, 0px); }100% { transform: translate(100%, 100%); }75% { transform: translate(75%, 75%); }}`,
+  ];
+  var styleTextExpectedFirefox = [ // history-1
+    "",
+    "@keyframes a-test {}",
+    "@keyframes a-test {0% { }}",
+    "@keyframes a-test{0%{}  100%{}}",
+    "@keyframes a-test-2{0%{}  100%{}}",
+    "@keyframes a-test{0%{}  100%{}}",
+    `@keyframes a-test{0%{transform: translate(0px);}100%{}}`,
+    "@keyframes a-test{0%{transform: translate(0px);}100%{transform: translate(100%,100%);}}",
+    `@keyframes a-test{0%{transform: translate(0px);}100%{transform: translate(100%,100%);}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px);}100%{transform: translate(100%,100%);}50%{}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px);}50%{transform: translate(100%,100%);}50%{}50%{}}`,
+    "@keyframes a-test{0%{transform: translate(0px);}50%{transform: translate(100%,100%);}50%{}}",
+    `@keyframes a-test{0%{transform: translate(0px);}100%{transform: translate(100%,100%);}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px);}100%{transform: translate(100%,100%);}75%{transform: translate(75%,75%);}50%{}}`,
+    `@keyframes a-test { 0% { transform: translate(0px); }100% { transform: translate(100%, 100%); }75% { transform: translate(75%, 75%); }}`,
+  ];
+  var styleTextExpectedRedo = [ // history-1
+    "",
+    "@keyframes a-test {}",
+    "@keyframes a-test {0% { }}",
+    "@keyframes a-test{0%{}  100%{}}",
+    "@keyframes a-test-2{0%{}  100%{}}",
+    "@keyframes a-test{0%{}  100%{}}",
+    `@keyframes a-test{0%{transform: translate(0px,0px);}100%{}}`,
+    "@keyframes a-test{0%{transform: translate(0px,0px);}100%{transform: translate(100%,100%);}}",
+    `@keyframes a-test{0%{transform: translate(0px,0px);}100%{transform: translate(100%,100%);}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px,0px);}100%{transform: translate(100%,100%);}50%{}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px,0px);}50%{transform: translate(100%,100%);}50%{}50%{}}`,
+    "@keyframes a-test{0%{transform: translate(0px,0px);}50%{transform: translate(100%,100%);}50%{}}",
+    `@keyframes a-test{0%{transform: translate(0px,0px);}100%{transform: translate(100%,100%);}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px,0px);}100%{transform: translate(100%,100%);}50%{}75%{transform: translate(75%,75%);}}`,
+    `@keyframes a-test { 0% { transform: translate(0px, 0px); }100% { transform: translate(100%, 100%); }75% { transform: translate(75%, 75%); }}`,
+  ];
+  var styleTextExpectedRedoFirefox = [ // history-1
+    "",
+    "@keyframes a-test {}",
+    "@keyframes a-test {0% { }}",
+    "@keyframes a-test{0%{}  100%{}}",
+    "@keyframes a-test-2{0%{}  100%{}}",
+    "@keyframes a-test{0%{}  100%{}}",
+    `@keyframes a-test{0%{transform: translate(0px);}100%{}}`,
+    "@keyframes a-test{0%{transform: translate(0px);}100%{transform: translate(100%,100%);}}",
+    `@keyframes a-test{0%{transform: translate(0px);}100%{transform: translate(100%,100%);}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px);}100%{transform: translate(100%,100%);}50%{}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px);}50%{transform: translate(100%,100%);}50%{}50%{}}`,
+    "@keyframes a-test{0%{transform: translate(0px);}50%{transform: translate(100%,100%);}50%{}}",
+    `@keyframes a-test{0%{transform: translate(0px);}100%{transform: translate(100%,100%);}50%{}}`,
+    `@keyframes a-test{0%{transform: translate(0px);}100%{transform: translate(100%,100%);}50%{}75%{transform: translate(75%,75%);}}`,
+    `@keyframes a-test { 0% { transform: translate(0px); }100% { transform: translate(100%, 100%); }75% { transform: translate(75%, 75%); }}`,
+  ];
+  setTest().then(async function () {
+    try {
+      var originalDocuments = compareDocuments();
+      var style = tilepieces.core.currentDocument.createElement("link");
+      style.href = "test-style.css";
+      style.rel = "stylesheet";
+      addHeadNode(style);
+      await setCurrentStyleSheetTest(style);
+      tilepieces.core.insertCssRule(style.sheet, "@keyframes a-test{}");
+      var newRule = style.sheet.cssRules[0];
+      tilepieces.core.appendKeyframe(newRule, "0%{}");
+      tilepieces.core.appendKeyframe(newRule, "100%{}");
+      logOnDocument(
+        assert(
+          newRule.constructor.name == "CSSKeyframesRule" &&
+          newRule.name == "a-test",
+          "animation setted correctly")
+        , "success");
+      tilepieces.core.setRuleName(newRule, "a-test-2");
+      logOnDocument(
+        assert(
+          newRule.name == "a-test-2",
+          "animation name 'a-test-2' setted correctly")
+        , "success");
+      tilepieces.core.setRuleName(newRule, "a-test");
+      logOnDocument(
+        assert(
+          newRule.name == "a-test",
+          "animation name 'a-test' setted correctly")
+        , "success");
+      tilepieces.core.setCssProperty(newRule.cssRules[0], "transform", "translate(0,0)");
+      logOnDocument(
+        assert(
+          newRule.cssRules[0].style.transform = "translate(0,0)",
+          "set transform:translate(0px, 0px) on first keyframe ( spaces could lead to an error...)")
+        , "success");
+      tilepieces.core.setCssProperty(newRule.cssRules[1], "transform", "translate(100%,100%)");
+      logOnDocument(
+        assert(
+          newRule.cssRules[1].style.transform = "translate(100%, 100%)",
+          "set transform:translate(100%, 100%) on second keyframe( spaces could lead to an error...)")
+        , "success");
+      tilepieces.core.appendKeyframe(newRule, "50%{}");
+      logOnDocument(
+        assert(
+          newRule.cssRules[2].keyText = "50%",
+          "new keyframe appended with 50%")
+        , "success");
+      tilepieces.core.appendKeyframe(newRule, "50%{}");
+      logOnDocument(
+        assert(
+          newRule.cssRules[3].keyText = "50%",
+          "new keyframe appended with 50%")
+        , "success");
+      tilepieces.core.setKeyText(newRule.cssRules[1], "50%");
+      logOnDocument(
+        assert(
+          newRule.cssRules[1].keyText == "50%" &&
+          newRule.cssRules[1].style.transform == "translate(100%, 100%)",
+          "set key text of 100% to 50%")
+        , "success");
+      tilepieces.core.deleteKeyframe(newRule, newRule.cssRules[2]);
+      logOnDocument(
+        assert(
+          newRule.cssRules[1].keyText == "50%" &&
+          newRule.cssRules[1].style.transform == "translate(100%, 100%)" &&
+          newRule.cssRules[2].keyText == "50%" &&
+          newRule.cssRules[2].style.transform == "" &&
+          !newRule.cssRules[3],
+          "rule deleted correctly")
+        , "success");
+      tilepieces.core.setKeyText(newRule.cssRules[1], "100%");
+      logOnDocument(
+        assert(
+          newRule.cssRules[1].keyText == "100%" &&
+          newRule.cssRules[1].style.transform == "translate(100%, 100%)",
+          "set key text of 50% to 100%")
+        , "success");
+      tilepieces.core.appendKeyframe(newRule, "75%{transform:translate(75%, 75%)}");
+      logOnDocument(
+        assert(
+          newRule.cssRules[3].keyText == "75%" &&
+          newRule.cssRules[3].style.transform == "translate(75%, 75%)",
+          "correctly setted keyframe 75%")
+        , "success");
+      tilepieces.core.deleteKeyframe(newRule, newRule.cssRules[2]);
+      logOnDocument(
+        assert(
+          newRule.cssRules[2].keyText == "75%" &&
+          newRule.cssRules[2].style.transform == "translate(75%, 75%)" &&
+          newRule.cssRules.length == 3,
+          "rule deleted correctly")
+        , "success");
+      keyframetext.innerHTML = newRule.cssText;
+      var pointer = tilepieces.core.history.pointer;
+      // history comparison doesn't work because appendKeyframe can't ensure the same order
+      // insertRule/deleteRule don't work with keyframe rules
+      for (var i = pointer; i > 0; i--) {
+        if (tilepieces.core.currentStyleSheet) {
+          var s1 = [...tilepieces.core.currentStyleSheet.cssRules].map(v => v.cssText).join("").replace(/(\r\n|\n|\r|\t|\s)/gm, "");
+          console.log(i - 3);
+          var s2 = styleTextExpected[i - 2].replace(/(\r\n|\n|\r|\t|\s)/gm, "");
+          var sfirefox = styleTextExpectedFirefox[i - 2].replace(/(\r\n|\n|\r|\t|\s)/gm, "");
+          console.log("s1-> ", s1, "\ns2-> ", s2);
+          logOnDocument(
+            assert(
+              s1 == s2 || s1 == sfirefox,
+              "current stylesheet comparison on undo")
+            , "success");
+        }
+        tilepieces.core.undo();
+      }
+      logOnDocument("comparison after all undo with original document");
+      compareDocuments(originalDocuments);
+      for (var i2 = 0; i2 < pointer; i2++) {
+        await tilepieces.core.redo();
+        if (tilepieces.core.currentStyleSheet) {
+          var s1 = [...tilepieces.core.currentStyleSheet.cssRules].map(v => v.cssText).join("").replace(/(\r\n|\n|\r|\t|\s)/gm, "");
+          var s2 = styleTextExpectedRedo[i2 - 1].replace(/(\r\n|\n|\r|\t|\s)/gm, "");
+          var sfirefox = styleTextExpectedRedoFirefox[i2 - 1].replace(/(\r\n|\n|\r|\t|\s)/gm, "");
+          console.log("s1 -> ", s1, "s2 -> ", s2);
+          logOnDocument(
+            assert(
+              s1 == s2 || s1 == sfirefox,
+              "current stylesheet comparison on redo")
+            , "success");
+        }
+      }
+      newRule = style.sheet.cssRules[0];
+      var cssRules = [...newRule.cssRules].sort(function (a, b) {
+        var c1 = a.keyText.match(/\d+/)[0];
+        var c2 = b.keyText.match(/\d+/)[0];
+        return c1 - c2;
+      });
+      logOnDocument(
+        assert(
+          cssRules.length == 3 &&
+          cssRules[0].keyText == "0%" &&
+          (cssRules[0].style.transform == "translate(0px, 0px)" ||
+            cssRules[0].style.transform == "translate(0px)") &&
+          cssRules[1].keyText == "75%" &&
+          cssRules[1].style.transform == "translate(75%, 75%)" &&
+          cssRules[2].keyText == "100%" &&
+          cssRules[2].style.transform == "translate(100%, 100%)",
+          "undo/redo bring back to the final form of the animation as expected")
+        , "success");
+      logOnDocument("test success!!!!!");
+      window.dispatchEvent(new Event("test-success"))
+    } catch (e) {
+      logError(e);
+    }
+  })
+    .catch(logError);
+</script>
+</body>
+</html>

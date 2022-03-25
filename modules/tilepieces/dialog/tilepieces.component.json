@@ -1,0 +1,55 @@
+{
+  "name": "tilepieces/dialog",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "html/main.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "css.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "dialog.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/events"
+  ],
+  "components": {
+    "tilepieces/dialog/alert": {
+      "name": "tilepieces/dialog/alert",
+      "path": "/components/dialog/alert"
+    },
+    "tilepieces/dialog/dialog": {
+      "name": "tilepieces/dialog/dialog",
+      "path": "/components/dialog/dialog"
+    },
+    "tilepieces/dialog/confirm": {
+      "name": "tilepieces/dialog/confirm",
+      "path": "/components/dialog/confirm"
+    },
+    "tilepieces/dialog/prompt": {
+      "name": "tilepieces/dialog/prompt",
+      "path": "/components/dialog/prompt"
+    }
+  },
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": true,
+  "parseHTML": ""
+}

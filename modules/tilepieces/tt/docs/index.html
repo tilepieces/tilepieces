@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>boilerplate.md</title>
+  <style></style>
+</head>
+<body id="preview">
+<h1 class="code-line" data-line-start="0" data-line-end="1"><a id="TILEPIECES_TEMPLATE_TT_0" target="_blank"></a>TILEPIECES
+  TEMPLATE (TT)</h1>
+<p class="has-line-data" data-line-start="1" data-line-end="2">The constructor <code>window.TT</code> is an HTML <a
+  href="https://en.wikipedia.org/wiki/Template_processor" target="_blank">template processor</a> written in javascript
+  that implements <a href="https://stackoverflow.com/questions/13504906/what-is-two-way-binding" target="_blank">two-way
+    data binding</a>.</p>
+<h2 class="code-line" data-line-start="2" data-line-end="3"><a id="parameters_2" target="_blank"></a>parameters</h2>
+<p class="has-line-data" data-line-start="3" data-line-end="9"><strong>element</strong><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" target="_blank">A DOM
+    element</a>. The content of the element is will be processed<br>
+  <strong>model</strong><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<a
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank">A
+    javascript object</a> that will serve as a model for our template<br>
+  <strong>options</strong><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;Here you can set <a href="#statements" target="_blank">statements</a> names, <a
+    href="#interpolation" target="_blank">interpolation</a> regex and <a href="templates" target="_blank">templates</a>
+</p>
+<h2 class="code-line" data-line-start="9" data-line-end="10"><a id="Return_value_9" target="_blank"></a>Return value
+</h2>
+<p class="has-line-data" data-line-start="10" data-line-end="11">a tt object. The most important method is <a
+  href="#set" target="_blank">set</a></p>
+<h2 class="code-line" data-line-start="11" data-line-end="12"><a id="Basic_usage_11" target="_blank"></a>Basic usage
+</h2>
+<pre><code class="has-line-data" data-line-start="13" data-line-end="31">    <span class="hljs-tag">&lt;<span
+  class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span
+  class="hljs-value">example</span>&gt;</span>${data}<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">new</span> TT(<span class="hljs-built_in">document</span>.getElementById(<span
+    class="hljs-string">"example"</span>),{data:<span class="hljs-string">"some data"</span>},{ <span
+    class="hljs-comment">// here the default values</span>
+        interpolation : <span class="hljs-regexp">/\$\{([\s\S]+?)\}/</span>,
+        ifAttr : <span class="hljs-string">"if"</span>,
+        foreachAttr : <span class="hljs-string">"foreach"</span>,
+        foreachKeyNameAttr : <span class="hljs-string">"foreachKeyName"</span>,
+        bindAttr : <span class="hljs-string">"bind"</span>,
+        bindDOMPropAttr : <span class="hljs-string">"bindDomProp"</span>,
+        bindEventsAttr : <span class="hljs-string">"bindEvents"</span>,
+        setTemplateAttr : <span class="hljs-string">"set"</span>,
+        useTemplateAttr : <span class="hljs-string">"use"</span>,
+        useTemplateParamsAttr : <span class="hljs-string">"params"</span>,
+        isolateAttribute : <span class="hljs-string">"isolate"</span>,
+        srcAttribute : <span class="hljs-string">"src"</span>
+    });
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<h2 class="code-line" data-line-start="31" data-line-end="32"><a id="Interpolation_31" target="_blank"></a>Interpolation
+</h2>
+<p class="has-line-data" data-line-start="32" data-line-end="33">Interpolation allows to define node texts and
+  attributes values and names ( when setting attributes names, remember that it will changed to lowercase ).</p>
+<pre><code class="has-line-data" data-line-start="34" data-line-end="50"><span class="hljs-tag">&lt;<span
+  class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span
+  class="hljs-value">"example"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span
+    class="hljs-value">"${URL}"</span> ${<span class="hljs-attribute">hidden</span>}&gt;</span>${text}<span
+    class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onclick</span>=<span
+  class="hljs-value">"changeHidden()"</span>&gt;</span>Change hidden value<span class="hljs-tag">&lt;/<span
+    class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">let</span> model = {
+    URL : <span class="hljs-string">"https://github.com/tilepieces"</span>,
+    text : <span class="hljs-string">"some text"</span>,
+    hidden : <span class="hljs-string">"hidden"</span>
+  };
+  <span class="hljs-keyword">let</span> template = <span class="hljs-keyword">new</span> TT(<span class="hljs-built_in">document</span>.getElementById(<span
+    class="hljs-string">"example"</span>),model);
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span
+    class="hljs-title">changeHidden</span>(<span class="hljs-params"></span>)</span>{
+    template.set(<span class="hljs-string">"hidden"</span>,model.hidden ? <span class="hljs-string">""</span> : <span
+    class="hljs-string">"hidden"</span>);
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p class="has-line-data" data-line-start="50" data-line-end="51">See the live <a href="../examples/interpolation.html"
+                                                                                 target="_blank">example</a></p>
+<h2 class="code-line" data-line-start="51" data-line-end="52"><a id="Statements_51" target="_blank"></a>Statements</h2>
+<p class="has-line-data" data-line-start="52" data-line-end="53">Statements are defined by <a
+  href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*" target="_blank">data attributes</a>
+</p>
+<h3 class="code-line" data-line-start="53" data-line-end="54"><a id="dataif_53" target="_blank"></a>data-if</h3>
+<p class="has-line-data" data-line-start="54" data-line-end="56">tells the parser to render or not ( the dom element
+  will be removed ) a tag.<br>
+  The attribute value is a variable that will be coerced to a boolean.</p>
+<pre><code class="has-line-data" data-line-start="57" data-line-end="76"><span class="hljs-tag">&lt;<span
+  class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span
+  class="hljs-value">example</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-if</span>=<span
+    class="hljs-value">"show"</span>&gt;</span>This will be shown<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-if</span>=<span
+    class="hljs-value">"hide"</span>&gt;</span>This will be hidden<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">id</span>=<span
+  class="hljs-value">"toggle-visibility"</span>&gt;</span>Toggle visibility<span class="hljs-tag">&lt;/<span
+    class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span
+  class="hljs-value">"../tt.js"</span> <span class="hljs-attribute">data-tilepieces-component</span>=<span
+  class="hljs-value">"tt"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span
+    class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">let</span> scope = {
+      show:<span class="hljs-literal">true</span>,
+    hide:<span class="hljs-literal">false</span>
+  };
+  <span class="hljs-keyword">let</span> template = <span class="hljs-keyword">new</span> TT(<span class="hljs-built_in">document</span>.getElementById(<span
+    class="hljs-string">"example"</span>),scope);
+  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"toggle-visibility"</span>).onclick = ()=&gt;{
+    scope.show = !scope.show;
+    scope.hide = !scope.hide;
+    template.set(<span class="hljs-string">""</span>,scope);
+  };
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p class="has-line-data" data-line-start="76" data-line-end="77">See the live <a href="../examples/if.html"
+                                                                                 target="_blank">example</a></p>
+<h3 class="code-line" data-line-start="77" data-line-end="78"><a id="dataforeach_77" target="_blank"></a>data-foreach
+</h3>
+<p class="has-line-data" data-line-start="78" data-line-end="80">Tells the parser to render a tag n-times according to
+  an array of objects.<br>
+  You can retrieve object property using <code>key</code> or setting the <code>data-foreach-key-name</code> attribute in
+  the same tag ( best for nested arrays ).</p>
+<pre><code class="has-line-data" data-line-start="81" data-line-end="131"><span class="hljs-tag">&lt;<span
+  class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data-foreach</span>=<span
+    class="hljs-value">"array1"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>Name <span class="hljs-tag">&lt;<span
+    class="hljs-title">span</span>&gt;</span>${key.name}<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span><span
+    class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>Value <span class="hljs-tag">&lt;<span
+    class="hljs-title">span</span>&gt;</span>${key.value}<span class="hljs-tag">&lt;/<span
+    class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data-foreach</span>=<span
+    class="hljs-value">"array2"</span> <span class="hljs-attribute">data-foreach-key-name</span>=<span
+    class="hljs-value">"prop"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>Name <span class="hljs-tag">&lt;<span
+    class="hljs-title">span</span>&gt;</span>${prop.name}<span class="hljs-tag">&lt;/<span
+    class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>Value <span class="hljs-tag">&lt;<span
+    class="hljs-title">span</span>&gt;</span>${prop.value}<span class="hljs-tag">&lt;/<span
+    class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data-foreach</span>=<span
+      class="hljs-value">"prop.array"</span> <span class="hljs-attribute">data-foreach-key-name</span>=<span
+      class="hljs-value">"propNested"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>Name <span class="hljs-tag">&lt;<span
+    class="hljs-title">span</span>&gt;</span>${propNested.name}<span class="hljs-tag">&lt;/<span
+    class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>Value <span class="hljs-tag">&lt;<span
+    class="hljs-title">span</span>&gt;</span>${propNested.value}<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span><span
+    class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">let</span> array1 = [{
+  name: <span class="hljs-string">"array1_1"</span>,
+  value: <span class="hljs-number">10</span>
+},
+{
+  name: <span class="hljs-string">"array1_2"</span>,
+  value: <span class="hljs-number">100</span>
+}];
+<span class="hljs-keyword">let</span> array2 = [{
+  name: <span class="hljs-string">"array2_1"</span>,
+  value: <span class="hljs-number">0</span>,
+  array : [{
+    name: <span class="hljs-string">"array2_1_0_nested"</span>,
+    value: <span class="hljs-number">0</span>
+  }]
+},
+{
+  name: <span class="hljs-string">"array2_2"</span>,
+  value: <span class="hljs-number">10</span>,
+  array : [{
+    name: <span class="hljs-string">"array2_2_0_nested"</span>,
+    value: <span class="hljs-number">1</span>
+  },{
+    name: <span class="hljs-string">"array2_2_0_nested"</span>,
+    value: <span class="hljs-number">2</span>
+  }]
+}]
+<span class="hljs-keyword">let</span> scope = {array1, array2};
+<span class="hljs-keyword">let</span> template = <span class="hljs-keyword">new</span> TT(<span class="hljs-built_in">document</span>.body,scope);
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p class="has-line-data" data-line-start="131" data-line-end="132">See the live <a href="../examples/foreach.html"
+                                                                                   target="_blank">example</a></p>
+<h3 class="code-line" data-line-start="132" data-line-end="133"><a id="databind_and_databindevents_132"
+                                                                   target="_blank"></a>data-bind and data-bind-events
+</h3>
+<p class="has-line-data" data-line-start="133" data-line-end="134">Allows you to link the data model to user changes
+  through the <code>input</code>, <code>select</code>, <code>textarea</code> tags and with the
+  <code>contenteditable</code> attribute. By default it is linked with the change event, but you can override this
+  behavior by defining the data-bind-events tag (which accepts multiple values separated by a comma).</p>
+<pre><code class="has-line-data" data-line-start="135" data-line-end="189"><span class="hljs-tag">&lt;<span
+  class="hljs-title">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span
+      class="hljs-attribute">placeholder</span>=<span class="hljs-value">"name"</span>
+           <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"user.name"</span>
+           <span class="hljs-attribute">data-bind-events</span>=<span class="hljs-value">"input"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span
+      class="hljs-attribute">placeholder</span>=<span class="hljs-value">"surname"</span>
+           <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"user.surname"</span>
+           <span class="hljs-attribute">data-bind-events</span>=<span class="hljs-value">"input"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
+        Male<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span
+    class="hljs-attribute">type</span>=<span class="hljs-value">"radio"</span> <span
+    class="hljs-attribute">data-bind</span>=<span class="hljs-value">"user.sex"</span> <span
+    class="hljs-attribute">name</span>=<span class="hljs-value">"user.sex"</span> <span
+    class="hljs-attribute">value</span>=<span class="hljs-value">"M"</span>&gt;</span><span class="hljs-tag">&lt;<span
+    class="hljs-title">br</span>&gt;</span>
+        Female<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span
+    class="hljs-value">"radio"</span> <span class="hljs-attribute">data-bind</span>=<span
+    class="hljs-value">"user.sex"</span> <span class="hljs-attribute">name</span>=<span
+    class="hljs-value">"user.sex"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"F"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span
+          class="hljs-value">"checkbox"</span> <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"user.employed"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span> <span
+      class="hljs-attribute">data-if</span>=<span class="hljs-value">"user.employed"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">select</span> <span class="hljs-attribute">data-bind</span>=<span
+          class="hljs-value">"user.job"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span
+              class="hljs-value">"developer"</span>&gt;</span>developer<span class="hljs-tag">&lt;/<span
+    class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span
+              class="hljs-value">"designer"</span>&gt;</span>designer<span class="hljs-tag">&lt;/<span
+    class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span
+              class="hljs-value">"manager"</span>&gt;</span>manager<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span
+              class="hljs-value">"hr"</span>&gt;</span>hr<span class="hljs-tag">&lt;/<span
+    class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span
+              class="hljs-value">"other"</span>&gt;</span>other<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">select</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h1</span> <span class="hljs-attribute">data-if</span>=<span
+      class="hljs-value">"!user.name &amp;&amp; !user.surname"</span>&gt;</span>Please fill inputs<span
+    class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h1</span> <span class="hljs-attribute">data-if</span>=<span
+      class="hljs-value">"user.name || user.surname"</span>&gt;</span>
+        Hello ${user.name} ${user.surname}!<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">pre</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">pre</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">let</span> scope = {
+        user  : {
+            name : <span class="hljs-string">""</span>,
+            surname : <span class="hljs-string">""</span>,
+            sex:<span class="hljs-string">"M"</span>,
+            employed : <span class="hljs-literal">true</span>,
+            job : <span class="hljs-string">"developer"</span>
+        }
+    };
+    <span class="hljs-keyword">let</span> section = <span class="hljs-built_in">document</span>.querySelector(<span
+    class="hljs-string">"section"</span>);
+    <span class="hljs-keyword">let</span> template = <span class="hljs-keyword">new</span> TT(section,scope);
+    <span class="hljs-keyword">let</span> pre = <span class="hljs-built_in">document</span>.querySelector(<span
+    class="hljs-string">"pre"</span>);
+    section.addEventListener(<span class="hljs-string">"user.name"</span>,e=&gt;{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"user.name detail -&gt;"</span>, e.detail)
+    })
+    section.addEventListener(<span class="hljs-string">"user.surname"</span>,e=&gt;{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"user.surname detail -&gt;"</span>, e.detail)
+    })
+    section.addEventListener(<span class="hljs-string">"template-digest"</span>,e=&gt;{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"template-digest -&gt;"</span>, e.detail)
+        pre.innerHTML = <span class="hljs-built_in">JSON</span>.stringify(scope,<span
+    class="hljs-literal">null</span>,<span class="hljs-number">4</span>);
+    });
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p class="has-line-data" data-line-start="189" data-line-end="190">See the live <a href="../examples/binding.html"
+                                                                                   target="_blank">example</a></p>
+<h3 class="code-line" data-line-start="190" data-line-end="191"><a id="databinddomprop_190" target="_blank"></a>data-bind-dom-prop
+</h3>
+<p class="has-line-data" data-line-start="191" data-line-end="192">Attach a variable as a property of a DOM element</p>
+<pre><code class="has-line-data" data-line-start="193" data-line-end="204"><span class="hljs-tag">&lt;<span
+  class="hljs-title">div</span> <span class="hljs-attribute">onclick</span>=<span
+  class="hljs-value">"alertData(this)"</span> <span class="hljs-attribute">data-bind-dom-prop</span>=<span
+  class="hljs-value">"__data,data"</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"cursor:pointer"</span>&gt;</span>Click here for an alert with the data value<span
+  class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">data-bind</span>=<span
+  class="hljs-value">"data"</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"change data here"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">var</span> scope = {data:<span class="hljs-string">""</span>};
+  <span class="hljs-keyword">var</span> template = <span class="hljs-keyword">new</span> TT(<span class="hljs-built_in">document</span>.body,scope);
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">alertData</span>(<span
+    class="hljs-params">el</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(el);
+    alert(el.__data);
+  };
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p class="has-line-data" data-line-start="204" data-line-end="205">See the live <a href="../examples/bindDOMprop.html"
+                                                                                   target="_blank">example</a></p>
+<h3 class="code-line" data-line-start="205" data-line-end="206"><a id="dataset_datause_and_dataparams_205"
+                                                                   target="_blank"></a>data-set, data-use and
+  data-params</h3>
+<p class="has-line-data" data-line-start="206" data-line-end="209">Bind an HTML template ( that could be defined through
+  data-set or in the options values ) to a tag.<br>
+  <code>data-params</code> is used pass variables using another name.<br>
+  Example using <code>data-set</code> ( See the live <a href="../examples/test-template.html"
+                                                        target="_blank">example</a> )</p>
+<pre><code class="has-line-data" data-line-start="210" data-line-end="235"><span class="hljs-tag">&lt;<span
+  class="hljs-title">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-set</span>=<span
+      class="hljs-value">"test-template"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>${obj.name}<span class="hljs-tag">&lt;/<span
+    class="hljs-title">span</span>&gt;</span>:
+        <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>${obj.value}<span class="hljs-tag">&lt;/<span
+    class="hljs-title">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span
+          class="hljs-attribute">data-foreach</span>=<span class="hljs-value">"data"</span>
+            <span class="hljs-attribute">data-use</span>=<span class="hljs-value">"test-template"</span>
+            <span class="hljs-attribute">data-params</span>=<span class="hljs-value">"obj,key"</span>&gt;</span><span
+    class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">let</span> scope = {
+        data : [{
+            name : <span class="hljs-string">"name1"</span>,
+            value : <span class="hljs-string">"value1"</span>
+        },{
+            name : <span class="hljs-string">"name2"</span>,
+            value : <span class="hljs-string">"value2"</span>
+        }]
+    }
+    <span class="hljs-keyword">let</span> el = <span class="hljs-built_in">document</span>.body.children[<span
+    class="hljs-number">0</span>];
+    <span class="hljs-keyword">let</span> t = <span class="hljs-keyword">new</span> TT(el,scope);
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p class="has-line-data" data-line-start="235" data-line-end="236">Example using the <a
+  href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template" target="_blank">template tag</a> ( See the
+  live <a href="../examples/test-template2.html" target="_blank">example</a> )</p>
+<pre><code class="has-line-data" data-line-start="237" data-line-end="271"><span class="hljs-tag">&lt;<span
+  class="hljs-title">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span
+          class="hljs-attribute">data-foreach</span>=<span class="hljs-value">"data"</span>
+            <span class="hljs-attribute">data-use</span>=<span class="hljs-value">"test-template"</span>
+            <span class="hljs-attribute">data-params</span>=<span class="hljs-value">"obj,key"</span>&gt;</span><span
+    class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">template</span> <span class="hljs-attribute">id</span>=<span
+  class="hljs-value">"test-template"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>${obj.name}<span
+    class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>:
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>${obj.value}<span
+    class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">template</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">let</span> scope = {
+        data : [{
+            name : <span class="hljs-string">"name1"</span>,
+            value : <span class="hljs-string">"value1"</span>
+        },{
+            name : <span class="hljs-string">"name2"</span>,
+            value : <span class="hljs-string">"value2"</span>
+        },{
+            name : <span class="hljs-string">"name3"</span>,
+            value : <span class="hljs-string">"value3"</span>
+        }]
+    };
+    <span class="hljs-keyword">let</span> template = <span class="hljs-built_in">document</span>.getElementById(<span
+    class="hljs-string">"test-template"</span>);
+    <span class="hljs-keyword">let</span> el = <span class="hljs-built_in">document</span>.body.children[<span
+    class="hljs-number">0</span>];
+    <span class="hljs-keyword">let</span> t = <span class="hljs-keyword">new</span> TT(el,scope,{
+        templates : [{
+            name : <span class="hljs-string">"test-template"</span>,
+            el : template.content
+        }]
+    });
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<h3 class="code-line" data-line-start="271" data-line-end="272"><a id="datasrc_271" target="_blank"></a>data-src</h3>
+<p class="has-line-data" data-line-start="272" data-line-end="274">Used in <code>frame</code> and <code>img</code> tags
+  to dynamically set them without letting the browser download template placeholders<br>
+  ( See the live <a href="../examples/test-images.html" target="_blank">example</a> )</p>
+<h3 class="code-line" data-line-start="274" data-line-end="275"><a id="dataisolate_274" target="_blank"></a>data-isolate
+</h3>
+<p class="has-line-data" data-line-start="275" data-line-end="276">Isolate part of the HTML. This part will not be
+  processed.</p>
+<pre><code class="has-line-data" data-line-start="277" data-line-end="297"><span class="hljs-tag">&lt;<span
+  class="hljs-title">section</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>${name}<span
+    class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>:
+       <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>${value}<span
+    class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span
+     class="hljs-attribute">data-isolate</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>This element is isolated:<span
+    class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>${name}<span
+    class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>:
+       <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>${value}<span
+    class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+   <span class="hljs-keyword">let</span> scope = {
+       name : <span class="hljs-string">"an"</span>,
+       value : <span class="hljs-string">"example"</span>
+   }
+   <span class="hljs-keyword">let</span> el = <span class="hljs-built_in">document</span>.body.children[<span
+    class="hljs-number">0</span>];
+   <span class="hljs-keyword">let</span> t = <span class="hljs-keyword">new</span> TT(el,scope);
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p class="has-line-data" data-line-start="297" data-line-end="298">See the live <a href="../examples/isolate.html"
+                                                                                   target="_blank">example</a></p>
+<h2 class="code-line" data-line-start="298" data-line-end="299" id="set"><a id="set_298" target="_blank"></a>set</h2>
+<p class="has-line-data" data-line-start="299" data-line-end="300">The <code>set</code> method allows to update the
+  model. You can pass the property to be changed as a string (the original object will also be updated), but if you need
+  to make more than one change it is better to pass the whole object.</p>
+<pre><code class="has-line-data" data-line-start="301" data-line-end="333"><span class="hljs-tag">&lt;<span
+  class="hljs-title">section</span>&gt;</span>
+    ${name}<span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
+    ${nestedExample.name}
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span
+          class="hljs-attribute">data-foreach</span>=<span class="hljs-value">"array"</span>&gt;</span>
+            ${key.name}
+        <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">let</span> scope = {
+        name : <span class="hljs-string">"an example"</span>,
+        nestedExample : {
+            name : <span class="hljs-string">"an example2"</span>
+        },
+        array : [
+            {name : <span class="hljs-string">"an example3"</span>}
+        ]
+    }
+    <span class="hljs-keyword">let</span> el = <span class="hljs-built_in">document</span>.body.children[<span
+    class="hljs-number">0</span>];
+    <span class="hljs-keyword">let</span> t = <span class="hljs-keyword">new</span> TT(el,scope);
+    <span class="hljs-keyword">let</span> o = <span class="hljs-string">"an example changed"</span>;
+    t.set(<span class="hljs-string">"name"</span>,o);
+    <span class="hljs-built_in">console</span>.assert(scope.name == o);
+    <span class="hljs-keyword">let</span> o2 = <span class="hljs-string">"an example2 changed"</span>;
+    t.set(<span class="hljs-string">"nestedExample.name"</span>,o2);
+    <span class="hljs-built_in">console</span>.assert(scope.nestedExample.name == o2);
+    <span class="hljs-keyword">let</span> o3 = <span class="hljs-string">"an example3 changed"</span>;
+    t.set(<span class="hljs-string">"array[0].name"</span>,o3);
+    <span class="hljs-built_in">console</span>.assert(scope.array[<span class="hljs-number">0</span>].name == o3);
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p class="has-line-data" data-line-start="333" data-line-end="334">See the live <a
+  href="../examples/test-assignation.html" target="_blank">example</a></p>
+</body>
+</html>

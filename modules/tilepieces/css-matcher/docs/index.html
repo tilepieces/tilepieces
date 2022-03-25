@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>tilepieces css matcher docs</title>
+  <meta description="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="doc-style.css" data-tilepieces-current-stylesheet="">
+</head>
+<body><h1 class="code-line" data-line-start="0" data-line-end="1"><a id="CSS_MATCHER_0"></a>CSS MATCHER</h1>
+<p class="has-line-data" data-line-start="1" data-line-end="2">A javascript function to retrieve all the css rules
+  associated with a DOM element</p>
+<pre><code class="has-line-data" data-line-start="3" data-line-end="5">cssMatcher(<span
+  class="hljs-built_in">document</span>.body,styles)
+</code></pre>
+<h2 class="code-line" data-line-start="5" data-line-end="6"><a id="Parameters_5"></a>Parameters</h2>
+<p class="has-line-data" data-line-start="6" data-line-end="10"><strong>element</strong><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">the DOM element</a><br>
+  <strong>styles</strong><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;The <code>styleSheets</code> property present in the return value of <a
+    href="#">css-mapper</a></p>
+<h2 class="code-line" data-line-start="10" data-line-end="11"><a id="Return_value_10"></a>Return value</h2>
+<p class="has-line-data" data-line-start="11" data-line-end="13">an object with the following properties:<br>
+  <strong>ancestors</strong> : an array of objects that map all the <a
+    href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleRule">CSSStyleRules</a> associated with the ancestor
+  elements,structured as follows:</p>
+<ul>
+  <li class="has-line-data" data-line-start="13" data-line-end="14"><strong>ancestor</strong> : ancestor element</li>
+  <li class="has-line-data" data-line-start="14" data-line-end="22"><strong>ancestorStyle</strong> : an object
+    structured as follows
+    <ul>
+      <li class="has-line-data" data-line-start="15" data-line-end="16"><strong>inheritedProps</strong>: boolean that
+        indicates that is inherited. In this case, it will be <code>true</code></li>
+      <li class="has-line-data" data-line-start="16" data-line-end="17"><strong>isStyle</strong>: boolean that indicates
+        if is a ‘style’ rule (associated with the element by attribute). In this case, it will be <code>true</code></li>
+      <li class="has-line-data" data-line-start="17" data-line-end="21"><strong>properties</strong>: an object as
+        follows
+        <ul>
+          <li class="has-line-data" data-line-start="18" data-line-end="19"><strong>property</strong> : property name
+          </li>
+          <li class="has-line-data" data-line-start="19" data-line-end="20"><strong>value</strong>: style property value
+          </li>
+          <li class="has-line-data" data-line-start="20" data-line-end="21"><strong>isInherited</strong> : if this
+            property is inherited. In this case, it will be <code>true</code></li>
+        </ul>
+      </li>
+      <li class="has-line-data" data-line-start="21" data-line-end="22"><strong>rule</strong>: ancestor element if
+        <code>isStyle</code></li>
+    </ul>
+  </li>
+  <li class="has-line-data" data-line-start="22" data-line-end="24"><strong>matches</strong>: an array of objects
+    similar to <code>cssMatches</code>, with the difference that <code>inheritedProps</code> will be valorized to <code>true</code>
+    and the properties inside the <code>properties</code> object will have ‘isInherited’ setted to <code>true</code>
+  </li>
+</ul>
+<p class="has-line-data" data-line-start="24" data-line-end="25"><strong>cssMatches</strong> : an array of objects that
+  map all the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleRule">CSSStyleRules</a> associated with
+  the element, structured as follows</p>
+<ul>
+  <li class="has-line-data" data-line-start="25" data-line-end="26"><strong>href</strong> : URL location of the
+    stylesheet associated with the CSSStyleRule. If <code>isStyle</code>, it will not be setted
+  </li>
+  <li class="has-line-data" data-line-start="26" data-line-end="27"><strong>inheritedProps</strong> : setted to <code>false</code>
+    or <code>undefined</code></li>
+  <li class="has-line-data" data-line-start="27" data-line-end="28"><strong>isStyle</strong> : boolean that indicates if
+    it is a ‘style’ rule (associated with the element by attribute)
+  </li>
+  <li class="has-line-data" data-line-start="28" data-line-end="38"><strong>properties</strong> : an object as follows
+    <ul>
+      <li class="has-line-data" data-line-start="29" data-line-end="30"><strong>property</strong> : property name</li>
+      <li class="has-line-data" data-line-start="30" data-line-end="31"><strong>value</strong>: style property value
+      </li>
+      <li class="has-line-data" data-line-start="31" data-line-end="32"><strong>isInherited</strong> : if this property
+        is inherited. In this case, it will be <code>false</code></li>
+      <li class="has-line-data" data-line-start="32" data-line-end="33"><strong>rule</strong>: element if
+        <code>isStyle</code>, othherwise the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleRule">CSSStyleRule</a>
+      </li>
+      <li class="has-line-data" data-line-start="33" data-line-end="36"><strong>selectors</strong>: an array with all
+        the selectors presents in the CSSStyleRule.selector ( splitted by ‘,’)
+        <ul>
+          <li class="has-line-data" data-line-start="34" data-line-end="35"><strong>match</strong> : if the selector
+            match the element
+          </li>
+          <li class="has-line-data" data-line-start="35" data-line-end="36"><strong>selectorText</strong> : a string
+            representing <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">css selector</a></li>
+        </ul>
+      </li>
+      <li class="has-line-data" data-line-start="36" data-line-end="38"><strong>specifity</strong>: the rule <a
+        href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">specificity</a></li>
+    </ul>
+  </li>
+</ul>
+<p class="has-line-data" data-line-start="38" data-line-end="43"><strong>properties</strong>: a list of all the css
+  properties retrieved from all the rules that match the element.<br>
+  <strong>pseudoStates</strong>: an array of objects similar to <code>cssMatches</code>, with the property
+  <code>pseudos</code> that is an array of some <a
+    href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">pseudo classes</a> associated with the rule.
+  The pseudo classes are <code>:hover|:active|:focus|:focus-within|:visited</code>.<br>
+  <strong>pseudoElements</strong>: an array of objects similar to <code>cssMatches</code>, with the property <code>pseudos</code>
+  that is an array of all the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements">pseudo
+    elements</a> associated with the rule<br>
+  <strong>getCssTextProperties</strong>: a function that parse all the properties present in a <a
+    href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/cssText">CSSStyleDeclaration.cssText</a>
+  string. This property is associated with <code>window.getCssTextProperties</code><br>
+  <strong>isShortHand</strong>: a function to verify if a css property is a css <a
+    href="https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties">shorthand</a></p>
+<h2 class="code-line" data-line-start="43" data-line-end="44"><a id="Dependencies_43"></a>Dependencies</h2>
+<p class="has-line-data" data-line-start="44" data-line-end="45">This project uses the following libraries:</p>
+<ul>
+  <li class="has-line-data" data-line-start="45" data-line-end="46"><a href="#">css-specificity</a></li>
+  <li class="has-line-data" data-line-start="46" data-line-end="48"><a href="#">css-mapper</a></li>
+</ul>
+<h2 class="code-line" data-line-start="48" data-line-end="49"><a id="Running_the_tests_48"></a>Running the tests</h2>
+<p class="has-line-data" data-line-start="49" data-line-end="50">At the moment there are not automated tests for this
+  part. However, you can test manually in <a href="../test/test.html">test.html</a> or in <a
+    href="../test/pseudosTest.html">pseudosTest.html</a>.</p>
+</body>
+</html>

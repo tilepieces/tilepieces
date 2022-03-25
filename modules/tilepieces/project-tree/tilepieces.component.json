@@ -1,0 +1,43 @@
+{
+  "name": "tilepieces/project-tree",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "project-tree.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
+    "script": {
+      "src": "project-tree.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "js"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/drag",
+    "tilepieces/shortcuts"
+  ],
+  "components": {},
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "svg/svg-folder-ico.svg",
+    "svg/svg-file.svg",
+    "arrow.svg"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

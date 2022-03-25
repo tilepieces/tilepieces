@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .warning {
+      background: pink;
+    }
+
+    .topbanner {
+      background: url("https://mdn.mozillademos.org/files/11983/starsolid.gif") #99f repeat-y fixed;
+    }
+
+    .example {
+      min-width: 100%;
+      min-height: 100%;
+      padding: 10%;
+      background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), url(https://interactive-examples.mdn.mozilla.net/media/examples/lizard.png);
+    }
+
+    .example2 {
+      min-width: 100%;
+      min-height: 100%;
+      padding: 10%;
+      margin: 20px 0;
+      background-image: linear-gradient(rgba(087, 102, 255, 0.5), rgba(1, 255, 100, 0.5)), url(https://interactive-examples.mdn.mozilla.net/media/examples/lizard.png);
+    }
+
+    #example1 {
+      border: 10px dotted black;
+      padding: 15px;
+      background: lightblue;
+      background-clip: border-box;
+    }
+
+    #example2 {
+      border: 10px dotted black;
+      padding: 15px;
+      background: lightblue;
+      background-clip: padding-box;
+    }
+
+    #example3 {
+      border: 10px dotted black;
+      padding: 15px;
+      background: lightblue;
+      background-clip: content-box;
+    }
+
+    div.exampleone,
+    div.exampletwo,
+    div.examplethree {
+      background-color: #FFEE99;
+      background-repeat: no-repeat;
+      width: 300px;
+      height: 80px;
+      margin-bottom: 12px;
+    }
+
+    .exampleone {
+      background: url("https://mdn.mozillademos.org/files/11987/startransparent.gif") #FFEE99 2.5cm bottom no-repeat;
+    }
+
+    .exampletwo {
+      background: url("https://mdn.mozillademos.org/files/11987/startransparent.gif") #FFEE99 left 4em bottom 1em no-repeat;
+    }
+
+    .examplethree {
+      background-image: url("https://mdn.mozillademos.org/files/11987/startransparent.gif"),
+      url("https://mdn.mozillademos.org/files/7693/catfront.png");
+      background-position: 0px 0px,
+      right 3em bottom 2em;
+    }
+  </style>
+</head>
+<body>
+<p class="topbanner">
+  Starry sky<br/>
+  Twinkle twinkle<br/>
+  Starry sky
+</p>
+<p class="warning">Here is a paragraph
+<p>
+<div class="example"></div>
+<div class="example2"></div>
+<div id="myDIV"></div>
+<div id="example1">
+  <p>The background extends behind the border.</p>
+</div>
+
+<p>background-clip: padding-box:</p>
+<div id="example2">
+  <p>The background extends to the inside edge of the border.</p>
+</div>
+
+<p>background-clip: content-box:</p>
+<div id="example3">
+  <p>The background extends to the edge of the content box.</p>
+</div>
+<div class="exampleone">Example One</div>
+<div class="exampletwo">Example Two</div>
+<div class="examplethree">Example Three</div>
+<div id="example-element"
+     style="width:300px;height:200px;background: conic-gradient(red, orange, yellow, green, blue);"></div>
+</body>
+</html>

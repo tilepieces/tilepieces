@@ -1,0 +1,4 @@
+#transform .hide, #transform .false, #transform .undefined { display: none; }
+#transform-functions legend { text-transform: none; }
+#general-transform, #transform-functions { padding: 0px 1em; }
+#transform-functions span.handler { display: inline-block; cursor: grab; }

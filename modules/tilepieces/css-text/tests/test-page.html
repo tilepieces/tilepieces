@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<!--<html lang="ar" dir="rtl">-->
+<head>
+  <style>
+    h2 {
+      position: relative;
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    p {
+      font: 500 1.2em/1.2em sans-serif;
+      text-shadow: #ccc 0 1px 3px;
+    }
+  </style>
+  <style>
+    div.ex1 {
+      background-color: lightblue;
+      width: 110px;
+      height: 110px;
+      overflow: scroll;
+    }
+
+    div.ex2 {
+      background-color: lightblue;
+      width: 110px;
+      height: 110px;
+      overflow: hidden;
+      text-shadow: #ccc 0 0;
+    }
+
+    div.ex3 {
+      background-color: lightblue;
+      width: 110px;
+      height: 110px;
+      overflow: auto;
+      font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+    }
+
+    div.ex4 {
+      background-color: lightblue;
+      width: 110px;
+      height: 110px;
+      overflow: visible;
+      margin-bottom: 100px;
+      font-family: Georgia, serif;
+    }
+  </style>
+</head>
+<body>
+<h2>Paragraph</h2>
+<p>
+  This paragraph
+  contains a lot of lines
+  in the source code,
+  but the browser
+  ignores it.
+</p>
+
+<p>
+  This paragraph
+  contains a lot of spaces
+  in the source code,
+  but the browser
+  ignores it.
+</p>
+<p>Here is a quote from WWF's website:</p>
+<blockquote cite="http://www.worldwildlife.org/who/index.html">
+  For 50 years, WWF has been protecting the future of nature.
+  The world's leading conservation organization,
+  WWF works in 100 countries and is supported by
+  1.2 million members in the United States and
+  close to 5 million globally.
+</blockquote>
+<h2>An Unordered HTML List</h2>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+<h2>
+  A form
+</h2>
+<form action="/action_page.php">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+  <input type="submit" value="Submit">
+  <input type="submit" formaction="/action_page2.php" value="Submit as Admin">
+</form>
+<h2>An Ordered HTML List</h2>
+
+<ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+<h2>HTML Table</h2>
+<h1>The overflow Property</h1>
+
+<p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to
+  fit in a specified area.</p>
+
+<h2>overflow: scroll:</h2>
+<div class="ex1">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+  laoreet dolore magna aliquam erat volutpat.
+</div>
+
+<h2>overflow: hidden:</h2>
+<div class="ex2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+  laoreet dolore magna aliquam erat volutpat.
+</div>
+
+<h2>overflow: auto:</h2>
+<div class="ex3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+  laoreet dolore magna aliquam erat volutpat.
+</div>
+
+<h2>overflow: visible (default):</h2>
+<div class="ex4">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+  laoreet dolore magna aliquam erat volutpat.
+</div>
+<table style="position:relative">
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+  <tr>
+    <td>Ernst Handel</td>
+    <td>Roland Mendel</td>
+    <td>Austria</td>
+  </tr>
+  <tr>
+    <td>Island Trading</td>
+    <td>Helen Bennett</td>
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Laughing Bacchus Winecellars</td>
+    <td>Yoshi Tannamuri</td>
+    <td>Canada</td>
+  </tr>
+  <tr>
+    <td>Magazzini Alimentari Riuniti</td>
+    <td>Giovanni Rovelli</td>
+    <td>Italy</td>
+  </tr>
+</table>
+
+</body>
+</html>

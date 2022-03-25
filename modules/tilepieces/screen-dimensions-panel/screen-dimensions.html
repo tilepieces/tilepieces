@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>Screen dimensions</title>
+<link href="components/screen-dimensions-panel/bundle/screen-dimensions-panel.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/screen-dimensions-panel/bundle"></head>
+<body>
+<div id="screen-dimensions">
+  <div class="flex-box">
+    <button id="fit-to-screen-button">Fit to screen</button>
+    <button id="reverse">reverse</button>
+    <select id="screen-dimensions-default">
+      <option value="" disabled="" selected="">Screen Width x Screen Height</option>
+      <option value="1920x1080">1920x1080</option>
+      <option value="1536x864">1536x864</option>
+      <option value="1440x900">1440x900</option>
+      <option value="1366x768">1366x768</option>
+      <option value="1280x720">1280x720</option>
+      <option value="1280x800">1280x800</option>
+      <option value="1280x1024">1280x1024</option>
+      <option value="1024x768">1024x768</option>
+      <option value="414x896">414x896</option>
+      <option value="414x736">414x736</option>
+      <option value="412x846">412x846</option>
+      <option value="375x812">375x812</option>
+      <option value="375x667">375x667</option>
+      <option value="360x760">360x760</option>
+      <option value="360x720">360x720</option>
+      <option value="360x780">360x780</option>
+      <option value="360x640">360x640</option>
+      <option value="320x568">320x568</option>
+    </select>
+  </div>
+  <fieldset>
+    <legend><label for="width">Canvas Width:</label></legend>
+    <div class="flex-box">
+      <input id="width" type="number" min="320"><span>px</span>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend><label for="height">Canvas Height:</label></legend>
+    <div class="flex-box">
+      <input id="height" type="number" min="200"><span>px</span>
+    </div>
+  </fieldset>
+</div>
+<script src="components/screen-dimensions-panel/bundle/screen-dimensions-panel.bundle.js" data-tilepieces-component="tilepieces/screen-dimensions-panel/bundle"></script></body></html>

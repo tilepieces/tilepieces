@@ -1,0 +1,56 @@
+{
+  "name": "tilepieces/css-viewer",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "css-viewer-html/css-viewer.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "css-viewer.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
+    "script": {
+      "src": "css-viewer.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src/header",
+      "src/*.js",
+      "src/!(header)**/**/*.js"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/vertical-tab",
+    "tilepieces/css-inspector",
+    "tilepieces/border",
+    "tilepieces/fonts",
+    "tilepieces/background",
+    "tilepieces/layout",
+    "tilepieces/transform",
+    "tilepieces/animations",
+    "tilepieces/css-text"
+  ],
+  "components": {
+    "tilepieces/css-viewer/bundle": {
+      "name": "tilepieces/css-viewer/bundle",
+      "path": "/bundle"
+    }
+  },
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "html/css-viewer.html",
+    "html/css-viewer-pop.html"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": true,
+  "parseHTML": ""
+}

@@ -1,0 +1,81 @@
+{
+  "name": "tilepieces/package-manager",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "css/css.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "package-manager-panel.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src/header",
+      "src/*.js",
+      "src/!(header)**/**/*.js"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/stylesheet",
+    "tilepieces/dialog",
+    "tilepieces/tabs"
+  ],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "index.html"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": "",
+  "components": {
+    "tilepieces/package-manager/bundle": {
+      "name": "tilepieces/package-manager/bundle",
+      "path": "/bundle"
+    },
+    "tilepieces/package-manager/component-settings": {
+      "name": "tilepieces/package-manager/component-settings",
+      "path": "/components/component-settings"
+    },
+    "tilepieces/package-manager/components-template": {
+      "name": "tilepieces/package-manager/components-template",
+      "path": "/components/components-template"
+    },
+    "tilepieces/package-manager/current-project-data": {
+      "name": "tilepieces/package-manager/current-project-data",
+      "path": "/components/current-project-data"
+    },
+    "tilepieces/package-manager/general-settings": {
+      "name": "tilepieces/package-manager/general-settings",
+      "path": "/components/general-settings"
+    },
+    "tilepieces/package-manager/global-components": {
+      "name": "tilepieces/package-manager/global-components",
+      "path": "/components/global-components"
+    },
+    "tilepieces/package-manager/local-components": {
+      "name": "tilepieces/package-manager/local-components",
+      "path": "/components/local-components"
+    },
+    "tilepieces/package-manager/project-list": {
+      "name": "tilepieces/package-manager/project-list",
+      "path": "/components/project-list"
+    },
+    "tilepieces/package-manager/tab-vertical": {
+      "name": "tilepieces/package-manager/tab-vertical",
+      "path": "/components/tab-vertical"
+    }
+  }
+}

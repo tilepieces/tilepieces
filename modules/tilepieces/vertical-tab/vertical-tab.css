@@ -1,0 +1,15 @@
+nav.tab-vertical.tab-vertical-open .tab-buttons .tab-buttons-wrap .tab-buttons-inside { display: inline-flex; height: 100%; flex-direction: column; justify-content: center; }
+body { padding-left: 35px; margin: 0px; }
+nav.tab-vertical:not(.tab-vertical-open) .tab-buttons { overflow: hidden; }
+nav.tab-vertical-open .tab-buttons .tab-buttons-wrap { height: 100%; overflow:auto}
+nav.tab-vertical .tab-buttons.tab-buttons-open { height: 100%; position: absolute; width: 100%; }
+nav.tab-vertical .tab-buttons.tab-buttons-open button { float: right; }
+nav.tab-vertical { position: fixed; height: 100%; width: 0px; background-color: rgb(255, 255, 255); left: 0px; top: 0px; z-index:3}
+nav.tab-vertical button { width:32px;position: fixed; height: 100%; background-color: rgb(255, 255, 255); outline-width: 0px; outline-offset: 0px; border-width: 0px 1px 0px 0px; border-style: solid; border-color: rgb(208, 208, 208); border-image: initial; padding: 0em 0.2em; border-radius: 0px; }
+nav.tab-vertical.tab-vertical-open { width: 100%; }
+nav.tab-vertical.tab-vertical-open .tab-buttons { height: 100%;padding: 12px 32px; box-sizing:border-box}
+nav.tab-vertical.tab-vertical-open button { right: 0px; transform: rotate(180deg); z-index: 1; }
+nav.tab-vertical.tab-vertical-open .tab-buttons .tab-buttons-wrap .tab-buttons-inside a:hover { background-color: transparent; color: rgb(51, 51, 51); transition-duration: 1s; }
+nav.tab-vertical.tab-vertical-open .tab-buttons .tab-buttons-wrap .tab-buttons-inside a { text-transform: uppercase; font-family: Helvetica, Arial, sans-serif; letter-spacing: 2px; text-decoration: none; color: rgb(153, 153, 153); margin: 10px; padding: 2px; }
+nav.tab-vertical.tab-vertical-open .tab-buttons .tab-buttons-wrap .tab-buttons-inside a.selected { color: rgb(102, 102, 102); border-width: 0px 0px 1px; border-style: none none solid; border-color: rgb(102, 102, 102) rgb(102, 102, 102) rgb(0, 0, 0); border-image: initial; outline-width: 1px; }
+nav.tab-vertical button svg { transform: rotate(90deg); height: 25px; width: 25px; }

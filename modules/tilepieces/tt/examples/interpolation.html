@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TT - interpolation</title>
+</head>
+<body>
+<div id="example">
+  <a href="${URL}" ${hidden}>${text}</a>
+</div>
+<button onclick="changeHidden()">Change hidden value</button>
+<script src="../tt.js"></script>
+<script>
+  let model = {
+    URL: "https://github.com/tilepieces",
+    text: "some text",
+    hidden: "hidden"
+  };
+  let template = new TT(document.getElementById("example"), model);
+
+  function changeHidden() {
+    template.set("hidden", model.hidden ? "" : "hidden");
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TT - TEST TEMPLATE 2</title>
+</head>
+<body>
+<section>
+  <ul>
+    <li data-foreach="data"
+        data-use="test-template"
+        data-params="obj,key"></li>
+  </ul>
+</section>
+<template id="test-template">
+  <span>${obj.name}</span>:
+  <span>${obj.value}</span>
+</template>
+<script src="../tt.js"></script>
+<script>
+  let scope = {
+    data: [{
+      name: "name1",
+      value: "value1"
+    }, {
+      name: "name2",
+      value: "value2"
+    }, {
+      name: "name3",
+      value: "value3"
+    }]
+  };
+  let template = document.getElementById("test-template");
+  let el = document.body.children[0];
+  let t = new TT(el, scope, {
+    templates: [{
+      name: "test-template",
+      el: template.content
+    }]
+  });
+</script>
+</body>
+</html>

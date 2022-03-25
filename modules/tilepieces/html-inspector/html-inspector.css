@@ -1,0 +1,241 @@
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background: #fff;
+  margin: 0;
+}
+
+body.content-editable-start * {
+  display: none
+}
+
+body.content-editable-start::before {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "Disabled on contenteditable"
+}
+
+.frontart-tooltip {
+  font: 0.8em sans-serif;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 1px 1px #00000012;
+  position: absolute;
+  display: none;
+  -webkit-user-select: none;
+  user-select: none;
+  top: 0;
+  left: 0;
+  background: #fff;
+  z-index: 10;
+  outline: 0
+}
+
+.frontart-tooltip div {
+  padding: 5px 5px;
+}
+
+.frontart-tooltip div:hover,
+.frontart-tooltip div.selected {
+  background: #e0e0e0;
+}
+
+.frontart-tooltip [disabled] {
+  display: none;
+}
+
+.multiselection-tooltip {
+  display: none;
+}
+
+.frontart-tooltip.multiselection .multiselection-tooltip {
+  display: block
+}
+
+.frontart-tooltip.multiselection > *:not(section) {
+  display: none !important
+}
+
+.multiselected {
+  display: none
+}
+
+.frontart-tooltip.multiselected .multiselected {
+  display: block;
+}
+
+.frontart-tooltip.multiselected .not-multiselected {
+  display: none
+}
+
+.new-attr-span {
+  color: #333;
+  min-width: 20px;
+  padding-left: 5px;
+}
+
+.html-tree-builder-el.cutted,
+.html-tree-builder-el.copied {
+  outline: 1px solid #a894a6
+}
+
+#move-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  z-index: 2;
+  background: #444;
+  transform: translate(-9999px, -9999px);
+  pointer-events: none;
+}
+
+#move-position:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 100%;
+  border: 1px solid #444;
+}
+
+.html-tree-builder-node-value {
+  display: block;
+}
+
+.html-tree-builder .html-tree-builder__highlight.not-match > div.html-tree-builder__tag,
+.html-tree-builder .html-tree-builder__highlight.not-match > .span-close {
+  background-color: #ffcbcb;
+}
+
+.html-tree-builder li.not-match > div > .menu-toggle-wrapper {
+  display: none !important
+}
+
+.html-tree-builder .html-tree-builder__highlight.not-match > div > *:not(.html-tree-builder__caret),
+.html-tree-builder .html-tree-builder__highlight.not-match > .span-close {
+  cursor: not-allowed;
+}
+
+#css-view,
+#js-view {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.front-art-dialog .CodeMirror {
+  height: 100%;
+}
+
+#css-view .html-tree-builder__caret,
+#js-view .html-tree-builder__caret,
+#add-script-src {
+  display: none
+}
+
+#add-script-src-enable:checked ~ #add-script-src {
+  display: block
+}
+
+.menu-bar {
+  position: sticky;
+  top: 46px;
+  z-index: 10;
+  background: white;
+}
+
+.menu-bar-trigger {
+  display: flex;
+}
+
+.menu-bar-trigger > a {
+  position: relative;
+  opacity: 0.6;
+  transition: opacity 0.1s;
+  margin: 0 10px;
+}
+
+.menu-bar-trigger > a:hover {
+  opacity: 1;
+}
+
+.menu-bar-trigger > a.opened,
+.menu-bar-trigger > a.selected {
+  background: #d9d9d9;
+  opacity: 1;
+}
+
+/* TODO MODE */
+#find-button {
+  width: 100%;
+  height: 30px;
+  border: 1px solid #ccc;
+}
+
+#search-bar {
+  display: none;
+}
+
+#search-bar.opened {
+  display: flex;
+}
+
+#search-bar > * {
+  flex-grow: 1
+}
+/*
+#search-bar button {
+  background: lightgrey;
+  color: #333;
+}
+
+#search-bar button.selected {
+  background: grey;
+  color: #fff;
+}
+*/
+#search-bar div {
+  position: relative;
+  display: flex;
+  flex-grow: 14;
+}
+#search-bar-entries {
+  display: none;
+}
+#css-view li, #js-view li {
+  padding-left: 2em;
+}
+.tab-horizontal .tab-buttons-inside a svg{
+  width:1em;
+  height:1em;
+}
+.tab-horizontal.tab-buttons{
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 9;
+  margin-bottom:0
+}
+#search-bar button svg{
+  width:18px;
+  height:18px;
+}
+#search-bar button { background: none; border-radius: 7px; border: 1px solid rgb(204, 204, 204); cursor: pointer; font-size: 1em; margin: 0px 0.2em; text-align: center; color: rgb(153, 153, 153); padding: 0.3em 1em; letter-spacing: 1px; }
+#search-bar button:disabled{ opacity: 0.4; cursor: not-allowed; }
+.menu-bar {
+  margin: 1em 0.5em 0px; top: 50px;}
+#find-button { border: none;
+background-color: rgb(240, 240, 240);
+border-radius: 7px;
+padding-left: 1em;
+}
+#search-bar button {border: none; margin: 0px 0em; padding: 0.3em;}
+#search-bar-up svg {transform: rotate(-90deg);} #search-bar-down svg {transform: rotate(90deg);}

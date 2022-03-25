@@ -1,0 +1,40 @@
+{
+  "name": "tilepieces/panel-history/bundle",
+  "description": "",
+  "version": "",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": true,
+  "bundle": {
+    "stylesheet": {
+      "href": "tilepieces.panel-history.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "tilepieces.panel-history.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [
+      "fake"
+    ],
+    "scripts": [
+      "placeholder"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/panel-history"
+  ],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": "",
+  "components": {}
+}

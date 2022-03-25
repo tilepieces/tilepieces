@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>addClass test</title>
+    <style>
+        .hide{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<button id="hide-banner" onclick="hideBanner()" disabled>Hide Banner!</button>
+<button id="undo" onclick="undo()" disabled>Undo!</button>
+<button id="redo" onclick="redo()" disabled>Redo!</button>
+<script src="../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var hideBannerEl = document.getElementById("hide-banner");
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    // TESTING IF IMAGES ARE CORRECTLY REFERENCED
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+        hideBannerEl.removeAttribute("disabled");
+        var uno = htmlMatch.match(document.querySelector(".banner"));
+    }
+    a();
+    function hideBanner(){
+        if(hideBannerEl.disabled)
+            return;
+        htmlMatch.addClass(document.querySelector(".banner"),"hide");
+        undoEl.removeAttribute("disabled");
+        hideBannerEl.setAttribute("disabled","");
+    }
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+        undoEl.setAttribute("disabled","");
+        redoEl.removeAttribute("disabled");
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+        redoEl.setAttribute("disabled","");
+        undoEl.removeAttribute("disabled");
+    }
+</script>
+</body>
+</html>

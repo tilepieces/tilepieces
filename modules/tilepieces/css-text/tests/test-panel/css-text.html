@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html><head>
+  <link href="../../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet">
+  <link href="../../../autocomplete/autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete"><link href="../../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input">
+  
+  <link href="../../../drag/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag">
+  <link href="../../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs"><link href="../../css-text.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-text" data-tilepieces-current-stylesheet="">
+</head>
+<body style="margin:0">
+<div class="autocomplete-hint" data-tilepieces-component="tilepieces/autocomplete"></div>
+<section id="css-text" class="${isVisible}" data-tilepieces-component="tilepieces/css-text">
+  <div class="tab-buttons tab-horizontal" id="tab-css-text">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#css-text-general" class="selected">Css Text</a>
+        <a href="#text-shadow-tab">Text Shadow</a>
+      </div>
+    </div>
+  </div>
+  <div id="css-text-general">
+    <fieldset>
+      <legend>
+        <a href="#property-font-family" tabindex="-1">
+          Font-family:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-font-family" class="input-css autocomplete" data-css-prop="font-family" data-css-prop-js="fontFamily" data-value="${fontFamily}" data-auto-global-suggestion="app.core.fontSuggestions" data-bind="fontFamily" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-font-size" tabindex="-1">
+          Font-size:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-font-size" class="input-css autocomplete" data-css-prop="font-size" data-css-prop-js="fontSize" data-value="${fontSize}" data-auto-global-suggestion="cssDefaults.font-size" data-bind="fontSize" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-font-weight" tabindex="-1">
+          Font-weight:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-font-weight" class="input-css autocomplete" data-css-prop="font-weight" data-css-prop-js="fontWeight" data-value="${fontWeight}" data-auto-global-suggestion="cssDefaults.font-weight" data-bind="fontWeight" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-font-style" tabindex="-1">
+          Font-style:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-style" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-font-style" class="input-css autocomplete" data-css-prop="font-style" data-css-prop-js="fontStyle" data-value="${fontStyle}" data-auto-global-suggestion="cssDefaults.font-style" data-bind="fontStyle" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-line-height" tabindex="-1">
+          Line-height:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-line-height" class="input-css autocomplete" data-css-prop="line-height" data-css-prop-js="lineHeight" data-value="${lineHeight}" data-auto-global-suggestion="cssDefaults.line-height" data-bind="lineHeight" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-text-align" tabindex="-1">
+          Text-align:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-align" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-text-align" class="input-css autocomplete" data-css-prop="text-align" data-css-prop-js="textAlign" data-value="${textAlign}" data-auto-global-suggestion="cssDefaults.text-align" data-bind="textAlign" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-color" tabindex="-1">
+          Color:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <span id="color" style="background:${realColor}" data-css-prop="color" class="color-button"></span>
+        <div id="property-color" class="input-css autocomplete" data-css-prop="color" data-css-prop-js="color" data-value="${color}" data-auto-global-suggestion="cssDefaults.color" data-bind="color" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-text-decoration" tabindex="-1">
+          Text-decoration:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-text-decoration" class="input-css autocomplete" data-css-prop="text-decoration" data-css-prop-js="textDecoration" data-value="${textDecoration}" data-auto-global-suggestion="cssDefaults.text-decoration" data-bind="textDecoration" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-text-transform" tabindex="-1">
+          Text-transform:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-text-transform" class="input-css autocomplete" data-css-prop="text-transform" data-css-prop-js="textTransform" data-value="${textTransform}" data-auto-global-suggestion="cssDefaults.text-transform" data-bind="textTransform" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-text-indent" tabindex="-1">
+          Text-indent:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-indent" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-text-indent" class="input-css autocomplete" data-css-prop="text-indent" data-css-prop-js="textIndent" data-value="${textIndent}" data-auto-global-suggestion="cssDefaults.text-indent" data-bind="textIndent" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-letter-spacing" tabindex="-1">
+          Letter-spacing:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-letter-spacing" class="input-css autocomplete" data-css-prop="letter-spacing" data-css-prop-js="letterSpacing" data-value="${letterSpacing}" data-auto-global-suggestion="cssDefaults.letter-spacing" data-bind="letterSpacing" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-word-spacing" tabindex="-1">
+          Word-spacing:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/word-spacing" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-word-spacing" class="input-css autocomplete" data-css-prop="word-spacing" data-css-prop-js="wordSpacing" data-value="${wordSpacing}" data-auto-global-suggestion="cssDefaults.word-spacing" data-bind="wordSpacing" contenteditable=""></div>
+      </div>
+    </fieldset>
+  </div>
+  <div id="text-shadow-tab" style="display:none">
+    <fieldset>
+      <legend>
+        <a href="#property-text-shadow" tabindex="-1">
+          Text-shadow:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow" class="info-round-icon" target="_blank"></a>
+        <button class="add-text-shadow">Add</button>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-text-shadow" class="input-css autocomplete" data-css-prop="text-shadow" data-css-prop-js="textShadow" data-value="${textShadow}" data-auto-global-suggestion="cssDefaults.text-shadow" data-bind="textShadow" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset data-foreach="textShadows" data-foreach-key-name="textShadowValue" class="text-shadow">
+      <legend>Text Shadow #${textShadowValue.index}<button class="remove-text-shadow" data-index="${textShadowValue.index}">Remove</button></legend>
+      
+      <div style="float:left;width:calc(100% - 220px)">
+        <label for="x-offset-${textShadowValue.index}">X offset</label>
+        <div class="flex-box">
+          <input id="x-offset-${textShadowValue.index}" data-index="${textShadowValue.index}" data-text-shadow="offsetX" type="number" data-bind="textShadowValue.offsetX">
+            <span>px</span>
+        </div>
+        <label for="y-offset-${textShadowValue.index}">Y offset</label>
+        <div class="flex-box">
+        <input id="y-offset-${textShadowValue.index}" data-index="${textShadowValue.index}" data-text-shadow="offsetY" type="number" data-bind="textShadowValue.offsetY">
+          <span>px</span>
+        </div>
+        <label for="blur-offset-${textShadowValue.index}">Blur</label>
+        <div class="flex-box">
+          <input id="blur-offset-${textShadowValue.index}" type="number" data-index="${textShadowValue.index}" min="0" step="0.5" data-text-shadow="blur" data-bind="textShadowValue.blur">
+          <span>px</span>
+        </div>
+        <!--<input data-bind="textShadowValue.blurToSlider" data-text-shadow="blur" data-index="${textShadowValue.index}" type="range" min="0" max="30" step="0.5">-->
+        <div class="flex-box"><label>Color</label><div data-text-shadow="color" class="color-button" data-index="${textShadowValue.index}" style="background:${textShadowValue.color};margin-left:0.2em"></div></div>
+      </div>
+      <div style="float:right">
+        <svg id="svg-text-shadow-${textShadowValue.index}" data-index="${textShadowValue.index}" style="border:1px solid;display:block;margin:auto;width:200px;height:200px">
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+          <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+          <line x1="50%" y1="50%" x2="50%" y2="50%" stroke="black" stroke-width="2" class="line-test"></line>
+          <circle cx="50%" cy="50%" r="10" fill="lightblue" class="circle-test"></circle>
+        </svg>
+      </div>
+    </fieldset>
+  </div>
+</section>
+<script src="../../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../../../autocomplete/autocomplete.bundle.js" data-tilepieces-component="tilepieces/autocomplete"></script>
+<script src="../../../css-input/css-input.bundle.js" data-tilepieces-component="tilepieces/css-input"></script>
+<script src="../../../offset/offset.js" data-tilepieces-component="tilepieces/offset"></script>
+<script src="../../../drag/drag.js" data-tilepieces-component="tilepieces/drag"></script>
+<script src="../../../SVGtoXY/SVGtoXY.js" data-tilepieces-component="tilepieces/SVGtoXY"></script>
+<script src="../../../tabs/tabs.js" data-tilepieces-component="tilepieces/tabs"></script>
+<script src="../../css-text.bundle.js" data-tilepieces-component="tilepieces/css-text"></script>
+
+</body></html>

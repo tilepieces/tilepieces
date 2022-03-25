@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>innerHTML ( WYSIWYG ) test</title>
+    <style>
+        .buttons{
+            position:absolute;
+            width:300px;
+            height:50px;
+            right:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+    <h1>A banner Title with a <span style="color: darkcyan">span</span></h1>
+    <h2>A banner subtitle with a <a href="#">Link in <b>bold</b></a></h2>
+    <div id="target">
+    Where Impro...
+    </div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph with a <b><span style="color: darkcyan">bold span</span></b>
+        and a <a href="#">Link in <i>italic</i></a>
+    </p>
+</div>
+<div class="buttons">
+<button id="undo" onclick="undo()" disabled>Undo!</button>
+<button id="redo" onclick="redo()" disabled>Redo!</button>
+</div>
+<script src="../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    var buttons = document.querySelector(".buttons");
+    var lastEditable = null;
+    var noEditables = ["AUDIO","VIDEO","IMG"];
+    document.body.addEventListener("click",e=>{
+        if(e.target == buttons || buttons.contains(e.target))
+            return;
+        if(e.target.nodeName == "BODY" || e.target.nodeName == "HTML")
+            return;
+        if(e.target.classList.contains("highlight-contenteditable-selection"))
+            return;
+        if(lastEditable && lastEditable.el && lastEditable.el.contains(e.target))
+            return;
+        e.stopPropagation();
+        e.preventDefault();
+        if(lastEditable) {
+            lastEditable.destroy && lastEditable.destroy();
+            lastEditable = null;
+        }
+        var found = htmlMatch.find(e.target);
+        if(!found.match){
+            console.error("no match for " ,e.target);
+            return;
+        }
+        if(noEditables.indexOf(e.target.nodeName)>-1)
+            return;
+        lastEditable = htmlMatch.contenteditable(e.target);
+        console.log(lastEditable, e.target);
+        if(!htmlMatch.firstSelection && lastEditable.el)
+            htmlMatch.firstSelection = {
+                lastRange : htmlMatch.getLastSelection(lastEditable.el),
+                editable : lastEditable.el
+            }
+    })
+    window.addEventListener("WYSIWYG-end",e=>lastEditable = null)
+    window.addEventListener("DOM-change",function(){
+        if(htmlMatch.history.pointer != 0)
+            undoEl.removeAttribute("disabled");
+        else
+            undoEl.setAttribute("disabled","");
+        if(htmlMatch.history.pointer != htmlMatch.history.entries.length)
+            redoEl.removeAttribute("disabled");
+        else
+            redoEl.setAttribute("disabled","");
+    });
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+    }
+    a();
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+    }
+</script>
+</body>
+</html>

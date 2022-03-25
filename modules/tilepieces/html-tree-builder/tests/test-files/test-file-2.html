@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta description="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" itemprop="image primaryImageOfPage" content="">
+</head>
+<body><h1 id="firstHeading" class="firstHeading"
+          style="margin: 0px 0px 0.25em; padding: 0px; overflow: visible; border-bottom: 1px solid rgb(162, 169, 177); font-size: 1.8em; font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  Instruction set architecture</h1>
+<div id="bodyContent" class="vector-body"
+     style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif;">
+  <div id="siteSub" class="noprint" style="font-size: 12.88px;">From Wikipedia, the free encyclopedia</div>
+  <div id="contentSub"
+       style="font-size: 11.76px; line-height: 1.2em; margin: 0px 0px 1.4em 1em; color: rgb(84, 89, 93); width: auto;"></div>
+  <div id="contentSub2"
+       style="font-size: 11.76px; line-height: 1.2em; margin: 0px 0px 1.4em 1em; color: rgb(84, 89, 93); width: auto;"></div>
+  <div id="jump-to-nav"></div>
+  <a class="mw-jump-link" href="https://en.wikipedia.org/wiki/Instruction_set_architecture#mw-head"
+     style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: block; clip: rect(1px, 1px, 1px, 1px); width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; position: absolute !important;">Jump
+    to navigation</a><a class="mw-jump-link"
+                        href="https://en.wikipedia.org/wiki/Instruction_set_architecture#searchInput"
+                        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: block; clip: rect(1px, 1px, 1px, 1px); width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; position: absolute !important;">Jump
+  to search</a>
+  <div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+    <div class="mw-parser-output">
+      <div role="note" class="hatnote navigation-not-searchable"
+           style="font-style: italic; padding-left: 1.6em; margin-bottom: 0.5em;">Not to be confused with&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Industry_Standard_Architecture" title="Industry Standard Architecture"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Industry
+        Standard Architecture</a>.
+      </div>
+      <table class="sidebar nomobile nowraplinks"
+             style="font-size: 12.32px; width: 22em; float: right; clear: right; margin: 0.5em 0px 1em 1em; background: rgb(248, 249, 250); border: 1px solid rgb(170, 170, 170); padding: 0.2em; text-align: center; line-height: 1.4em; border-collapse: collapse;">
+        <tbody>
+        <tr>
+          <th class="sidebar-title"
+              style="padding: 0.2em 0.8em; font-size: 17.864px; line-height: 1.2em; background-color: rgba(51, 153, 255, 0.15);">
+            <a href="https://en.wikipedia.org/wiki/Machine_code" title="Machine code"
+               style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Machine
+              code</a></th>
+        </tr>
+        <tr>
+          <th class="sidebar-heading" style="padding: 0.1em 0.4em; background-color: rgba(51, 153, 255, 0.15);">General
+            concepts
+          </th>
+        </tr>
+        <tr>
+          <td class="sidebar-content" style="padding: 0px 0.5em 0.4em; text-align: left;">
+            <ul
+              style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+              <li style="margin-bottom: 0.1em;"><a class="mw-selflink selflink"
+                                                   style="text-decoration: inherit; color: inherit; background: none; font-weight: bold; cursor: pointer; white-space: nowrap;">Instruction
+                set</a></li>
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Opcode" title="Opcode"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Opcode</a>
+                <ul
+                  style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                  <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Illegal_opcode"
+                                                       title="Illegal opcode"
+                                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Illegal
+                    opcode</a></li>
+                  <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Opcode_table"
+                                                       title="Opcode table"
+                                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Opcode
+                    table</a></li>
+                </ul>
+              </li>
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Operand#Computer_science"
+                                                   title="Operand"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Operand</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th class="sidebar-heading" style="padding: 0.1em 0.4em; background-color: rgba(51, 153, 255, 0.15);">
+            Instructions
+          </th>
+        </tr>
+        <tr>
+          <td class="sidebar-content" style="padding: 0px 0.5em 0.4em; text-align: left;">
+            <ul
+              style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/NOP_(code)" title="NOP (code)"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">NOP</a>
+              </li>
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Branch_(computer_science)"
+                                                   title="Branch (computer science)"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Branch</a>
+                <ul
+                  style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                  <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Indirect_branch"
+                                                       title="Indirect branch"
+                                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Indirect
+                    branch</a></li>
+                </ul>
+              </li>
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Repeat_instruction"
+                                                   title="Repeat instruction"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Repeat
+                instruction</a></li>
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Execute_instruction"
+                                                   title="Execute instruction"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Execute
+                instruction</a></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="sidebar-navbar" style="text-align: right; font-size: 14.168px; padding: 0px 0.4em 0.4em;">
+            <div class="navbar plainlinks hlist navbar-mini" style="display: inline; font-size: 12.4678px;">
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0px; padding: 0px; display: inline-block; white-space: nowrap; line-height: inherit;">
+                <li class="nv-view" style="margin: 0px; display: inline; word-spacing: -0.125em;"><a
+                  href="https://en.wikipedia.org/wiki/Template:Machine_code" title="Template:Machine code"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><abbr
+                  title="View this template"
+                  style="border-bottom: none; cursor: inherit; text-decoration: inherit; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;">v</abbr></a>
+                </li>
+                <li class="nv-talk" style="margin: 0px; display: inline; word-spacing: -0.125em;"><a
+                  href="https://en.wikipedia.org/wiki/Template_talk:Machine_code" title="Template talk:Machine code"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><abbr
+                  title="Discuss this template"
+                  style="border-bottom: none; cursor: inherit; text-decoration: inherit; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;">t</abbr></a>
+                </li>
+                <li class="nv-edit" style="margin: 0px; display: inline; word-spacing: -0.125em;"><a
+                  class="external text"
+                  href="https://en.wikipedia.org/w/index.php?title=Template:Machine_code&amp;action=edit"
+                  style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-repeat: no-repeat; padding-right: 13px; background-size: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; background-color: initial !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important;"><abbr
+                  title="Edit this template"
+                  style="border-bottom: none; cursor: inherit; text-decoration: inherit; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;">e</abbr></a>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <p style="margin: 0.5em 0px;">In&nbsp;<a href="https://en.wikipedia.org/wiki/Computer_science"
+                                               title="Computer science"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">computer
+        science</a>, an&nbsp;<b>instruction set architecture</b>&nbsp;(<b>ISA</b>), also called&nbsp;<b><a
+        href="https://en.wikipedia.org/wiki/Computer_architecture" title="Computer architecture"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">computer
+        architecture</a>,</b>&nbsp;is an&nbsp;<a href="https://en.wikipedia.org/wiki/Abstract_model" class="mw-redirect"
+                                                 title="Abstract model"
+                                                 style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">abstract
+        model</a>&nbsp;of a&nbsp;<a href="https://en.wikipedia.org/wiki/Computer" title="Computer"
+                                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">computer</a>.
+        A device that executes instructions described by that ISA, such as a&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Central_processing_unit" title="Central processing unit"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">central
+          processing unit</a>&nbsp;(CPU), is called an&nbsp;<i>implementation</i>.</p>
+      <p style="margin: 0.5em 0px;">In general, an ISA defines the supported&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Machine_code" title="Machine code"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">instructions</a>,&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Data_type" title="Data type"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">data
+        types</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Register_(computer)" class="mw-redirect"
+                           title="Register (computer)"
+                           style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">registers</a>,
+        the hardware support for managing&nbsp;<a href="https://en.wikipedia.org/wiki/Random-access_memory"
+                                                  title="Random-access memory"
+                                                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">main
+          memory</a>, fundamental features (such as the&nbsp;<a href="https://en.wikipedia.org/wiki/Memory_consistency"
+                                                                class="mw-redirect" title="Memory consistency"
+                                                                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">memory
+          consistency</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Addressing_mode" title="Addressing mode"
+                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">addressing
+          modes</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Virtual_memory" title="Virtual memory"
+                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">virtual
+          memory</a>), and the&nbsp;<a href="https://en.wikipedia.org/wiki/Input/output" title="Input/output"
+                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">input/output</a>&nbsp;model
+        of a family of implementations of the ISA.</p>
+      <p style="margin: 0.5em 0px;">An ISA specifies the behavior of&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Machine_code" title="Machine code"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">machine
+        code</a>&nbsp;running on implementations of that ISA in a fashion that does not depend on the characteristics of
+        that implementation, providing&nbsp;<a href="https://en.wikipedia.org/wiki/Binary_compatibility"
+                                               class="mw-redirect" title="Binary compatibility"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">binary
+          compatibility</a>&nbsp;between implementations. This enables multiple implementations of an ISA that differ in
+        characteristics such as&nbsp;<a href="https://en.wikipedia.org/wiki/Computer_performance"
+                                        title="Computer performance"
+                                        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">performance</a>,
+        physical size, and monetary cost (among other things), but that are capable of running the same machine code, so
+        that a lower-performance, lower-cost machine can be replaced with a higher-cost, higher-performance machine
+        without having to replace software. It also enables the evolution of the&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Microarchitecture" title="Microarchitecture"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">microarchitectures</a>&nbsp;of
+        the implementations of that ISA, so that a newer, higher-performance implementation of an ISA can run software
+        that runs on previous generations of implementations.</p>
+      <p style="margin: 0.5em 0px;">If an&nbsp;<a href="https://en.wikipedia.org/wiki/Operating_system"
+                                                  title="Operating system"
+                                                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">operating
+        system</a>&nbsp;maintains a standard and compatible&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Application_binary_interface" title="Application binary interface"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">application
+        binary interface</a>&nbsp;(ABI) for a particular ISA, machine code will run on future implementations of that
+        ISA and operating system. However, if an ISA supports running multiple operating systems, it does not guarantee
+        that machine code for one operating system will run on another operating system, unless the first operating
+        system supports running machine code built for the other operating system.</p>
+      <p style="margin: 0.5em 0px;">An ISA can be extended by adding instructions or other capabilities, or adding
+        support for larger addresses and data values; an implementation of the extended ISA will still be able to
+        execute machine code for versions of the ISA without those extensions. Machine code using those extensions will
+        only run on implementations that support those extensions.</p>
+      <p style="margin: 0.5em 0px;">The binary compatibility that they provide make ISAs one of the most fundamental
+        abstractions in&nbsp;<a href="https://en.wikipedia.org/wiki/Computing" title="Computing"
+                                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">computing</a>.
+      </p>
+      <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"
+           style="border: 1px solid rgb(162, 169, 177); background-color: rgb(248, 249, 250); padding: 7px; font-size: 13.3px; display: table;">
+        <input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox"
+               style="margin: 0px; position: absolute; opacity: 0; z-index: -1; display: none;">
+        <div class="toctitle" lang="en" dir="ltr" style="text-align: center; direction: ltr;"><h2 id="mw-toc-heading"
+                                                                                                  style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border: 0px; font-size: 13.3px; line-height: 1.3; display: inline;">
+          Contents</h2><span class="toctogglespan" style="font-size: 12.502px;"><label class="toctogglelabel"
+                                                                                       for="toctogglecheckbox"
+                                                                                       style="cursor: pointer; color: rgb(6, 69, 173);"></label></span>
+        </div>
+        <ul style="list-style: none; margin: 0.3em 0px; padding: 0px;">
+          <li class="toclevel-1 tocsection-1" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Overview"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">1</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">Overview</span></a></li>
+          <li class="toclevel-1 tocsection-2" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Classification_of_ISAs"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">2</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">Classification of ISAs</span></a>
+          </li>
+          <li class="toclevel-1 tocsection-3" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Instructions"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">Instructions</span></a>
+            <ul style="list-style: none; margin: 0px 0px 0px 2em; padding: 0px;">
+              <li class="toclevel-2 tocsection-4" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Instruction_types"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.1</span><span
+                class="toctext" style="display: table-cell; text-decoration: inherit;">Instruction types</span></a>
+                <ul style="list-style: none; margin: 0px 0px 0px 2em; padding: 0px;">
+                  <li class="toclevel-3 tocsection-5" style="margin-bottom: 0.1em;"><a
+                    href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Data_handling_and_memory_operations"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span
+                    class="tocnumber"
+                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.1.1</span><span
+                    class="toctext" style="display: table-cell; text-decoration: inherit;">Data handling and memory operations</span></a>
+                  </li>
+                  <li class="toclevel-3 tocsection-6" style="margin-bottom: 0.1em;"><a
+                    href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Arithmetic_and_logic_operations"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span
+                    class="tocnumber"
+                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.1.2</span><span
+                    class="toctext" style="display: table-cell; text-decoration: inherit;">Arithmetic and logic operations</span></a>
+                  </li>
+                  <li class="toclevel-3 tocsection-7" style="margin-bottom: 0.1em;"><a
+                    href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Control_flow_operations"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span
+                    class="tocnumber"
+                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.1.3</span><span
+                    class="toctext"
+                    style="display: table-cell; text-decoration: inherit;">Control flow operations</span></a></li>
+                  <li class="toclevel-3 tocsection-8" style="margin-bottom: 0.1em;"><a
+                    href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Coprocessor_instructions"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span
+                    class="tocnumber"
+                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.1.4</span><span
+                    class="toctext"
+                    style="display: table-cell; text-decoration: inherit;">Coprocessor instructions</span></a></li>
+                </ul>
+              </li>
+              <li class="toclevel-2 tocsection-9" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Complex_instructions"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.2</span><span
+                class="toctext" style="display: table-cell; text-decoration: inherit;">Complex instructions</span></a>
+              </li>
+              <li class="toclevel-2 tocsection-10" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Instruction_encoding"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.3</span><span
+                class="toctext" style="display: table-cell; text-decoration: inherit;">Instruction encoding</span></a>
+                <ul style="list-style: none; margin: 0px 0px 0px 2em; padding: 0px;">
+                  <li class="toclevel-3 tocsection-11" style="margin-bottom: 0.1em;"><a
+                    href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Number_of_operands"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span
+                    class="tocnumber"
+                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.3.1</span><span
+                    class="toctext" style="display: table-cell; text-decoration: inherit;">Number of operands</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li class="toclevel-2 tocsection-12" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Register_pressure"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.4</span><span
+                class="toctext" style="display: table-cell; text-decoration: inherit;">Register pressure</span></a></li>
+              <li class="toclevel-2 tocsection-13" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Instruction_length"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.5</span><span
+                class="toctext" style="display: table-cell; text-decoration: inherit;">Instruction length</span></a>
+              </li>
+              <li class="toclevel-2 tocsection-14" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Code_density"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.6</span><span
+                class="toctext" style="display: table-cell; text-decoration: inherit;">Code density</span></a></li>
+              <li class="toclevel-2 tocsection-15" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Representation"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.7</span><span
+                class="toctext" style="display: table-cell; text-decoration: inherit;">Representation</span></a></li>
+            </ul>
+          </li>
+          <li class="toclevel-1 tocsection-16" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Design"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">4</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">Design</span></a></li>
+          <li class="toclevel-1 tocsection-17" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Instruction_set_implementation"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">5</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">Instruction set implementation</span></a>
+          </li>
+          <li class="toclevel-1 tocsection-18" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Instruction_set_architecture#See_also"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">6</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">See also</span></a></li>
+          <li class="toclevel-1 tocsection-19" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Instruction_set_architecture#References"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">7</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">References</span></a></li>
+          <li class="toclevel-1 tocsection-20" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Instruction_set_architecture#Further_reading"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">8</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">Further reading</span></a></li>
+          <li class="toclevel-1 tocsection-21" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Instruction_set_architecture#External_links"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">9</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">External links</span></a></li>
+        </ul>
+      </div>
+      <h2
+        style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+        <span class="mw-headline" id="Overview">Overview</span><span class="mw-editsection"
+                                                                     style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Instruction_set_architecture&amp;action=edit&amp;section=1"
+        title="Edit section: Overview"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+      <p style="margin: 0.5em 0px;">An instruction set architecture is distinguished from a&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Microarchitecture" title="Microarchitecture"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">microarchitecture</a>,
+        which is the set of&nbsp;<a href="https://en.wikipedia.org/wiki/Processor_design" title="Processor design"
+                                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">processor
+          design</a>&nbsp;techniques used, in a particular processor, to implement the instruction set. Processors with
+        different microarchitectures can share a common instruction set. For example, the&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Intel" title="Intel"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Intel</a>&nbsp;<a
+          href="https://en.wikipedia.org/wiki/P5_(microarchitecture)" class="mw-redirect" title="P5 (microarchitecture)"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Pentium</a>&nbsp;and
+        the&nbsp;<a href="https://en.wikipedia.org/wiki/Advanced_Micro_Devices" title="Advanced Micro Devices"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Advanced
+          Micro Devices</a>&nbsp;<a href="https://en.wikipedia.org/wiki/Athlon" title="Athlon"
+                                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Athlon</a>&nbsp;implement
+        nearly identical versions of the&nbsp;<a href="https://en.wikipedia.org/wiki/X86_instruction_set"
+                                                 class="mw-redirect" title="X86 instruction set"
+                                                 style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">x86
+          instruction set</a>, but have radically different internal designs.</p>
+      <p style="margin: 0.5em 0px;">The concept of an&nbsp;<i>architecture</i>, distinct from the design of a specific
+        machine, was developed by&nbsp;<a href="https://en.wikipedia.org/wiki/Fred_Brooks" title="Fred Brooks"
+                                          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Fred
+          Brooks</a>&nbsp;at IBM during the design phase of&nbsp;<a href="https://en.wikipedia.org/wiki/System/360"
+                                                                    class="mw-redirect" title="System/360"
+                                                                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">System/360</a>.
+      </p>
+      <blockquote class="templatequote"
+                  style="overflow: hidden; margin: 1em 0px; padding: 0px 40px; border-left: none;"><p
+        style="margin: 0px;">Prior to NPL [System/360], the company's computer designers had been free to honor cost
+        objectives not only by selecting technologies but also by fashioning functional and architectural refinements.
+        The SPREAD compatibility objective, in contrast, postulated a single architecture for a series of five
+        processors spanning a wide range of cost and performance. None of the five engineering design teams could count
+        on being able to bring about adjustments in architectural specifications as a way of easing difficulties in
+        achieving cost and performance objectives.<sup id="cite_ref-Pugh_1-0" class="reference"
+                                                       style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+          href="https://en.wikipedia.org/wiki/Instruction_set_architecture#cite_note-Pugh-1"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[1]</a></sup><sup
+          class="reference nowrap"
+          style="line-height: 1; white-space: nowrap; unicode-bidi: isolate; font-size: 11.2px;"><span
+          title="Page / location: p.137">: p.137 </span></sup></p></blockquote>
+      <p style="margin: 0.5em 0px;">Some&nbsp;<a href="https://en.wikipedia.org/wiki/Virtual_machine"
+                                                 title="Virtual machine"
+                                                 style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">virtual
+        machines</a>&nbsp;that support&nbsp;<a href="https://en.wikipedia.org/wiki/Bytecode" title="Bytecode"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">bytecode</a>&nbsp;as
+        their ISA such as&nbsp;<a href="https://en.wikipedia.org/wiki/Smalltalk" title="Smalltalk"
+                                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Smalltalk</a>,
+        the&nbsp;<a href="https://en.wikipedia.org/wiki/Java_virtual_machine" title="Java virtual machine"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Java
+          virtual machine</a>, and&nbsp;<a href="https://en.wikipedia.org/wiki/Microsoft" title="Microsoft"
+                                           style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Microsoft</a>'s&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Common_Language_Runtime" title="Common Language Runtime"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Common
+          Language Runtime</a>, implement this by translating the bytecode for commonly used code paths into native
+        machine code. In addition, these virtual machines execute less frequently used code paths by interpretation
+        (see:&nbsp;<a href="https://en.wikipedia.org/wiki/Just-in-time_compilation" title="Just-in-time compilation"
+                      style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Just-in-time
+          compilation</a>).&nbsp;<a href="https://en.wikipedia.org/wiki/Transmeta" title="Transmeta"
+                                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Transmeta</a>&nbsp;implemented
+        the x86 instruction set atop&nbsp;<a href="https://en.wikipedia.org/wiki/VLIW" class="mw-redirect" title="VLIW"
+                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">VLIW</a>&nbsp;processors
+        in this fashion.</p>
+      <h2
+        style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+        <span class="mw-headline" id="Classification_of_ISAs">Classification of ISAs</span><span class="mw-editsection"
+                                                                                                 style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Instruction_set_architecture&amp;action=edit&amp;section=2"
+        title="Edit section: Classification of ISAs"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+      <p style="margin: 0.5em 0px;">An ISA may be classified in a number of different ways. A common classification is
+        by architectural&nbsp;<i>complexity</i>. A&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Complex_instruction_set_computer" title="Complex instruction set computer"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">complex
+          instruction set computer</a>&nbsp;(CISC) has many specialized instructions, some of which may only be rarely
+        used in practical programs. A&nbsp;<a href="https://en.wikipedia.org/wiki/Reduced_instruction_set_computer"
+                                              title="Reduced instruction set computer"
+                                              style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">reduced
+          instruction set computer</a>&nbsp;(RISC) simplifies the processor by efficiently implementing only the
+        instructions that are frequently used in programs, while the less common operations are implemented as
+        subroutines, having their resulting additional processor execution time offset by infrequent use.<sup
+          id="cite_ref-2" class="reference"
+          style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+          href="https://en.wikipedia.org/wiki/Instruction_set_architecture#cite_note-2"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[2]</a></sup>
+      </p>
+      <p style="margin: 0.5em 0px;">Other types include&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Very_long_instruction_word" title="Very long instruction word"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">very
+        long instruction word</a>&nbsp;(VLIW) architectures, and the closely related&nbsp;<i>long instruction word</i>&nbsp;(LIW)
+        and&nbsp;<i><a href="https://en.wikipedia.org/wiki/Explicitly_parallel_instruction_computing"
+                       title="Explicitly parallel instruction computing"
+                       style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">explicitly
+          parallel instruction computing</a></i>&nbsp;(EPIC) architectures. These architectures seek to exploit&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Instruction-level_parallelism" title="Instruction-level parallelism"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">instruction-level
+          parallelism</a>&nbsp;with less hardware than RISC and CISC by making the&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Compiler" title="Compiler"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">compiler</a>&nbsp;responsible
+        for instruction issue and scheduling.</p>
+      <p style="margin: 0.5em 0px;">Architectures with even less complexity have been studied, such as the&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Minimal_instruction_set_computer" title="Minimal instruction set computer"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">minimal
+        instruction set computer</a>&nbsp;(MISC) and&nbsp;<a
+        href="https://en.wikipedia.org/wiki/One_instruction_set_computer" class="mw-redirect"
+        title="One instruction set computer"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">one
+        instruction set computer</a>&nbsp;(OISC). These are theoretically important types, but have not been
+        commercialized.</p>
+      <h2
+        style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+        <span class="mw-headline" id="Instructions"><span id="NATIVE"></span>Instructions</span><span
+        class="mw-editsection"
+        style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Instruction_set_architecture&amp;action=edit&amp;section=3"
+        title="Edit section: Instructions"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+      <p style="margin: 0.5em 0px;"><a href="https://en.wikipedia.org/wiki/Machine_code" title="Machine code"
+                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Machine
+        language</a>&nbsp;is built up from discrete&nbsp;<i>statements</i>&nbsp;or&nbsp;<i>instructions</i>. On the
+        processing architecture, a given instruction may specify:</p>
+      <ul
+        style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+        <li style="margin-bottom: 0.1em;">opcode (the instruction to be performed) e.g. add, copy, test</li>
+        <li style="margin-bottom: 0.1em;">any explicit operands:</li>
+      </ul>
+      <dl style="margin-top: 0.2em; margin-bottom: 0.5em;">
+        <dd style="margin-left: 1.6em; margin-bottom: 0.1em; margin-right: 0px;">
+          <dl style="margin-top: 0.2em; margin-bottom: 0.5em;">
+            <dd style="margin-left: 1.6em; margin-bottom: 0.1em; margin-right: 0px;"><a
+              href="https://en.wikipedia.org/wiki/Processor_register" title="Processor register"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">registers</a>
+            </dd>
+            <dd style="margin-left: 1.6em; margin-bottom: 0.1em; margin-right: 0px;">literal/constant values</dd>
+            <dd style="margin-left: 1.6em; margin-bottom: 0.1em; margin-right: 0px;"><a
+              href="https://en.wikipedia.org/wiki/Addressing_mode" title="Addressing mode"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">addressing
+              modes</a>&nbsp;used to access memory
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+      <p style="margin: 0.5em 0px;">More complex operations are built up by combining these simple instructions, which
+        are executed sequentially, or as otherwise directed by&nbsp;<a href="https://en.wikipedia.org/wiki/Control_flow"
+                                                                       title="Control flow"
+                                                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">control
+          flow</a>&nbsp;instructions.</p>
+      <h3
+        style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; font-size: 1.2em; line-height: 1.6;">
+        <span class="mw-headline" id="Instruction_types">Instruction types</span><span class="mw-editsection"
+                                                                                       style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Instruction_set_architecture&amp;action=edit&amp;section=4"
+        title="Edit section: Instruction types"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h3>
+      <p style="margin: 0.5em 0px;">Examples of operations common to many instruction sets include:</p><h4
+      style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; line-height: 1.6;">
+      <span class="mw-headline" id="Data_handling_and_memory_operations">Data handling and memory operations</span><span
+      class="mw-editsection"
+      style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+      class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+      href="https://en.wikipedia.org/w/index.php?title=Instruction_set_architecture&amp;action=edit&amp;section=5"
+      title="Edit section: Data handling and memory operations"
+      style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+      class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h4>
+      <ul
+        style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+        <li style="margin-bottom: 0.1em;"><i>Set</i>&nbsp;a&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Processor_register" title="Processor register"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">register</a>&nbsp;to
+          a fixed constant value.
+        </li>
+        <li style="margin-bottom: 0.1em;"><i>Copy</i>&nbsp;data from a memory location or a register to a memory
+          location or a register (a machine instruction is often called&nbsp;<i>move</i>; however, the term is
+          misleading). Used to store the contents of a register, the result of a computation, or to retrieve stored data
+          to perform a computation on it later. Often called&nbsp;<a href="https://en.wikipedia.org/wiki/Load_and_store"
+                                                                     class="mw-redirect" title="Load and store"
+                                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">load
+            and store</a>&nbsp;operations.
+        </li>
+        <li style="margin-bottom: 0.1em;"><i>Read</i>&nbsp;and&nbsp;<i>write</i>&nbsp;data from hardware devices.</li>
+      </ul>
+      <h4
+        style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; line-height: 1.6;">
+        <span class="mw-headline" id="Arithmetic_and_logic_operations"><a
+          href="https://en.wikipedia.org/wiki/Arithmetic_logic_unit" title="Arithmetic logic unit"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Arithmetic and logic</a>&nbsp;operations</span><span
+        class="mw-editsection"
+        style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Instruction_set_architecture&amp;action=edit&amp;section=6"
+        title="Edit section: Arithmetic and logic operations"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h4>
+      <ul
+        style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+        <li style="margin-bottom: 0.1em;"><i>Add</i>,&nbsp;<i>subtract</i>,&nbsp;<i>multiply</i>, or&nbsp;<i>divide</i>&nbsp;the
+          values of two registers, placing the result in a register, possibly setting one or more&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Flag_(computing)" class="mw-redirect" title="Flag (computing)"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">condition
+            codes</a>&nbsp;in a&nbsp;<a href="https://en.wikipedia.org/wiki/Status_register" title="Status register"
+                                        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">status
+            register</a>.
+          <ul
+            style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+            <li style="margin-bottom: 0.1em;"><i><span id="increment"></span><span class="vanchor-text">increment</span></i>,&nbsp;<i><span
+              id="decrement"></span><span class="vanchor-text">decrement</span></i>&nbsp;in some ISAs, saving operand
+              fetch in trivial cases.
+            </li>
+          </ul>
+        </li>
+        <li style="margin-bottom: 0.1em;">Perform&nbsp;<a href="https://en.wikipedia.org/wiki/Bitwise_operation"
+                                                          title="Bitwise operation"
+                                                          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">bitwise
+          operations</a>, e.g., taking the&nbsp;<i><a href="https://en.wikipedia.org/wiki/Logical_conjunction"
+                                                      title="Logical conjunction"
+                                                      style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">conjunction</a></i>&nbsp;and&nbsp;<i><a
+          href="https://en.wikipedia.org/wiki/Logical_disjunction" title="Logical disjunction"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">disjunction</a></i>&nbsp;of
+          corresponding bits in a pair of registers, taking the&nbsp;<i><a
+            href="https://en.wikipedia.org/wiki/Logical_negation" class="mw-redirect" title="Logical negation"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">negation</a></i>&nbsp;of
+          each bit in a register.
+        </li>
+        <li style="margin-bottom: 0.1em;"><i>Compare</i>&nbsp;two values in registers (for example, to see if one is
+          less, or if they are equal).
+        </li>
+        <li style="margin-bottom: 0.1em;"><i><span class="vanchor"><span id="Floating-point_instruction"></span><span
+          class="vanchor-text">Floating-point instruction</span></span>s</i>&nbsp;for arithmetic on floating-point
+          numbers.
+        </li>
+      </ul>
+      <h4
+        style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; line-height: 1.6;">
+        <span class="mw-headline" id="Control_flow_operations"><a href="https://en.wikipedia.org/wiki/Control_flow"
+                                                                  title="Control flow"
+                                                                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Control flow</a>&nbsp;operations</span><span
+        class="mw-editsection"
+        style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Instruction_set_architecture&amp;action=edit&amp;section=7"
+        title="Edit section: Control flow operations"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h4>
+      <ul
+        style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+        <li style="margin-bottom: 0.1em;"><i><a href="https://en.wikipedia.org/wiki/Branch_(computer_science)"
+                                                title="Branch (computer science)"
+                                                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Branch</a></i>&nbsp;to
+          another location in the program and execute instructions there.
+        </li>
+        <li style="margin-bottom: 0.1em;"><i><a href="https://en.wikipedia.org/wiki/Branch_predication"
+                                                class="mw-redirect" title="Branch predication"
+                                                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Conditionally
+          branch</a></i>&nbsp;to another location if a certain condition holds.
+        </li>
+        <li style="margin-bottom: 0.1em;"><i><a href="https://en.wikipedia.org/wiki/Indirect_branch"
+                                                title="Indirect branch"
+                                                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Indirectly
+          branch</a></i>&nbsp;to another location.
+        </li>
+        <li style="margin-bottom: 0.1em;"><i><a href="https://en.wikipedia.org/wiki/Subroutine" title="Subroutine"
+                                                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Call</a></i>&nbsp;another
+          block of code, while saving the location of the next instruction as a point to return to.
+        </li>
+      </ul>
+      <h4
+        style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; line-height: 1.6;">
+        <span class="mw-headline" id="Coprocessor_instructions"><a href="https://en.wikipedia.org/wiki/Coprocessor"
+                                                                   title="Coprocessor"
+                                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Coprocessor</a>&nbsp;instructions</span><span
+        class="mw-editsection"
+        style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Instruction_set_architecture&amp;action=edit&amp;section=8"
+        title="Edit section: Coprocessor instructions"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h4>
+      <ul
+        style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+        <li style="margin-bottom: 0.1em;">Load/store data to and from a coprocessor or exchanging with CPU registers.
+        </li>
+        <li style="margin-bottom: 0.1em;">Perform coprocessor operations.</li>
+      </ul>
+      <h3
+        style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; font-size: 1.2em; line-height: 1.6;">
+        <span class="mw-headline" id="Complex_instructions">Complex instructions</span><span class="mw-editsection"
+                                                                                             style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Instruction_set_architecture&amp;action=edit&amp;section=9"
+        title="Edit section: Complex instructions"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h3>
+      <p style="margin: 0.5em 0px;">Processors may include "complex" instructions in their instruction set. A single
+        "complex" instruction does something that may take many instructions on other computers.<sup
+          class="noprint Inline-Template Template-Fact" style="line-height: 1; font-size: 11.2px; white-space: nowrap;">[<i><a
+          href="https://en.wikipedia.org/wiki/Wikipedia:Citation_needed" title="Wikipedia:Citation needed"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span
+          title="This claim needs references to reliable sources. (October 2012)">citation needed</span></a></i>]</sup>&nbsp;Such
+        instructions are&nbsp;<a href="https://en.wikipedia.org/wiki/Typified" class="mw-redirect" title="Typified"
+                                 style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">typified</a>&nbsp;by
+        instructions that take multiple steps, control multiple functional units, or otherwise appear on a larger scale
+        than the bulk of simple instructions implemented by the given processor. Some examples of "complex" instructions
+        include:</p>
+      <ul
+        style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+        <li style="margin-bottom: 0.1em;">transferring multiple registers to or from memory (especially the&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Call_stack" title="Call stack"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">stack</a>)
+          at once
+        </li>
+        <li style="margin-bottom: 0.1em;">moving large blocks of memory (e.g.&nbsp;<a
+          href="https://en.wikipedia.org/wiki/String_copy" class="mw-redirect" title="String copy"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">string
+          copy</a>&nbsp;or&nbsp;<a href="https://en.wikipedia.org/wiki/DMA_transfer" class="mw-redirect"
+                                   title="DMA transfer"
+                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">DMA
+          transfer</a>)
+        </li>
+        <li style="margin-bottom: 0.1em;">complicated integer and floating-point arithmetic (e.g.&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Square_root" title="Square root"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">square
+          root</a>, or&nbsp;<a href="https://en.wikipedia.org/wiki/Transcendental_function"
+                               title="Transcendental function"
+                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">transcendental
+          functions</a>&nbsp;such as&nbsp;<a href="https://en.wikipedia.org/wiki/Logarithm" title="Logarithm"
+                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">logarithm</a>,&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Sine" title="Sine"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">sine</a>,&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Cosine" class="mw-redirect" title="Cosine"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">cosine</a>,
+          etc.)
+        </li>
+        <li style="margin-bottom: 0.1em;"><i><span class="vanchor"><span id="[[SIMD]]_instruction"></span><span
+          id="SIMD_instruction"></span><span class="vanchor-text"><a href="https://en.wikipedia.org/wiki/SIMD"
+                                                                     title="SIMD"
+                                                                     style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">SIMD</a>&nbsp;instruction</span></span>s</i>,
+          a single instruction performing an operation on many homogeneous values in parallel, possibly in dedicated&nbsp;<a
+            href="https://en.wikipedia.org/wiki/SIMD_register" class="mw-redirect" title="SIMD register"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">SIMD
+            registers</a></li>
+        <li style="margin-bottom: 0.1em;">performing an atomic&nbsp;<a href="https://en.wikipedia.org/wiki/Test-and-set"
+                                                                       title="Test-and-set"
+                                                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">test-and-set</a>&nbsp;instruction
+          or other&nbsp;<a href="https://en.wikipedia.org/wiki/Read-modify-write" class="mw-redirect"
+                           title="Read-modify-write"
+                           style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">read-modify-write</a>&nbsp;<a
+            href="https://en.wikipedia.org/wiki/Atomic_instruction" class="mw-redirect" title="Atomic instruction"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">atomic
+            instruction</a></li>
+        <li style="margin-bottom: 0.1em;">instructions that perform&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Arithmetic_logic_unit" title="Arithmetic logic unit"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">ALU</a>&nbsp;operations
+          with an operand from memory rather than a register
+        </li>
+      </ul>
+      <p style="margin: 0.5em 0px;">Complex instructions are more common in CISC instruction sets than in RISC
+        instruction sets, but RISC instruction sets may include them as well. RISC instruction sets generally do not
+        include ALU operations with memory operands, or instructions to move large blocks of memory, but most RISC
+        instruction sets include&nbsp;<a href="https://en.wikipedia.org/wiki/SIMD" title="SIMD"
+                                         style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">SIMD</a>&nbsp;or&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Vector_processing" class="mw-redirect" title="Vector processing"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">vector</a>&nbsp;instructions
+        that perform the same arithmetic operation on multiple pieces of data at the same time. SIMD instructions have
+        the ability of manipulating large vectors and matrices in minimal time. SIMD instructions allow easy&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Parallelization" class="mw-redirect" title="Parallelization"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">parallelization</a>&nbsp;of
+        algorithms commonly involved in sound, image, and video processing. Various SIMD implementations have been
+        brought to market under trade names such as&nbsp;<a href="https://en.wikipedia.org/wiki/MMX_(instruction_set)"
+                                                            title="MMX (instruction set)"
+                                                            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">MMX</a>,&nbsp;<a
+          href="https://en.wikipedia.org/wiki/3DNow!" title="3DNow!"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">3DNow!</a>,
+        and&nbsp;<a href="https://en.wikipedia.org/wiki/AltiVec" title="AltiVec"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">AltiVec</a>.
+      </p>
+      <p style="margin: 0.5em 0px;"><span class="anchor" id="Parts_of_an_instruction"></span></p>
+      <h3
+        style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; font-size: 1.2em; line-height: 1.6;">
+        <span class="mw-headline" id="Instruction_encoding">Instruction encoding</span><span class="mw-editsection"
+                                                                                             style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Instruction_set_architecture&amp;action=edit&amp;section=10"
+        title="Edit section: Instruction encoding"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h3>
+      <div class="thumb tright" style="clear: right; float: right; margin: 0.5em 0px 1.3em 1.4em; width: auto;">
+        <div class="thumbinner"
+             style="min-width: 100px; border: 1px solid rgb(200, 204, 209); padding: 3px; background-color: rgb(248, 249, 250); font-size: 13.16px; text-align: center; overflow: hidden; width: 372px;">
+          <a href="https://en.wikipedia.org/wiki/File:Mips32_addi.svg" class="image"
+             style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><img alt=""
+                                                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mips32_addi.svg/370px-Mips32_addi.svg.png"
+                                                                                                decoding="async"
+                                                                                                width="370" height="133"
+                                                                                                class="thumbimage"
+                                                                                                srcset="//upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mips32_addi.svg/555px-Mips32_addi.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mips32_addi.svg/740px-Mips32_addi.svg.png 2x"
+                                                                                                data-file-width="500"
+                                                                                                data-file-height="180"
+                                                                                                style="border: 1px solid rgb(200, 204, 209); vertical-align: middle; background-color: rgb(255, 255, 255);"></a>
+          <div class="thumbcaption"
+               style="border: 0px; line-height: 1.4em; padding: 3px; font-size: 12.3704px; text-align: left;">
+            <div class="magnify" style="float: right; margin-left: 3px; margin-right: 0px;"><a
+              href="https://en.wikipedia.org/wiki/File:Mips32_addi.svg" class="internal" title="Enlarge"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: url(&quot;/w/resources/src/mediawiki.skinning/images/magnify-clip-ltr.svg?8330e&quot;); display: block; text-indent: 15px; white-space: nowrap; overflow: hidden; width: 15px; height: 11px; user-select: none;"></a>
+            </div>
+            One instruction may have several fields, which identify the logical operation, and may also include source
+            and destination addresses and constant values. This is the MIPS "Add Immediate" instruction, which allows
+            selection of source and destination registers and inclusion of a small constant.
+          </div>
+        </div>
+      </div>
+      <p style="margin: 0.5em 0px;">On traditional architectures, an instruction includes an&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Opcode" title="Opcode"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">opcode</a>&nbsp;that
+        specifies the operation to perform, such as&nbsp;<i>add contents of memory to register</i>—and zero or more&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Operand" title="Operand"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">operand</a>&nbsp;specifiers,
+        which may specify&nbsp;<a href="https://en.wikipedia.org/wiki/Processor_register" title="Processor register"
+                                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">registers</a>,
+        memory locations, or literal data. The operand specifiers may have&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Addressing_mode" title="Addressing mode"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">addressing
+          modes</a>&nbsp;determining their meaning or may be in fixed fields. In&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Very_long_instruction_word" title="Very long instruction word"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">very
+          long instruction word</a>&nbsp;(VLIW) architectures, which include many&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Microcode" title="Microcode"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">microcode</a>&nbsp;architectures,
+        multiple simultaneous opcodes and operands are specified in a single instruction.</p>
+      <p style="margin: 0.5em 0px;">Some exotic instruction sets do not have an opcode field, such as&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Transport_triggered_architecture" title="Transport triggered architecture"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">transport
+        triggered architectures</a>&nbsp;(TTA), only operand(s).</p>
+      <p style="margin: 0.5em 0px;">The&nbsp;<a href="https://en.wikipedia.org/wiki/Forth_virtual_machine"
+                                                class="mw-redirect" title="Forth virtual machine"
+                                                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Forth
+        virtual machine</a>&nbsp;and other "<a href="https://en.wikipedia.org/wiki/0-operand_instruction_set"
+                                               class="mw-redirect" title="0-operand instruction set"
+                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">0-operand</a>"
+        instruction sets lack any operand specifier fields, such as some&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Stack_machine" title="Stack machine"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">stack
+          machines</a>&nbsp;including NOSC.<sup id="cite_ref-3" class="reference"
+                                                style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+          href="https://en.wikipedia.org/wiki/Instruction_set_architecture#cite_note-3"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[3]</a></sup><sup
+          class="noprint Inline-Template noprint noexcerpt Template-Fact"
+          style="line-height: 1; font-size: 11.2px; white-space: nowrap;">[<i><a
+          href="https://en.wikipedia.org/wiki/Wikipedia:NOTRS" class="mw-redirect" title="Wikipedia:NOTRS"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span
+          title="Not reliable. Just some random mailing list. (July 2014)">better&nbsp;source&nbsp;needed</span></a></i>]</sup>
+      </p>
+      <p style="margin: 0.5em 0px;">Conditional instructions often have a predicate field—a few bits that encode the
+        specific condition to cause an operation to be performed rather than not performed. For example, a conditional
+        branch instruction will transfer control if the condition is true, so that execution proceeds to a different
+        part of the program, and not transfer control if the condition is false, so that execution continues
+        sequentially. Some instruction sets also have conditional moves, so that the move will be executed, and the data
+        stored in the target location, if the condition is true, and not executed, and the target location not modified,
+        if the condition is false. Similarly, IBM&nbsp;<a href="https://en.wikipedia.org/wiki/Z/Architecture"
+                                                          title="Z/Architecture"
+                                                          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">z/Architecture</a>&nbsp;has
+        a conditional store instruction. A few instruction sets include a predicate field in every instruction; this is
+        called&nbsp;<a href="https://en.wikipedia.org/wiki/Branch_predication" class="mw-redirect"
+                       title="Branch predication"
+                       style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">branch
+          predication</a>.</p><h4
+      style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; line-height: 1.6;">
+      <span class="mw-headline" id="Number_of_operands">Number of operands</span><span class="mw-editsection"
+                                                                                       style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+      class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+      href="https://en.wikipedia.org/w/index.php?title=Instruction_set_architecture&amp;action=edit&amp;section=11"
+      title="Edit section: Number of operands"
+      style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+      class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h4>
+      <p style="margin: 0.5em 0px;">Instruction sets may be categorized by the maximum number of operands&nbsp;<i>explicitly</i>&nbsp;specified
+        in instructions.</p>
+      <p style="margin: 0.5em 0px;">(In the examples that follow,&nbsp;<i>a</i>,&nbsp;<i>b</i>, and&nbsp;<i>c</i>&nbsp;are
+        (direct or calculated) addresses referring to memory cells, while&nbsp;<i>reg1</i>&nbsp;and so on refer to
+        machine registers.)</p>
+      <pre
+        style="font-family: monospace, monospace; line-height: 1.3; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); padding: 1em; white-space: pre-wrap; overflow-x: hidden; overflow-wrap: break-word;">C = A+B
+</pre>
+      <ul
+        style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+        <li style="margin-bottom: 0.1em;">0-operand (<i>zero-address machines</i>), so called&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Stack_machine" title="Stack machine"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">stack
+          machines</a>: All arithmetic operations take place using the top one or two positions on the stack:&nbsp;<code
+          style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">push
+          a</code>,&nbsp;<code
+          style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">push
+          b</code>,&nbsp;<code
+          style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">add</code>,&nbsp;<code
+          style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">pop
+          c</code>.
+          <ul
+            style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+            <li style="margin-bottom: 0.1em;"><code
+              style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">C
+              = A+B</code>&nbsp;needs&nbsp;<i>four instructions</i>. For stack machines, the terms "0-operand" and
+              "zero-address" apply to arithmetic instructions, but not to all instructions, as 1-operand push and pop
+              instructions are used to access memory.
+            </li>
+          </ul>
+        </li>
+        <li style="margin-bottom: 0.1em;">1-operand (<i>one-address machines</i>), so called&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Accumulator_machine" class="mw-redirect" title="Accumulator machine"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">accumulator
+          machines</a>, include early computers and many small&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Microcontroller" title="Microcontroller"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">microcontrollers</a>:
+          most instructions specify a single right operand (that is, constant, a register, or a memory location), with
+          the implicit&nbsp;<a href="https://en.wikipedia.org/wiki/Accumulator_(computing)"
+                               title="Accumulator (computing)"
+                               style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">accumulator</a>&nbsp;as
+          the left operand (and the destination if there is one):&nbsp;<code
+            style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">load
+            a</code>,&nbsp;<code
+            style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">add
+            b</code>,&nbsp;<code
+            style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">store
+            c</code>.
+          <ul
+            style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+            <li style="margin-bottom: 0.1em;"><code
+              style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">C
+              = A+B</code>&nbsp;needs&nbsp;<i>three instructions</i>.
+            </li>
+          </ul>
+        </li>
+        <li style="margin-bottom: 0.1em;">2-operand — many CISC and RISC machines fall under this category:
+          <ul
+            style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+            <li style="margin-bottom: 0.1em;">CISC —&nbsp;<code
+              style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">move
+              A</code>&nbsp;to&nbsp;<i>C</i>; then&nbsp;<code
+              style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">add
+              B</code>&nbsp;to&nbsp;<i>C</i>.
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                <li style="margin-bottom: 0.1em;"><code
+                  style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">C
+                  = A+B</code>&nbsp;needs&nbsp;<i>two instructions</i>. This effectively 'stores' the result without an
+                  explicit&nbsp;<i>store</i>&nbsp;instruction.
+                </li>
+              </ul>
+            </li>
+            <li style="margin-bottom: 0.1em;">CISC — Often machines are&nbsp;<a rel="nofollow" class="external text"
+                                                                                href="https://web.archive.org/web/20131105155703/http://cs.smith.edu/~thiebaut/ArtOfAssembly/CH04/CH04-3.html#HEADING3-79"
+                                                                                style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">limited
+              to one memory operand</a>&nbsp;per instruction:&nbsp;<code
+              style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">load
+              a,reg1</code>;&nbsp;<code
+              style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">add
+              b,reg1</code>;&nbsp;<code
+              style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">store
+              reg1,c</code>; This requires a load/store pair for any memory movement regardless of whether
+              the&nbsp;<code
+                style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">add</code>&nbsp;result
+              is an augmentation stored to a different place, as in&nbsp;<code
+                style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">C
+                = A+B</code>, or the same memory location:&nbsp;<code
+                style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">A
+                = A+B</code>.
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                <li style="margin-bottom: 0.1em;"><code
+                  style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">C
+                  = A+B</code>&nbsp;needs&nbsp;<i>three instructions</i>.
+                </li>
+              </ul>
+            </li>
+            <li style="margin-bottom: 0.1em;">RISC — Requiring explicit memory loads, the instructions would
+              be:&nbsp;<code
+                style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">load
+                a,reg1</code>;&nbsp;<code
+                style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">load
+                b,reg2</code>;&nbsp;<code
+                style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">add
+                reg1,reg2</code>;&nbsp;<code
+                style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">store
+                reg2,c</code>.
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                <li style="margin-bottom: 0.1em;"><code
+                  style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">C
+                  = A+B</code>&nbsp;needs&nbsp;<i>four instructions</i>.
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li style="margin-bottom: 0.1em;">3-operand, allowing better reuse of data:<sup id="cite_ref-Cocke_4-0"
+                                                                                        class="reference"
+                                                                                        style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+          href="https://en.wikipedia.org/wiki/Instruction_set_architecture#cite_note-Cocke-4"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[4]</a></sup>
+          <ul
+            style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+            <li style="margin-bottom: 0.1em;">CISC — It becomes either a single instruction:&nbsp;<code
+              style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">add
+              a,b,c</code>
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                <li style="margin-bottom: 0.1em;"><code
+                  style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">C
+                  = A+B</code>&nbsp;needs&nbsp;<i>one instruction</i>.
+                </li>
+              </ul>
+            </li>
+            <li style="margin-bottom: 0.1em;">CISC — Or, on machines limited to two memory operands per instruction,&nbsp;<code
+              style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">move
+              a,reg1</code>;&nbsp;<code
+              style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">add
+              reg1,b,c</code>;
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                <li style="margin-bottom: 0.1em;"><code
+                  style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">C
+                  = A+B</code>&nbsp;needs&nbsp;<i>two instructions</i>.
+                </li>
+              </ul>
+            </li>
+            <li style="margin-bottom: 0.1em;">RISC — arithmetic instructions use registers only, so explicit 2-operand
+              load/store instructions are needed:&nbsp;<code
+                style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">load
+                a,reg1</code>;&nbsp;<code
+                style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">load
+                b,reg2</code>;&nbsp;<code
+                style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">add
+                reg1+reg2-&gt;reg3</code>;&nbsp;<code
+                style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">store
+                reg3,c</code>;
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                <li style="margin-bottom: 0.1em;"><code
+                  style="font-family: monospace, monospace; background-color: rgb(248, 249, 250); color: rgb(0, 0, 0); border: 1px solid rgb(234, 236, 240); border-radius: 2px; padding: 1px 4px;">C
+                  = A+B</code>&nbsp;needs&nbsp;<i>four instructions</i>.
+                </li>
+                <li style="margin-bottom: 0.1em;">Unlike 2-operand or 1-operand, this leaves all three values a, b, and
+                  c in registers available for further reuse.<sup id="cite_ref-Cocke_4-1" class="reference"
+                                                                  style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+                    href="https://en.wikipedia.org/wiki/Instruction_set_architecture#cite_note-Cocke-4"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[4]</a></sup>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li style="margin-bottom: 0.1em;">more operands—some CISC machines permit a variety of addressing modes that
+          allow more than 3 operands (registers or memory accesses), such as the&nbsp;<a
+            href="https://en.wikipedia.org/wiki/VAX" title="VAX"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">VAX</a>&nbsp;"POLY"
+          polynomial evaluation instruction.
+        </li>
+      </ul>
+      <p style="margin: 0.5em 0px;">Due to the large number of bits needed to encode the three registers of a 3-op</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

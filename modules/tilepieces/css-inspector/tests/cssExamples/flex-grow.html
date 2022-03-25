@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #main {
+      width: 350px;
+      height: 100px;
+      border: 1px solid #c3c3c3;
+      display: flex;
+    }
+
+    #main div:nth-of-type(1) {
+      flex-grow: 1;
+    }
+
+    #main div:nth-of-type(2) {
+      flex-grow: 3;
+    }
+
+    #main div:nth-of-type(3) {
+      flex-grow: 1;
+    }
+
+    #main div:nth-of-type(4) {
+      flex-grow: 1;
+    }
+
+    #main div:nth-of-type(5) {
+      flex-grow: 1;
+    }
+
+    #content {
+      display: flex;
+
+      justify-content: space-around;
+      flex-flow: row wrap;
+      align-items: stretch;
+    }
+
+    #content .box {
+      flex-grow: 1;
+      border: 3px solid rgba(0, 0, 0, .2);
+    }
+
+    #content .box1 {
+      flex-grow: 2;
+      border: 3px solid rgba(0, 0, 0, .2);
+    }
+
+    .flex-container {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      -ms-box-orient: horizontal;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -moz-flex;
+      display: -webkit-flex;
+      display: flex;
+
+      -webkit-justify-content: space-around;
+      justify-content: space-around;
+      -webkit-flex-flow: row wrap;
+      flex-flow: row wrap;
+      -webkit-align-items: stretch;
+      align-items: stretch;
+    }
+
+    .flex-item:nth-of-type(1) {
+      flex-grow: 1;
+    }
+
+    .flex-item:nth-of-type(2) {
+      flex-grow: 1;
+    }
+
+    .flex-item:nth-of-type(3) {
+      flex-grow: 2;
+    }
+
+    .flex-item:nth-of-type(4) {
+      flex-grow: 1;
+    }
+
+    .flex-item:nth-of-type(5) {
+      flex-grow: 1;
+    }
+
+    .flex-item {
+
+      background: tomato;
+      border: 3px solid rgba(0, 0, 0, .2);
+      line-height: 100px;
+      color: white;
+      font-weight: bold;
+      font-size: 2em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>The flex-grow Property</h1>
+
+<div id="main">
+  <div style="background-color:coral;"></div>
+  <div style="background-color:lightblue;"></div>
+  <div style="background-color:khaki;"></div>
+  <div style="background-color:pink;"></div>
+  <div style="background-color:lightgrey;"></div>
+</div>
+
+<h4>This is a Flex-Grow</h4>
+<h5>A,B,C and F are flex-grow:1 . D and E are flex-grow:2 .</h5>
+<div id="content">
+  <div class="box" style="background-color:red;">A</div>
+  <div class="box" style="background-color:lightblue;">B</div>
+  <div class="box" style="background-color:yellow;">C</div>
+  <div class="box1" style="background-color:brown;">D</div>
+  <div class="box1" style="background-color:lightgreen;">E</div>
+  <div class="box" style="background-color:brown;">F</div>
+</div>
+
+<h4>This example is taken from <a href="https://codepen.io/HugoGiraudel/pen/9a9ad8fb040f5efaf4e749b49cae7281">https://codepen.io/HugoGiraudel/pen/9a9ad8fb040f5efaf4e749b49cae7281</a>
+</h4>
+<ul class="flex-container">
+  <li class="flex-item">1</li>
+  <li class="flex-item">2</li>
+  <li class="flex-item">3</li>
+  <li class="flex-item">4</li>
+</ul>
+</body>
+</html>

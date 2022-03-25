@@ -1,0 +1,14 @@
+.input-css, .input-css-placeholder { word-spacing: 0.3em; padding: 0.3em; line-height: 1.8em; word-break: break-all; }
+.input-css[contenteditable].focus-control { display: none !important; }
+.input-css[contenteditable]:focus + .input-css-placeholder { display: none !important; }
+.input-css-placeholder .prevent-click { user-select: none; }
+.input-css-placeholder div { display: inline-block; }
+.input-css-search-image-in-filesystem { width: 0.5em; height: 0.5em; background: rgb(204, 204, 204); border: 1px solid rgb(51, 51, 51); overflow: hidden; display: inline-block; position: relative; text-align: center; }
+.input-css-search-image-in-filesystem::after { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; content: "F"; font-size: 0.4em; line-height: 1.4em; pointer-events: none; }
+.input-css-search-image-in-filesystem > input { opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; }
+.input-css-search-image-in-project { width: 0.8em; height: 0.8em; border: none; background-image: url("/modules/tilepieces/css-input/image_plus_icon.svg"); background-position: center center; background-size: 100%; display: inline-block; position: relative; text-align: center; }
+.number-wrap { text-align: center; display: inline-block; position: relative; }
+.arrow-up { border-bottom: 0.5em solid rgb(153, 153, 153); border-left: 0.35em solid transparent; border-right: 0.35em solid transparent; position: absolute; top: -0.3em; left: 50%; transform: translate(-50%, 0px); }
+.arrow-down { border-top: 0.5em solid rgb(153, 153, 153); border-left: 0.35em solid transparent; border-right: 0.35em solid transparent; position: absolute; bottom: -0.3em; left: 50%; transform: translate(-50%, 0px); }
+.span-color-button { width: 0.5em; height: 0.5em; display: inline-block; border: 1px solid rgb(51, 51, 51); }
+span.color-value { margin-inline-end: 0.5em; }

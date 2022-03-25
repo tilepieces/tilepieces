@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html><head>
+  <link href="../../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet">
+  <link href="../../../autocomplete/autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete">
+  <link href="../../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input">
+  <link href="../../../css-rule-modification/css-rule-modification.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-rule-modification">
+  <link href="../../css-inspector.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-inspector">
+</head>
+<body>
+<div id="css-inspector" class="${isVisible}" data-tilepieces-component="tilepieces/css-inspector">
+  <div class="css-inspector__menu-bar">
+    <span id="css-target-new-rule">+</span>
+    <span id="css-target-delete-rule" class="${deleteRuleDisabled}">-</span>
+    <span id="toggle-pseudo-states">:</span>
+    <span id="toggle-pseudo-elements">::</span>
+  </div>
+  <div id="main-rules" class="css-inspector__container ${showMainRules}">
+    <!-- rules associated -->
+    <div data-foreach="rules" data-foreach-key-name="rule" data-type="rules" data-bind-dom-prop="__css-viewer-rule,rule" class="css-inspector__rule-block ${rule.contenteditable} ${rule.selected}">
+      <div data-if="rule.isStyle">
+        <span class="selector-style">element.style</span>{
+      </div>
+      <div class="css-inspector__rule__selector" data-if="!rule.isStyle">
+        <div data-if="rule.parentRules.length">
+          <div data-foreach="rule.parentRules" data-foreach-key-name="pr">
+            ${pr.type} ${pr.conditionText}
+          </div>
+        </div>
+        <div class="css-inspector__rule__selector-name">
+          <div data-if="!rule.editSelector">
+                        <span data-foreach="rule.selectors" data-foreach-key-name="selector" class="rule-selector selector ${selector.match}">${selector.selectorText} </span>{
+          </div>
+          <div data-if="rule.editSelector" class="rule-selector-edit" contenteditable="">${rule.rule.selectorText}
+          </div>
+          <div data-if="!rule.selectorMatch" class="rule-sector-wrong">Selector doesn't match the selected element
+          </div>
+        </div>
+      </div>
+      <a data-if="!rule.isStyle" class="css-inspector__href" href="${rule.loc}" title="${rule.loc}" target="_blank">${rule.locPop}</a>
+      <div data-use="css-properties-list" data-params="rule,rule"></div>
+      }
+    </div>
+    <!-- ancestor rules -->
+    <div data-foreach="ancestors" data-foreach-key-name="ancestor">
+      <!-- ancestor element link -->
+      <div data-if="ancestor.matches.length || ancestor.ancestorstyle">
+        <div class="css-inspector__rule-block__inherited-divider">
+          Inherited from
+          <span class="css-inspector__show-element" data-bind-dom-prop="__ancestor,ancestor.ancestor">${ancestor.elementRepresentation}</span>
+        </div>
+      </div>
+      <!-- ancestor element properties -->
+      <div data-if="ancestor.ancestorstyle">
+        <div data-type="ancestorstyle" data-bind-dom-prop="__css-viewer-rule,ancestor.ancestorstyle" class="css-inspector__rule-block ${ancestor.ancestorstyle.contenteditable} css-inspector__rule-block__inherited ${ancestor.ancestorstyle.selected}">
+          <div>
+            <span class="selector-style">element.style</span>{
+          </div>
+          <a data-if="!ancestor.ancestorstyle.isStyle" class="css-inspector__href" href="${rule.loc}" title="${rule.loc}" target="_blank">${rule.locPop}</a>
+          <div data-use="css-properties-list" data-params="rule,ancestor.ancestorstyle"></div>
+          }
+        </div>
+      </div>
+      <!-- ancestor rules -->
+      <div data-type="ancestor.matches" data-foreach="ancestor.matches" data-foreach-key-name="rule" data-bind-dom-prop="__css-viewer-rule,rule,__ancestor,ancestor" class="css-inspector__rule-block ${rule.contenteditable} css-inspector__rule-block__inherited ${rule.selected}">
+        <div data-use="css-rule" data-params="rule,rule"></div>
+        }
+      </div>
+    </div>
+  </div>
+  <div id="pseudo-states" class="css-inspector__container ${showPseudoStates}">
+    <div data-foreach="pseudoStates" data-foreach-key-name="pseudoState" class="css-inspector__container">
+      <div class="css-inspector__rule-block__inherited-divider">Pseudo ${pseudoState.name} state</div>
+      <div data-foreach="pseudoState.rules" data-foreach-key-name="rule" data-bind-dom-prop="__css-viewer-rule,rule" class="css-inspector__rule-block ${rule.contenteditable} ${rule.selected} css-inspector__pseudo-states">
+        <div data-use="css-rule" data-params="rule,rule"></div>
+        }
+      </div>
+    </div>
+  </div>
+  <div id="pseudo-elements" class="${showPseudoElements}">
+    <div data-foreach="pseudoElements" data-foreach-key-name="pseudoElement" class="css-inspector__container">
+      <div class="css-inspector__rule-block__inherited-divider">Pseudo ${pseudoElement.name} element</div>
+      <div data-foreach="pseudoElement.rules" data-foreach-key-name="rule" data-bind-dom-prop="__css-viewer-rule,rule" class="css-inspector__rule-block ${rule.contenteditable} ${rule.selected} css-inspector__pseudo-elements">
+        <div data-use="css-rule" data-params="rule,rule"></div>
+        }
+      </div>
+    </div>
+  </div>
+</div><template id="css-rule" data-tilepieces-component="tilepieces/css-inspector">
+  <!-- params : rule -->
+  <div class="css-inspector__rule__selector">
+    <div data-if="rule.parentRules.length">
+      <div data-foreach="rule.parentRules" data-foreach-key-name="pr">
+        ${pr.type} ${pr.conditionText}
+      </div>
+    </div>
+    <div class="css-inspector__rule__selector-name">
+            <span data-foreach="rule.selectors" data-foreach-key-name="selector" class="selector ${selector.match}">${selector.selectorText}</span>{
+    </div>
+  </div>
+  <a data-if="!rule.isStyle" class="css-inspector__href" href="#" title="${rule.loc}">${rule.locPop}</a>
+  <div data-use="css-properties-list" data-params="rule,rule"></div>
+</template>
+
+<template id="css-properties-list" data-tilepieces-component="tilepieces/css-rule-modification">
+    <ul class="rule-block__list" data-bind-dom-prop="__css-viewer-rule,rule">
+        <li data-foreach="rule.properties" data-foreach-key-name="property" data-index="${property.index}" class="rule__property ${property.isInheritedClass} ${rule.contenteditable}">
+            <input class="rule-block__checked" type="checkbox" data-bind="property.checked" ${property.disabled}="">
+            <div class="rule-block__key autocomplete" data-bind-dom-prop="__autocomplete_suggestions,cssDefaultProperties" data-key="${property.property}" data-bind="property.property" data-contenteditable="${property.contenteditable}"></div>
+            <div class="rule-block__divider">:</div>
+            <div class="input-css rule-block__value autocomplete" data-bind-dom-prop="__autocomplete_suggestions,property.autocomplete_suggestions" data-prop="${property.property}" data-bind="property.value" ${property.contenteditable}=""></div><div>;</div>
+        </li>
+    </ul>
+    <button class="rule-block__add-property">+</button>
+</template>
+<div class="autocomplete-hint" data-tilepieces-component="tilepieces/autocomplete"></div>
+<script src="../../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../../../autocomplete/autocomplete.bundle.js" data-tilepieces-component="tilepieces/autocomplete"></script>
+<script src="../../../css-input/css-input.bundle.js" data-tilepieces-component="tilepieces/css-input"></script>
+<script src="../../../tt/tt.js" data-tilepieces-component="tilepieces/tt"></script>
+<script src="../../../css-rule-modification/css-rule-modification.bundle.js" data-tilepieces-component="tilepieces/css-rule-modification"></script>
+<script src="../../css-inspector.bundle.js" data-tilepieces-component="tilepieces/css-inspector"></script>
+
+</body></html>

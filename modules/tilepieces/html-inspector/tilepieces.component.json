@@ -1,0 +1,51 @@
+{
+  "name": "tilepieces/html-inspector",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "html-inspector.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
+    "script": {
+      "src": "html-inspector.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src/header",
+      "src/*.js",
+      "src/!(header)**/**/*.js"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/stylesheet",
+    "tilepieces/html-tree-builder",
+    "tilepieces/drag",
+    "tilepieces/dialog",
+    "tilepieces/tabs"
+  ],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "index.html"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": "",
+  "components": {
+    "tilepieces/html-inspector/bundle": {
+      "name": "tilepieces/html-inspector/bundle",
+      "path": "/bundle"
+    }
+  }
+}

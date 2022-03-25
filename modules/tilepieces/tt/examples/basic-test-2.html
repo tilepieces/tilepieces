@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TT BASIC TEST</title>
+</head>
+<body>
+<h1>TT basic test</h1>
+<h2>basic if/foreach/node value</h2>
+<div id="primo">
+  <button class="current-project-data__add-files">+</button>
+  <div data-foreach="files">
+    <input data-bind="key.value"/>
+    <button
+      class="current-project-data__remove-files"
+      data-index="${key.index}">-
+    </button>
+  </div>
+</div>
+<pre id="scope-dom">
+
+</pre>
+<script src="../tt.js"></script>
+<script>
+  const scopeDom = document.getElementById("scope-dom");
+  const scope = {files: []};
+  const template = new TT(primo, scope);
+  document.querySelector(".current-project-data__add-files")
+    .addEventListener("click", function (e) {
+      scope.files.push({
+        index: scope.files.length,
+        value: ""
+      });
+      template.set("", scope);
+      scopeDom.innerHTML = JSON.stringify(scope, null, 4);
+    });
+  primo.addEventListener("click", function (e) {
+    if (!e.target.classList.contains("current-project-data__remove-files"))
+      return;
+    var index = +e.target.dataset.index;
+    scope.files.splice(index, 1);
+    scope.files.forEach((v, i) => v.index = i);
+    template.set("", scope);
+    scopeDom.innerHTML = JSON.stringify(scope, null, 4);
+  });
+
+  primo.addEventListener("template-digest", e => {
+    scopeDom.innerHTML = JSON.stringify(scope, null, 4);
+  })
+</script>
+</body>
+</html>

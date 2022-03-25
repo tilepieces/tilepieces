@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>setSelectorText with setCurrentStyleSheet</title>
+  <style>
+    .larger {
+      font-size: larger;
+      margin: 5px 0;
+      border-bottom: 1px solid #ccc
+    }
+
+    .large {
+      font-size: large;
+      margin: 5px 0;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success::before {
+      content: "\2713";
+      padding-right: 10px;
+    }
+
+    .error::before {
+      content: "\2715";
+      padding-right: 10px;
+    }
+  </style>
+</head>
+<body>
+<section id=log-section></section>
+<button onclick="undo()" id="undo">undo</button>
+<button onclick="redo()" id="redo">redo</button>
+<pre id="styletext"></pre>
+<iframe id=frame></iframe>
+<script src="../../../html-tree-match/htmlTreeMatch.js" data-tilepieces-component="tilepieces/html-tree-match"></script>
+<script src="../../../css-split-value/splitCssValue.js" data-tilepieces-component="tilepieces/css-split-value"></script>
+<script src="../../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script>
+<script src="../../../css-specificity/cssSpecificity.js"
+        data-tilepieces-component="tilepieces/css-specificity"></script>
+<script src="../../../css-matcher/css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script>
+<script src="../../tilepieces-core.js" data-tilepieces-component="tilepieces/core"></script>
+<!-- test utils -->
+<script src="testUtils/assert.js"></script>
+<script src="testUtils/logOnDocument.js"></script>
+<script src="testUtils/getDocuments.js"></script>
+<script src="testUtils/compareDocuments.js"></script>
+<script src="testUtils/setTest.js"></script>
+<script src="testUtils/logError.js"></script>
+<script src="testUtils/historyComparison.js"></script>
+<script src="htmlMatch/addHeadNode.js"></script>
+<script src="stylesheet/setCurrentStyleSheet.js"></script>
+<script>
+  function undo() {
+    tilepieces.core.undo();
+    var style = tilepieces.core.currentStyleSheet;
+    if (style)
+      styletext.innerHTML = [...style.cssRules].map(v => v.cssText).join("");
+    else
+      styletext.innerHTML = "";
+  }
+
+  function redo() {
+    tilepieces.core.redo();
+    var style = tilepieces.core.currentStyleSheet;
+    if (style)
+      styletext.innerHTML = [...style.cssRules].map(v => v.cssText).join("");
+    else
+      styletext.innerHTML = "";
+  }
+
+  setTest().then(async function () {
+    try {
+      var originalDocuments = compareDocuments();
+      var style = tilepieces.core.currentDocument.createElement("link");
+      style.href = "test-style.css";
+      style.rel = "stylesheet";
+      var body = tilepieces.core.currentDocument.body;
+      var div = tilepieces.core.currentDocument.createElement("div");
+      tilepieces.core.htmlMatch.insertAdjacentElement(body, "prepend", div);
+      addHeadNode(style);
+      await setCurrentStyleSheetTest(style);
+      tilepieces.core.selectElement(body);
+      tilepieces.core.setCss(body, "background", "black");
+      logOnDocument(
+        assert(
+          tilepieces.core.currentStyleSheet == style.sheet,
+          "tilepieces.core.currentStyleSheet == style.sheet")
+        , "success");
+      style = tilepieces.core.currentStyleSheet;
+      var newRule = style.cssRules[0];
+      logOnDocument(
+        assert(
+          newRule.style.backgroundColor == "black" &&
+          newRule.selectorText == "body",
+          "new Rule setted correctly")
+        , "success");
+      tilepieces.core.setSelectorText(newRule, "html>body");
+      logOnDocument(
+        assert(
+          newRule.style.backgroundColor == "black" &&
+          newRule.selectorText == "html > body",
+          "selector text setted correctly ( note: from 'html>body' to 'html > body')")
+        , "success");
+      tilepieces.core.setSelectorText(newRule, "body.success");
+      logOnDocument(
+        assert(
+          newRule.style.backgroundColor == "black" &&
+          newRule.selectorText == "body.success",
+          "selector text setted correctly")
+        , "success");
+      var pointer = tilepieces.core.history.pointer;
+      for (var i = pointer; i > 0; i--) {
+        tilepieces.core.undo();
+        logOnDocument("compare __historyFileRecord on undo");
+        var __historyFileRecord = tilepieces.core.history.entries[i - 1].__historyFileRecord;
+        historyComparison(__historyFileRecord);
+
+      }
+      compareDocuments(originalDocuments);
+      for (var i2 = 0; i2 < pointer; i2++) {
+        await tilepieces.core.redo();
+        logOnDocument("compare __historyFileRecord on redo");
+        var __historyFileRecord = tilepieces.core.history.entries[i2].__historyFileRecord;
+        historyComparison(__historyFileRecord, true);
+
+      }
+      style = tilepieces.core.currentStyleSheet;
+      newRule = style.cssRules[0];
+      logOnDocument(
+        assert(
+          newRule.style.backgroundColor == "black" &&
+          newRule.selectorText == "body.success",
+          "new Rule setted correctly after redo")
+        , "success");
+      logOnDocument("test success");
+      window.dispatchEvent(new Event("test-success"))
+    } catch (e) {
+      logError(e);
+    }
+  })
+    .catch(logError);
+</script>
+</body>
+</html>

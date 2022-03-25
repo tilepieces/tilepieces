@@ -1,0 +1,46 @@
+{
+  "name": "tilepieces/transform",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "html/transform.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "transform.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
+    "script": {
+      "src": "transform.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [
+      "css"
+    ],
+    "scripts": [
+      "src/header",
+      "src/*.js",
+      "src/events"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/stylesheet",
+    "tilepieces/css-input",
+    "tilepieces/autocomplete",
+    "tilepieces/tabs",
+    "tilepieces/drag"
+  ],
+  "components": {},
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": true,
+  "parseHTML": ""
+}

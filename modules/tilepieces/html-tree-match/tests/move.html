@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>move test</title>
+    <style>
+        .buttons{
+            position:absolute;
+            width:300px;
+            height:50px;
+            right:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <div class="banner">
+        <h1>A banner Title</h1>
+        <h2>A banner subtitle</h2>
+        Some points
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <img alt="An image should be here" src=""/>
+        <p>
+            A banner paragraph
+        </p>
+    </div>
+    <div class="banner">
+        <h1>A banner Title 2</h1>
+        <h2>A banner subtitle 2</h2>
+        Some points 2
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <img alt="An image should be here 2" src=""/>
+        <p>
+            A banner paragraph 2
+        </p>
+    </div>
+</section>
+<div class="buttons">
+<button id="move-banner" onclick="moveBanner()" disabled>move Banner!</button>
+<button id="undo" onclick="undo()" disabled>Undo!</button>
+<button id="redo" onclick="redo()" disabled>Redo!</button>
+</div>
+<script src="../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var count = 1;
+    var moveBannerEl = document.getElementById("move-banner");
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    var pivotMove = document.querySelectorAll(".banner")[0];
+    var elToMove = document.querySelectorAll(".banner")[1];
+    window.addEventListener("DOM-change",function(){
+        if(htmlMatch.history.pointer != 0)
+            undoEl.removeAttribute("disabled");
+        else
+            undoEl.setAttribute("disabled","");
+        if(htmlMatch.history.pointer != htmlMatch.history.entries.length)
+            redoEl.removeAttribute("disabled");
+        else
+            redoEl.setAttribute("disabled","");
+    });
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+        moveBannerEl.removeAttribute("disabled");
+    }
+    a();
+    function moveBanner(){
+        if(moveBannerEl.disabled)
+            return;
+        htmlMatch.move(pivotMove,elToMove,"before");
+        moveBannerEl.disabled = true;
+    }
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+    }
+</script>
+</body>
+</html>

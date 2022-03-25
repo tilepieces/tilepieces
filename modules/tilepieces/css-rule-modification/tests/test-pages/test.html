@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>test1</title>
+    <style data-tilepieces-current-stylesheet="">
+        #example-element {
+            background-color: #1766aa;
+            margin: 20px;
+            border: 5px solid #333;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            animation-name: slidein;
+            animation-duration : 1s;
+            animation-iteration-count : infinite;
+        }
+        .a{
+            animation-name: backgroundColor;
+            animation-duration : 1s;
+            animation-iteration-count : infinite;
+        }
+        .b{
+            width:250px;
+            border: 5px solid #333;
+            margin: 20px;
+            height:100px
+        }
+        @keyframes slidein {
+            from {
+                transform: translateX(0%);
+            }
+
+            to {
+                transform: translateX(100%);
+            }
+        }
+        @keyframes backgroundColor {
+            from {
+                background-color:yellowgreen;
+            }
+
+            to {
+                background-color:greenyellow;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="example-element"></div>
+<div class="a b"></div>
+
+</body></html>

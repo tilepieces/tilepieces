@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>test 1, no fonts loaded</title>
+  <style>
+    .open-sans {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1em;
+    }
+
+    .source-sans {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1em;
+    }
+
+    .manrope {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1em;
+    }
+
+    @media (max-width: 860px) {
+      .open-sans {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1em;
+      }
+
+      .source-sans {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 1em;
+      }
+
+      .manrope {
+        font-family: 'Manrope', sans-serif;
+        font-size: 1em;
+      }
+    }
+  </style>
+  <style data-tilepieces-current-stylesheet="">.manrope {
+    font-family: manrope, sans-serif;
+  }
+
+  @font-face {
+    src: url("OpenSans-Regular.ttf");
+    font-family: "Open Sans";
+  }</style>
+</head>
+<body>
+<div class="source-sans">
+  Source sans <strong>Bold</strong> and <i>Italic</i>
+</div>
+<div class="manrope" style="">
+  Manrope<strong>Bold</strong> and <i>Italic</i>
+</div>
+<div class="open-sans">
+  Open sans (Not setted)<strong>Bold</strong> and <i>Italic</i>
+</div>
+</body>
+</html>

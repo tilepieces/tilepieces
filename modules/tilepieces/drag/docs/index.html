@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>tilepieces drag library documentation</title><style></style></head><body id="preview">
+<p class="has-line-data" data-line-start="0" data-line-end="2">The <code>window.__drag</code> class takes care of initializing and raising the three events of a drag movement of a given HTML element. This events are ‘down’, ‘move’ and ‘up’.<br>
+This library, in addition to defining the class <a href="#__drag"><code>window.__drag</code></a>, also exposes the functions:</p>
+<ul>
+<li class="has-line-data" data-line-start="2" data-line-end="3"><a href="#__dragElement"><code>window .__ dragElement</code></a> to visually drag an HTML element</li>
+<li class="has-line-data" data-line-start="3" data-line-end="4"><a href="#__dragList"><code>window .__dragList</code></a> to move &lt;LI&gt; tags up and down</li>
+<li class="has-line-data" data-line-start="4" data-line-end="6"><a href="#__dropElement"><code>window .__dropElement</code></a> to simulate a drop of the element inside another</li>
+</ul>
+<p class="has-line-data" data-line-start="6" data-line-end="8">Drag initialize both <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent" target="_blank">mouse events</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent" target="_blank">touch events</a>.<br>
+This is not related with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API" target="_blank">Drag and Drop API</a>.</p>
+<h1 class="code-line" data-line-start="8" data-line-end="9" id="__drag"><a id="__drag_8" target="_blank"></a>__drag</h1>
+<h2 class="code-line" data-line-start="9" data-line-end="10"><a id="parameters_9" target="_blank"></a>parameters</h2>
+<p class="has-line-data" data-line-start="10" data-line-end="13"><strong>element</strong><br>
+An html element<br>
+<strong>options</strong></p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>preventMouseOut</td>
+<td>Boolean</td>
+<td>If setted on <code>true</code>, an element with z-index:9 will be appended to the document. Useful when drag over iframes. Default to <code>false</code>.</td>
+</tr>
+<tr>
+<td>onlyHandler</td>
+<td>Boolean</td>
+<td>If <code>true</code>, children of the main element will not raise events. Default to <code>false</code>.</td>
+</tr>
+<tr>
+<td>handle</td>
+<td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors" target="_blank">Css selector</a></td>
+<td>If specified, restricts dragging from starting unless the mouse or touch event occurs on the specified element(s). Default to <code>null</code>.</td>
+</tr>
+<tr>
+<td>grabbingClass</td>
+<td>String</td>
+<td>Specify a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors" target="_blank">class selector</a> to be associated when the element is moved with the mouse. Default to <code>__drag-cursor-grabbing</code></td>
+</tr>
+</tbody>
+</table>
+<h2 class="code-line" data-line-start="19" data-line-end="20"><a id="Usage_19" target="_blank"></a>Usage</h2>
+<h2 class="code-line" data-line-start="20" data-line-end="21"><a id="parameters_20" target="_blank"></a>parameters</h2>
+<pre><code class="has-line-data" data-line-start="22" data-line-end="27">    <span class="hljs-keyword">let</span> d = __drag(<span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">"main"</span>)[<span class="hljs-number">0</span>]);
+    d.on(<span class="hljs-string">"down"</span>,e=&gt;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"down -&gt;"</span>,e));
+    d.on(<span class="hljs-string">"move"</span>,e=&gt;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"move -&gt;"</span>,e));
+    d.on(<span class="hljs-string">"up"</span>,e=&gt;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"up -&gt;"</span>,e));
+</code></pre>
+<p class="has-line-data" data-line-start="27" data-line-end="28">See the live <a href="test/test_drag.html" target="_blank">example</a>.</p>
+<h1 class="code-line" data-line-start="28" data-line-end="29"><a id="__dragElement" target="_blank"></a>__dragElement</h1>
+<h2 class="code-line" data-line-start="29" data-line-end="30"><a id="Parameters_29" target="_blank"></a>Parameters</h2>
+<p class="has-line-data" data-line-start="30" data-line-end="34"><strong>elements</strong><br>
+An html element or more grouped in an array.<br>
+<strong>options</strong><br>
+The same of <code>window .__ drag</code> with the addition of</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dragNoTransform</td>
+<td>Boolean</td>
+<td>If setted on <code>true</code>, the animation will be carried along CSS <code>top</code> and <code>left</code> properties. Otherwise, <code>transform:translate(X,Y)</code> will be used. Default to <code>false</code>.</td>
+</tr>
+<tr>
+<td>dragElementConstraint</td>
+<td>Function</td>
+<td>A function that if it returns <code>true</code> will invalidate the movement of the element. Its parameters are 4 numbers that represent: the new value of the X, the new value of the Y, the difference of the X axis respect to the previous one (&lt;0 right,&gt;0 left), the delta value of the Y axis respect to the previous one (&lt;0 down,&gt;0 top).Default to <code>function(){return false}</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="code-line" data-line-start="38" data-line-end="39"><a id="Usage_38" target="_blank"></a>Usage</h2>
+<pre><code class="has-line-data" data-line-start="40" data-line-end="42">__dragElement(<span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">"main"</span>)[<span class="hljs-number">0</span>]);
+</code></pre>
+<p class="has-line-data" data-line-start="42" data-line-end="43"><a href="test/dragElementTests.html" target="_blank">Examples</a></p>
+<h1 class="code-line" data-line-start="43" data-line-end="44"><a id="__dropElement" target="_blank"></a>__dropElement</h1>
+<p class="has-line-data" data-line-start="44" data-line-end="48"><strong>elements</strong><br>
+An html element or more grouped in an array.<br>
+<strong>options</strong><br>
+The same of <code>window .__ drag</code> with the addition of</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>target</td>
+<td>DOM Element</td>
+<td>The target element where to drop. Default to <code>null</code>, if not setted errors will be raised during the ‘move’ events.</td>
+</tr>
+<tr>
+<td>drop</td>
+<td>Boolean</td>
+<td>If setted to <code>false</code>, the element will not be ‘dropped’ ( moved ) to the target element. Default to <code>true</code></td>
+</tr>
+<tr>
+<td>styleDrop</td>
+<td>String</td>
+<td>A <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors" target="_blank">class selector</a> to add to the target when the element is upon it.</td>
+</tr>
+<tr>
+<td>insertElement</td>
+<td>String</td>
+<td>Position parameter of the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML" target="_blank">insertAdjacentHTML API</a>. Default to setted to <code>beforeend</code></td>
+</tr>
+</tbody>
+</table>
+<p class="has-line-data" data-line-start="55" data-line-end="56"><a href="test/test_drag_drop.html" target="_blank">Basic example</a>, <a href="test/test_drag_drop_multiple.html" target="_blank">Basic example with multiple elements</a></p>
+<h1 class="code-line" data-line-start="56" data-line-end="57"><a id="__dragList" target="_blank"></a>__dragList</h1>
+<h2 class="code-line" data-line-start="57" data-line-end="58"><a id="Parameters_57" target="_blank"></a>Parameters</h2>
+<p class="has-line-data" data-line-start="58" data-line-end="61"><strong>element</strong><br>
+An html element. The &lt;li&gt; elements inside it will be moved inside their parent.<br>
+<strong>options</strong></p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>noDrop</td>
+<td>Boolean</td>
+<td>If setted to <code>true</code>, the elements will not be moved to the new element. Default to <code>false</code></td>
+</tr>
+<tr>
+<td>convalidateStart</td>
+<td>Function</td>
+<td>If returns <code>false</code>, the element will not be affected by any action. Default <code>()=&gt;true</code></td>
+</tr>
+<tr>
+<td>convalidate</td>
+<td>Function</td>
+<td>If returns <code>false</code>, the animation will not show a copy of the element inside the target element, and the target element will not be considered as the target where to move the element. The function takes three parameters: the element that is moving, whether the position is before or after the target element ( boolean), the target element. Default <code>()=&gt;true</code>.</td>
+</tr>
+<tr>
+<td>handlerSelector</td>
+<td>String</td>
+<td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors" target="_blank">Css selector</a>. If specified, restricts dragging from starting unless the mouse or touch event occurs on the specified element(s). Default to <code>""</code></td>
+</tr>
+</tbody>
+</table>
+<p class="has-line-data" data-line-start="68" data-line-end="69"><a href="../test/test_exampleListAllTogheter.html" target="_blank">Basic example</a>, <a href="../test/exampleMultiList.html" target="_blank">Basic example with multiple elements</a></p>
+</body></html>

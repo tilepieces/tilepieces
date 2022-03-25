@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Project-tree</title>
+
+
+  <style>
+    body, html {
+      overflow-x: hidden;
+      height: calc(100% - 16px);
+      margin: 0;
+    }
+  </style>
+  <link href="bundle/project-explorer.bundle.css" rel="stylesheet"
+        data-tilepieces-component="tilepieces/project-explorer">
+</head>
+<body>
+<div id="project-wrapper" style="display:none">
+  <div id="project-menu-tooltip" class="project-menu-tooltip" tabindex="-1">
+    <div id="open-in-new-window">Open in new window</div>
+    <div id="edit-source-code">Edit Source Code</div>
+    <div id="project-tree-create-file">create file<span class="arrow">▶</span>
+      <ul id="project-tree-file-list">
+        <li class="html" data-type="html">HTML File</li>
+        <li class="css" data-type="css">CSS File</li>
+        <li class="js" data-type="js">JS File</li>
+        <li class="other" data-type="">Other...</li>
+      </ul>
+    </div>
+    <div id="project-tree-create-dir">Create Dir</div>
+    <div id="project-tree-add-file-wrapper">
+      Import File From filesystem
+      <input type="file" id="project-tree-add-file" multiple="">
+    </div>
+    <div id="project-tree-copy">Copy</div>
+    <div id="project-tree-cut">Cut</div>
+    <div id="project-tree-paste">Paste</div>
+    <div id="project-tree-delete">Delete</div>
+    <div id="project-tree-refactor">Rename</div>
+  </div>
+  <div id="project-tree-wrapper" class="project-tree-directory">
+  </div>
+</div>
+
+<template id="new-file-form-template">
+  <form id="new-file-form">
+    <label for="new-file-name">
+      <input name="new-file-name" id="new-file-name" title="File name cannot contain /\?%*:|&quot;<> characters"
+             oninvalid="this.setCustomValidity(this.title);" oninput="this.setCustomValidity('');this.checkValidity();"
+             required="">
+    </label>
+    <button type="submit">Create</button>
+  </form>
+</template>
+
+
+<script src="bundle/project-explorer.bundle.js" data-tilepieces-component="tilepieces/project-explorer"></script>
+</body>
+</html>

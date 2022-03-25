@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A test</title>
+</head>
+<body>
+<div class="banner hide">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<script src="../../htmlTreeMatch.js"></script>
+<script>
+    document.querySelector(".banner").insertAdjacentHTML("beforeend","<div id='test'>Test</div>");
+    // TESTING IF IMAGES ARE CORRECTLY REFERENCED
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        /*
+        var domparser = new DOMParser();
+        var HTML = domparser.parseFromString(htmltext, "text/html");
+        return HTML;
+    }
+    a().then(HTML=>{
+        */
+        var htmlMatch = HTMLTreeMatch(htmltext);
+        var uno = htmlMatch.match(document.querySelector(".banner img"));
+        var due = htmlMatch.match(document.querySelector(".banner:nth-child(2) img"));
+        var tre = htmlMatch.match(document.getElementById("test"));
+        console.log(uno,( uno ? uno.parentElement : null),due,
+                ( due ? due.parentElement : null ),tre);
+        console.log("htmlMatch.match(document.getElementById(\"test\")) should be falsy")
+        console.assert(!tre);
+        // TESTING
+        console.log([...uno.parentElement.parentElement.children].indexOf(uno.parentElement))
+        console.log([...due.parentElement.parentElement.children].indexOf(due.parentElement))
+    }
+    a()
+</script>
+</body>
+</html>

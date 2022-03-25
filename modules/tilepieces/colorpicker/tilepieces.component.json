@@ -1,0 +1,44 @@
+{
+  "name": "tilepieces/colorpicker",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "colorpicker.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "front.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": []
+  },
+  "dependencies": [
+    "tilepieces/core",
+    "tilepieces/panel"
+  ],
+  "components": {
+    "tilepieces/colorpicker/panel": {
+      "name": "tilepieces/colorpicker/panel",
+      "path": "/components/colorpicker/panel"
+    }
+  },
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "colorpicker.html"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

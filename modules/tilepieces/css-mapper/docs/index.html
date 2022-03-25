@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>tilepieces - css mapper doc</title><style></style></head><body id="preview">
+<h1 class="code-line" data-line-start="0" data-line-end="1"><a id="CSS_MAPPER_0"></a>CSS MAPPER</h1>
+<p class="has-line-data" data-line-start="2" data-line-end="4">A javascript function to map <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/styleSheets">document.styleSheets</a>.<br>
+The return values is an (Promise)[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise</a>] that resolves to an object with the following properties:</p>
+<ul>
+<li class="has-line-data" data-line-start="4" data-line-end="5"><strong>animations</strong> : a list of all <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSKeyframesRule">CSSKeyframesRule</a> defined</li>
+<li class="has-line-data" data-line-start="5" data-line-end="9"><strong>conditionalGroups</strong> : a list of all the rules that have the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/cssRules">cssRules</a> property (@media, @supports…), mapped as follows:
+<ul>
+<li class="has-line-data" data-line-start="6" data-line-end="7"><strong>conditionText</strong> : rule condition text</li>
+<li class="has-line-data" data-line-start="7" data-line-end="8"><strong>inheritedConditionText</strong> : string with a list of all the conditionText properties associated with parentRules, separated by a comma, in a descending order from the deepest.</li>
+<li class="has-line-data" data-line-start="8" data-line-end="9"><strong>rule</strong> : actual <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSRule">CSSRule</a></li>
+</ul>
+</li>
+<li class="has-line-data" data-line-start="9" data-line-end="10"><strong>fontDeclarations</strong> : All the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family">font-family</a> properties declared</li>
+<li class="has-line-data" data-line-start="10" data-line-end="14"><strong>fonts</strong> : A list of all <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSFontFaceRule">CSSfontFaceRule</a> mapped as follows:
+<ul>
+<li class="has-line-data" data-line-start="11" data-line-end="12"><strong>cssText</strong> : the same value of CSSfontFaceRule.cssText</li>
+<li class="has-line-data" data-line-start="12" data-line-end="13"><strong>fontFaceRule</strong> : CSSFontFaceRule</li>
+<li class="has-line-data" data-line-start="13" data-line-end="14"><strong>mapped</strong> : the styles associated with the CSSfontFaceRule</li>
+</ul>
+</li>
+<li class="has-line-data" data-line-start="14" data-line-end="15"><strong>mediaQueries</strong> : a list of all <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSMediaRule">CSSMediaRule</a>, including those associated with <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet">CSSStyleSheet</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet">CSSImportRule</a></li>
+<li class="has-line-data" data-line-start="15" data-line-end="20"><strong>styleSheets</strong> : all the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet">CSSStyleSheet</a>, including those that are not in the same domain ( which cssRules are not readable in document.styleSheets ). Browser default stylesheet is not included. Stylesheets are mapped as follows:
+<ul>
+<li class="has-line-data" data-line-start="16" data-line-end="17"><strong>href</strong> : Returns a DOMString representing the location of the stylesheet. For html &lt;style&gt; tag is null.</li>
+<li class="has-line-data" data-line-start="17" data-line-end="18"><strong>sheet</strong> : actual <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet">CSSStyleSheet</a></li>
+<li class="has-line-data" data-line-start="18" data-line-end="20"><strong>type</strong> : This property is used to indicate stylesheets that cannot be accessed from document.stylesheet. “External” is added when we need to retrieve the style sheet, otherwise this property will be set with the style sheet type ( equal to <a href="https://developer.mozilla.org/en-US/docs/Web/API/StyleSheet/type">stylesheet type</a> ).</li>
+</ul>
+</li>
+</ul>
+<h2 class="code-line" data-line-start="20" data-line-end="21"><a id="Usage_20"></a>Usage</h2>
+<pre><code class="has-line-data" data-line-start="23" data-line-end="63"><span class="hljs-keyword">await</span> cssMapper(<span class="hljs-built_in">document</span>);
+<span class="hljs-comment">/* logs something like this:
+animations:  [CSSKeyframesRule, CSSKeyframesRule]
+conditionalGroups: [
+    {conditionText: '@supports (display:grid)', inheritedConditionText: '', rule: CSSSupportsRule}
+    {conditionText: '@media screen and (max-width: 900px)', inheritedConditionText: '@supports (display:grid)', rule: CSSMediaRule}
+    {conditionText: '@media screen and (max-width: 600px)', inheritedConditionText: '@media screen and (max-width: 900px), @supports (display:grid)', rule: CSSMediaRule}
+    {conditionText: '@media screen and (min-width: 900px)', inheritedConditionText: '', rule: CSSMediaRule}
+]
+fontDeclarations: [
+    "\"Titillium Web\", sans-serif"
+    "Roboto, sans-serif"
+]
+fonts: [
+    {mapped: {…}, fontFaceRule: CSSFontFaceRule, cssText: '@font-face { font-family: Roboto; font-style: norm… U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }'}
+    {mapped: {…}, fontFaceRule: CSSFontFaceRule, cssText: '@font-face { font-family: Roboto; font-style: norm…range: U+400-45F, U+490-491, U+4B0-4B1, U+2116; }'}
+    {mapped: {…}, fontFaceRule: CSSFontFaceRule, cssText: '@font-face { font-family: Roboto; font-style: norm…") format("woff2"); unicode-range: U+1F00-1FFF; }'}
+    {mapped: {…}, fontFaceRule: CSSFontFaceRule, cssText: '@font-face { font-family: Roboto; font-style: norm…f2") format("woff2"); unicode-range: U+370-3FF; }'}
+    {mapped: {…}, fontFaceRule: CSSFontFaceRule, cssText: '@font-face { font-family: Roboto; font-style: norm…169, U+1A0-1A1, U+1AF-1B0, U+1EA0-1EF9, U+20AB; }'}
+    {mapped: {…}, fontFaceRule: CSSFontFaceRule, cssText: '@font-face { font-family: Roboto; font-style: norm… U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }'}
+    {mapped: {…}, fontFaceRule: CSSFontFaceRule, cssText: '@font-face { font-family: Roboto; font-style: norm…U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }'}
+    {mapped: {…}, fontFaceRule: CSSFontFaceRule, cssText: '@font-face { font-family: "Titillium Web"; font-st… U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }'}
+    {mapped: {…}, fontFaceRule: CSSFontFaceRule, cssText: '@font-face { font-family: "Titillium Web"; font-st…U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }'}
+]
+mediaQueries: [
+    {rule: CSSMediaRule, children: Array(1)}
+    {rule: CSSImportRule, children: Array(0)}
+    {rule: CSSMediaRule, children: Array(0)}
+    {rule: CSSStyleSheet, children: Array(0)}
+    {rule: CSSStyleSheet, children: Array(0)}
+]
+styleSheets: [
+    {href: 'https://fonts.googleapis.com/css?family=Roboto:400…cyrillic-ext,greek,greek-ext,latin-ext,vietnamese', sheet: CSSStyleSheet, type: 'external'}
+    {href: 'https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,700,700i&amp;display=swap', sheet: CSSStyleSheet, type: 'external'}
+    {href: 'http://localhost:63342/webtile-node-test/www/css-mapper/css.css', sheet: CSSStyleSheet, type: 'text/css'}
+    {href: 'http://localhost:63342/webtile-node-test/www/css-mapper/widescreen.css', sheet: CSSStyleSheet, type: 'text/css'}
+    {href: 'http://localhost:63342/webtile-node-test/www/css-mapper/smallscreen.css', sheet: CSSStyleSheet, type: 'text/css'}
+    {href: null, sheet: CSSStyleSheet, type: 'text/css'}
+]
+</span></code></pre>
+<h2 class="code-line" data-line-start="64" data-line-end="65"><a id="Running_the_tests_64"></a>Running the tests</h2>
+<p class="has-line-data" data-line-start="66" data-line-end="67">Tests are in <a href="../test/test.html">test/test.html</a></p>
+</body></html>

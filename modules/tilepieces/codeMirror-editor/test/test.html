@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title></title><meta description=""><meta name="viewport" content="width=device-width,initial-scale=1.0"><link href="../../drag/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag"><link href="../../panel/css/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/panel"></head><body><div class="panel-element" data-alt-popup="../index-pop.html" data-tilepieces-component="panel-html-template" id="codeMirror-editor">
+    <div class="panel-handler">
+        <span class="panel-title">Source code editor</span>
+    </div>
+    <span class="panel-minimize">_</span>
+    <span class="panel-eject"></span>
+    <span class="panel-close">X</span>
+    <iframe data-src="../index.html"></iframe>
+    <div class="panel-prevent-iframe-mousedown"></div>
+</div>
+<script src="../../css-specificity/cssSpecificity.js" data-tilepieces-component="tilepieces/css-specificity"></script><script src="../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script><script src="../../css-split-value/splitCssValue.js" data-tilepieces-component="tilepieces/css-split-value"></script><script src="../../css-matcher/css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script><script src="../../html-tree-match/htmlTreeMatch.js" data-tilepieces-component="tilepieces/html-tree-match"></script><script src="../../core/tilepieces-core.js" data-tilepieces-component="tilepieces/core"></script><script src="../../events/index.js" data-tilepieces-component="tilepieces/events"></script><script src="../../offset/offset.js" data-tilepieces-component="tilepieces/offset"></script><script src="../../drag/drag.js" data-tilepieces-component="tilepieces/drag"></script><script src="../../panel/panel.js" data-tilepieces-component="tilepieces/panel"></script><script src="../front.js" data-tilepieces-component="tilepieces/codeMirror-editor"></script><script>var editHTML = tilepieces.codeMirrorEditor("This is a piece of html. edit it and click done. It will render on current document.","html");
+editHTML.then(e=>{
+  console.log(e);
+  document.body.innerHTML = e;
+},e=>console.error(e));</script></body></html>

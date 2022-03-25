@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>element panel</title>
+  <meta description="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link href="bundle/element-panel.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/element-panel">
+</head>
+<body>
+<div id="wrapper" hidden="" data-tilepieces-component="tilepieces/element-panel">
+  <div class="tab-buttons tab-horizontal" id="tabs">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#main" class="selected">Main</a><a href="#children">Children</a>
+        <a href="#component-interface">Component Interface</a>
+      </div>
+    </div>
+  </div>
+  <section id="main">
+    <div id="attributes">
+      <div class="attributes-node-name">
+        <fieldset>
+          <legend><label for="node-name">Node Name:</label></legend>
+          <div class="flex-box">
+            <input name="node-name" id="node-name" data-bind="nodeName" ${{nodenamedisabled}}="">
+            <button id="remove-element" ${{nodenamedisabled}}="">-</button>
+          </div>
+          <small ${{notmatch}}="">${{not_matching_phrase}}</small>
+          <small ${{nodenameinvalid}}="">Node name invalid in this position</small>
+        </fieldset>
+      </div>
+      <div data-isolate="">
+        <fieldset id="classes">
+          <legend>
+            <label for="new-class">Classes:</label></legend>
+          <form id="new-class" class="flex-box">
+            <input placeholder="Add new class" ${{canadd}}="" data-bind="newClassName" data-bind-events="input">
+            <button type="submit">OK</button>
+          </form>
+          <small ${{classinvalid}}="">${{classinvalid_phrase}}</small>
+          <div class="attributes-mask">
+            <label data-foreach="classes" for="class_${{key.index}}">
+              ${{key.name}}
+              <input type="checkbox" id="class_${{key.index}}" class="classes-checkbox" data-index="${{key.index}}"
+                     data-value="${{key.name}}" data-bind="key.checked" ${{canadd}}="">
+            </label>
+          </div>
+        </fieldset>
+      </div>
+      <fieldset class="attributes">
+        <legend>
+          <span>Attributes:</span>
+          <button id="add-attribute" disabled="">+</button>
+        </legend>
+        <ul id="attributes-view" style="display:${{isVisible}}">
+          <li data-foreach="attributes">
+            <fieldset>
+              <legend>
+                <input class="attribute-name" value="${{key.name}}" data-value="${{key.value}}"
+                       data-prev="${{key.name}}" data-index="${{key.index}}" ${{key.disabled}}="">
+                <button class="remove-attr" data-index="${{key.index}}" ${{key.disabled}}="">-</button>
+              </legend>
+              <div class="flex-box ${{key.classSrc}}">
+                <input class="attribute-value" data-key="${{key.name}}" value="${{key.value}}"
+                       data-index="${{key.index}}" ${{key.disabled}}="" ${{key.dropzone}}="">
+                <button class="search-button" data-type="img">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width=16 height=16>
+                    <g>
+                      <path style="fill:#727272;" d="M9.8,2.5l1.6,1.6c1.1-1.1,2.6-1.8,4.2-1.8c1.6,0,3.1,0.6,4.2,1.8c1.1,1.1,1.7,2.7,1.7,4.3
+		c0,1.6-0.6,3.1-1.7,4.3s-2.6,1.8-4.2,1.8c-1.6,0-3.1-0.6-4.2-1.8c-1.1-1.1-1.7-2.7-1.7-4.3c0-1.6,0.6-3.1,1.7-4.3L9.8,2.5 M9.8,2.5
+		C8.3,4,7.4,6.1,7.4,8.3c0,4.6,3.6,8.3,8.1,8.3c2.2,0,4.3-0.9,5.7-2.4c1.5-1.5,2.4-3.6,2.4-5.9C23.7,3.8,20,0,15.6,0
+		C13.3,0,11.3,1,9.8,2.5L9.8,2.5z"/>
+                      <path style="fill:#727272;" d="M0.7,23.5c-0.6-0.6-0.6-1.5,0-2.1l5.6-5.7l3.3-3.4l1.8,2.3l-3.1,3.2l-5.6,5.8
+		C2.2,24.1,1.3,24.1,0.7,23.5z"/>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </fieldset>
+
+          </li>
+        </ul>
+      </fieldset>
+    </div>
+  </section>
+  <section id="children" hidden="">
+    <ul>
+    </ul>
+  </section>
+  <section id="component-interface" hidden="">
+    <fieldset>
+      <legend><label>associated components</label></legend>
+      <select data-bind="interfaceAssociated" id="interfaces-associated">
+        <option data-foreach="interfaces" value="${key.name}">${key.name}</option>
+      </select>
+    </fieldset>
+    <div data-foreach="interfaces" class="component-interface-iframe-container ${key.selected}">
+      <iframe data-src="${key.interface}" data-index="${key.index}" class="${key.selected}"></iframe>
+    </div>
+  </section>
+</div>
+<section id="element-sum" class="tab-buttons tab-horizontal" data-tilepieces-component="tilepieces/element-panel">
+  <a class="tab-prev" href="javascript:void(0)">←</a>
+  <a class="tab-next" href="javascript:void(0)">→</a>
+  <div class="tab-buttons-wrap">
+    <div class="tab-buttons-inside" id="inside-path">
+    </div>
+  </div>
+</section>
+<script src="bundle/element-panel.bundle.js" data-tilepieces-component="tilepieces/element-panel"></script>
+</body>
+</html>

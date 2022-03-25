@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link href="../../tilepieces-framework.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces-framework">
+</head>
+<body>
+<div id="menu-bar-trigger" class="menu-bar-trigger no-frame" data-tilepieces-component="tilepieces-framework">
+  <a href="javascript:void(0)" id="menu-trigger">
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="24.000000px" height="24.000000px"
+         viewBox="0 0 24.000000 24.000000" preserveAspectRatio="xMidYMid meet">
+
+      <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+        <path d="M106 213 c-12 -12 -6 -33 9 -33 8 0 15 6 15 14 0 17 -14 28 -24 19z"></path>
+        <path d="M102 124 c4 -21 22 -23 26 -1 2 10 -3 17 -13 17 -10 0 -15 -6 -13
+-16z"></path>
+        <path d="M106 63 c-12 -12 -6 -33 9 -33 8 0 15 6 15 14 0 17 -14 28 -24 19z"></path>
+
+
+      </g>
+    </svg>
+  </a>
+  <a href="javascript:void(0)" id="selection-trigger">
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="24.000000px" height="24.000000px"
+         viewBox="0 0 24.000000 24.000000" preserveAspectRatio="xMidYMid meet">
+
+      <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+        <path d="M24 207 c-3 -8 -4 -47 -2 -88 3 -71 4 -74 28 -75 22 -1 22 0 3 3 -22
+4 -23 9 -23 84 l0 79 79 0 c77 0 80 -1 84 -25 4 -23 4 -23 3 2 -1 28 -1 28
+-84 31 -63 2 -84 0 -88 -11z"></path>
+        <path d="M103 127 c3 -8 9 -32 13 -52 6 -34 7 -35 25 -19 18 16 20 16 44 -6
+14 -13 25 -19 25 -13 0 5 -9 18 -20 28 -18 17 -19 20 -5 35 15 16 13 18 -20
+24 -20 4 -44 10 -52 13 -12 5 -15 2 -10 -10z"></path>
+      </g>
+    </svg>
+  </a>
+  <a href="javascript:void(0)" id="contenteditable-trigger">
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="24.000000px" height="24.000000px"
+         viewBox="0 0 24.000000 24.000000" preserveAspectRatio="xMidYMid meet">
+
+      <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+        <path d="M20 205 c0 -41 7 -45 20 -10 6 15 17 25 30 25 19 0 20 -6 20 -100 0
+-84 -3 -101 -17 -109 -14 -8 -2 -10 47 -10 49 0 61 2 48 10 -15 8 -18 25 -18
+109 0 94 1 100 20 100 13 0 24 -10 30 -25 13 -35 20 -31 20 10 l0 35 -100 0
+-100 0 0 -35z"></path>
+      </g>
+    </svg>
+  </a>
+  <a href="javascript:void(0)" id="screen-dimensions-trigger">
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="24.000000px" height="24.000000px"
+         viewBox="0 0 24.000000 24.000000" preserveAspectRatio="xMidYMid meet">
+
+      <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+        <path d="M57 233 c-4 -3 -7 -21 -7 -39 0 -26 -4 -33 -22 -36 -22 -3 -23 -8
+-23 -78 l0 -75 108 -3 107 -3 0 121 0 120 -78 0 c-43 0 -82 -3 -85 -7z m153
+-113 l0 -110 -55 0 -55 0 0 75 c0 68 -2 75 -20 75 -16 0 -20 7 -20 35 l0 35
+75 0 75 0 0 -110z m-120 -35 l0 -55 -40 0 -40 0 0 55 0 55 40 0 40 0 0 -55z"></path>
+      </g>
+    </svg>
+  </a>
+</div>
+<div id="menu-bar" data-tilepieces-component="tilepieces-framework">
+  <ul id="window-list">
+  </ul>
+</div>
+<div id="screen-dimensions" data-tilepieces-component="tilepieces-framework">
+  <label for="width">Canvas Width:</label>
+  <input id="width" type="number" min="320">px
+  <label for="height">Canvas Height:</label>
+  <input id="height" type="number" min="200">px
+  <button id="fit-to-screen-button">Fit to screen</button>
+  <button id="reverse">reverse</button>
+  <select id="screen-dimensions-default">
+    <option value="" disabled="" selected=""></option>
+    <option value="1920x1080">1920x1080</option>
+    <option value="1536x864">1536x864</option>
+    <option value="1440x900">1440x900</option>
+    <option value="1366x768">1366x768</option>
+    <option value="1280x720">1280x720</option>
+    <option value="1280x800">1280x800</option>
+    <option value="1280x1024">1280x1024</option>
+    <option value="1024x768">1024x768</option>
+    <option value="414x896">414x896</option>
+    <option value="414x736">414x736</option>
+    <option value="412x846">412x846</option>
+    <option value="375x812">375x812</option>
+    <option value="375x667">375x667</option>
+    <option value="360x760">360x760</option>
+    <option value="360x720">360x720</option>
+    <option value="360x780">360x780</option>
+    <option value="360x640">360x640</option>
+    <option value="320x568">320x568</option>
+  </select>
+</div>
+<div id="mobile-wrapper" data-tilepieces-component="tilepieces-framework">
+  <div class="move-bar-dummy"></div>
+  <div id="target-frame-wrapper">
+    <iframe id="target-frame"></iframe>
+  </div>
+  <div id="move-bar"></div>
+  <div id="dock-frames" tabindex="-1">
+    <div class="panel-element" data-alt-popup="panels/HTML_pop.html"
+         data-tilepieces-component="panel/panel-html-template" id="CSS example">
+      <div class="panel-handler">
+        <span class="panel-title">CSS example</span>
+      </div>
+      <span class="panel-minimize">_</span>
+      <span class="panel-eject"></span>
+      <span class="panel-close">X</span>
+      <iframe data-src="panels/CSS.html"></iframe>
+      <div class="panel-prevent-iframe-mousedown"></div>
+    </div>
+    <div class="panel-element" data-alt-popup="panels/HTML_pop.html"
+         data-tilepieces-component="panel/panel-html-template" id="HTML example">
+      <div class="panel-handler">
+        <span class="panel-title">HTML example</span>
+      </div>
+      <span class="panel-minimize">_</span>
+      <span class="panel-eject"></span>
+      <span class="panel-close">X</span>
+      <iframe data-src="panels/HTML.html"></iframe>
+      <div class="panel-prevent-iframe-mousedown"></div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="panel-element" data-alt-popup="/modules/tilepieces/colorpicker/colorpicker-pop.html"
+     data-tilepieces-component="tilepieces-framework" id="colorpicker">
+  <div class="panel-handler">
+    <span class="panel-title">ColorPicker</span>
+  </div>
+  <span class="panel-minimize">_</span>
+  <span class="panel-eject"></span>
+  <span class="panel-close">X</span>
+  <iframe data-src="/modules/tilepieces/colorpicker/colorpicker.html"></iframe>
+  <div class="panel-prevent-iframe-mousedown"></div>
+</div>
+<div class="panel-element" data-alt-popup="/modules/tilepieces/codeMirror-editor/index-pop.html"
+     data-tilepieces-component="tilepieces-framework" id="codeMirror-editor">
+  <div class="panel-handler">
+    <span class="panel-title">Source code editor</span>
+  </div>
+  <span class="panel-minimize">_</span>
+  <span class="panel-eject"></span>
+  <span class="panel-close">X</span>
+  <iframe data-src="/modules/tilepieces/codeMirror-editor/index.html"></iframe>
+  <div class="panel-prevent-iframe-mousedown"></div>
+</div>
+<div class="tilepieces-dialog" id="tilepieces-alert-dialog" tabindex="-1" data-tilepieces-component="dialog">
+  <div class="tilepieces-dialog-content">
+    <form id="tilepieces-dialog-alert-form">
+      <div class="tilepieces-alert-dialog-content">
+        <svg viewBox="0 0 19.672209 17.5" class="error" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(-2.1798954,-3.5)">
+            <path d="m 11,16 h 2 v 2 h -2 z" style="fill: rgb(0, 0, 0); fill-opacity: 1;"></path>
+            <path d="m 13.516,10 h -3 L 11,15 h 2 z" style="fill: rgb(0, 0, 0);"></path>
+            <path
+              d="M 12.017,5.974 19.536,19 H 4.496 L 12.017,5.974 m 0,-2.474 c -0.544,0 -1.088,0.357 -1.5,1.071 L 2.532,18.402 C 1.707,19.831 2.382,21 4.032,21 H 20 c 1.65,0 2.325,-1.169 1.5,-2.599 L 13.517,4.572 C 13.104,3.857 12.561,3.5 12.017,3.5 Z"
+              style="fill: rgb(255, 93, 0); fill-opacity: 1;"></path>
+          </g>
+        </svg>
+        <div id="tilepieces-alert-dialog-label"></div>
+      </div>
+      <div class="tilepieces-dialog-footer">
+        <button type="submit" id="tilepieces-alert-dialog-button">OK</button>
+      </div>
+    </form>
+  </div>
+  <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div>
+<div class="tilepieces-dialog" id="tilepieces-dialog" tabindex="-1" data-tilepieces-component="dialog">
+  <div class="tilepieces-dialog-content">
+    <!-- insert content here -->
+  </div>
+  <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div>
+<div class="tilepieces-dialog" id="tilepieces-confirm-dialog" tabindex="-1" data-tilepieces-component="dialog">
+  <div class="tilepieces-dialog-content">
+    <span id="tilepieces-confirm-dialog-label"></span>
+    <div>
+      <button id="tilepieces-confirm-dialog-button">Ok</button>
+      <button id="tilepieces-reject-dialog-button">Cancel</button>
+    </div>
+  </div>
+  <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div>
+<div class="tilepieces-dialog" id="tilepieces-prompt-dialog" tabindex="-1" data-tilepieces-component="dialog">
+  <div class="tilepieces-dialog-content">
+    <form id="tilepieces-dialog-prompt-form">
+      <label for="tilepieces-dialog-prompt">
+        <span id="tilepieces-prompt-dialog-label"></span>
+        <input name="tilepieces-dialog-prompt" id="tilepieces-dialog-prompt" title="" autocomplete="off">
+        <small id="tilepieces-prompt-dialog-label-error"></small>
+      </label>
+      <div>
+        <button type="submit" id="tilepieces-prompt-dialog-button"></button>
+      </div>
+    </form>
+  </div>
+  <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div>
+<script src="../../tilepieces-framework.bundle.js" data-tilepieces-component="tilepieces-framework"></script>
+<script>
+  tilepieces.workspace = "";
+</script>
+</body>
+</html>

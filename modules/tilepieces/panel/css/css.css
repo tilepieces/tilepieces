@@ -1,0 +1,30 @@
+.panel-element { position: absolute; transform: translate(0px, 0px); z-index: 8; width: 400px; height: 300px; min-width: 400px; border: none;   -webkit-user-select: none;user-select: none; display: none; --resizable-width: 7px; --resizable-offset: -5px; --resizable-inset: 4px; box-shadow: rgba(0, 0, 0, 0.13) 0px 0.5px 3px; border-radius: 7px; flex-direction: column; }
+.panel-element-selected { z-index: 9; box-shadow: rgb(169, 169, 169) 0px 0px 4px 0px; }
+.panel-element .panel-title { pointer-events: none; text-transform: uppercase; letter-spacing: 0.2em; line-height: normal; font-size: 16px; vertical-align: sub; }
+.panel-element iframe { width: 100%; height: 100%; border: 0px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; }
+.panel-prevent-iframe-mousedown { position: absolute; top: 1rem; left: 0px; width: 100%; height: calc(100% - 1rem); display: none; }
+.panel-element-minimized { border-radius: 7px 7px 0px 0px; height: auto !important; }
+.panel-element-minimized iframe { display: none; }
+.panel-handler { background: rgb(204, 203, 203); position: relative; color: rgb(255, 255, 255); padding: 0.3em 1em; font: 0.8em Helvetica, Arial, sans-serif; border: none; border-radius: 7px 7px 0px 0px; }
+.panel-eject { width: 1em; height: 1em; position: absolute; right: 2.5em; top: 5px; z-index: 1; border: 1px solid rgb(204, 204, 204); }
+.panel-close { width: 1em; height: 1em; position: absolute; right: 1em; top: 5px; font: bold 1em Helvetica, Arial, sans-serif; border: 1px solid rgb(204, 204, 204); background: rgb(51, 51, 51); color: rgb(255, 255, 255); z-index: 1; text-align: center; }
+.panel-maximize { width: 1em; height: 1em; position: absolute; right: 1em; z-index: 1; border: 1px solid rgb(204, 204, 204); }
+.panel-minimize { width: 0.8em; height: 0.8em; font-size: 1em; position: absolute; right: 4em; border: 2px solid rgb(250, 250, 250); color: rgb(255, 255, 255); font-weight: 900; z-index: 1; text-align: center; line-height: 4px; top: 8px; background: none; border-radius: 50px; }
+.resizable-element { position: absolute; z-index: 4; }
+.panel-element-minimized .s, .panel-element-minimized .se, .panel-element-minimized .sw, .panel-element-minimized .n, .panel-element-minimized .ne, .panel-element-minimized .nw { display: none; }
+.panel-element .nw { cursor: nw-resize; top: var(--resizable-offset); left: var(--resizable-offset); width: var(--resizable-width); height: var(--resizable-width); }
+.panel-element .ne { cursor: ne-resize; top: var(--resizable-offset); right: var(--resizable-offset); width: var(--resizable-width); height: var(--resizable-width); }
+.panel-element .sw { cursor: sw-resize; bottom: var(--resizable-offset); left: var(--resizable-offset); width: var(--resizable-width); height: var(--resizable-width); }
+.panel-element .se { cursor: se-resize; bottom: var(--resizable-offset); right: var(--resizable-offset); width: var(--resizable-width); height: var(--resizable-width); }
+.panel-element .n { cursor: n-resize; top: var(--resizable-offset); left: var(--resizable-inset); width: calc(100% - var(--resizable-width)); height: var(--resizable-width); }
+.panel-element .s { cursor: s-resize; bottom: var(--resizable-offset); left: var(--resizable-inset); width: calc(100% - var(--resizable-width)); height: var(--resizable-width); }
+.panel-element .w { cursor: w-resize; left: var(--resizable-offset); top: var(--resizable-inset); height: calc(100% - var(--resizable-width)); width: var(--resizable-width); }
+.panel-element .e { cursor: e-resize; right: var(--resizable-offset); top: var(--resizable-inset); height: calc(100% - var(--resizable-width)); width: var(--resizable-width); }
+span.panel-handler-ico { vertical-align: middle; height: auto; display: inline-grid; }
+.panel-botton-position { border: none; top: 6px; border-radius: 0px; animation: 0s ease 0s 1 normal none running middle; background: transparent; padding: 0px; width: 17px; height: 17px; color: rgb(255, 255, 255); }
+.panel-botton-position svg { }
+.panel-minimize svg { transform: rotate(45deg); }
+.panel-eject svg { transform: rotate(45deg); }
+.panel-close svg { right: 4px; top: 4px; }
+.panel-botton-position svg path { fill: rgb(127, 125, 125) !important; }
+.panel-element-minimized .panel-handler { }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TT - TEST TEMPLATE 3</title>
+</head>
+<body>
+<section class="not-follow">
+  <div data-use="main-structure" data-params="obj,main"></div>
+</section>
+<template id="main-structure">
+  <div data-if="!obj.classList.contains('not-follow')">
+    <details>
+      <summary>${obj.tagName}</summary>
+      <ul data-if="obj.children">
+        <li data-foreach=obj.children data-use="main-structure" data-params="obj,key"></li>
+      </ul>
+    </details>
+  </div>
+  <div data-if="obj.classList.contains('not-follow')">
+    <div>This is a node that has class 'not-follow', and we don't show its childrens</div>
+  </div>
+</template>
+<script src="../tt.js"></script>
+<script>
+  let scope = {
+    main: document.documentElement
+  };
+  let template = document.getElementById("main-structure");
+  let el = document.body.children[0];
+  let t = new TT(el, scope, {
+    templates: [{
+      name: "main-structure",
+      el: template.content
+    }]
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="../tilepieces-framework.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces-framework"/>
+</head>
+<body>
+<div id="menu-bar-trigger" class="menu-bar-trigger no-frame">
+  <a href="javascript:void(0)" id="menu-trigger">
+  </a>
+  <a href="javascript:void(0)" id="selection-trigger">
+  </a>
+  <a href="javascript:void(0)" id="contenteditable-trigger">
+  </a>
+  <a href="javascript:void(0)" id="screen-dimensions-trigger">
+  </a>
+</div>
+<div id="menu-bar">
+  <div>
+    <div class="menu-level-1-trigger">File<span class="menu-bar-caret"></span></div>
+    <ul id="file-list"></ul>
+  </div>
+  <div>
+    <div id="menu-bar-projects">Projects...</div>
+    <div id="menu-bar-components">Components...</div>
+    <div id="menu-bar-settings">Settings</div>
+  </div>
+  <div>
+    <div class="menu-level-1-trigger">Window<span class="menu-bar-caret"></span></div>
+    <ul id="window-list">
+    </ul>
+  </div>
+</div>
+<div id="screen-dimensions">
+  <label for="width">Canvas Width:</label>
+  <input id="width" type="number" min="320"/>px
+  <label for="height">Canvas Height:</label>
+  <input id="height" type="number" min="200"/>px
+  <button id="fit-to-screen-button">Fit to screen</button>
+  <button id="reverse">reverse</button>
+  <select id="screen-dimensions-default">
+    <option value="" disabled="" selected=""></option>
+    <option value="1920x1080">1920x1080</option>
+    <option value="1536x864">1536x864</option>
+    <option value="1440x900">1440x900</option>
+    <option value="1366x768">1366x768</option>
+    <option value="1280x720">1280x720</option>
+    <option value="1280x800">1280x800</option>
+    <option value="1280x1024">1280x1024</option>
+    <option value="1024x768">1024x768</option>
+    <option value="414x896">414x896</option>
+    <option value="414x736">414x736</option>
+    <option value="412x846">412x846</option>
+    <option value="375x812">375x812</option>
+    <option value="375x667">375x667</option>
+    <option value="360x760">360x760</option>
+    <option value="360x720">360x720</option>
+    <option value="360x780">360x780</option>
+    <option value="360x640">360x640</option>
+    <option value="320x568">320x568</option>
+  </select>
+</div>
+<div id="mobile-wrapper">
+  <div id="target-frame-wrapper">
+    <iframe id="target-frame"></iframe>
+  </div>
+  <div id="dock-frames"></div>
+</div>
+</body>
+</html>

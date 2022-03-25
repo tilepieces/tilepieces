@@ -1,0 +1,75 @@
+<style>
+  /* Shared for all DIVS in example */
+  ol,
+  li {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 12px;
+  }
+
+  div {
+    background-image: url(https://mdn.mozillademos.org/files/12005/starsolid.gif);
+    width: 160px;
+    height: 70px;
+  }
+
+  /* Background repeats */
+  .one {
+    background-repeat: no-repeat;
+  }
+
+  .two {
+    background-repeat: repeat;
+  }
+
+  .three {
+    background-repeat: repeat-x;
+  }
+
+  .four {
+    background-repeat: repeat-y;
+  }
+
+  .five {
+    background-repeat: space;
+  }
+
+  .six {
+    background-repeat: round;
+  }
+
+  /* Multiple images */
+  .seven {
+    background-image: url(https://mdn.mozillademos.org/files/12005/starsolid.gif),
+    url(https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png);
+    background-repeat: repeat-x,
+    repeat-y;
+    height: 144px;
+  }
+</style>
+<ol>
+  <li>no-repeat
+    <div class="one"></div>
+  </li>
+  <li>repeat
+    <div class="two"></div>
+  </li>
+  <li>repeat-x
+    <div class="three"></div>
+  </li>
+  <li>repeat-y
+    <div class="four"></div>
+  </li>
+  <li>space
+    <div class="five"></div>
+  </li>
+  <li>round
+    <div class="six"></div>
+  </li>
+  <li>repeat-x, repeat-y (multiple images)
+    <div class="seven"></div>
+  </li>
+</ol>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TABLE interface</title>
+
+  <link href="css.css" rel="stylesheet" data-tilepieces-component="element-panel/TABLE">
+</head>
+<body>
+<div id="app-view">
+  <div data-if="!deactivated">
+    <fieldset>
+      <label>Rows
+        <input data-bind="rows" type="number" min="1">
+      </label>
+    </fieldset>
+    <fieldset>
+      <label>Columns
+        <input data-bind="columns" type="number" min="1">
+      </label>
+    </fieldset>
+    <label>Caption
+      <input data-bind="caption" type="checkbox">
+    </label>
+    <label>theader
+      <input data-bind="theader" type="checkbox">
+    </label>
+    <label>tfooter
+      <input data-bind="tfooter" type="checkbox">
+    </label>
+    <details>
+      <summary>Cell actions</summary>
+      <label>tableHeader
+        <input data-bind="isTh" type="checkbox" ${disabled}="">
+      </label>
+      <div>
+        <button data-action="delete-column" ${deletecolumn}="">delete column</button>
+        <button data-action="merge-cell-with-column-cell-after" ${mergecellcolafter}="">merge cell with the subsequent
+          column cell
+        </button>
+        <button data-action="merge-cell-with-column-cell-before" ${mergecellcolbefore}="">merge cell with preceding
+          column cell
+        </button>
+        <button data-action="insert-column-after" ${disabled}="">insert column after</button>
+        <button data-action="insert-column-before" ${disabled}="">insert column before</button>
+        <hr>
+        <button data-action="delete-row" ${deleterow}="">delete row</button>
+        <button data-action="delete-cell" ${disabled}="">delete cell</button>
+        <button data-action="merge-cell-with-row-cell-after" ${mergecellrowafter}="">merge cell with row
+          subsequent cell
+        </button>
+        <button data-action="merge-cell-with-row-cell-before" ${mergecelrowbefore}="">merge cell with preceding row
+          cell
+        </button>
+        <button data-action="insert-cell-row-after" ${disabled}="">insert cell row after</button>
+        <button data-action="insert-cell-row-before" ${disabled}="">insert cell row before</button>
+        <button data-action="insert-row-after" ${disabled}="">insert row after</button>
+        <button data-action="insert-row-before" ${disabled}="">insert row before</button>
+      </div>
+    </details>
+  </div>
+</div>
+<script src="table.bundle.js" data-tilepieces-component="element-panel/TABLE"></script>
+</body>
+</html>

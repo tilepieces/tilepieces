@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta description="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" itemprop="image primaryImageOfPage" content="">
+</head>
+<body>
+<iframe id="frame" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0">
+</iframe>
+<script src="../../html-tree-match/htmlTreeMatch.js" data-tilepieces-component="tilepieces/html-tree-match"></script>
+<script src="../../css-split-value/splitCssValue.js" data-tilepieces-component="tilepieces/css-split-value"></script>
+<script src="../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script>
+<script src="../../css-specificity/cssSpecificity.js" data-tilepieces-component="tilepieces/css-specificity"></script>
+<script src="../../css-matcher/css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script>
+<script src="../tilepieces-core.js" data-tilepieces-component="tilepieces/core"></script>
+<script>
+  tilepieces.workspace = "";
+  let testFrameUrl = "tests-pages/test-page.html";
+  let frame = document.getElementById("frame");
+  frame.addEventListener("load", async () => {
+    var html = await fetch(testFrameUrl);
+    var htmlText = await html.text();
+    tilepieces.core = await TilepiecesCore().init(frame.contentDocument, htmlText);
+  });
+  frame.src = testFrameUrl;
+</script>
+</body>
+</html>

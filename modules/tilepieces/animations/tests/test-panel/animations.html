@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html><head>
+  <link href="../../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet">
+  <link href="../../../autocomplete/autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete">
+  <link href="../../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input">
+  <link href="../../../css-rule-modification/css-rule-modification.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-rule-modification">
+  <link href="../../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs">
+  <link href="../../animations.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/animations">
+</head>
+<body style="margin: 0px;">
+<div class="autocomplete-hint" data-tilepieces-component="tilepieces/autocomplete"></div>
+<template id="css-properties-list" data-tilepieces-component="tilepieces/css-rule-modification">
+    <ul class="rule-block__list" data-bind-dom-prop="__css-viewer-rule,rule">
+        <li data-foreach="rule.properties" data-foreach-key-name="property" data-index="${property.index}" class="rule__property ${property.isInheritedClass} ${rule.contenteditable}">
+            <input class="rule-block__checked" type="checkbox" data-bind="property.checked" ${property.disabled}="">
+            <div class="rule-block__key autocomplete" data-bind-dom-prop="__autocomplete_suggestions,cssDefaultProperties" data-key="${property.property}" data-bind="property.property" data-contenteditable="${property.contenteditable}"></div>
+            <div class="rule-block__divider">:</div>
+            <div class="input-css rule-block__value autocomplete" data-bind-dom-prop="__autocomplete_suggestions,property.autocomplete_suggestions" data-prop="${property.property}" data-bind="property.value" ${property.contenteditable}=""></div><div>;</div>
+        </li>
+    </ul>
+    <button class="rule-block__add-property">+</button>
+</template>
+<section class="${isVisible}" id="animations" data-tilepieces-component="tilepieces/animations">
+  <div class="tab-buttons tab-horizontal" id="tab-animations" data-tilepieces-component="tilepieces/tabs">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#general-animations" class="selected">Animations</a>
+        <a href="#keyframes">@keyframes</a>
+      </div>
+    </div>
+  </div>
+  <div id="general-animations">
+    <fieldset>
+      <legend><a href="#input-animation" tabindex="-1">
+        <span class="h3">animation:</span></a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style">
+        <div class="input-css autocomplete" data-css-prop="animation" data-css-prop-js="animation" data-value="${animation}" data-auto-global-suggestion="cssDefaults.animation" data-bind="animation" contenteditable="" id="input-animation">
+        </div>
+      </div>
+    </fieldset>
+    <details>
+      <summary>
+        <span class="h3"><span> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></span>animation properties
+        </span>
+      </summary>
+      <div class="details-open-summery-child" style="">
+        <fieldset>
+          <legend><a href="#input-animationName" tabindex="-1">animation-name:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-name" data-css-prop-js="animationName" data-value="${animationName}" data-auto-global-suggestion="cssDefaults.animation-name" data-bind="animationName" contenteditable="" id="input-animationName"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationDuration" tabindex="-1">animation-duration:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-duration" data-css-prop-js="animationDuration" data-value="${animationDuration}" data-auto-global-suggestion="cssDefaults.animation-duration" data-bind="animationDuration" contenteditable="" id="input-animationDuration"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationFunction" tabindex="-1">animation-timing-function:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-timing-function" data-css-prop-js="animationTimingFunction" data-value="${animationTimingFunction}" data-auto-global-suggestion="cssDefaults.animation-timing-function" data-bind="animationTimingFunction" contenteditable="" id="input-animationFunction"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationDelay" tabindex="-1">animation-delay:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-delay" data-css-prop-js="animationDelay" data-value="${animationDelay}" data-auto-global-suggestion="cssDefaults.animation-delay" data-bind="animationDelay" contenteditable="" id="input-animationDelay"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a tabindex="-1" href="#input-animationIterationCount">animation-iteration-count:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-iteration-count" data-css-prop-js="animationIterationCount" data-value="${animationIterationCount}" data-auto-global-suggestion="cssDefaults.animation-iteration-count" data-bind="animationIterationCount" contenteditable="" id="input-animationIterationCount"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationDirection" tabindex="-1">animation-direction:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-direction" data-css-prop-js="animationDirection" data-value="${animationDirection}" data-auto-global-suggestion="cssDefaults.animation-direction" data-bind="animationDirection" contenteditable="" id="input-animationDirection"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationFillMode" tabindex="-1">animation-fill-mode:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-fill-mode" data-css-prop-js="animationFillMode" data-value="${animationFillMode}" data-auto-global-suggestion="cssDefaults.animation-fill-mode" data-bind="animationFillMode" contenteditable="" id="input-animationFillMode"></div>
+          </div>
+
+        </fieldset>
+        <fieldset>
+          <legend><a href="#input-animationPlayState" tabindex="-1">animation-play-state: </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="animation-play-state" data-css-prop-js="animationPlayState" data-value="${animationPlayState}" data-auto-global-suggestion="cssDefaults.animation-play-state" data-bind="animationPlayState" contenteditable="" id="input-animationPlayState"></div>
+          </div>
+        </fieldset>
+      </div>
+    </details>
+    <fieldset>
+      <legend><a tabindex="-1" href="#input-transition">
+        <span class="h3">transition:</span></a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition" class="info-round-icon" target="_blank"></a></legend>
+      <div class="input-css-style">
+        <div class="input-css autocomplete" data-css-prop="transition" data-css-prop-js="transition" data-value="${transition}" data-auto-global-suggestion="cssDefaults.transition" data-bind="transition" contenteditable="" id="input-transition"></div>
+      </div>
+    </fieldset>
+    <details>
+      <summary>
+        <span class="h3"><span> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+
+<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:1;fill:#fff; stroke:rgb(153, 153, 153); stroke-widht:2px" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+<path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg>transition properties</span></span>
+      </summary>
+      <div class="details-open-summery-child">
+        <fieldset>
+          <legend><a tabindex="-1" href="#input-transitionCssProperty">transition property:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="transition-property" data-css-prop-js="transitionProperty" data-value="${transitionProperty}" data-auto-global-suggestion="cssDefaults.transition-property" data-bind="transitionProperty" contenteditable="" id="input-transitionCssProperty"></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><a tabindex="-1" href="#input-TransitionDuration">transition duration:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="transition-duration" data-css-prop-js="transitionDuration" data-value="${transitionDuration}" data-auto-global-suggestion="cssDefaults.transition-duration" data-bind="transitionDuration" contenteditable="" id="input-TransitionDuration"></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><a tabindex="-1" href="#input-TransitionTimingFunction">transition timing function:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="transition-timing-function" data-css-prop-js="transitionTimingFunction" data-value="${transitionTimingFunction}" data-auto-global-suggestion="cssDefaults.transition-timing-function" data-bind="transitionTimingFunction" contenteditable="" id="input-TransitionTimingFunction"></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><a tabindex="-1" href="#input-transitionDelay">transition delay:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay" class="info-round-icon" target="_blank"></a></legend>
+          <div class="input-css-style">
+            <div class="input-css autocomplete" data-css-prop="transition-delay" data-css-prop-js="transitionDelay" data-value="${transitionDelay}" data-auto-global-suggestion="cssDefaults.transition-delay" data-bind="transitionDelay" contenteditable="" id="input-transitionDelay"></div>
+          </div>
+        </fieldset>
+      </div>
+    </details>
+  </div>
+  <div id="keyframes" style="display:none">
+    <div class="flex-box top-button-actions">
+      <button id="new-animation" class="button-bg-fill">New Animation</button>
+    </div>
+    <div data-foreach="animations" data-foreach-key-name="animation" class="animation__rule-block" data-bind-dom-prop="__animation,animation" data-index="${animation.index}">
+      <div class="animation__rule-block__inherited-divider flex-box-stroke">
+        <span data-bind="animation.name" ${animation.contenteditable}=""></span>
+        <button class="delete-animation component-properties-remove">-</button>
+        <button class="new-keyframe"><small>new keyframe</small></button>
+        <button class="open-animation component-properties-open">
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+
+<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+  <path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg>
+        </button>
+      </div>
+      <div class="animation_keyframe ${animation.show} ${animation.contenteditable}">
+        <div data-foreach="animation.cssRules" data-foreach-key-name="keyframe" class="keyframe__rule-block" data-bind-dom-prop="__keyframe-rule,keyframe">
+          <div class="keyframe__rule__selector">
+            <div class="keyframe__rule__selector-name" data-bind="keyframe.keyText" ${animation.contenteditable}="">
+            </div>
+            <button class="delete-keyframe component-properties-remove" data-index="${keyframe.index}">-
+            </button>
+          </div>
+          <div data-use="css-properties-list" data-params="rule,keyframe"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><div tabindex="-1" class="modal-animation flex-modal" id="modal-new-animation" data-tilepieces-component="tilepieces/animations">
+  <section>
+    <div class="modal-animation-close"></div>
+    <form id="new-animation-form">
+      <label for="new-animation-name">
+        <span class="h4">new animation name</span>
+      </label>
+      <div class="flex-box">
+        <input name="new-animation-name" id="new-animation-name" title="" autocomplete="off" required="">
+        <small id="new-animation-error" style="display: none;" class="message-alert-error">Invalid syntax</small>
+        <div>
+          <button type="submit">create</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</div><div tabindex="-1" class="modal-animation flex-modal" id="modal-new-keyframe" data-tilepieces-component="tilepieces/animations">
+  <section>
+    <div class="modal-animation-close"></div>
+    <form id="new-keyframe-form">
+      <label for="new-animation-name">
+        <span class="h4">percentage position:</span>
+      </label>
+      <div class="flex-box">
+
+        <input name="new-animation-name" id="new-keyframe-name" type="number" min="0" max="100" required="">%
+
+        <small id="new-keyframe-error" style="" class="message-alert-error">Invalid syntax</small>
+        <div>
+          <button type="submit">insert</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>
+
+
+<script src="../../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../../../autocomplete/autocomplete.bundle.js" data-tilepieces-component="tilepieces/autocomplete"></script>
+<script src="../../../css-input/css-input.bundle.js" data-tilepieces-component="tilepieces/css-input"></script>
+<script src="../../../tt/tt.js" data-tilepieces-component="tilepieces/tt"></script>
+<script src="../../../css-rule-modification/css-rule-modification.bundle.js" data-tilepieces-component="tilepieces/css-rule-modification"></script>
+<script src="../../../tabs/tabs.js" rel="stylesheet" data-tilepieces-component="tilepieces/tabs"></script>
+<script src="../../animations.bundle.js" data-tilepieces-component="tilepieces/animations"></script>
+
+</body></html>

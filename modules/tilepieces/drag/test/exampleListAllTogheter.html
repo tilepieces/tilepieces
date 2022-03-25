@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <title>Example long page</title>
+    
+    
+
+    <link rel="stylesheet" href="css.css">
+    <style>
+        body{
+            margin:0;
+            display:flex;
+        }
+        body > *{
+            width:calc(100% / 3);
+        }
+        .targetClone{
+            position:absolute;
+            opacity:0.4;
+            pointer-events: none;
+            top:0;
+            left:0;
+        }
+        .cloneToAppend{
+            background-color:cyan;
+        }
+    </style>
+<link href="../css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag"></head>
+<body>
+<ul id="test"></ul>
+<ul id="test2">
+    <li>
+        <a href="#">1</a>1
+        <ul>
+            <li>1a</li>
+            <li>2b</li>
+            <li>3c</li>
+        </ul>
+    </li>
+    <li>2
+        <ol>
+            <li>1aa</li>
+            <li>2bb
+                <ul>
+                    <li>1bba</li>
+                    <li>2bbb</li>
+                    <li>3bbc</li>
+                </ul>
+            </li>
+            <li>3cc</li>
+        </ol>
+    </li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+
+<div id="overlay1">
+<ul id="test3" class="html-tree-builder"><li data-tag-name="</head>" class="html-tree-builder-element html-tree-builder-el"><span class="menu-toggle"><span>...</span></span><span>&lt;</span><span class="html-tree-builer__tag-span">head</span><span class="html-tree-builder-attributes no-pad">
+            </span><span class="html-tree-builer__tag-span">&gt;</span><span class="html-tree-builder__caret"></span></li><li data-tag-name="</body>" class="html-tree-builder-element html-tree-builder-el"><span class="menu-toggle"><span>...</span></span><span>&lt;</span><span class="html-tree-builer__tag-span">body</span><span class="html-tree-builder-attributes no-pad">
+            </span><span class="html-tree-builer__tag-span">&gt;</span><span class="html-tree-builder__caret open"></span><ul><li data-tag-name="</div>" class="html-tree-builder-element html-tree-builder-el"><span class="menu-toggle"><span>...</span></span><span>&lt;</span><span class="html-tree-builer__tag-span">div</span><span class="html-tree-builder-attributes ">
+            <span class="html-tree-builder-attribute" spellcheck="false"><span class="attribute-key" data-key="class">class</span>="<span class="attribute-value" data-value="event w3c_topstory expand_block">event w3c_topstory expand_block</span>"</span></span><span class="html-tree-builer__tag-span">&gt;</span><span class="html-tree-builder__caret open"></span><ul><li data-tag-name="</div>" class="html-tree-builder-element html-tree-builder-el"><span class="menu-toggle"><span>...</span></span><span>&lt;</span><span class="html-tree-builer__tag-span">div</span><span class="html-tree-builder-attributes ">
+            <span class="html-tree-builder-attribute" spellcheck="false"><span class="attribute-key" data-key="class">class</span>="<span class="attribute-value" data-value="headline">headline</span>"</span></span><span class="html-tree-builer__tag-span">&gt;</span><span class="html-tree-builder__caret open"></span><ul><li class="element-before html-tree-builder-el"><span class="menu-toggle"><span>...</span></span><b>:before</b></li><li data-tag-name="</h3>" class="html-tree-builder-element html-tree-builder-el"><span class="menu-toggle"><span>...</span></span><span>&lt;</span><span class="html-tree-builer__tag-span">h3</span><span class="html-tree-builder-attributes ">
+            <span class="html-tree-builder-attribute" spellcheck="false"><span class="attribute-key" data-key="class">class</span>="<span class="attribute-value" data-value="h4 tPadding0 bPadding0 summary">h4 tPadding0 bPadding0 summary</span>"</span></span><span class="html-tree-builer__tag-span">&gt;</span><span class="html-tree-builder__caret"></span></li><li data-tag-name="</p>" class="html-tree-builder-element html-tree-builder-el"><span class="menu-toggle"><span>...</span></span><span>&lt;</span><span class="html-tree-builer__tag-span">p</span><span class="html-tree-builder-attributes ">
+            <span class="html-tree-builder-attribute" spellcheck="false"><span class="attribute-key" data-key="class">class</span>="<span class="attribute-value" data-value="date">date</span>"</span></span><span class="html-tree-builer__tag-span">&gt;</span><span class="html-tree-builder__caret"></span></li><li class="element-after html-tree-builder-el"><span class="menu-toggle"><span>...</span></span><b>:after</b></li></ul></li><li data-tag-name="</div>" class="html-tree-builder-element html-tree-builder-el"><span class="menu-toggle"><span>...</span></span><span>&lt;</span><span class="html-tree-builer__tag-span">div</span><span class="html-tree-builder-attributes ">
+            <span class="html-tree-builder-attribute" spellcheck="false"><span class="attribute-key" data-key="class">class</span>="<span class="attribute-value" data-value="description expand_description">description expand_description</span>"</span></span><span class="html-tree-builer__tag-span">&gt;</span><span class="html-tree-builder__caret"></span></li></ul></li></ul></li></ul>
+</div>
+<!-- dependencies -->
+
+<!-- module js -->
+<script src="../../offset/offset.js" data-tilepieces-component="tilepieces/offset"></script>
+<script src="../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../drag.js" data-tilepieces-component="tilepieces/drag"></script>
+<script>
+    var docFrag = document.createDocumentFragment();
+    for(var i = 0;i<200;i++){
+        var li = document.createElement("li");
+        li.innerHTML="<span>" + i + "</span>";
+        docFrag.appendChild(li);
+    }
+    test.appendChild(docFrag);
+    var testDragList = __dragList(test);
+    var testDragList2 = __dragList(test2);
+    var testDragList3 = __dragList(test3,{
+        convalidate : function(el){
+            if(el.parentNode != test3)
+                return true;
+        }
+    });
+    testDragList.on("move",e=>{
+        console.log("move test", e);
+    })
+    testDragList2.on("move",e=>{
+        console.log("move test 2", e);
+    })
+    testDragList3.on("move",e=>{
+        console.log("move test 3", e);
+    })
+</script></body></html>

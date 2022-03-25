@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>insertAdjacentElement test</title>
+    <style>
+        .buttons{
+            position:absolute;
+            width:300px;
+            height:50px;
+            right:0;
+            top:0;
+        }
+        .banner{
+            padding:10px;
+            border:1px solid
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<div class="buttons">
+<button id="hide-banner" onclick="addBanner()" disabled>add a Banner!</button>
+<select id="position">
+    <option value="beforebegin">beforebegin</option>
+    <option value="afterbegin">afterbegin</option>
+    <option value="beforeend" selected>beforeend</option>
+    <option value="afterend">afterend</option>
+</select>
+<button id="undo" onclick="undo()" disabled>Undo!</button>
+<button id="redo" onclick="redo()" disabled>Redo!</button>
+</div>
+<script src="../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var addBannerEl = document.getElementById("hide-banner");
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    var p = "beforeend";
+    position.addEventListener("change",e=>{
+        p = e.target.value;
+    })
+    window.addEventListener("DOM-change",function(){
+        if(htmlMatch.history.pointer != 0)
+            undoEl.removeAttribute("disabled");
+        else
+            undoEl.setAttribute("disabled","");
+        if(htmlMatch.history.pointer != htmlMatch.history.entries.length)
+            redoEl.removeAttribute("disabled");
+        else
+            redoEl.setAttribute("disabled","");
+    });
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+        addBannerEl.removeAttribute("disabled");
+    }
+    a();
+    function addBanner(){
+        if(addBannerEl.disabled)
+            return;
+        var toAppend = document.createElement("h1");
+        toAppend.textContent = "1 - H1 "+ p + "!";
+        var toAppend2 = document.createElement("h1");
+        toAppend2.textContent = "2 - H1 " + p + "!";
+        htmlMatch.insertAdjacentElements(document.querySelector(".banner"),p,[toAppend,toAppend2]);
+    }
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+    }
+</script>
+</body>
+</html>

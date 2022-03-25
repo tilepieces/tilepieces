@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head><link href="bundle/tilepieces.panel-history.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/panel-history/bundle"></head>
+<body>
+<section id="panel-history">
+  <ul>
+    <li data-foreach="history.entries" data-index="${key.index}">
+      <span data-if="history.pointer == key.index" class="selected"></span>
+      <span class="entry">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewbox="0 0 23 23"  class="svg-right-arrow">
+          <g>
+
+  <path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+  C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+  <path style="fill:rgb(153, 153, 153);;" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+  C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+  </g>
+        </svg>
+        ${key.method}
+      </span>
+    </li>
+  </ul>
+</section>
+<script src="bundle/tilepieces.panel-history.bundle.js" data-tilepieces-component="tilepieces/panel-history/bundle"></script></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="dropzone.bundle.css" rel="stylesheet">
+</head>
+<body>
+<div data-dropzone="">
+    <span>+</span>
+</div>
+<input data-dropzone>
+<script src="dropzone.bundle.js"></script>
+<script>
+    document.body.addEventListener("dropzone-dropping",function(e){
+        console.log(e.detail);
+    },true)
+</script>
+
+</body></html>

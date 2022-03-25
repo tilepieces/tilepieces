@@ -1,0 +1,33 @@
+{
+  "name": "tilepieces/jszip",
+  "description": "Jszip (https://stuk.github.io/jszip/) tilepieces library based on version 3.7.1",
+  "version": "3.7.1",
+  "author": "Stuart Knightley <stuart@stuartk.com>",
+  "website": "https://stuk.github.io/jszip/",
+  "repository": "https://github.com/Stuk/jszip",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "jszip.min.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": []
+  },
+  "dependencies": [],
+  "components": {},
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>gradient test</title>
+  <style>
+    section.test > div {
+      float: left;
+      width: 250px;
+      height: 150px;
+      margin: 20px;
+    }
+
+    section {
+      clear: both;
+      margin-top: 30px;
+    }
+  </style>
+  <link href="../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input">
+  <link href="../gradient.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/gradient">
+  <style data-tilepieces-current-stylesheet="">section.test > div { background-image: linear-gradient(200deg, rgb(255, 0, 0) 10%, 35%, rgb(0, 0, 255) 90%); }</style>
+</head>
+<body>
+<!-- tests -->
+<section class="test">
+  <div style="background: linear-gradient(#e66465, #9198e5);">background: linear-gradient(#e66465, #9198e5);</div>
+  <div style="background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);">background: linear-gradient(0.25turn,
+    #3f87a6, #ebf8e1, #f69d3c)
+  </div>
+  <div style="background: linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%);color:#fff;">
+    background: linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%)
+  </div>
+  <div style="background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%)">
+    linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+  </div>
+  <div style="background: linear-gradient(to right,
+     red 20%, orange 20% 40%, yellow 40% 60%, green 60% 80%, blue 80%);">linear-gradient(to right,
+    red 20%, orange 20% 40%, yellow 40% 60%, green 60% 80%, blue 80%)
+  </div>
+  <div style="background-image: linear-gradient(red 10%, 30%, blue 90%);">linear-gradient(red 10%, 30%, blue 90%)</div>
+  <div style="background:linear-gradient(red, yellow, black 100px)">linear-gradient(red, yellow, black 100px)</div>
+  <div style="background:linear-gradient(to right,red, yellow, black 100px)">linear-gradient(to right,red, yellow, black
+    100px)
+  </div>
+  <div style="background:linear-gradient(red 40%, yellow 30%, blue 65%);">linear-gradient(red 40%, yellow 30%, blue
+    65%);
+  </div>
+</section>
+<div id="app-view-test"></div>
+<!-- package's html -->
+<template id="gradient-template" data-tilepieces-component="tilepieces/gradient"><section class="gradient">
+  <div class="gradient-inputs">
+    <select data-bind="gradientType">
+      <option value="linear-gradient">linear gradient</option>
+      <option value="repeating-linear-gradient">repeating linear gradient</option>
+      <option value="radial-gradient">radial gradient</option>
+      <option value="repeating-radial-gradient">repeating radial gradient</option>
+    </select>
+    <div class="input-css parameters" data-bind="parameters" contenteditable="">
+    </div>
+    <div class="knob ${knobIsVisible}">
+      <div class="knob-index"></div>
+    </div>
+  </div>
+  <div class="color-interpolation-slider ${canAdd}">
+    <div data-foreach="colorStops" data-foreach-key-name="colorStop" class="color-interpolation ${colorStop.endPos}" data-index="${colorStop.index}" style="left:${colorStop.endPos}">
+      <div class="color-interpolation-colors">
+        <div class="color-interpolation-left" style="background-color:${colorStop.c}"></div>
+        <div class="color-interpolation-right" style="background-color:${colorStop.nextColor}"></div>
+      </div>
+    </div>
+  </div>
+  <div class="gradient-image">
+    <div class="gradient-image-gradient" style="background-image:${declarationForView}"></div>
+    <div class="gradient-image-transparent"></div>
+  </div>
+  <div class="color-stops ${canAdd}">
+    <div data-foreach="colorStops" class="color-stop" data-foreach-key-name="colorStop" data-index="${colorStop.index}" data-color="${colorStop.c}" style="left:calc(${colorStop.stopPos} - 12px)">
+      <div class="color-stop-dragger"></div>
+      <button class="color-stop-button" style="background-color:${colorStop.c}" data-index="${colorStop.index}"></button>
+      <div class="remove-color-stop" data-if="colorStops.length>2" data-index="${colorStop.index}">-</div>
+    </div>
+  </div>
+</section></template>
+
+<script src="../../css-input/css-input.bundle.js" data-tilepieces-component="tilepieces/css-input"></script>
+<script src="../gradient.bundle.js" data-tilepieces-component="tilepieces/gradient"></script>
+<script>
+  let gradientViewContainer = document.getElementById("app-view-test");
+  let gradientTemplate = document.getElementById("gradient-template");
+  gradientViewContainer.appendChild(gradientTemplate.content.cloneNode(true));
+  let gradientViewEl = gradientViewContainer.children[0];
+  var gradient = gradientView(gradientViewEl);
+  let globalTarget;
+  /* entry point */
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".test") || e.target.classList.contains("test"))
+      return;
+    globalTarget = e.target;
+    console.log("globalTarget is changing", globalTarget)
+
+    var c = window.getComputedStyle(e.target, null);
+    var g = matchGradients(c.backgroundImage);
+    if (g[0])
+      gradient.set(g[0]);// g[0] is the first background image
+  });
+  gradientViewEl.addEventListener("gradient-change", function (e) {
+    globalTarget.style.backgroundImage = e.detail;
+  })
+</script>
+
+</body></html>

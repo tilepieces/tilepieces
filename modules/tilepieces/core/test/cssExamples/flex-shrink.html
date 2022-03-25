@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #main {
+      width: 350px;
+      height: 100px;
+      border: 1px solid #c3c3c3;
+      display: flex;
+    }
+
+    #main div {
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 100px;
+    }
+
+    #main div:nth-of-type(2) {
+      flex-shrink: 3;
+    }
+  </style>
+</head>
+<body>
+
+<h1>The flex-shrink Property</h1>
+
+<div id="main">
+  <div style="background-color:coral;"></div>
+  <div style="background-color:lightblue;"></div>
+  <div style="background-color:khaki;"></div>
+  <div style="background-color:pink;"></div>
+  <div style="background-color:lightgrey;"></div>
+</div>
+
+
+</body>
+</html>

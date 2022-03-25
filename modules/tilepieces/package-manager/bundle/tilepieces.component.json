@@ -1,0 +1,40 @@
+{
+  "name": "tilepieces/package-manager/bundle",
+  "description": "",
+  "version": "",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": true,
+  "bundle": {
+    "stylesheet": {
+      "href" : "package-manager.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src":"package-manager.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [
+      "placeholder-search"
+    ],
+    "scripts": [
+      "placeholder-search"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/package-manager"
+  ],
+  "components": {},
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

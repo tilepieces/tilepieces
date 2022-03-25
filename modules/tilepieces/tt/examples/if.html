@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TT if example</title>
+  <meta name="description" content="">
+</head>
+<body>
+<div id=example>
+  <div data-if="show">This will be shown</div>
+  <div data-if="hide">This will be hidden</div>
+</div>
+<button id="toggle-visibility">Toggle visibility</button>
+<script src="../tt.js" data-tilepieces-component="tt"></script>
+<script>
+  let scope = {
+    show: true,
+    hide: false
+  };
+  let template = new TT(document.getElementById("example"), scope);
+  document.getElementById("toggle-visibility").onclick = () => {
+    scope.show = !scope.show;
+    scope.hide = !scope.hide;
+    template.set("", scope);
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+#animations { box-sizing: border-box; }
+.animation__rule-block { background: rgb(255, 255, 255); font-size: 1em; padding: 4px; position: relative; }
+.animation__rule-block.selected { box-shadow: rgba(78, 78, 78, 0.31) 0px 0px 16px 0px inset; }
+.animation__rule-block .keyframe__rule__selector-name::after { content: " {"; display: inline; padding: 3px; color: black; }
+.keyframe__rule-block::after { content: "}"; display: block; padding: 3px; }
+.animation__rule-block .animation__rule__selector-no-match, .animation__rule-block .selector-style { color: rgb(204, 204, 204); }
+.animation__rule-block .not_inherited_property { opacity: 0.6; }
+.animation__rule-block .property_not_present { opacity: 0.6; text-decoration: line-through; }
+.animation__rule-block__inherited-divider { background-color: transparent; border-bottom: 1px solid rgb(204, 204, 204); padding: 4px; }
+#animations .false, #animations.false, #animations .undefined { display: none; }
+#animations li.rule__property.undefined { display: list-item; }
+.animation_keyframe .rule-block__add-property { visibility: hidden; }
+.animation_keyframe.contenteditable .rule-block__add-property { visibility: visible; }
+.animation__menu-bar { user-select: none; }
+.animation__menu-bar > span { display: inline-block; font-size: 1.5em; width: 32px; text-align: center; }
+.keyframe__rule-block { position: relative; border-bottom: 1px solid rgb(204, 204, 204); }
+body.modal { overflow: hidden; }
+.modal-animation { display: none; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; background: white; z-index: 10; }
+.modal-animation * { box-sizing: border-box; }
+.modal-animation-close { height: 32px; width: 32px; position: absolute; right: 0px; top: 0px; cursor: pointer; border-radius: 100%; }
+.modal-animation-close::before { height: 2px; width: 50%; }
+.modal-animation-close::after { height: 50%; width: 2px; }
+.modal-animation-close:hover { background-color: rgba(10, 10, 10, 0.3); }
+.modal-animation-close::after, .modal-animation-close::before { background-color: rgb(0, 0, 0); content: ""; display: block; left: 50%; position: absolute; top: 50%; transform: translateX(-50%) translateY(-50%) rotate(45deg); transform-origin: center center; }
+#animations h2 { margin-bottom: 0px; margin-top: 0px; }
+#general-animations details h3 { margin-top: 0px; }
+#general-animations legend h3 { margin-bottom: 0px; margin-top: 0px; }
+.flex-modal { justify-content: center; align-items: center; }
+.flex-modal > * { flex-grow: 1; margin: 1em; padding: 1em; }
+#general-animations, #keyframes { padding: 0px 0.5em; }
+.details-open-summery-child { border-left: 0px; }

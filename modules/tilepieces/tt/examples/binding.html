@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TT binding example</title>
+</head>
+<body>
+<section>
+  <input placeholder="name"
+         data-bind="user.name"
+         data-bind-events="input">
+  <input placeholder="surname"
+         data-bind="user.surname"
+         data-bind-events="input">
+  <fieldset>
+    Male<input type="radio" data-bind="user.sex" name="user.sex" value="M"><br>
+    Female<input type="radio" data-bind="user.sex" name="user.sex" value="F">
+  </fieldset>
+  <fieldset>
+    <input type="checkbox" data-bind="user.employed">
+  </fieldset>
+  <fieldset data-if="user.employed">
+    <select data-bind="user.job">
+      <option value="developer">developer</option>
+      <option value="designer">designer</option>
+      <option value="manager">manager</option>
+      <option value="hr">hr</option>
+      <option value="other">other</option>
+    </select>
+  </fieldset>
+  <h1 data-if="!user.name && !user.surname">Please fill inputs</h1>
+  <h1 data-if="user.name || user.surname">
+    Hello ${user.name} ${user.surname}!</h1>
+  <pre>
+    </pre>
+</section>
+<script src="../tt.js"></script>
+<script>
+  let scope = {
+    user: {
+      name: "",
+      surname: "",
+      sex: "M",
+      employed: true,
+      job: "developer"
+    }
+  };
+  let section = document.querySelector("section");
+  let template = new TT(section, scope);
+  let pre = document.querySelector("pre");
+  section.addEventListener("user.name", e => {
+    console.log("user.name detail ->", e.detail)
+  })
+  section.addEventListener("user.surname", e => {
+    console.log("user.surname detail ->", e.detail)
+  })
+  section.addEventListener("template-digest", e => {
+    console.log("template-digest ->", e.detail)
+    pre.innerHTML = JSON.stringify(scope, null, 4);
+  });
+</script>
+</body>
+</html>

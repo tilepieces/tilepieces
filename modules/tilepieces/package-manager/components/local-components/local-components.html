@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html><head><style>#local-components[hidden] { display: block; }</style>
+  <link href="../../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet">
+  <link href="../../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs">
+  <link href="../../../dialog/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialog">
+  <link href="../../../vertical-tab/vertical-tab.css" rel="stylesheet" data-tilepieces-component="tilepieces/vertical-tab">
+  <link href="../../css/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/package-manager" data-tilepieces-current-stylesheet="">
+</head><body>
+<div id="local-components" hidden="">
+  <div class="flex-box top-button-actions">
+    <button data-if="isComponent" class="add-new-local-component button-bg-fill" data-parent="${projectName}">+
+      Create
+    </button>
+
+
+    <div data-if=projectName class="upload-button">
+      <label class="as-button button-bg-fill"><input type="file" id="import-local-components" class="no-background"><span>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.6 19.6">
+<g>
+<path style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" d="M2.8,17.3h14"></path>
+<polyline style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" points="13.8,6.3 9.8,2.3
+5.8,6.3 	"></polyline>
+
+<line style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="9.8" y1="2.3" x2="9.8" y2="13.2"></line>
+</g></svg>
+</span>Upload</label></div>
+    <button data-if=projectName id="export-local-components" class="button-bg-fill"><span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.6 19.6">
+<g>
+<path style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" d="M16.8,2.3h-14"></path>
+<polyline style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" points="5.8,13.3
+9.8,17.3 13.8,13.3 	"></polyline>
+
+<line style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="9.8" y1="6.4" x2="9.8" y2="17.3"></line>
+</g>
+</svg></span>Export
+    </button>
+  </div>
+  <div>
+    <input data-if="localComponents.length" type="checkbox" data-bind="componentsChecked" data-bind-dom-prop="__project,project">
+    <span class="select-all-checkboc-svg" data-if="localComponents.length">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33">
+<g>
+<g>
+<path style="fill:#999999;" d="M13.5,2.6H4.4c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7V4.4
+C15.2,3.4,14.5,2.6,13.5,2.6z"></path>
+<path style="fill:#FFFFFF;" d="M13.2,6c-0.3-0.3-0.9-0.3-1.2,0L8.2,9.7L6.4,7.9C6,7.5,5.5,7.5,5.1,7.9c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,6.9,13.5,6.3,13.2,6z"></path>
+</g>
+<g>
+<path style="fill:#999999;" d="M28.6,2.6h-9.1c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7V4.4
+C30.3,3.4,29.5,2.6,28.6,2.6z"></path>
+<path style="fill:#FFFFFF;" d="M28.3,6c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7l-1.9-1.9c-0.3-0.3-0.9-0.3-1.2,0c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C28.6,6.9,28.6,6.3,28.3,6z"></path>
+</g>
+<g>
+<path style="fill:#999999;" d="M28.6,17.8h-9.1c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7v-9.1
+C30.3,18.6,29.5,17.8,28.6,17.8z"></path>
+<path style="fill:#FFFFFF;" d="M28.3,21.2c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7L21.4,23c-0.3-0.3-0.9-0.3-1.2,0s-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C28.6,22.1,28.6,21.5,28.3,21.2z"></path>
+</g>
+<g>
+<path style="fill:#999999;" d="M13.5,17.8H4.4c-0.9,0-1.7,0.8-1.7,1.7v9.1c0,0.9,0.8,1.7,1.7,1.7h9.1c0.9,0,1.7-0.8,1.7-1.7v-9.1
+C15.2,18.6,14.5,17.8,13.5,17.8z"></path>
+<path style="fill:#FFFFFF;" d="M13.2,21.2c-0.3-0.3-0.9-0.3-1.2,0l-3.7,3.7L6.4,23c-0.3-0.3-0.9-0.3-1.2,0c-0.3,0.3-0.3,0.9,0,1.2
+l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,22.1,13.5,21.5,13.2,21.2z"></path>
+</g>
+</g>
+</svg>
+Select all</span>
+
+    <ul class="list-components-root">
+      <li data-foreach="localComponents" data-foreach-key-name="component" class="component-list">
+        <div data-use="project-component-UI" data-params="project,component">
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>test drag</title>
+    
+
+    <style>
+        html,body{
+            height:100%;
+            overflow:hidden;
+        }
+    </style>
+<link href="../css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag"></head>
+<body>
+<main style="width:10px;height:10px;background-color:red;cursor:se-resize"></main>
+<!-- dependencies -->
+
+<!-- module js -->
+
+
+
+
+<script src="../../offset/offset.js" data-tilepieces-component="tilepieces/offset"></script>
+<script src="../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../drag.js" data-tilepieces-component="tilepieces/drag"></script>
+<script>
+    let d = __drag(document.getElementsByTagName("main")[0]);
+    d.on("down",e=>console.log("down ->",e));
+    d.on("move",e=>console.log("move ->",e));
+    d.on("up",e=>console.log("up ->",e));
+</script></body></html>

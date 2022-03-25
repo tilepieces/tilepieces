@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>test drag element</title>
+  <link href="../css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag">
+  <style>
+      html,body{
+          height:100%;
+      }
+  </style>
+</head>
+<body>
+<main>This node doesn't have a innerText!</main>
+<script src="../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../../offset/offset.js" data-tilepieces-component="tilepieces/offset"></script>
+<script src="../drag.js" data-tilepieces-component="tilepieces/drag"></script><script>
+    var element = document.getElementsByTagName("main")[0];
+    var d = __dragElement(element);
+    d.on("move",function(e){
+        console.log("moved ->",e);
+    })
+    .on("up",function(e){
+        console.log("up ->",e);
+    })
+    .on("down",function(e){
+        console.log("down ->",e);
+    });
+    var downEvent = new MouseEvent("mousedown",{target:element});
+    element.dispatchEvent(downEvent);
+    for(var i = 1;i<=450;i++){
+        (function(i){
+            setTimeout(function(){
+                var moveEvent = new MouseEvent("mousemove",{clientX:i,clientY:i,target:element});
+                document.dispatchEvent(moveEvent);
+                if(i==450){
+                    var upEvent = new MouseEvent("mouseup",{target:element});
+                    document.dispatchEvent(upEvent);
+                }
+            },180);
+        })(i);
+    }
+
+</script></body></html>

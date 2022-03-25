@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head></head><body>
+<template id="project-component-UI">
+  <details data-if="project.components.length">
+    <summary>
+      <span data-use="component-buttons" data-params="project,project"></span>
+    </summary>
+    <ul data-foreach="project.components" data-foreach-key-name="c">
+      <li>
+        <div data-use="project-component-UI" data-params="project,c">
+        </div>
+      </li>
+    </ul>
+  </details>
+  <div data-if="!project.components.length" data-use="component-buttons" data-params="project,project"></div>
+</template>
+<template id="component-buttons">
+  <input type="checkbox" class="package-name" data-bind="project.checked" data-bind-dom-prop="__project,project">
+  <span data-bind-dom-prop="__project,project">${project.name} </span>
+  <button data-if="!project.noSet" data-bind-dom-prop="__project,project" class="set-component">set</button>
+  <button class="add-new-local-component" data-bind-dom-prop="__project,project" data-parent="${project.name}">+</button>
+  <button data-bind-dom-prop="__project,project" class="remove-component">-</button>
+  <button data-if="project.fixedHTML" data-bind-dom-prop="__project,project" class="set-fixed-HTML">update HTML</button>
+</template>
+</body></html>

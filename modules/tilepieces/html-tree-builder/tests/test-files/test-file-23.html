@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta description="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" itemprop="image primaryImageOfPage" content="">
+</head>
+<body><h1 id="firstHeading" class="firstHeading"
+          style="margin: 0px 0px 0.25em; padding: 0px; overflow: visible; border-bottom: 1px solid rgb(162, 169, 177); font-size: 1.8em; font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+  Branch (computer science)</h1>
+<div id="bodyContent" class="vector-body"
+     style="font-size: calc(0.875em); line-height: 1.6; position: relative; z-index: 0; color: rgb(32, 33, 34); font-family: sans-serif;">
+  <div id="siteSub" class="noprint" style="font-size: 12.88px;">From Wikipedia, the free encyclopedia</div>
+  <div id="contentSub"
+       style="font-size: 11.76px; line-height: 1.2em; margin: 0px 0px 1.4em 1em; color: rgb(84, 89, 93); width: auto;">
+    <span class="mw-redirectedfrom">&nbsp;&nbsp;(Redirected from&nbsp;<a
+      href="https://en.wikipedia.org/w/index.php?title=Branch_instruction&amp;redirect=no" class="mw-redirect"
+      title="Branch instruction"
+      style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Branch instruction</a>)</span>
+  </div>
+  <div id="contentSub2"
+       style="font-size: 11.76px; line-height: 1.2em; margin: 0px 0px 1.4em 1em; color: rgb(84, 89, 93); width: auto;"></div>
+  <div id="jump-to-nav"></div>
+  <a class="mw-jump-link" href="https://en.wikipedia.org/wiki/Branch_(computer_science)#mw-head"
+     style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: block; clip: rect(1px, 1px, 1px, 1px); width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; position: absolute !important;">Jump
+    to navigation</a><a class="mw-jump-link" href="https://en.wikipedia.org/wiki/Branch_(computer_science)#searchInput"
+                        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: block; clip: rect(1px, 1px, 1px, 1px); width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; position: absolute !important;">Jump
+  to search</a>
+  <div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr" style="direction: ltr;">
+    <div class="mw-parser-output">
+      <div role="note" class="hatnote navigation-not-searchable"
+           style="font-style: italic; padding-left: 1.6em; margin-bottom: 0.5em;">For the software engineering concept,
+        see&nbsp;<a href="https://en.wikipedia.org/wiki/Branching_(version_control)" title="Branching (version control)"
+                    style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Branching
+          (version control)</a>. For other uses, see&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Branch_(disambiguation)" class="mw-disambig"
+          title="Branch (disambiguation)"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Branch
+          (disambiguation)</a>.
+      </div>
+      <table class="box-More_citations_needed plainlinks metadata ambox ambox-content ambox-Refimprove"
+             role="presentation"
+             style="margin: 0px 86.2411px; border-width: 1px 1px 1px 10px; border-style: solid; border-color: rgb(162, 169, 177) rgb(162, 169, 177) rgb(162, 169, 177) rgb(242, 133, 0); border-image: initial; background-color: rgb(251, 251, 251);">
+        <tbody>
+        <tr>
+          <td class="mbox-image" style="border: none; padding: 2px 0px 2px 0.5em; text-align: center;">
+            <div style="width: 52px;"><a href="https://en.wikipedia.org/wiki/File:Question_book-new.svg" class="image"
+                                         style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><img
+              alt=""
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/9/99/Question_book-new.svg/50px-Question_book-new.svg.png"
+              decoding="async" width="50" height="39"
+              srcset="//upload.wikimedia.org/wikipedia/en/thumb/9/99/Question_book-new.svg/75px-Question_book-new.svg.png 1.5x, //upload.wikimedia.org/wikipedia/en/thumb/9/99/Question_book-new.svg/100px-Question_book-new.svg.png 2x"
+              data-file-width="512" data-file-height="399" style="border: 0px; vertical-align: middle;"></a></div>
+          </td>
+          <td class="mbox-text" style="border: none; padding: 0.25em 0.5em; width: 600.804px;">
+            <div class="mbox-text-span">This article&nbsp;<b>needs additional citations for&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Wikipedia:Verifiability" title="Wikipedia:Verifiability"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;">verification</a></b>.<span
+              class="hide-when-compact">&nbsp;Please help&nbsp;<a class="external text"
+                                                                  href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit"
+                                                                  style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-repeat: no-repeat; padding-right: 13px; background-size: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; background-color: initial !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important;">improve this article</a>&nbsp;by&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Help:Referencing_for_beginners" title="Help:Referencing for beginners"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;">adding citations to reliable sources</a>. Unsourced material may be challenged and removed.<br><small
+              style="font-size: 11.9px;"><span class="plainlinks"><i>Find sources:</i>&nbsp;<a rel="nofollow"
+                                                                                               class="external text"
+                                                                                               href="https://www.google.com/search?as_eq=wikipedia&amp;q=%22Branch%22+computer+science"
+                                                                                               style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-repeat: no-repeat; padding-right: 13px; background-size: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; background-color: initial !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important;">"Branch"&nbsp;computer science</a>&nbsp;–&nbsp;<a
+              rel="nofollow" class="external text"
+              href="https://www.google.com/search?tbm=nws&amp;q=%22Branch%22+computer+science+-wikipedia&amp;tbs=ar:1"
+              style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-repeat: no-repeat; padding-right: 13px; background-size: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; background-color: initial !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important;">news</a>&nbsp;<b>·</b>&nbsp;<a
+              rel="nofollow" class="external text"
+              href="https://www.google.com/search?&amp;q=%22Branch%22+computer+science&amp;tbs=bkt:s&amp;tbm=bks"
+              style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-repeat: no-repeat; padding-right: 13px; background-size: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; background-color: initial !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important;">newspapers</a>&nbsp;<b>·</b>&nbsp;<a
+              rel="nofollow" class="external text"
+              href="https://www.google.com/search?tbs=bks:1&amp;q=%22Branch%22+computer+science+-wikipedia"
+              style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-repeat: no-repeat; padding-right: 13px; background-size: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; background-color: initial !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important;">books</a>&nbsp;<b>·</b>&nbsp;<a
+              rel="nofollow" class="external text"
+              href="https://scholar.google.com/scholar?q=%22Branch%22+computer+science"
+              style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-repeat: no-repeat; padding-right: 13px; background-size: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; background-color: initial !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important;">scholar</a>&nbsp;<b>·</b>&nbsp;<a
+              rel="nofollow" class="external text"
+              href="https://www.jstor.org/action/doBasicSearch?Query=%22Branch%22+computer+science&amp;acc=on&amp;wc=on"
+              style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-repeat: no-repeat; padding-right: 13px; background-size: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; background-color: initial !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important;">JSTOR</a></span></small></span>&nbsp;<span
+              class="date-container"><i>(<span class="date">June 2009</span>)</i></span><span class="hide-when-compact"><i>&nbsp;(<a
+              href="https://en.wikipedia.org/wiki/Help:Maintenance_template_removal"
+              title="Help:Maintenance template removal"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;">Learn how and when to remove this template message</a>)</i></span>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <table class="sidebar nomobile nowraplinks"
+             style="font-size: 12.32px; width: 22em; float: right; clear: right; margin: 0.5em 0px 1em 1em; background: rgb(248, 249, 250); border: 1px solid rgb(170, 170, 170); padding: 0.2em; text-align: center; line-height: 1.4em; border-collapse: collapse;">
+        <tbody>
+        <tr>
+          <th class="sidebar-title"
+              style="padding: 0.2em 0.8em; font-size: 17.864px; line-height: 1.2em; background-color: rgba(51, 153, 255, 0.15);">
+            <a href="https://en.wikipedia.org/wiki/Machine_code" title="Machine code"
+               style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Machine
+              code</a></th>
+        </tr>
+        <tr>
+          <th class="sidebar-heading" style="padding: 0.1em 0.4em; background-color: rgba(51, 153, 255, 0.15);">General
+            concepts
+          </th>
+        </tr>
+        <tr>
+          <td class="sidebar-content" style="padding: 0px 0.5em 0.4em; text-align: left;">
+            <ul
+              style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Instruction_set_architecture"
+                                                   title="Instruction set architecture"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Instruction
+                set</a></li>
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Opcode" title="Opcode"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Opcode</a>
+                <ul
+                  style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                  <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Illegal_opcode"
+                                                       title="Illegal opcode"
+                                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Illegal
+                    opcode</a></li>
+                  <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Opcode_table"
+                                                       title="Opcode table"
+                                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Opcode
+                    table</a></li>
+                </ul>
+              </li>
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Operand#Computer_science"
+                                                   title="Operand"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Operand</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th class="sidebar-heading" style="padding: 0.1em 0.4em; background-color: rgba(51, 153, 255, 0.15);">
+            Instructions
+          </th>
+        </tr>
+        <tr>
+          <td class="sidebar-content" style="padding: 0px 0.5em 0.4em; text-align: left;">
+            <ul
+              style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/NOP_(code)" title="NOP (code)"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">NOP</a>
+              </li>
+              <li style="margin-bottom: 0.1em;"><a class="mw-selflink selflink"
+                                                   style="text-decoration: inherit; color: inherit; background: none; font-weight: bold; cursor: pointer; white-space: nowrap;">Branch</a>
+                <ul
+                  style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+                  <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Indirect_branch"
+                                                       title="Indirect branch"
+                                                       style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Indirect
+                    branch</a></li>
+                </ul>
+              </li>
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Repeat_instruction"
+                                                   title="Repeat instruction"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Repeat
+                instruction</a></li>
+              <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Execute_instruction"
+                                                   title="Execute instruction"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background: none; white-space: nowrap;">Execute
+                instruction</a></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="sidebar-navbar" style="text-align: right; font-size: 14.168px; padding: 0px 0.4em 0.4em;">
+            <div class="navbar plainlinks hlist navbar-mini" style="display: inline; font-size: 12.4678px;">
+              <ul
+                style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0px; padding: 0px; display: inline-block; white-space: nowrap; line-height: inherit;">
+                <li class="nv-view" style="margin: 0px; display: inline; word-spacing: -0.125em;"><a
+                  href="https://en.wikipedia.org/wiki/Template:Machine_code" title="Template:Machine code"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><abbr
+                  title="View this template"
+                  style="border-bottom: none; cursor: inherit; text-decoration: inherit; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;">v</abbr></a>
+                </li>
+                <li class="nv-talk" style="margin: 0px; display: inline; word-spacing: -0.125em;"><a
+                  href="https://en.wikipedia.org/wiki/Template_talk:Machine_code" title="Template talk:Machine code"
+                  style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><abbr
+                  title="Discuss this template"
+                  style="border-bottom: none; cursor: inherit; text-decoration: inherit; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;">t</abbr></a>
+                </li>
+                <li class="nv-edit" style="margin: 0px; display: inline; word-spacing: -0.125em;"><a
+                  class="external text"
+                  href="https://en.wikipedia.org/w/index.php?title=Template:Machine_code&amp;action=edit"
+                  style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-repeat: no-repeat; padding-right: 13px; background-size: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; background-color: initial !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important;"><abbr
+                  title="Edit this template"
+                  style="border-bottom: none; cursor: inherit; text-decoration: inherit; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;">e</abbr></a>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <p style="margin: 0.5em 0px;">A&nbsp;<b>branch</b>&nbsp;is an instruction in a&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Computer_program" title="Computer program"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">computer
+        program</a>&nbsp;that can cause a computer to begin executing a different instruction sequence and thus deviate
+        from its default behavior of executing instructions in order.<sup id="cite_ref-1" class="reference"
+                                                                          style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+          href="https://en.wikipedia.org/wiki/Branch_(computer_science)#cite_note-1"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[a]</a></sup>&nbsp;<i><b>Branch</b></i>&nbsp;(or&nbsp;<i>branching</i>,&nbsp;<i>branched</i>)
+        may also refer to the act of switching execution to a different instruction sequence as a result of executing a
+        branch instruction. Branch instructions are used to implement&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Control_flow" title="Control flow"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">control
+          flow</a>&nbsp;in program loops and conditionals (i.e., executing a particular sequence of instructions only if
+        certain conditions are satisfied).</p>
+      <p style="margin: 0.5em 0px;">A branch instruction can be either an&nbsp;<i>unconditional branch</i>, which always
+        results in branching, or a&nbsp;<i>conditional branch</i>, which may or may not cause branching depending on
+        some condition. Also, depending on how it specifies the address of the new instruction sequence (the "target"
+        address), a branch instruction is generally classified as&nbsp;<i>direct</i>,&nbsp;<i>indirect</i>&nbsp;or&nbsp;<i>relative</i>,
+        meaning that the instruction contains the target address, or it specifies where the target address is to be
+        found (e.g., a register or memory location), or it specifies the difference between the current and target
+        addresses.</p>
+      <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"
+           style="border: 1px solid rgb(162, 169, 177); background-color: rgb(248, 249, 250); padding: 7px; font-size: 13.3px; display: table;">
+        <input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox"
+               style="margin: 0px; position: absolute; opacity: 0; z-index: -1; display: none;">
+        <div class="toctitle" lang="en" dir="ltr" style="text-align: center; direction: ltr;"><h2 id="mw-toc-heading"
+                                                                                                  style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border: 0px; font-size: 13.3px; line-height: 1.3; display: inline;">
+          Contents</h2><span class="toctogglespan" style="font-size: 12.502px;"><label class="toctogglelabel"
+                                                                                       for="toctogglecheckbox"
+                                                                                       style="cursor: pointer; color: rgb(6, 69, 173);"></label></span>
+        </div>
+        <ul style="list-style: none; margin: 0.3em 0px; padding: 0px;">
+          <li class="toclevel-1 tocsection-1" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Branch_(computer_science)#Implementation"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">1</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">Implementation</span></a>
+            <ul style="list-style: none; margin: 0px 0px 0px 2em; padding: 0px;">
+              <li class="toclevel-2 tocsection-2" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Branch_(computer_science)#Examples"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">1.1</span><span
+                class="toctext" style="display: table-cell; text-decoration: inherit;">Examples</span></a></li>
+            </ul>
+          </li>
+          <li class="toclevel-1 tocsection-3" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Branch_(computer_science)#Performance_problems_with_branch_instructions"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">2</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">Performance problems with branch instructions</span></a>
+          </li>
+          <li class="toclevel-1 tocsection-4" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Branch_(computer_science)#Improving_performance_by_reducing_stalls_from_branches"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">Improving performance by reducing stalls from branches</span></a>
+            <ul style="list-style: none; margin: 0px 0px 0px 2em; padding: 0px;">
+              <li class="toclevel-2 tocsection-5" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Branch_(computer_science)#Branch_prediction_hints"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.1</span><span
+                class="toctext"
+                style="display: table-cell; text-decoration: inherit;">Branch prediction hints</span></a></li>
+              <li class="toclevel-2 tocsection-6" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Branch_(computer_science)#Hardware_branch_predictors"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.2</span><span
+                class="toctext" style="display: table-cell; text-decoration: inherit;">Hardware branch predictors</span></a>
+              </li>
+              <li class="toclevel-2 tocsection-7" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Branch_(computer_science)#Branch-free_code"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.3</span><span
+                class="toctext" style="display: table-cell; text-decoration: inherit;">Branch-free code</span></a></li>
+              <li class="toclevel-2 tocsection-8" style="margin-bottom: 0.1em;"><a
+                href="https://en.wikipedia.org/wiki/Branch_(computer_science)#Delay_slot"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                    style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">3.4</span><span
+                class="toctext" style="display: table-cell; text-decoration: inherit;">Delay slot</span></a></li>
+            </ul>
+          </li>
+          <li class="toclevel-1 tocsection-9" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Branch_(computer_science)#See_also"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">4</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">See also</span></a></li>
+          <li class="toclevel-1 tocsection-10" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Branch_(computer_science)#Notes"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">5</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">Notes</span></a></li>
+          <li class="toclevel-1 tocsection-11" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Branch_(computer_science)#References"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">6</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">References</span></a></li>
+          <li class="toclevel-1 tocsection-12" style="margin-bottom: 0.1em;"><a
+            href="https://en.wikipedia.org/wiki/Branch_(computer_science)#External_links"
+            style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;"><span class="tocnumber"
+                                                                                                style="display: table-cell; text-decoration: inherit; color: rgb(32, 33, 34); padding-left: 0px; padding-right: 0.5em;">7</span><span
+            class="toctext" style="display: table-cell; text-decoration: inherit;">External links</span></a></li>
+        </ul>
+      </div>
+      <h2
+        style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+        <span class="mw-headline" id="Implementation">Implementation</span><span class="mw-editsection"
+                                                                                 style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=1"
+        title="Edit section: Implementation"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+      <p style="margin: 0.5em 0px;">Mechanically, a branch instruction can change the&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Program_counter" title="Program counter"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">program
+        counter</a>&nbsp;(PC) of a&nbsp;<a href="https://en.wikipedia.org/wiki/CPU" class="mw-redirect" title="CPU"
+                                           style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">CPU</a>.
+        The program counter stores the memory address of the next instruction to be executed. Therefore, a branch can
+        cause the CPU to begin fetching its instructions from a different sequence of memory cells.</p>
+      <p style="margin: 0.5em 0px;">Machine level branch instructions are sometimes called&nbsp;<b>jump instructions</b>.
+        Machine level jump instructions typically have&nbsp;<i>unconditional</i>&nbsp;and&nbsp;<i>conditional</i>&nbsp;forms
+        where the latter may be&nbsp;<i>taken</i>&nbsp;or&nbsp;<i>not taken</i>&nbsp;depending on some condition.
+        Usually there are distinct forms for one-way jumps, often called&nbsp;<i>jump</i>&nbsp;and subroutine
+        invocations known as&nbsp;<i>call</i>&nbsp;which automatically save the originating address as a return address
+        on the stack, allowing a single subroutine to be invoked from multiple locations in code.</p>
+      <p style="margin: 0.5em 0px;">When a branch is&nbsp;<i>taken</i>, the CPU's program counter is set to the&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Argument_(computer_science)" class="mw-redirect"
+        title="Argument (computer science)"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">argument</a>&nbsp;of
+        the jump instruction. So, the next instruction becomes the instruction at that address in&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Memory_(computing)" class="mw-redirect" title="Memory (computing)"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">memory</a>.
+        Therefore, the flow of control changes.</p>
+      <p style="margin: 0.5em 0px;">When a branch is&nbsp;<i>not taken</i>, the CPU's program counter is unchanged.
+        Therefore, the next instruction executed is the instruction after the branch instruction. Therefore, the flow of
+        control is unchanged.</p>
+      <p style="margin: 0.5em 0px;">The term&nbsp;<i>branch</i>&nbsp;can be used when referring to programs in high
+        level languages as well as the programs written in&nbsp;<a href="https://en.wikipedia.org/wiki/Machine_code"
+                                                                   title="Machine code"
+                                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">machine
+          code</a>&nbsp;or&nbsp;<a href="https://en.wikipedia.org/wiki/Assembly_language" title="Assembly language"
+                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">assembly
+          language</a>. In&nbsp;<a href="https://en.wikipedia.org/wiki/High-level_programming_language"
+                                   title="High-level programming language"
+                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">high-level
+          programming languages</a>, branches usually take the form of&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Conditional_(programming)" class="mw-redirect"
+          title="Conditional (programming)"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">conditional
+          statements</a>&nbsp;of various forms that encapsulate the instruction sequence that will be executed if the
+        conditions are satisfied. Unconditional branch instructions such as&nbsp;<a
+          href="https://en.wikipedia.org/wiki/GOTO" class="mw-redirect" title="GOTO"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">GOTO</a>&nbsp;are
+        used to unconditionally "jump" to (begin execution of) a different instruction sequence.</p>
+      <p style="margin: 0.5em 0px;">In CPUs with&nbsp;<a href="https://en.wikipedia.org/wiki/Flag_register"
+                                                         class="mw-redirect" title="Flag register"
+                                                         style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">flag
+        registers</a>, an earlier instruction sets a condition in the flag register. The earlier instruction may be&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Arithmetic_logic_unit" title="Arithmetic logic unit"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">arithmetic,
+        or a logic</a>&nbsp;instruction. It is often close to the branch, though not necessarily the
+        instruction&nbsp;<i>immediately</i>&nbsp;before the branch. The stored condition is then used in a branch such
+        as&nbsp;<i>jump if overflow-flag set</i>. This temporary information is often stored in a flag register but may
+        also be located elsewhere. A flag register design is simple in slower, simple computers. In fast computers a
+        flag register can place a bottleneck on speed, because instructions that could otherwise operate in parallel (in
+        several&nbsp;<a href="https://en.wikipedia.org/wiki/Execution_unit" title="Execution unit"
+                        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">execution
+          units</a>) need to set the flag bits in a particular sequence.</p>
+      <p style="margin: 0.5em 0px;">There are also machines (or particular instructions) where the condition may be
+        checked by the jump instruction itself, such as&nbsp;<i>branch &lt;label&gt; if register X negative</i>. In
+        simple computer designs, comparison branches execute more arithmetic and can use more power than flag register
+        branches. In fast computer designs comparison branches can run faster than flag register branches, because
+        comparison branches can access the registers with more parallelism, using the same CPU mechanisms as a
+        calculation.</p>
+      <p style="margin: 0.5em 0px;">Some early and simple CPU architectures, still found in microcontrollers, may not
+        implement a conditional jump, but rather only a conditional "skip the next instruction" operation. A conditional
+        jump or call is thus implemented as a conditional skip of an unconditional jump or call instruction.</p>
+      <h3
+        style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; font-size: 1.2em; line-height: 1.6;">
+        <span class="mw-headline" id="Examples">Examples</span><span class="mw-editsection"
+                                                                     style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=2"
+        title="Edit section: Examples"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h3>
+      <p style="margin: 0.5em 0px;">Depending on the&nbsp;<a href="https://en.wikipedia.org/wiki/Computer_architecture"
+                                                             title="Computer architecture"
+                                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">computer
+        architecture</a>, the&nbsp;<a href="https://en.wikipedia.org/wiki/Assembly_language" title="Assembly language"
+                                      style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">assembly
+        language</a>&nbsp;<a href="https://en.wikipedia.org/wiki/Mnemonic" title="Mnemonic"
+                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">mnemonic</a>&nbsp;for
+        a jump instruction is typically some shortened form of the word&nbsp;<i>jump</i>&nbsp;or the
+        word&nbsp;<i>branch</i>, often along with other informative letters (or an extra parameter) representing the
+        condition. Sometimes other details are included as well, such as the range of the jump (the offset size) or a
+        special addressing mode that should be used to locate the actual effective offset.</p>
+      <p style="margin: 0.5em 0px;">This table lists the machine level branch or jump instructions found in several
+        well-known architectures:</p>
+      <table class="wikitable"
+             style="background-color: rgb(248, 249, 250); margin: 1em 0px; border: 1px solid rgb(162, 169, 177); border-collapse: collapse;">
+        <tbody>
+        <tr>
+          <th scope="col"
+              style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em; background-color: rgb(234, 236, 240); text-align: center;">
+            condition or result
+          </th>
+          <th scope="col"
+              style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em; background-color: rgb(234, 236, 240); text-align: center;">
+            x86
+          </th>
+          <th scope="col"
+              style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em; background-color: rgb(234, 236, 240); text-align: center;">
+            PDP-11, VAX
+          </th>
+          <th scope="col"
+              style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em; background-color: rgb(234, 236, 240); text-align: center;">
+            ARM (partly 6502)
+          </th>
+          <th scope="col"
+              style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em; background-color: rgb(234, 236, 240); text-align: center;">
+            equation
+          </th>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">zero (implies equal for sub/cmp)</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JZ; JNZ</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BEQ; BNE</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BEQ; BNE</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">zero; not zero</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">negative (N), sign (S), or minus (M)
+          </td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JS; JNS</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BMI; BPL</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BMI; BPL</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">negative; not negative</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">arithmetic overflow (flag called O or
+            V)
+          </td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JO; JNO</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BVS; BVC</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BVS; BVC</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">overflow; not overflow</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">carry (from add, cmp, shift, etc.)
+          </td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JC; JNC</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BCS; BCC</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BCS; BCC</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">carry; not carry</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;"><i>unsigned</i>&nbsp;below (lower)
+          </td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JB</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BLO</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BLO&nbsp;<sup
+            style="line-height: 1; font-size: 11.2px;">*</sup></td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">borrow</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;"><i>unsigned</i>&nbsp;below or equal
+            (lower or same)
+          </td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JBE</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BLOS</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BLS&nbsp;<sup
+            style="line-height: 1; font-size: 11.2px;">*</sup></td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">borrow or zero</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;"><i>unsigned</i>&nbsp;above or equal
+            (higher or same)
+          </td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JAE</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BHIS</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BHS&nbsp;<sup
+            style="line-height: 1; font-size: 11.2px;">*</sup></td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">not borrow</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;"><i>unsigned</i>&nbsp;above (higher)
+          </td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JA</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BHI</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BHI&nbsp;<sup
+            style="line-height: 1; font-size: 11.2px;">*</sup></td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">not borrow and not zero</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;"><i>signed</i>&nbsp;less than</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JL</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BLT</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BLT</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">sign≠overflow</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;"><i>signed</i>&nbsp;less or equal</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JLE</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BLE</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BLE</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">(sign≠overflow) or zero</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;"><i>signed</i>&nbsp;greater or equal
+          </td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JGE</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BGE</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BGE</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">sign=overflow</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;"><i>signed</i>&nbsp;greater than</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">JG</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BGT</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">BGT</td>
+          <td style="border: 1px solid rgb(162, 169, 177); padding: 0.2em 0.4em;">(sign=overflow) and not zero</td>
+        </tr>
+        </tbody>
+      </table>
+      <p style="margin: 0.5em 0px;"><sup style="line-height: 1; font-size: 11.2px;">*</sup>&nbsp;x86, the PDP-11, VAX,
+        and some others, set the carry-flag to signal&nbsp;<i>borrow</i>&nbsp;and clear the carry-flag to
+        signal&nbsp;<i>no borrow</i>. ARM,&nbsp;<a href="https://en.wikipedia.org/wiki/6502" class="mw-redirect"
+                                                   title="6502"
+                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">6502</a>,
+        the PIC, and some others, do the opposite for subtractive operations. This inverted function of the carry flag
+        for certain instructions is marked by (<sup style="line-height: 1; font-size: 11.2px;">*</sup>), that
+        is,&nbsp;<b>borrow=<u>not</u>&nbsp;carry</b>&nbsp;in some parts of the table, but if not otherwise noted,
+        borrow≡carry. However, carry on additive operations are handled the same way by most architectures.</p>
+      <h2
+        style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+        <span class="mw-headline" id="Performance_problems_with_branch_instructions">Performance problems with branch instructions</span><span
+        class="mw-editsection"
+        style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=3"
+        title="Edit section: Performance problems with branch instructions"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+      <p style="margin: 0.5em 0px;">To achieve high performance, modern processors are&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Instruction_pipeline" class="mw-redirect" title="Instruction pipeline"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">pipelined</a>.
+        They consist of multiple parts that each partially process an instruction, feed their results to the next stage
+        in the pipeline, and start working on the next instruction in the program. This design expects instructions to
+        execute in a particular unchanging sequence. Conditional branch instructions make it impossible to know this
+        sequence. So conditional branches can cause "stalls" in which the pipeline has to be restarted on a different
+        part of the program.</p>
+      <h2
+        style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+        <span class="mw-headline" id="Improving_performance_by_reducing_stalls_from_branches">Improving performance by reducing stalls from branches</span><span
+        class="mw-editsection"
+        style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=4"
+        title="Edit section: Improving performance by reducing stalls from branches"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+      <p style="margin: 0.5em 0px;">Several techniques improve speed by reducing stalls from conditional branches.</p>
+      <h3
+        style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; font-size: 1.2em; line-height: 1.6;">
+        <span class="mw-headline" id="Branch_prediction_hints">Branch prediction hints</span><span
+        class="mw-editsection"
+        style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=5"
+        title="Edit section: Branch prediction hints"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h3>
+      <p style="margin: 0.5em 0px;">Historically, branch prediction took statistics, and used the result to optimize
+        code. A programmer would compile a test version of a program, and run it with test data. The test code counted
+        how the branches were actually taken. The statistics from the test code were then used by the compiler to
+        optimize the branches of released code. The optimization would arrange that the fastest branch direction (taken
+        or not) would always be the most frequently taken control flow path. To permit this, CPUs must be designed with
+        (or at least have) predictable branch timing. Some CPUs have instruction sets (such as the&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Power_ISA" title="Power ISA"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Power
+          ISA</a>) that were designed with "branch hints" so that a compiler can tell a CPU how each branch is to be
+        taken.</p>
+      <p style="margin: 0.5em 0px;">The problem with software branch prediction is that it requires a complex software
+        development process.</p>
+      <h3
+        style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; font-size: 1.2em; line-height: 1.6;">
+        <span class="mw-headline" id="Hardware_branch_predictors">Hardware branch predictors</span><span
+        class="mw-editsection"
+        style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=6"
+        title="Edit section: Hardware branch predictors"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h3>
+      <p style="margin: 0.5em 0px;">To run any software, hardware&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Branch_predictor" title="Branch predictor"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">branch
+        predictors</a>&nbsp;moved the statistics into the electronics. Branch predictors are parts of a processor that
+        guess the outcome of a conditional branch. Then the processor's logic gambles on the guess by beginning to
+        execute the expected instruction flow. An example of a simple hardware branch prediction scheme is to assume
+        that all backward branches (i.e. to a smaller program counter) are taken (because they are part of a loop), and
+        all forward branches (to a larger program counter) are not taken (because they leave a loop). Better branch
+        predictors are developed and validated statistically by running them in simulation on a variety of test
+        programs. Good predictors usually count the outcomes of previous executions of a branch. Faster, more expensive
+        computers can then run faster by investing in better branch prediction electronics. In a CPU with hardware
+        branch prediction, branch hints let the compiler's presumably superior branch prediction override the hardware's
+        more simplistic branch prediction.</p>
+      <h3
+        style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; font-size: 1.2em; line-height: 1.6;">
+        <span class="mw-headline" id="Branch-free_code">Branch-free code</span><span class="mw-editsection"
+                                                                                     style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=7"
+        title="Edit section: Branch-free code"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h3>
+      <p style="margin: 0.5em 0px;">Some logic can be written without branches or with fewer branches. It is often
+        possible to use&nbsp;<a href="https://en.wikipedia.org/wiki/Bitwise_operation" title="Bitwise operation"
+                                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">bitwise
+          operations</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Conditional_move" class="mw-redirect"
+                                  title="Conditional move"
+                                  style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">conditional
+          moves</a>&nbsp;or other&nbsp;<a href="https://en.wikipedia.org/wiki/Predication_(computer_architecture)"
+                                          title="Predication (computer architecture)"
+                                          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">predication</a>&nbsp;instead
+        of branches.<sup id="cite_ref-2" class="reference"
+                         style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+          href="https://en.wikipedia.org/wiki/Branch_(computer_science)#cite_note-2"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[1]</a></sup><sup
+          id="cite_ref-3" class="reference"
+          style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+          href="https://en.wikipedia.org/wiki/Branch_(computer_science)#cite_note-3"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[2]</a></sup>&nbsp;In
+        fact, branch-free code is a must for cryptography due to&nbsp;<a
+          href="https://en.wikipedia.org/wiki/Timing_attack" title="Timing attack"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">timing
+          attacks</a>.<sup id="cite_ref-4" class="reference"
+                           style="line-height: 1; unicode-bidi: isolate; white-space: nowrap; font-size: 11.2px;"><a
+          href="https://en.wikipedia.org/wiki/Branch_(computer_science)#cite_note-4"
+          style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[3]</a></sup>
+      </p>
+      <h3
+        style="color: rgb(0, 0, 0); margin: 0.3em 0px 0px; padding-top: 0.5em; padding-bottom: 0px; overflow: hidden; font-size: 1.2em; line-height: 1.6;">
+        <span class="mw-headline" id="Delay_slot">Delay slot</span><span class="mw-editsection"
+                                                                         style="user-select: none; font-size: small; font-weight: normal; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=8"
+        title="Edit section: Delay slot"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h3>
+      <p style="margin: 0.5em 0px;">Another technique is a&nbsp;<a href="https://en.wikipedia.org/wiki/Delay_slot"
+                                                                   title="Delay slot"
+                                                                   style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">branch
+        delay slot</a>. In this approach, one instruction after a branch is always executed. Therefore, the computer can
+        use this instruction to do useful work whether or not its pipeline stalls. This approach was historically
+        popular in&nbsp;<a href="https://en.wikipedia.org/wiki/RISC" class="mw-redirect" title="RISC"
+                           style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">RISC</a>&nbsp;computers.
+        In a family of compatible CPUs, it complicates multicycle CPUs (with no pipeline), faster CPUs with
+        longer-than-expected pipelines, and superscalar CPUs (which can execute instructions out of order.)</p>
+      <h2
+        style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+        <span class="mw-headline" id="See_also">See also</span><span class="mw-editsection"
+                                                                     style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=9"
+        title="Edit section: See also"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+      <ul
+        style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+        <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Branch_delay_slot" class="mw-redirect"
+                                             title="Branch delay slot"
+                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Branch
+          delay slot</a></li>
+        <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Branch_predication" class="mw-redirect"
+                                             title="Branch predication"
+                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Branch
+          predication</a></li>
+        <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Branch_table" title="Branch table"
+                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Branch
+          table</a></li>
+        <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Conditional_(programming)"
+                                             class="mw-redirect" title="Conditional (programming)"
+                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Conditional
+          (programming)</a></li>
+        <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Control_flow" title="Control flow"
+                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Control
+          flow</a></li>
+        <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Indirect_branch"
+                                             title="Indirect branch"
+                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Indirect
+          branch</a></li>
+        <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Program_counter"
+                                             title="Program counter"
+                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Program
+          counter</a></li>
+        <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Subroutine" title="Subroutine"
+                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Subroutine</a>
+        </li>
+        <li style="margin-bottom: 0.1em;"><a href="https://en.wikipedia.org/wiki/Spaghetti_code" title="Spaghetti code"
+                                             style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Spaghetti
+          code</a></li>
+      </ul>
+      <h2
+        style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+        <span class="mw-headline" id="Notes">Notes</span><span class="mw-editsection"
+                                                               style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=10"
+        title="Edit section: Notes"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+      <div class="reflist reflist-lower-alpha"
+           style="font-size: 12.6px; margin-bottom: 0.5em; list-style-type: lower-alpha;">
+        <div class="mw-references-wrap">
+          <ol class="references"
+              style="margin: 0.3em 0px 0px 3.2em; padding: 0px; list-style-image: none; counter-reset: mw-ref-extends-parent 0 list-item 0; font-size: 12.6px; list-style-type: inherit;">
+            <li id="cite_note-1"
+                style="margin-bottom: 0.1em; counter-increment: mw-ref-extends-parent 1; counter-reset: mw-ref-extends-child 0;">
+              <span class="mw-cite-backlink" style="user-select: none;"><b><a
+                href="https://en.wikipedia.org/wiki/Branch_(computer_science)#cite_ref-1" aria-label="Jump up"
+                title="Jump up"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">^</a></b></span>&nbsp;<span
+              class="reference-text">At least conceptually; see&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Out-of-order_execution" title="Out-of-order execution"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">out-of-order execution</a>.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <h2
+        style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+        <span class="mw-headline" id="References">References</span><span class="mw-editsection"
+                                                                         style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=11"
+        title="Edit section: References"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+      <div class="reflist" style="font-size: 12.6px; margin-bottom: 0.5em; list-style-type: decimal;">
+        <div class="mw-references-wrap">
+          <ol class="references"
+              style="margin: 0.3em 0px 0px 3.2em; padding: 0px; list-style-image: none; counter-reset: mw-ref-extends-parent 0 list-item 0; font-size: 12.6px; list-style-type: inherit;">
+            <li id="cite_note-2"
+                style="margin-bottom: 0.1em; counter-increment: mw-ref-extends-parent 1; counter-reset: mw-ref-extends-child 0;">
+              <span class="mw-cite-backlink" style="user-select: none;"><b><a
+                href="https://en.wikipedia.org/wiki/Branch_(computer_science)#cite_ref-2" aria-label="Jump up"
+                title="Jump up"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">^</a></b></span>&nbsp;<span
+              class="reference-text"><cite id="CITEREFKnuth2008" class="citation book cs1"
+                                           style="font-style: inherit; overflow-wrap: break-word;"><a
+              href="https://en.wikipedia.org/wiki/Donald_Knuth" title="Donald Knuth"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Knuth, Donald</a>&nbsp;(2008).&nbsp;<i><a
+              href="https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming"
+              title="The Art of Computer Programming"
+              style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">The Art of Computer Programming</a></i>. Volume 4, Pre-fascicle 1A (Revision 6&nbsp;ed.). pp.&nbsp;48–49.</cite><span
+              title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=The+Art+of+Computer+Programming&amp;rft.pages=48-49&amp;rft.edition=Revision+6&amp;rft.date=2008&amp;rft.aulast=Knuth&amp;rft.aufirst=Donald&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ABranch+%28computer+science%29"
+              class="Z3988"></span></span></li>
+            <li id="cite_note-3"
+                style="margin-bottom: 0.1em; counter-increment: mw-ref-extends-parent 1; counter-reset: mw-ref-extends-child 0;">
+              <span class="mw-cite-backlink" style="user-select: none;"><b><a
+                href="https://en.wikipedia.org/wiki/Branch_(computer_science)#cite_ref-3" aria-label="Jump up"
+                title="Jump up"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">^</a></b></span>&nbsp;<span
+              class="reference-text"><cite class="citation web cs1"
+                                           style="font-style: inherit; overflow-wrap: break-word;"><a rel="nofollow"
+                                                                                                      class="external text"
+                                                                                                      href="https://www.chessprogramming.org/Avoiding_Branches"
+                                                                                                      style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">"Avoiding Branches"</a>.&nbsp;<i>Chessprogramming wiki</i>.</cite><span
+              title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=unknown&amp;rft.jtitle=Chessprogramming+wiki&amp;rft.atitle=Avoiding+Branches&amp;rft_id=https%3A%2F%2Fwww.chessprogramming.org%2FAvoiding_Branches&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ABranch+%28computer+science%29"
+              class="Z3988"></span></span></li>
+            <li id="cite_note-4"
+                style="margin-bottom: 0.1em; counter-increment: mw-ref-extends-parent 1; counter-reset: mw-ref-extends-child 0;">
+              <span class="mw-cite-backlink" style="user-select: none;"><b><a
+                href="https://en.wikipedia.org/wiki/Branch_(computer_science)#cite_ref-4" aria-label="Jump up"
+                title="Jump up"
+                style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">^</a></b></span>&nbsp;<span
+              class="reference-text"><cite class="citation web cs1"
+                                           style="font-style: inherit; overflow-wrap: break-word;"><a rel="nofollow"
+                                                                                                      class="external text"
+                                                                                                      href="https://www.bearssl.org/constanttime.html"
+                                                                                                      style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">"Constant-Time Crypto"</a>.&nbsp;<i>BearSSL</i>.</cite><span
+              title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=unknown&amp;rft.jtitle=BearSSL&amp;rft.atitle=Constant-Time+Crypto&amp;rft_id=https%3A%2F%2Fwww.bearssl.org%2Fconstanttime.html&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ABranch+%28computer+science%29"
+              class="Z3988"></span></span></li>
+          </ol>
+        </div>
+      </div>
+      <h2
+        style="color: rgb(0, 0, 0); margin: 1em 0px 0.25em; padding: 0px; overflow: hidden; border-bottom: 1px solid rgb(162, 169, 177); font-weight: normal; font-family: &quot;Linux Libertine&quot;, Georgia, Times, serif; line-height: 1.3;">
+        <span class="mw-headline" id="External_links">External links</span><span class="mw-editsection"
+                                                                                 style="font-family: sans-serif; user-select: none; font-size: small; margin-left: 1em; vertical-align: baseline; line-height: 1em; unicode-bidi: isolate; margin-right: 0px;"><span
+        class="mw-editsection-bracket" style="margin-right: 0.25em; color: rgb(84, 89, 93);">[</span><a
+        href="https://en.wikipedia.org/w/index.php?title=Branch_(computer_science)&amp;action=edit&amp;section=12"
+        title="Edit section: External links"
+        style="text-decoration-line: none; color: rgb(6, 69, 173); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; white-space: nowrap;">edit</a><span
+        class="mw-editsection-bracket" style="margin-left: 0.25em; color: rgb(84, 89, 93);">]</span></span></h2>
+      <ul
+        style="list-style-image: url(&quot;/w/skins/Vector/resources/common/images/bullet-icon.svg?d4515&quot;); margin: 0.3em 0px 0px 1.6em; padding: 0px;">
+        <li style="margin-bottom: 0.1em;"><a rel="nofollow" class="external text"
+                                             href="http://www.intel.com/products/processor/manuals/index.htm"
+                                             style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">Free
+          IA-32 and x86-64 documentation</a>, provided by Intel
+        </li>
+        <li style="margin-bottom: 0.1em;"><a rel="nofollow" class="external text"
+                                             href="https://web.archive.org/web/20110514104628/http://www.village.org/pdp11/faq.html"
+                                             style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;/w/resources/src/mediawiki.skinning/images/external-ltr.svg?59558&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 13px;">The
+          PDP-11 FAQ</a></li>
+        <li style="margin-bottom: 0.1em;"><a rel="nofollow" class="external text"
+                                             href="https://web.archive.org/web/20190824172211/http://simplemachines.it/doc/arm_inst.pdf"
+                                             style="text-decoration-line: none; color: rgb(51, 102, 187); background-image: url(&quot;//upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif&quot;); background-position: right center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; padding-right: 18px;">The
+          ARM instruction set</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="catlinks" class="catlinks" data-mw="interface"
+       style="border: 1px solid rgb(162, 169, 177); background-color: rgb(248, 249, 250); padding: 5px; margin-top: 1em; clear: both;">
+    <div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="https://en.wikipedia.org/wiki/Help:Category"
+                                                               title="Help:Category"
+                                                               style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;">Categories</a>:&nbsp;<ul
+      style="list-style: none; margin: 0px; padding: 0px; display: inline;">
+      <li
+        style="margin: 0.125em 0px; display: inline-block; line-height: 1.25em; border-left: 0px; padding: 0px 0.5em 0px 0.25em;">
+        <a href="https://en.wikipedia.org/wiki/Category:Control_flow" title="Category:Control flow"
+           style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;">Control flow</a></li>
+      <li
+        style="margin: 0.125em 0px; display: inline-block; line-height: 1.25em; border-left: 1px solid rgb(162, 169, 177); padding: 0px 0.5em;">
+        <a href="https://en.wikipedia.org/wiki/Category:Instruction_processing" title="Category:Instruction processing"
+           style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;">Instruction processing</a></li>
+      <li
+        style="margin: 0.125em 0px; display: inline-block; line-height: 1.25em; border-left: 1px solid rgb(162, 169, 177); padding: 0px 0.5em;">
+        <a href="https://en.wikipedia.org/wiki/Category:Machine_code" title="Category:Machine code"
+           style="text-decoration-line: none; color: rgb(6, 69, 173); background: none;">Machine code</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

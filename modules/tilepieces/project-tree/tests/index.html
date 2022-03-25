@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <style>
+    html, body {
+      height: 100%;
+    }
+  </style>
+  <link href="../../drag/css.css" rel="stylesheet" data-tilepieces-component="drag">
+  <link href="../project-tree.bundle.css" rel="stylesheet" data-tilepieces-component="project-tree"
+        data-tilepieces-current-stylesheet="">
+</head>
+<body>
+<div>
+  <button id="project-tree-add" onclick="add()">+</button>
+  <button id="project-tree-delete" onclick="del()">-</button>
+  <button id="project-tree-refactor" onclick="refactor()">R</button>
+  <div id="project-tree-frame"></div>
+</div>
+<textarea id="fileReader"></textarea>
+
+
+<script src="assign-param-from-string.js"></script>
+<script src="../../offset/offset.js" data-tilepieces-component="offset"></script>
+<script src="../../events/index.js" data-tilepieces-component="events"></script>
+<script src="../../drag/drag.js" data-tilepieces-component="drag"></script>
+<script src="../../shortcuts/shortcuts.bundle.js" data-tilepieces-component="shortcuts"></script>
+<script src="../project-tree.bundle.js" data-tilepieces-component="project-tree"></script>
+<script>
+  var rootSchema = {
+    "dir1": {
+      "dir1-dir1": {
+        "file.txt": "dir1 dir1-dir1 file.txt",
+        "index.js": "dir1 dir1-dir1 index.js"
+      }
+    },
+    "dir2": {
+      "dir2-dir1": {
+        "file.js": "dir2 dir2-dir1 file.js",
+        "file1.css": "dir2 dir2-dir1 file1.css"
+      },
+      "dir2-dir2": {
+        "file.js": "dir2 dir2-dir2 file.js",
+        "file1.css": "dir2 dir2-dir2 file1.css"
+      }
+    },
+    "dir3": {
+      "dir4": {
+        "dir5": {
+          "move.txt": "data:text/plain;dir3/dir/4/dir5/move.txt"
+        },
+        "index.html": "data:text/html;dir3/dir/4/index.html"
+      },
+      "img.png": "data:image/png;base64,dir3/img.png",
+      "img2.png": "data:image/png;base64,dir3/img2.png",
+      "img3.jpg": "data:image/jpg;base64,dir3/img3.jpg",
+      "img4.jpg": "data:image/jpg;base64,dir3/img4.jpg"
+    },
+    "index.html": "index.html"
+  };
+  var pt = new ProjectTree(document.getElementById("project-tree-frame"), rootSchema);
+  var fileRead = null;
+  pt.on("openTree", function (data) {
+    var modelPath = returnParamFromString(data.path, rootSchema, "/");
+    pt.update(data.DOMel, modelPath);
+  });
+  pt.on("fileSelected", function (data) {
+    console.log(`fileSelected ${data.path}`);
+    fileRead = data.path;
+    fileReader.value = returnParamFromString(data.path, rootSchema, "/");
+  });
+  pt.on("paste", function (data) {
+    console.log("paste received:", data);
+    data.oldPaths.forEach((oldPath) => {
+      //var key = oldPath.split("/").pop();
+      var value = returnParamFromString(oldPath.path, rootSchema, "/");
+      data.type == "cut" && pt.delete(oldPath.path);
+      if (confirm(`Do you want to copy ${oldPath.path} in ${data.newPath}?`))
+        createKeyFromString(data.newPath, rootSchema, oldPath.file || oldPath.dir, value, "/");
+    })
+    pt.update(data.dir, returnParamFromString(data.newPath, rootSchema, "/"));
+  });
+  pt.on("refactor", function (data) {
+    console.log("refactor", data);
+    if (confirm(`Do you want to refactor ${data.oldName} in ${data.newName}?`)) {
+      var newValue = assignKeyFromString(data.path, rootSchema, data.newName, "/");
+      data.validate();
+      !data.isFile && pt.update(data.selected, newValue);
+      if (data.path == fileRead) {
+        fileRead = data.selected.dataset.path;
+      }
+    }
+  });
+  fileReader.addEventListener("change", function (e) {
+    if (!fileRead)
+      return;
+    if (confirm(`Do you want to save changes on ${fileRead}?`))
+      assignParamFromString(fileRead, rootSchema, fileReader.value, "/");
+    else
+      fileReader.value = returnParamFromString(fileRead, rootSchema, "/");
+  })
+
+  // buttons actions
+  function add() { // add a file/directory
+    if (pt.selected[0] && pt.selected[0].hasAttribute("data-dir")) { // dataset can't be reliable because data-dir could be empty
+      var selected = pt.selected[0],
+        path = pt.selected[0].dataset.path;
+      console.log("add", {selected, path});
+      var newFile = prompt(`Enter new file to create in ${path}:`);
+      if (newFile && newFile.trim()) {
+        var value = `data:text/plain;created on ${path}`;
+        createKeyFromString(path, rootSchema, newFile.trim(), value, "/");
+        pt.update(selected, returnParamFromString(path, rootSchema, "/"));
+      }
+    }
+  }
+
+  function del() { // delete file/directory
+    if (pt.selected[0])
+      pt.delete(null, pt.selected[0]);
+  }
+
+  pt.on("delete", function (data) {
+    if (confirm(`Do you want to delete ${data.path}?`)) {
+      deleteParamFromString(data.path, rootSchema, "/");
+      data.validate();
+      if (data.path == fileRead) {
+        fileRead = null;
+        fileReader.value = "";
+      }
+    }
+  });
+
+  function refactor() { // refactory file/directory name
+    if (pt.selected[0])
+      pt.refactor(pt, pt.selected[0]);
+  }
+</script>
+</body>
+</html>

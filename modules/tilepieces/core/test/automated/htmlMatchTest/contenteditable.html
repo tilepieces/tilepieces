@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>contenteditable first test</title>
+  <style>
+    .larger {
+      font-size: larger;
+      margin: 5px 0;
+      border-bottom: 1px solid #ccc
+    }
+
+    .large {
+      font-size: large;
+      margin: 5px 0;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success::before {
+      content: "\2713";
+      padding-right: 10px;
+    }
+
+    .error::before {
+      content: "\2715";
+      padding-right: 10px;
+    }
+  </style>
+</head>
+<body>
+<section id=log-section></section>
+<iframe id=frame></iframe>
+<script src="../../../../html-tree-match/htmlTreeMatch.js"
+        data-tilepieces-component="tilepieces/html-tree-match"></script>
+<script src="../../../../css-split-value/splitCssValue.js"
+        data-tilepieces-component="tilepieces/css-split-value"></script>
+<script src="../../../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script>
+<script src="../../../../css-specificity/cssSpecificity.js"
+        data-tilepieces-component="tilepieces/css-specificity"></script>
+<script src="../../../../css-matcher/css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script>
+<script src="../../../tilepieces-core.js" data-tilepieces-component="tilepieces/core"></script>
+
+<script src="../testUtils/assert.js"></script>
+<script src="../testUtils/logOnDocument.js"></script>
+<script src="../testUtils/getDocuments.js"></script>
+<script src="../testUtils/compareDocuments.js"></script>
+<script src="../testUtils/setTest.js"></script>
+<script src="../testUtils/logError.js"></script>
+<script src="../testUtils/historyComparison.js"></script>
+<script src="contenteditable.js"></script>
+<script>
+  setTest("../test-frame.html").then(async function () {
+    try {
+      var originalDocuments = compareDocuments();
+      contenteditableTest();
+      var pointer = tilepieces.core.history.pointer;
+      for (var i = pointer; i > 0; i--) {
+        tilepieces.core.undo();
+        logOnDocument("compare __historyFileRecord on undo");
+        var __historyFileRecord = tilepieces.core.history.entries[i - 1].__historyFileRecord;
+        historyComparison(__historyFileRecord);
+
+      }
+      compareDocuments(originalDocuments);
+      for (var i2 = 0; i2 < pointer; i2++) {
+        await tilepieces.core.redo();
+        logOnDocument("compare __historyFileRecord on redo");
+        var __historyFileRecord = tilepieces.core.history.entries[i2].__historyFileRecord;
+        historyComparison(__historyFileRecord, true);
+      }
+      var body = tilepieces.core.currentDocument.body;
+      var findBody = tilepieces.core.htmlMatch.find(body);
+      var match = tilepieces.core.htmlMatch.match(body);
+      logOnDocument(
+        assert(findBody.match &&
+          findBody.HTML &&
+          findBody.attributes &&
+          match,
+          "findBody ok"), "success");
+      window.dispatchEvent(new Event("test-success"))
+    } catch (e) {
+      logError(e);
+    }
+  })
+    .catch(logError);
+</script>

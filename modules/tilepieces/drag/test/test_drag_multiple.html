@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Drag element multiple</title>
+    
+
+    <style>
+        html,body{
+            height:100%;
+        }
+    </style>
+<link href="../css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag"></head>
+<body>
+<div style="padding:10px;margin:15px">
+<main>Vattelapesca</main>
+<main>Vattelapesca2</main>
+<main>Vattelapesca3</main>
+<main>Vattelapesca4</main>
+</div>
+<!-- dependencies -->
+
+<!-- module js -->
+<script src="../../offset/offset.js" data-tilepieces-component="tilepieces/offset"></script>
+<script src="../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../drag.js" data-tilepieces-component="tilepieces/drag"></script>
+<script>
+    var d = __dragElement(document.getElementsByTagName("main"));
+</script></body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>replaceWith test</title>
+</head>
+<body>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<button id="inn" onclick="inn()" disabled>Replace Child test!</button>
+<button id="undo" onclick="undo()" disabled>Undo!</button>
+<button id="redo" onclick="redo()" disabled>Redo!</button>
+<script src="../htmlTreeMatch.js"></script>
+<script>
+    var htmlMatch;
+    var innEl = document.getElementById("inn");
+    var undoEl = document.getElementById("undo");
+    var redoEl = document.getElementById("redo");
+    // TESTING IF IMAGES ARE CORRECTLY REFERENCED
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        htmlMatch = HTMLTreeMatch(htmltext);
+        innEl.removeAttribute("disabled");
+        var uno = htmlMatch.match(document.querySelector(".banner"));
+
+    }
+    a();
+    var banner = document.querySelector(".banner");
+    var aTest = document.createTextNode("a simple test");
+    function inn(){
+        if(innEl.disabled)
+            return;
+        if(document.body.contains(banner))
+            htmlMatch.replaceWith(banner,aTest);
+        else
+            htmlMatch.replaceWith(aTest,banner);
+        //innEl.setAttribute("disabled","");
+    }
+    window.addEventListener("DOM-change",function(){
+        if(htmlMatch.history.pointer != 0)
+            undoEl.removeAttribute("disabled");
+        else
+            undoEl.setAttribute("disabled","");
+        if(htmlMatch.history.pointer != htmlMatch.history.entries.length)
+            redoEl.removeAttribute("disabled");
+        else
+            redoEl.setAttribute("disabled","");
+    });
+    function undo(){
+        if(undoEl.disabled)
+            return;
+        htmlMatch.undo();
+    }
+    function redo(){
+        if(redoEl.disabled)
+            return;
+        htmlMatch.redo();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>A test</title>
+</head>
+<body>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src="">
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src="">
+    <p>
+        A banner paragraph
+    </p>
+</div><script src="../../htmlTreeMatch.js" data-tilepieces-component="html-tree-match"></script>
+
+<script>
+// TESTING IF IMAGES ARE CORRECTLY REFERENCED
+async function a(){
+  var html = await fetch(location.href);
+  var htmltext = await html.text();
+  var b = document.querySelectorAll(".banner");
+  var htmlMatch = HTMLTreeMatch(htmltext);
+  var banner1 = document.querySelectorAll(".banner")[1];
+  var img1 = document.querySelector(".banner img");
+  var img2 = document.querySelector(".banner:nth-child(2) img");
+  var a = htmlMatch.match(banner1);
+  var uno = htmlMatch.match(img1);
+  var due = htmlMatch.match(img2);
+  console.log(uno,uno.parentElement,due,
+          due.parentElement);
+  console.assert(htmlMatch.match(a,false,false,true) == banner1)
+  console.assert(htmlMatch.match(uno,false,false,true) == img1)
+  console.assert(htmlMatch.match(due,false,false,true) == img2)
+}
+a()
+</script>
+
+</body></html>

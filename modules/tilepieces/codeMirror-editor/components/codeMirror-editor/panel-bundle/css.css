@@ -1,0 +1,40 @@
+/* Page and custom edits */
+html,body{
+    margin:0;
+    background:#fff;
+}
+body{
+    display:flex;
+    flex-direction:column;
+}
+html,body,.CodeMirror{
+    height:100%;
+    box-sizing:border-box;
+}
+body > textarea{
+    display:none;
+}
+/* search */
+.CodeMirror.dialog-opened{
+    padding-top:23px;
+}
+.CodeMirror{
+    transition:padding-top 0.4s;
+    position:relative;
+}
+.CodeMirror-dialog.CodeMirror-dialog-top{
+    opacity:1!important;
+    position:absolute;
+    top:0;
+    left:0;
+}
+button {
+  background: none;
+  border: 1px solid rgb(204, 204, 204);
+  cursor: pointer;
+  font-size: 1em;
+  text-align: center;
+  color: rgb(153, 153, 153);
+  padding: 0.3em 1em;
+  letter-spacing: 1px;
+}

@@ -1,0 +1,43 @@
+{
+  "name": "tilepieces/codeMirror-editor",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {},
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "front.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": []
+  },
+  "dependencies": [
+    "tilepieces/core",
+    "tilepieces/panel"
+  ],
+  "components": {
+    "tilepieces/codeMirror-editor/panel-bundle": {
+      "path": "/components/codeMirror-editor/panel-bundle",
+      "name": "tilepieces/codeMirror-editor/panel-bundle"
+    }
+  },
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "index.html",
+    "index-pop.html"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

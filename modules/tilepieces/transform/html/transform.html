@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html><head>
+  <link href="../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet">
+  <link href="../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input">
+  <link href="../../autocomplete/autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete">
+  <link href="../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs">
+  <link href="../../drag/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag">
+  <link href="../transform.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/transform" data-tilepieces-current-stylesheet="">
+</head>
+<body style="margin:0">
+<section id="transform" class="${isVisible}">
+  <div class="tab-buttons tab-horizontal" id="transform-tabs">
+    <a class="tab-prev" href="javascript:void(0)">...</a>
+    <a class="tab-next" href="javascript:void(0)">...</a>
+    <div class="tab-buttons-wrap">
+      <div class="tab-buttons-inside">
+        <a href="#general-transform" class="selected">Transform</a>
+        <a href="#transform-functions">Functions</a>
+      </div>
+    </div>
+  </div>
+  <div id="general-transform">
+    <fieldset>
+      <legend>
+        <a href="#property-transform" tabindex="-1">
+          transform:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-transform" class="input-css autocomplete" data-css-prop="transform" data-css-prop-js="transform" data-value="${transform}" data-auto-global-suggestion="cssDefaults.transform" data-bind="transform" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-transform-origin" tabindex="-1">
+          transform-origin:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-transform-origin" class="input-css autocomplete" data-css-prop="transform-origin" data-css-prop-js="transformOrigin" data-value="${transformOrigin}" data-auto-global-suggestion="cssDefaults.transform-origin" data-bind="transformOrigin" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-transform-style" tabindex="-1">
+          transform-style:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-style" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-transform-style" class="input-css autocomplete" data-css-prop="transform-style" data-css-prop-js="transformStyle" data-value="${transformStyle}" data-auto-global-suggestion="cssDefaults.transform-style" data-bind="transformStyle" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-perspective" tabindex="-1">
+          perspective:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/perspective" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-perspective" class="input-css autocomplete" data-css-prop="perspective" data-css-prop-js="perspective" data-value="${perspective}" data-auto-global-suggestion="cssDefaults.perspective" data-bind="perspective" contenteditable=""></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <a href="#property-perspective-origin" tabindex="-1">
+          perspective-origin:
+        </a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/perspective-origin" class="info-round-icon" target="_blank"></a>
+      </legend>
+      <div class="input-css-style">
+        <div id="property-perspective-origin" class="input-css autocomplete" data-css-prop="perspective-origin" data-css-prop-js="perspectiveOrigin" data-value="${perspectiveOrigin}" data-auto-global-suggestion="cssDefaults.perspective-origin" data-bind="perspectiveOrigin" contenteditable=""></div>
+      </div>
+    </fieldset>
+  </div>
+  <div id="transform-functions" style="display:none">
+    <ul>
+      <li data-foreach="functions" data-foreach-key-name="f" data-index="${f.index}">
+        <span class="handler"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g><g><g><path style="fill:#727272;" d="M17.5,8.4c-0.4,0-0.7-0.1-1-0.4L12,3.4L7.5,7.8C7,8.4,6.1,8.4,5.6,7.8C5,7.3,5,6.4,5.6,5.9L11,0.5c0.5-0.5,1.4-0.5,1.9,0L18.4,6C19,6.6,19,7.4,18.4,8C18.2,8.2,17.8,8.4,17.5,8.4z"></path></g><g><path style="fill:#727272;" d="M12,11c-0.8,0-1.4-0.6-1.4-1.4l0-8.2c0-0.8,0.6-1.4,1.4-1.4c0.8,0,1.4,0.6,1.4,1.4l0,8.2C13.4,10.4,12.8,11,12,11z"></path></g></g><g><g><path style="fill:#727272;" d="M6.5,15.6c0.4,0,0.7,0.1,1,0.4l4.5,4.6l4.5-4.5c0.5-0.5,1.4-0.5,1.9,0c0.5,0.5,0.5,1.4,0,1.9L13,23.5c-0.5,0.5-1.4,0.5-1.9,0L5.6,18C5,17.4,5,16.6,5.6,16C5.8,15.8,6.2,15.6,6.5,15.6z"></path></g><g><path style="fill:#727272;" d="M12,13c0.8,0,1.4,0.6,1.4,1.4l0,8.2c0,0.8-0.6,1.4-1.4,1.4c-0.8,0-1.4-0.6-1.4-1.4l0-8.2C10.6,13.6,11.2,13,12,13z"></path></g></g></g></svg></span>
+        <fieldset>
+          <legend>${f.name}</legend>
+          <div class="input-css" data-type="transform-function" data-value="${f.value}" data-index="${f.index}" data-bind="f.value" contenteditable="">
+          </div>
+        </fieldset>
+        <button class="remove-function" data-index="${f.index}">- function</button>
+      </li>
+    </ul>
+    <div>
+      <select data-bind="transformNewType">
+        <option value="translate(0px,0px)">translate</option>
+        <option value="translateX(0px)">translateX</option>
+        <option value="translateY(0px)">translateY</option>
+        <option value="translateZ(0px)">translateZ</option>
+        <option value="translate3d(0px,0px,0px)">translate3d</option>
+        <option value="scale(1,1)">scale</option>
+        <option value="scaleX(1)">scaleX</option>
+        <option value="scaleY(1)">scaleY</option>
+        <option value="scaleZ(1)">scaleZ</option>
+        <option value="scale3d(1,1,1)">scale3d</option>
+        <option value="rotate(0deg)">rotate</option>
+        <option value="rotateX(0deg)">rotateX</option>
+        <option value="rotateY(0deg)">rotateY</option>
+        <option value="rotateZ(0deg)">rotateZ</option>
+        <option value="rotate3d(0,0,0,0deg)">rotate3d</option>
+        <option value="skew(0deg,0deg)">skew</option>
+        <option value="skewX(0deg)">skewX</option>
+        <option value="skewY(0deg)">skewY</option>
+        <option value="perspective(0px)">perspective</option>
+        <option value="matrix(1, 0, 0, 1, 0, 0)">matrix</option>
+        <option value="matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)">matrix3d</option>
+      </select>
+      <button class="add-function">+ function</button>
+    </div>
+  </div>
+</section>
+
+</body></html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<script src="../src/cssColors.js"></script>
+<script src="../src/matchValue.js"></script>
+<script>
+  tests = {
+    test1: "background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7) 0 0 no-repeat;",
+    test2: "1px solid rgb(255, 0, 0)",
+    test3: "1px solid #ccc",
+    test4: "1px solid hsl(0, 100%, 50%)",
+    test5: "1px solid black",
+    test6: "#aaaaaa",
+    test7: "50% 50% .4ch",
+    test8: "rotate(0.25turn)",
+    test9: "1.22465e-16",
+    test10: "linear-gradient(10% rgb(0,0,0),100% rgba(0,0,0,0))"
+  }
+  for (var k in tests) {
+    var t = tests[k];
+    var matchInputCssValues = matchValue(t);
+    var resolved = matchInputCssValues.map(function (v) {
+      return {
+        string: t.substring(v.start, v.end),
+        type: v.type
+      }
+    });
+    console.count("TEST");
+    console.log("INPUT : ", t);
+    console.log("OBJECT RESPONSE : ", matchInputCssValues);
+    console.log("RESOLVED : ", resolved);
+  }
+</script>
+</body>
+</html>

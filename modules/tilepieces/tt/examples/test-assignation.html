@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<section>
+  ${name}<br>
+  ${nestedExample.name}
+  <ul>
+    <li data-foreach="array">
+      ${key.name}
+    </li>
+  </ul>
+</section>
+<script src="../tt.js"></script>
+<script>
+  let scope = {
+    name: "an example",
+    nestedExample: {
+      name: "an example2"
+    },
+    array: [
+      {name: "an example3"}
+    ]
+  }
+  let el = document.body.children[0];
+  let t = new TT(el, scope);
+  let o = "an example changed";
+  t.set("name", o);
+  console.assert(scope.name == o);
+  let o2 = "an example2 changed";
+  t.set("nestedExample.name", o2);
+  console.assert(scope.nestedExample.name == o2);
+  let o3 = "an example3 changed";
+  t.set("array[0].name", o3);
+  console.assert(scope.array[0].name == o3);
+</script>
+</body>
+</html>

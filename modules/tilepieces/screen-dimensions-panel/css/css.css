@@ -1,0 +1,6 @@
+#screen-dimensions { padding: 20px; }
+#screen-dimensions label { padding: 10px 0px; }
+#screen-dimensions input, #screen-dimensions select { padding: 5px; }
+#fit-to-screen-button { background: white; }
+#fit-to-screen-button.fit-to-screen { background: #a4c693; color: rgb(255, 255, 255); }
+#screen-dimensions > .flex-box > * { width: auto; flex-grow: 1; }

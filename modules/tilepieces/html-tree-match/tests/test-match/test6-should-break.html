@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A test</title>
+</head>
+<body>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<script src="../../htmlTreeMatch.js"></script>
+<script>
+    // TESTING IF IMAGES ARE CORRECTLY REFERENCED
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        var b = document.querySelector(".banner");
+        document.body.insertBefore(b.cloneNode(true),document.body.firstChild);
+        var htmlMatch = HTMLTreeMatch(htmltext);
+        // in this case, everything should be false
+
+        var a = htmlMatch.match(document.querySelectorAll(".banner")[1]);
+        var uno = htmlMatch.match(b.querySelector("img"));
+        var due = htmlMatch.match(document.querySelector(".banner:nth-child(2) img"));
+        console.assert(!uno && !due);
+    }
+    a()
+</script>
+</body>
+</html>

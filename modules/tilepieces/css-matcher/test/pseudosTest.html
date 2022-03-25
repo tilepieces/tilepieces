@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>css matcher pseudo test</title>
+  <style>
+    a {
+      display: block;
+      text-decoration: none;
+      color: black;
+    }
+
+    a:focus {
+      color: red
+    }
+
+    a:hover {
+      background: yellow;
+    }
+
+    a:hover p {
+      color: red;
+    }
+
+    a:hover p:hover {
+      color: red;
+    }
+
+    a:hover:focus {
+      background: #fffb87
+    }
+
+    a:hover:focus:before {
+      content: "before-2"
+    }
+
+    a:before {
+      content: "before"
+    }
+
+    a:after {
+      content: "after"
+    }
+
+    a:active, a:after {
+      background: red;
+    }
+
+    a.test:active, a.test:after {
+      background: #e8e8e8;
+    }
+
+    .test:before, div:after {
+      text-decoration: underline;
+    }
+
+    ul {
+      display: none
+    }
+
+    input[type=checkbox]:checked + ul {
+      display: block;
+    }
+
+    a::marker {
+      doesntexist: none
+    }
+
+    li::marker {
+      color: red;
+    }
+
+    p::selection {
+      background: #cd3850;
+    }
+
+    p:hover::selection {
+      background: #cd8a89
+    }
+
+    input::placeholder {
+      color: black
+    }
+  </style>
+</head>
+<body>
+Click on something and see the attached styles on console
+<a href="#">
+  <div>
+    <p>A p in a "A" tag</p>
+  </div>
+</a>
+<a class="test" href="#">
+  <div>
+    <p>A p in a "A" tag</p>
+  </div>
+</a>
+<p>Select this!</p>
+<input placeholder="a placeholder">
+<input type="checkbox">Toggle list
+<ul>
+  <li>A list</li>
+</ul>
+
+
+<script src="../../css-specificity/cssSpecificity.js"
+        data-tilepieces-component="tilepieces/css-specificity"></script>
+<script src="../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script>
+<script src="../../css-split-value/splitCssValue.js" data-tilepieces-component="tilepieces/css-split-value"></script>
+<script src="../css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script>
+<script>
+  let styles;
+  let stylesFormatted
+  cssMapper(document).then(function (stylesheets) {
+    stylesFormatted = stylesheets;
+    styles = stylesheets.styleSheets;
+    document.addEventListener("click", e => {
+      console.log(cssMatcher(e.target, styles));
+    });
+  })
+</script>
+</body>
+</html>

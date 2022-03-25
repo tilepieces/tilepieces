@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>deleteCssRule with createCurrentStyleSheet</title>
+  <style>
+    .larger {
+      font-size: larger;
+      margin: 5px 0;
+      border-bottom: 1px solid #ccc
+    }
+
+    .large {
+      font-size: large;
+      margin: 5px 0;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success::before {
+      content: "\2713";
+      padding-right: 10px;
+    }
+
+    .error::before {
+      content: "\2715";
+      padding-right: 10px;
+    }
+  </style>
+</head>
+<body>
+<section id=log-section></section>
+<button onclick="undo()" id="undo">undo</button>
+<button onclick="redo()" id="redo">redo</button>
+<pre id="styletext"></pre>
+<iframe id=frame></iframe>
+<script src="../../../html-tree-match/htmlTreeMatch.js" data-tilepieces-component="tilepieces/html-tree-match"></script>
+<script src="../../../css-split-value/splitCssValue.js" data-tilepieces-component="tilepieces/css-split-value"></script>
+<script src="../../../css-mapper/css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script>
+<script src="../../../css-specificity/cssSpecificity.js"
+        data-tilepieces-component="tilepieces/css-specificity"></script>
+<script src="../../../css-matcher/css-matcher.js" data-tilepieces-component="tilepieces/css-matcher"></script>
+<script src="../../tilepieces-core.js" data-tilepieces-component="tilepieces/core"></script>
+<!-- test utils -->
+<script src="testUtils/assert.js"></script>
+<script src="testUtils/logOnDocument.js"></script>
+<script src="testUtils/getDocuments.js"></script>
+<script src="testUtils/compareDocuments.js"></script>
+<script src="testUtils/setTest.js"></script>
+<script src="testUtils/logError.js"></script>
+<script src="testUtils/historyComparison.js"></script>
+<script src="stylesheet/createCurrentStyleSheet.js"></script>
+<script>
+  function undo() {
+    tilepieces.core.undo();
+    var style = tilepieces.core.currentStyleSheet;
+    if (style)
+      styletext.innerHTML = [...style.cssRules].map(v => v.cssText).join("");
+    else
+      styletext.innerHTML = "";
+  }
+
+  function redo() {
+    tilepieces.core.redo();
+    var style = tilepieces.core.currentStyleSheet;
+    if (style)
+      styletext.innerHTML = [...style.cssRules].map(v => v.cssText).join("");
+    else
+      styletext.innerHTML = "";
+  }
+
+  var styleTextExpected = [ // history-1
+    "",
+    "@media screen and (min-width: 0px){}",
+    "",
+    `@media screen and (min-width: 0px) {}`,
+    `@media screen and (min-width: 0px) {body {height:100%;}}`,
+    `@media screen and (min-width: 0px) {}`,
+    `@media screen and (min-width: 0px) {body {height:100%;}}`
+  ];
+  setTest().then(async function () {
+    try {
+      var originalDocuments = compareDocuments();
+      tilepieces.core.setCssMedia(`@media screen and (min-width: 0px) {}`);
+      var style = tilepieces.core.currentStyleSheet;
+      var newRule = style.cssRules[0];
+      logOnDocument(
+        assert(
+          newRule.constructor.name == "CSSMediaRule",
+          "new media Rule setted correctly")
+        , "success");
+      tilepieces.core.deleteCssRule(newRule);
+      logOnDocument(
+        assert(
+          !style.cssRules[0],
+          "rule deleted correctly")
+        , "success");
+      var body = tilepieces.core.currentDocument.body;
+      tilepieces.core.setCssMedia(`@media screen and (min-width: 0px) {}`);
+      newRule = style.cssRules[0];
+      logOnDocument(
+        assert(
+          newRule.constructor.name == "CSSMediaRule",
+          "new media Rule setted correctly")
+        , "success");
+      tilepieces.core.currentMediaRule = style.cssRules[0];
+      tilepieces.core.selectElement(body);
+      tilepieces.core.setCss(body, "height", "100%");
+      newRule = style.cssRules[0].cssRules[0];
+      logOnDocument(
+        assert(
+          newRule.style.height == "100%",
+          "new Rule setted correctly")
+        , "success");
+      tilepieces.core.deleteCssRule(newRule);
+      logOnDocument(
+        assert(
+          !style.cssRules[0].cssRules[0],
+          "rule deleted correctly")
+        , "success");
+      tilepieces.core.setCss(body, "height", "100%");
+      newRule = style.cssRules[0].cssRules[0];
+      logOnDocument(
+        assert(
+          newRule.style.height == "100%",
+          "new Rule setted correctly")
+        , "success");
+      // can't use history comparison because html style tag don't change
+      var pointer = tilepieces.core.history.pointer;
+      for (var i = pointer; i > 0; i--) {
+        if (tilepieces.core.currentStyleSheet) {
+          var s1 = [...tilepieces.core.currentStyleSheet.cssRules].map(v => v.cssText).join("").replace(/(\r\n|\n|\r|\t|\s)/gm, "");
+          var s2 = styleTextExpected[i - 1].replace(/(\r\n|\n|\r|\t|\s)/gm, "");
+          logOnDocument(
+            assert(
+              s1 == s2,
+              "current stylesheet comparison on undo")
+            , "success");
+        }
+        tilepieces.core.undo();
+      }
+      logOnDocument(
+        assert(
+          tilepieces.core.currentMediaRule == null,
+          "currentMediaRule is null")
+        , "success");
+      logOnDocument("comparison after all undo with original document");
+      compareDocuments(originalDocuments);
+      for (var i2 = 0; i2 < pointer; i2++) {
+        await tilepieces.core.redo();
+        if (tilepieces.core.currentStyleSheet) {
+          var s1 = [...tilepieces.core.currentStyleSheet.cssRules].map(v => v.cssText).join("").replace(/(\r\n|\n|\r|\t|\s)/gm, "");
+          var s2 = styleTextExpected[i2].replace(/(\r\n|\n|\r|\t|\s)/gm, "");
+          logOnDocument(
+            assert(
+              s1 == s2,
+              "current stylesheet comparison on redo")
+            , "success");
+        }
+
+      }
+      style = tilepieces.core.currentStyleSheet;
+      logOnDocument(
+        assert(
+          tilepieces.core.currentMediaRule == null,
+          "currentMediaRule is null, there is not a recovery mechanism for this")
+        , "success");
+      newRule = style.cssRules[0].cssRules[0];
+      logOnDocument(
+        assert(
+          newRule.style.height == "100%",
+          "new Rule setted correctly after redo")
+        , "success");
+      logOnDocument("test success");
+      window.dispatchEvent(new Event("test-success"))
+    } catch (e) {
+      logError(e);
+    }
+  })
+    .catch(logError);
+</script>
+</body>
+</html>

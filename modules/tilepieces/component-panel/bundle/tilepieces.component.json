@@ -1,0 +1,42 @@
+{
+  "name": "tilepieces/component-panel/bundle",
+  "description": "",
+  "version": "",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": true,
+  "bundle": {
+    "stylesheet": {
+      "href": "component-panel.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "component-panel.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [
+      "fakesearch_to_remove"
+    ],
+    "scripts": [
+      "fakesearch_to_remove"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/component-panel"
+  ],
+  "components": [],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": "",
+  "noSet": true,
+  "checked": true
+}

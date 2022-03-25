@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<link href="../css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialog"></head><body>
+<button onclick="newConfirm()">New confirm</button>
+
+<div class="tilepieces-dialog" id="tilepieces-alert-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <form id="tilepieces-dialog-alert-form">
+            <div class="tilepieces-alert-dialog-content">
+                <svg viewBox="0 0 19.672209 17.5" class="error" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(-2.1798954,-3.5)">
+                        <path d="m 11,16 h 2 v 2 h -2 z" style="fill: rgb(0, 0, 0); fill-opacity: 1;"></path>
+                        <path d="m 13.516,10 h -3 L 11,15 h 2 z" style="fill: rgb(0, 0, 0);"></path>
+                        <path d="M 12.017,5.974 19.536,19 H 4.496 L 12.017,5.974 m 0,-2.474 c -0.544,0 -1.088,0.357 -1.5,1.071 L 2.532,18.402 C 1.707,19.831 2.382,21 4.032,21 H 20 c 1.65,0 2.325,-1.169 1.5,-2.599 L 13.517,4.572 C 13.104,3.857 12.561,3.5 12.017,3.5 Z" style="fill: rgb(255, 93, 0); fill-opacity: 1;"></path></g>
+                </svg>
+                <div id="tilepieces-alert-dialog-label"></div>
+            </div>
+            <div class="tilepieces-dialog-footer">
+                <button type="submit" id="tilepieces-alert-dialog-button">OK</button>
+            </div>
+        </form>
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><div class="tilepieces-dialog" id="tilepieces-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <!-- insert content here -->
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><div class="tilepieces-dialog" id="tilepieces-confirm-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <span id="tilepieces-confirm-dialog-label"></span>
+        <div>
+            <button id="tilepieces-confirm-dialog-button">Ok</button>
+            <button id="tilepieces-reject-dialog-button">Cancel</button>
+        </div>
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><div class="tilepieces-dialog" id="tilepieces-prompt-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <form id="tilepieces-dialog-prompt-form">
+            <label for="tilepieces-dialog-prompt">
+                <span id="tilepieces-prompt-dialog-label"></span>
+                <input name="tilepieces-dialog-prompt" id="tilepieces-dialog-prompt" title="" autocomplete="off">
+                <small id="tilepieces-prompt-dialog-label-error"></small>
+            </label>
+            <div>
+                <button type="submit" id="tilepieces-prompt-dialog-button"></button>
+            </div>
+        </form>
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><script src="../../events/index.js" data-tilepieces-component="tilepieces/events"></script><script src="../dialog.bundle.js" data-tilepieces-component="tilepieces/dialog"></script><script>
+  let count = 1;
+  function confirm(e){
+        console.log("confirm",e);
+    }
+    function reject(e){
+        console.log("reject",e);
+    }
+    function newConfirm(){
+      var configDialog = confirmDialog(count++ + " - ok?");
+      configDialog.events.on("confirm",confirm);
+      configDialog.events.on("reject",reject);
+    }
+  newConfirm();
+</script></body></html>

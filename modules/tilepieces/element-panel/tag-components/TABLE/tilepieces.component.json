@@ -1,0 +1,43 @@
+{
+  "name": "element-panel/TABLE",
+  "description": "",
+  "version": "",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": true,
+  "bundle": {
+    "stylesheet": {
+      "href": "css.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "table.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [
+      "css"
+    ],
+    "scripts": [
+      "src/*.js",
+      "src/actions"
+    ]
+  },
+  "dependencies": [
+    "tilepieces-stylesheet"
+  ],
+  "components": {},
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "interface.html"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

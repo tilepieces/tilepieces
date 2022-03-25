@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title></title>
+<link href="../components/test-utils/test-utils.css" rel="stylesheet" data-tilepieces-component="tilepieces/test-utils">
+</head>
+<body><section id="log-section" data-tilepieces-component="test-utils"></section>
+
+<script src="../cssSpecificity.js" data-tilepieces-component="tilepieces/css-specificity"></script>
+<script src="../components/test-utils/test-utils.bundle.js" data-tilepieces-component="tilepieces/test-utils"></script>
+<script>
+  try{
+  assert(cssSpecificity('*')==0)
+  logOnDocument("Expect '*' return 0","success")
+  assert(cssSpecificity('b')==1)
+  logOnDocument("Expect 'b' return 1","success")
+  assert(cssSpecificity('li')==1)
+  logOnDocument("Expect 'li' return 1","success")
+  assert(cssSpecificity('li:first-line')==2)
+  logOnDocument("Expect 'li:first-line' return 2","success")
+  assert(cssSpecificity('ul li')==2)
+  logOnDocument("Expect 'ul li' return 2","success")
+  assert(cssSpecificity('UL OL+LI')==3)
+  logOnDocument("Expect 'UL OL+LI' return 3","success")
+  assert(cssSpecificity('H1 + *[REL=up]')==11)
+  logOnDocument("Expect 'H1 + *[REL=up]' return 11","success")
+  assert(cssSpecificity('UL OL LI.red')==13)
+  logOnDocument("Expect 'UL OL LI.red' return 13","success")
+  assert(cssSpecificity('LI.red.level')==21)
+  logOnDocument("Expect 'LI.red.level' return 21","success")
+  assert(cssSpecificity('#x34y')==100)
+  logOnDocument("Expect '#x34y' return 100","success")
+  assert(cssSpecificity('#s12:not(FOO)')==101)
+  logOnDocument("Expect '#s12:not(FOO)' return 101","success")
+  assert(cssSpecificity('#s12:not(FOO):not( .crazyness )')==111)
+  logOnDocument("Expect '#s12:not(FOO):not( .crazyness )' return 111","success")
+  assert(cssSpecificity('li > ul')==2)
+  logOnDocument("Expect 'li > ul' return 2","success")
+  assert(cssSpecificity('.myClass')==10)
+  logOnDocument("Expect '.myClass' return 10","success")
+  assert(cssSpecificity('*.myClass')==10)
+  logOnDocument("Expect '*.myClass' return 10","success")
+  assert(cssSpecificity('[type=checkbox]')==10)
+  logOnDocument("Expect '[type=checkbox]' return 10","success")
+  assert(cssSpecificity('li.myclass')==11)
+  logOnDocument("Expect 'li.myclass' return 11","success")
+  assert(cssSpecificity('li[attr]')==11)
+  logOnDocument("Expect 'li[attr]' return 11","success")
+  assert(cssSpecificity('li:nth-of-type(3n) ~ li')==12)
+  logOnDocument("Expect 'li:nth-of-type(3n) ~ li' return 12","success")
+  assert(cssSpecificity('li.class:nth-of-type(3n)')==21)
+  logOnDocument("Expect 'li.class:nth-of-type(3n)' return 21","success")
+  assert(cssSpecificity('input[type]:not(.class)')==21)
+  logOnDocument("Expect 'input[type]:not(.class)' return 21","success")
+  assert(cssSpecificity('input[type]:is(.class)')==21);
+  logOnDocument("Expect 'input[type]:is(.class)' return 21","success");
+  assert(cssSpecificity('input:not([type="checkbox"]):not([type="radio"])')==21,"Expect 'input:not([type=\"checkbox\"]):not([type=\"radio\"])' return 21");
+  logOnDocument("Expect 'input:not([type=\"checkbox\"]):not([type=\"radio\"])' return 21","success");
+
+  assert(cssSpecificity(":is(section.is-styling, aside.is-styling, footer.is-styling) a")==12,
+    "Expect ':is(section.is-styling, aside.is-styling, footer.is-styling) a' return 12");
+  logOnDocument("Expect ':is(section.is-styling, aside.is-styling, footer.is-styling) a' return 12","success");
+
+  assert(cssSpecificity(":where(section.where-styling, aside.where-styling, footer.where-styling) a")==1,
+    "Expect ':where(section.where-styling, aside.where-styling, footer.where-styling) a' return 1");
+  logOnDocument("Expect ':where(section.where-styling, aside.where-styling, footer.where-styling) a' return 1","success");
+
+  assert(cssSpecificity('#myDiv li.class a[href]')==122)
+  logOnDocument("Expect '#myDiv li.class a[href]' return 122","success")
+  assert(cssSpecificity('div:is(.outer) p')==12);
+  logOnDocument("Expect 'div:is(.outer) p' return 12","success");
+  assert(cssSpecificity('div:where(.outer) p')==2);
+  logOnDocument("Expect 'div:where(.outer) p' return 2","success");
+}
+catch(e){
+  console.error(e);
+  logOnDocument(e.err || e.error || e.toString(),"error");
+}</script></body></html>

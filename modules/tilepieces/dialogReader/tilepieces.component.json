@@ -1,0 +1,43 @@
+{
+  "name": "tilepieces/dialogReader",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "html/html.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {
+      "href": "css.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
+    "script": {
+      "src": "dialogReader.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": [
+      "src"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/stylesheet",
+    "tilepieces/dialog",
+    "tilepieces/tt",
+    "tilepieces/core"
+  ],
+  "components": {},
+  "mergeMiscellaneous": false,
+  "miscellaneous": [
+    "parseHTML.js"
+  ],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": true,
+  "parseHTML": "parseHTML.js"
+}

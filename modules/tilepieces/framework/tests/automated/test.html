@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta description="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link href="../../../test-utils/test-utils.css" rel="stylesheet" data-tilepieces-component="test-utils">
+  <style data-tilepieces-current-stylesheet="">iframe#test-frame {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border: 0px;
+  }
+
+  html, body {
+    margin: 0px;
+    height: 100%;
+  }
+
+  section#log-section {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    z-index: 2;
+    display: none;
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  button#test-results {
+    position: absolute;
+    right: 0px;
+    z-index: 3;
+  }
+
+  section#log-section.show {
+    display: block;
+  }
+
+  button#change-panel-position {
+    right: 0px;
+    position: absolute;
+    top: 22px;
+  }
+
+  #change-panel-position {
+    position: absolute;
+    right: 0px;
+    top: 24px;
+    z-index: 20;
+  }</style>
+</head>
+<body><select id="change-panel-position">
+  <option value="top">top</option>
+  <option value="left">left</option>
+  <option value="right">right</option>
+  <option value="bottom" selected="">bottom</option>
+</select>
+<iframe id="test-frame"></iframe>
+<button id="test-results">Show test results</button>
+<section id="log-section" data-tilepieces-component="test-utils"></section>
+<script src="../../../test-utils/test-utils.bundle.js" data-tilepieces-component="test-utils"></script>
+<script src="test.js" type="module"></script>
+</body>
+</html>

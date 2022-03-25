@@ -1,0 +1,40 @@
+{
+  "name": "tilepieces/css-viewer/bundle",
+  "description": "",
+  "version": "",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "",
+  "addDependenciesToBundles": true,
+  "bundle": {
+    "stylesheet": {
+      "href": "css-viewer.bundle.css"
+    },
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {
+      "src": "css-viewer.bundle.js"
+    }
+  },
+  "sources": {
+    "stylesheets": [
+      "fakesource"
+    ],
+    "scripts": [
+      "fakesource"
+    ]
+  },
+  "dependencies": [
+    "tilepieces/css-viewer"
+  ],
+  "components": {},
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": false,
+  "parseHTML": ""
+}

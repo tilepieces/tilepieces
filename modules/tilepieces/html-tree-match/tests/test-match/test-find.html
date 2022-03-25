@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A test</title>
+</head>
+<body>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<div class="banner">
+    <h1>A banner Title</h1>
+    <h2>A banner subtitle</h2>
+    Some points
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <img alt="An image should be here" src=""/>
+    <p>
+        A banner paragraph
+    </p>
+</div>
+<script src="../../htmlTreeMatch.js"></script>
+<script>
+    // TESTING IF IMAGES ARE CORRECTLY REFERENCED
+    async function a(){
+        var html = await fetch(location.href);
+        var htmltext = await html.text();
+        var b = document.querySelectorAll(".banner");
+        var htmlMatch = HTMLTreeMatch(htmltext);
+        var a = htmlMatch.find(document.querySelectorAll(".banner")[1]).match;
+        var uno = htmlMatch.find(document.querySelector(".banner img")).match;
+        var due = htmlMatch.find(document.querySelector(".banner:nth-child(2) img")).match;
+        console.log(uno,a,uno.parentElement,due,
+                due.parentElement);
+        // TESTING
+        console.assert([...a.parentElement.children].indexOf(a) == 1)
+        console.assert([...uno.parentElement.parentElement.children].indexOf(uno.parentElement) == 0)
+        console.assert([...due.parentElement.parentElement.children].indexOf(due.parentElement) == 1)
+    }
+    a()
+</script>
+</body>
+</html>

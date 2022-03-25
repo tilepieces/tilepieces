@@ -1,0 +1,113 @@
+input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+  width: 100%;
+  padding: 0.4em;
+  box-sizing: border-box;
+  border: 1px solid rgb(204, 204, 204);
+  margin: 1em 0px;
+}
+
+button, .as-button {
+  background: none;
+  border-radius: 0.25em;
+  padding: 0.4em 0.8em;
+  border: 1px solid rgb(204, 204, 204);
+  cursor: pointer;
+  font-size: 1.1em;
+}
+
+body {
+  font-family: sans-serif;
+  background: rgb(255, 255, 255);
+}
+
+.flex-box {
+  display: flex;
+}
+
+.flex-box input:not([type="checkbox"]):not([type="radio"]), .flex-box select {
+  flex: 1 1 auto;
+  width: 1%;
+  position: relative;
+  margin: 0px;
+}
+
+.flex-box button:not(:first-child) {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: rgba(0, 0, 0, 0.02);
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.106) 0%, 2%, rgb(255, 255, 255) 100%);
+}
+
+fieldset {
+  border: 1px solid rgb(204, 204, 204);
+  margin: 2em 0px;
+  padding: 0.5em;
+}
+
+.flex-box.two-buttons button:first-child {
+  flex: 1 1 auto;
+  border-right: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0em;
+}
+
+legend {
+  display: flex;
+  place-content: center;
+}
+
+legend > :first-child {
+  padding: 0.4em;
+  font-size: 1.1em;
+}
+
+fieldset.no-border {
+  border: 0px;
+}
+
+legend input:not([type="checkbox"]):not([type="radio"]) {
+  margin: 0px;
+}
+
+div.upload-button {
+  position: relative;
+}
+
+.flex-box .upload-button input[type="file"] {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+  z-index: 2;
+  display: none;
+}
+
+.upload-button label {
+  display: block;
+  cursor: pointer;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
+summary {
+  padding: 1em;
+}
+
+small.tilepieces-small-error {
+  display: none;
+  color: red;
+}
+
+small.tilepieces-small-error.show {
+  display: block;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+}

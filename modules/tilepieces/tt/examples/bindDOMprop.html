@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TT if example</title>
+  <meta description="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+<div onclick="alertData(this)" data-bind-dom-prop="__data,data" style="cursor:pointer">Click here for an alert with the
+  data value
+</div>
+<input data-bind="data" placeholder="change data here">
+<script src="../tt.js" data-tilepieces-component="tt"></script>
+<script>
+  var scope = {data: ""};
+  var template = new TT(document.body, scope);
+
+  function alertData(el) {
+    console.log(el);
+    alert(el.__data);
+  };
+</script>
+</body>
+</html>

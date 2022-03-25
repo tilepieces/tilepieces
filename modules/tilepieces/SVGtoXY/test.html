@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title></title>
+<link href="../drag/css.css" rel="stylesheet" data-tilepieces-component="drag"></head>
+<body>
+<fieldset>
+    <legend>one</legend>
+    <svg id="svg-1" width="500" height="500" style="border:1px solid;display:block;margin:auto">
+        <line x1="0" y1="50%" x2="100%" y2="50%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+        <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+        <line x1="50%" y1="50%" x2="50%" y2="50%" stroke="black" stroke-width="2" class="line-test"></line>
+        <circle cx="50%" cy="50%" r="10" fill="lightblue" class="circle-test"></circle>
+    </svg>
+</fieldset>
+<fieldset>
+    <legend>two</legend>
+    <svg id="svg-2" width="250" height="250" style="border:1px solid">
+        <line x1="0" y1="50%" x2="100%" y2="50%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+        <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+        <line x1="50%" y1="50%" x2="50%" y2="50%" stroke="black" stroke-width="2" class="line-test"></line>
+        <circle cx="50%" cy="50%" r="10" fill="lightblue" class="circle-test"></circle>
+    </svg>
+</fieldset>
+<svg id="svg-3" width="1000" height="500" style="border:1px solid">
+    <line x1="0" y1="50%" x2="100%" y2="50%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+    <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="black" stroke-width="1" stroke-dasharray="10"></line>
+    <line x1="50%" y1="50%" x2="50%" y2="50%" stroke="black" stroke-width="2" class="line-test"></line>
+    <circle cx="50%" cy="50%" r="10" fill="lightblue" class="circle-test"></circle>
+</svg>
+
+
+
+
+<script src="../offset/offset.js" data-tilepieces-component="offset"></script>
+<script src="../events/index.js" data-tilepieces-component="events"></script>
+<script src="../drag/drag.js" data-tilepieces-component="drag"></script>
+<script src="SVGtoXY.js" data-tilepieces-component="SVGtoXY"></script><script>
+    svg1 = SVGtoXY(document.getElementById("svg-1"));
+    svg2 = SVGtoXY(document.getElementById("svg-2"));
+    svg3 = SVGtoXY(document.getElementById("svg-3"));
+    svg1.onChange(function(x,y){
+        console.log("svg1 x,y ->", x, y);
+    })
+    svg2.onChange(function(x,y){
+        console.log("svg2 x,y ->", x, y);
+    })
+    svg3.onChange(function(x,y){
+        console.log("svg3 x,y ->", x, y);
+    })
+</script></body></html>

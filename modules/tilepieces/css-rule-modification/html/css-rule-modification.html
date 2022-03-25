@@ -1,0 +1,19 @@
+<!DOCTYPE html><html><head></head><body>
+<template id="css-properties-list">
+    <ul class="rule-block__list" data-bind-dom-prop="__css-viewer-rule,rule">
+        <li data-foreach="rule.properties"
+            data-foreach-key-name="property"
+            data-index="${property.index}"
+            class="rule__property ${property.isInheritedClass} ${rule.contenteditable}">
+            <input class=rule-block__checked type="checkbox" data-bind="property.checked" ${property.disabled}>
+            <div class="rule-block__key autocomplete" data-bind-dom-prop="__autocomplete_suggestions,cssDefaultProperties" data-key="${property.property}" data-bind="property.property" data-contenteditable="${property.contenteditable}"></div>
+            <div class="rule-block__divider">:</div>
+            <div class="input-css rule-block__value autocomplete"
+                 data-bind-dom-prop="__autocomplete_suggestions,property.autocomplete_suggestions"
+                 data-prop="${property.property}"
+                 data-bind="property.value"
+                 ${property.contenteditable}></div><div>;</div>
+        </li>
+    </ul>
+    <button class="rule-block__add-property">+</button>
+</template></body></html>

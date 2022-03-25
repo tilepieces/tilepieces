@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .border-image-1 {
+      border-image: url('https://interactive-examples.mdn.mozilla.net/media/examples/border-diamonds.png') 30;
+    }
+
+    .border-image-2 {
+      border-image: url('https://interactive-examples.mdn.mozilla.net/media/examples/border-diamonds.png') 30 / 19px round;
+    }
+
+    .border-image-3 {
+      border-image: url('https://interactive-examples.mdn.mozilla.net/media/examples/border-diamonds.png') 30 fill / 30px / 30px space;
+    }
+
+    .border-image-4 {
+      border-image: linear-gradient(#f6b73c, #4d9f0c) 30;
+    }
+
+    .border-image-5 {
+      border-image: repeating-linear-gradient(30deg, #4d9f0c, #9198e5, #4d9f0c 20px) 60;
+    }
+
+    #borderimg1 {
+      border: 10px solid transparent;
+      padding: 15px;
+      border-image: url(https://www.w3schools.com/cssref/border.png) 50 round;
+    }
+
+    #borderimg2 {
+      border: 10px solid transparent;
+      padding: 15px;
+      border-image: url(https://www.w3schools.com/cssref/border.png) 20% round;
+    }
+
+    #borderimg3 {
+      border: 10px solid transparent;
+      padding: 15px;
+      border-image: url(https://www.w3schools.com/cssref/border.png) 30% round;
+    }
+
+    section.flex {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    section.flex > * {
+      width: 50%;
+      padding: 50px;
+      border-width: 30px;
+      border-style: solid;
+      box-sizing: border-box;
+      background: #fff3d4;
+      margin: 30px;
+    }
+  </style>
+</head>
+<body>
+<section class="flex">
+  <div class="border-image-1">
+    This is a box with a border around it.
+  </div>
+  <div class="border-image-2">
+    This is a box with a border around it.
+  </div>
+  <div class="border-image-3">
+    This is a box with a border around it.
+  </div>
+  <div class="border-image-4">
+    This is a box with a border around it.
+  </div>
+  <div class="border-image-5">
+    This is a box with a border around it.
+  </div>
+</section>
+<section>
+  <p id="borderimg1">border-image: url(border.png) 50 round;</p>
+  <p id="borderimg2">border-image: url(border.png) 20% round;</p>
+  <p id="borderimg3">border-image: url(border.png) 30% round;</p>
+</section>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html><head><link href="tabs.css" rel="stylesheet" data-tilepieces-current-stylesheet="">
+<style>body > div:not(:first-child)
+{
+ padding : 0.5em;
+ font : 2em sans-serif;
+}</style></head><body style="margin: 0px; overflow-x: hidden; font-family: sans-serif;"><div class="tab-buttons tab-horizontal" id="tabtest">
+  <a class="tab-prev" href="javascript:void(0)">...</a>
+  <a class="tab-next" href="javascript:void(0)">...</a>
+  <div class="tab-buttons-wrap">
+    <div class="tab-buttons-inside">
+      <a href="#one" class="selected">Tab 1</a>
+      <a href="#two">Tab 2</a>
+      <a href="#three">Tab 3</a>
+      <a href="#four">Tab 4</a>
+      <a href="#five">Tab 5</a>
+      <a href="#six">Tab 6</a>
+      <a href="#seven">Tab 7</a>
+      <a href="#eight">Tab 8</a>
+      <a href="#nine">Tab 9</a>
+      <a href="#ten">Tab 10</a>
+    </div>
+  </div>
+</div>
+<div id="one">one</div>
+<div id="two" style="display:none">two</div>
+<div id="three" style="display:none">three</div>
+<div id="four" style="display:none">four</div>
+<div id="five" style="display:none">five</div>
+<div id="six" style="display:none">six</div>
+<div id="seven" style="display:none">seven</div>
+<div id="eight" style="display:none">eight</div>
+<div id="nine" style="display:none">nine</div>
+<div id="ten" style="display:none">ten</div>
+<script src="tabs.js"></script>
+<script>
+  tilepieces_tabs({
+    el: tabtest
+  })
+</script>
+</body></html>

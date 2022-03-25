@@ -1,0 +1,26 @@
+.gradient { clear: both; padding: 20px 12px 33px; position: relative; max-width: 90%; margin: auto;-webkit-user-select: none;user-select: none; }
+.gradient-image { width: calc(100% + 12px); height: 100px; margin: 5px 0px; position: relative; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 2px 2px, rgba(255, 255, 255, 0.5) 0px 0px 3px 3px; }
+.gradient-image-gradient { position: relative; z-index: 2; width: 100%; height: 100%; }
+.gradient .input-css-placeholder { display: inline-block; }
+.gradient .parameters { display: inline-block; border: 1px solid rgb(204, 204, 204); border-radius: 5px; margin: 0px 0px 0px 1em; vertical-align: middle; }
+.gradient-image-transparent { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background-image: linear-gradient(45deg, rgb(204, 204, 204) 25%, transparent 25%), linear-gradient(-45deg, rgb(204, 204, 204) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgb(204, 204, 204) 75%), linear-gradient(-45deg, transparent 75%, rgb(204, 204, 204) 75%); background-size: 20px 20px; background-position: 0px 0px, 0px 10px, 10px -10px, -10px 0px; z-index: 1; }
+html.dragGradient { cursor: move; }
+html.dragGradient * { cursor: move !important; }
+.color-stop .color-stop-button { background: transparent; outline: none; width: 22px; height: 20px; padding: 0px; box-sizing: content-box;border-radius:0;margin:0 }
+.gradient-inputs { margin: 0px 0px 30px; display: flex; }
+.color-stops { height: 33px; width: calc(100% + 12px); position: relative; }
+.color-stops.canAdd { cursor: copy; }
+.color-stop { width: 24px; padding: 10px 0px 0px; position: absolute; }
+.color-stop-dragger { border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid rgb(51, 51, 51); position: absolute; top: 0px; left: 50%; transform: translate(-50%, 0px); cursor: move; touch-action: none; z-index: 2; }
+.color-interpolation-slider { position: relative; left: -7px; width: calc(100% + 13px); height: 15px; visibility: hidden; }
+.color-interpolation-slider.canAdd { visibility: visible; }
+.color-interpolation { position: absolute; top: 0px; width: 12px; height: 12px; border: 1px solid rgb(204, 204, 204); transform: rotate(45deg); overflow: hidden; background-image: linear-gradient(45deg, rgb(204, 204, 204) 25%, transparent 25%), linear-gradient(-45deg, rgb(204, 204, 204) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgb(204, 204, 204) 75%), linear-gradient(-45deg, transparent 75%, rgb(204, 204, 204) 75%); background-size: 8px 8px; background-position: 0px 0px, 0px 8px, 8px -8px, -8px 0px; touch-action: none; }
+.color-interpolation-colors { transform: rotate(-45deg); display: flex; position: absolute; width: 173%; height: 168%; top: -4px; left: -4px; }
+.color-interpolation-colors div { width: 50%; }
+.gradient .true { display: block; }
+.gradient .false, .gradient .undefined, .gradient .null { display: none; }
+.knob { width: 48px; height: 48px; border-radius: 100%; border: 1px solid; position: relative; transform: rotate(0deg); margin-left: 1em; }
+.knob-index { border-right: 4px solid transparent; border-left: 4px solid transparent; border-bottom: 8px solid; width: 0px; height: 0px; left: 50%; position: absolute; transform: translate(-50%, 0px); }
+.gradient-inputs > :not(.knob) { flex-grow: 1; }
+.gradient-inputs > select {width:auto}
+.gradient-parameters-wrapper{display:flex;justify-content:center}

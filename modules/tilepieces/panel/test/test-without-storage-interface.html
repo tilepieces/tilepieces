@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>panel element html</title><link href="../../../../components/drag/css.css" rel="stylesheet" data-tilepieces-component="drag"><link href="../../../../css/css.css" rel="stylesheet" data-tilepieces-component="panel"><style data-tilepieces-current-stylesheet="">.panel-element { display: block; }</style></head><body><div class="panel-element" data-alt-popup="src to be displayed when opened as popup. Remove it for the default behaviour" id="">
+    <div class="panel-handler">
+        <span class="panel-title">Title</span>
+    </div>
+    <span class="panel-minimize">_</span>
+    <span class="panel-eject"></span>
+    <span class="panel-close">X</span>
+    <iframe data-src="src here"></iframe>
+    <div class="panel-prevent-iframe-mousedown"></div>
+</div><script src="../../../../components/offset/offset.js" data-tilepieces-component="offset"></script><script src="../../../../components/events/index.js" data-tilepieces-component="events"></script><script src="../../../../components/drag/drag.js" data-tilepieces-component="drag"></script><script src="../../../../panel.js" data-tilepieces-component="panel"></script><script>
+// activation example
+const panelElement = document.querySelector(".panel-element");
+const panelExample = panel(panelElement,false,true)</script></body></html>

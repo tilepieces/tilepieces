@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>test images and data-src</title>
+  <style>
+    img {
+      max-width: 50%
+    }
+  </style>
+</head>
+<body>
+<button onclick="changeGroup(1)" ${firstdisabled}>first set</button>
+<button onclick="changeGroup(2)" ${seconddisabled}>second set</button>
+<button onclick="changeGroup(3)" ${thirddisabled}>third set</button>
+<ul>
+  <li data-foreach="images">
+    <img data-src="${key}" data-tesdata-src="${key}">
+  </li>
+</ul>
+<script src="../tt.js"></script>
+<script>
+  window.images1 = [
+    "images/5.webp",
+    "images/260px-Rotating_earth_(large).gif",
+    "images/Animated_PNG_example_bouncing_beach_ball.png",
+    "images/clock-demo-200px.png",
+    "images/Example.jpg"
+  ];
+  window.images2 = [
+    "images/favicon144.png",
+    "images/PNG_transparency_demonstration_1.png",
+    "images/Svg_example3.svg",
+    "images/Vulphere_WebP_OTAGROOVE_demonstration_2.webp"
+  ];
+  window.images3 = [
+    "images/clock-demo-400px.png",
+    "images/favicon72.png",
+    "images/Vector-based_example.svg"
+  ]
+  let model = {
+    images: images1,
+    set: 1,
+    firstdisabled: "disabled",
+    seconddisabled: "",
+    thirddisabled: ""
+  }
+  let t = new TT(document.querySelector("ul"), model);
+
+  function changeGroup(key) {
+    model.images = window["images" + key];
+    model.set = key;
+    model.firstdisabled = key == 1 ? "disabled" : "";
+    model.seconddisabled = key == 2 ? "disabled" : "";
+    model.thirddisabled = key == 3 ? "disabled" : "";
+    t.set("", model);
+  }
+</script>
+</body>
+</html>
