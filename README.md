@@ -17,4 +17,4 @@ You can:
 - change the [storageInterface](https://tilepieces.net/documentation/api/storageInterface.html), which currently points to modules/tilepieces/storage-interface-http/tilepieces-storage-interface-http.bundle.js.
 - Edit the application info, inside the # tilepieces-dialog-info template tag
 
-Further configurations can be made by editing the settings.json file following [this guide](https://tilepieces.net/documentation/data-structures/general-settings.html).
+Further configurations can be made by editing the settings.json file following [this page](https://tilepieces.net/documentation/data-structures/general-settings.html).
