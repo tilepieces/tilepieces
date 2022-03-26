@@ -8,6 +8,11 @@ const componentButtonCreate = document.getElementById("component-settings-create
 const localComponents = document.getElementById("local-components");
 const globalComponents = document.getElementById("global-components");
 
+let exportGlobalComponents = document.getElementById("export-global-components");
+let exportLocalComponents = document.getElementById("export-local-components")
+let importLocalComponents = document.getElementById("import-local-components");
+let importGlobalComponents = document.getElementById("import-global-components")
+
 const menuBarprojects = document.getElementById("menu-bar-projects");
 const projectsDialog = document.getElementById("projects");
 const currentProjectData = document.getElementById("current-project-data");
@@ -54,7 +59,3 @@ let UserIsWritingComponentMetadata;
 tilepieces_tabs({
   el: document.getElementById("tabs")
 })
-let exportGlobalComponents = document.getElementById("export-global-components");
-let exportLocalComponents = document.getElementById("export-local-components")
-let importLocalComponents = document.getElementById("import-local-components");
-let importGlobalComponents = document.getElementById("import-global-components")

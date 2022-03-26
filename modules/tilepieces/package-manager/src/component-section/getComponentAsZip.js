@@ -2,8 +2,10 @@ async function getComponentAsZip(pkg, zip, pkgName, isLocal, componentsCache = [
   if (componentsCache.find(a => a.name == pkg.name))
     return componentsCache;
 
-  var path = ((pkg.path || "") + "/").replace(/\/+/g, "/");
   var updatepath = (updatePath + "/").replace(/\/+/g, "/");
+  var path = isLocal ?
+    ((pkg.path || "") + "/").replace(/\/+/g, "/") :
+    updatepath === pkgName ? "" : updatepath;
   var style = pkg.bundle.stylesheet;
   var script = pkg.bundle.script;
   var getSettingsRaw = await app.storageInterface.read(path + "tilepieces.component.json", isLocal ? null : pkgName);

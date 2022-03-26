@@ -1,84 +1,97 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <title>css inspector</title>
-    
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>css inspector</title>
 
 
-    
+  <style>
+    body {
+      background: #fff;
+    }
 
-    <style>
-        body{
-            background:#fff;
-        }
-        .rule-block-test{
-            border-bottom:1px solid #ccc;
-            background:#fff;
-            font-size:13px;
-            padding:4px;
-            position:relative;
-        }
-    </style>
-<link href="../../../autocomplete/autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete"><link href="../../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input"><link href="../../css-rule-modification.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-rule-modification" data-tilepieces-current-stylesheet=""></head>
+    .rule-block-test {
+      border-bottom: 1px solid #ccc;
+      background: #fff;
+      font-size: 13px;
+      padding: 4px;
+      position: relative;
+    }
+  </style>
+  <link href="../../../autocomplete/autocomplete.css" rel="stylesheet"
+        data-tilepieces-component="tilepieces/autocomplete">
+  <link href="../../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input">
+  <link href="../../css-rule-modification.css" rel="stylesheet"
+        data-tilepieces-component="tilepieces/css-rule-modification" data-tilepieces-current-stylesheet="">
+</head>
 <body>
 <div id="app-view-1">
-    <h1>First block</h1>
-    <h2>test on rules</h2>
-    <div class="rule-block-test">
-        <div>selector rule: .a</div>
+  <h1>First block</h1>
+  <h2>test on rules</h2>
+  <div class="rule-block-test">
+    <div>selector rule: .a</div>
     <div data-use="css-properties-list" data-params="rule,ruleA"></div>
-    </div>
-    <hr>
-    <div class="rule-block-test">
-        <div>selector rule: .b</div>
+  </div>
+  <hr>
+  <div class="rule-block-test">
+    <div>selector rule: .b</div>
     <div data-use="css-properties-list" data-params="rule,ruleB"></div>
-    </div>
-    <hr>
-    <div class="rule-block-test">
-        <div>selector rule: #example-element </div>
+  </div>
+  <hr>
+  <div class="rule-block-test">
+    <div>selector rule: #example-element</div>
     <div data-use="css-properties-list" data-params="rule,ruleExample"></div>
-    </div>
+  </div>
 </div>
 <div id="app-view-2">
-    <h1>Second block</h1>
-    <h2>test on keyframes</h2>
-    <div class="rule-block-test">
-        <div>@keyframes slidein - from(0%)</div>
+  <h1>Second block</h1>
+  <h2>test on keyframes</h2>
+  <div class="rule-block-test">
+    <div>@keyframes slidein - from(0%)</div>
     <div data-use="css-properties-list" data-params="rule,slideinFrom"></div>
-    </div>
-    <hr>
-    <div class="rule-block-test">
-        <div>@keyframes slidein - to(100%)</div>
+  </div>
+  <hr>
+  <div class="rule-block-test">
+    <div>@keyframes slidein - to(100%)</div>
     <div data-use="css-properties-list" data-params="rule,slideinTo"></div>
-    </div>
-    <hr>
-    <div class="rule-block-test">
-        <div>@keyframes backgroundColor - from(0%)</div>
+  </div>
+  <hr>
+  <div class="rule-block-test">
+    <div>@keyframes backgroundColor - from(0%)</div>
     <div data-use="css-properties-list" data-params="rule,backgroundColorFrom"></div>
-    </div>
-    <hr>
-    <div class="rule-block-test">
-        <div>@keyframes backgroundColor - to(100%)</div>
+  </div>
+  <hr>
+  <div class="rule-block-test">
+    <div>@keyframes backgroundColor - to(100%)</div>
     <div data-use="css-properties-list" data-params="rule,backgroundColorTo"></div>
-    </div>
+  </div>
 </div>
 <!-- package's html -->
 
 
-
-
-
-
-
-
-<div class="autocomplete-hint" data-tilepieces-component="autocomplete"></div><template id="css-properties-list" data-tilepieces-component="css-rule-modification">
-    <ul class="rule-block__list" data-bind-dom-prop="__css-viewer-rule,rule">
-        <li data-foreach="rule.properties" data-foreach-key-name="property" data-index="${property.index}" class="rule__property ${property.isInheritedClass}">
-            <input class="rule-block__checked" type="checkbox" ${property.disabled}="" data-bind="property.checked">
-            <div class="rule-block__key autocomplete" data-bind-dom-prop="__autocomplete_suggestions,cssDefaultProperties" data-key="${property.property}" data-bind="property.property" data-contenteditable="${property.contenteditable}"></div>
-            <div class="rule-block__divider">:</div>
-            <div class="input-css rule-block__value autocomplete" data-bind-dom-prop="__autocomplete_suggestions,property.autocomplete_suggestions" data-prop="${property.property}" data-bind="property.value" ${property.contenteditable}=""></div><div>;</div>
-        </li>
-    </ul>
-    <button class="rule-block__add-property">+</button>
-</template><script src="../../../events/index.js" data-tilepieces-component="tilepieces/events"></script><script src="../../../autocomplete/autocomplete.bundle.js" data-tilepieces-component="tilepieces/autocomplete"></script><script src="../../../css-input/css-input.bundle.js" data-tilepieces-component="tilepieces/css-input"></script><script src="../../css-rule-modification.bundle.js" data-tilepieces-component="tilepieces/css-rule-modification"></script><script src="test-code.js"></script></body></html>
+<div class="autocomplete-hint" data-tilepieces-component="autocomplete"></div>
+<template id="css-properties-list" data-tilepieces-component="css-rule-modification">
+  <ul class="rule-block__list" data-bind-dom-prop="__css-viewer-rule,rule">
+    <li data-foreach="rule.properties" data-foreach-key-name="property" data-index="${property.index}"
+        class="rule__property ${property.isInheritedClass}">
+      <input class="rule-block__checked" type="checkbox" ${property.disabled}="" data-bind="property.checked">
+      <div class="rule-block__key autocomplete" data-bind-dom-prop="__autocomplete_suggestions,cssDefaultProperties"
+           data-key="${property.property}" data-bind="property.property"
+           data-contenteditable="${property.contenteditable}"></div>
+      <div class="rule-block__divider">:</div>
+      <div class="input-css rule-block__value autocomplete"
+           data-bind-dom-prop="__autocomplete_suggestions,property.autocomplete_suggestions"
+           data-prop="${property.property}" data-bind="property.value" ${property.contenteditable}=""></div>
+      <div>;</div>
+    </li>
+  </ul>
+  <button class="rule-block__add-property">+</button>
+</template>
+<script src="../../../events/index.js" data-tilepieces-component="tilepieces/events"></script>
+<script src="../../../autocomplete/autocomplete.bundle.js" data-tilepieces-component="tilepieces/autocomplete"></script>
+<script src="../../../css-input/css-input.bundle.js" data-tilepieces-component="tilepieces/css-input"></script>
+<script src="../../css-rule-modification.bundle.js"
+        data-tilepieces-component="tilepieces/css-rule-modification"></script>
+<script src="test-code.js"></script>
+</body>
+</html>

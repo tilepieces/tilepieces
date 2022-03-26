@@ -202,6 +202,10 @@ function setTemplate(e) {
     t.set("", model);
     return;
   }
+  // this for mobile when keyboard trigger a resize event
+  var oDoc = appView.ownerDocument
+  if(oDoc.hasFocus() && oDoc.activeElement && appView.contains(oDoc.activeElement))
+    return;
   d = e ? e.detail : d; // cached detail
   model.elementPresent = d.target;
   model.match = d.match;

@@ -39,6 +39,11 @@ const componentButtonCreate = document.getElementById("component-settings-create
 const localComponents = document.getElementById("local-components");
 const globalComponents = document.getElementById("global-components");
 
+let exportGlobalComponents = document.getElementById("export-global-components");
+let exportLocalComponents = document.getElementById("export-local-components")
+let importLocalComponents = document.getElementById("import-local-components");
+let importGlobalComponents = document.getElementById("import-global-components")
+
 const menuBarprojects = document.getElementById("menu-bar-projects");
 const projectsDialog = document.getElementById("projects");
 const currentProjectData = document.getElementById("current-project-data");
@@ -85,10 +90,6 @@ let UserIsWritingComponentMetadata;
 tilepieces_tabs({
   el: document.getElementById("tabs")
 })
-let exportGlobalComponents = document.getElementById("export-global-components");
-let exportLocalComponents = document.getElementById("export-local-components")
-let importLocalComponents = document.getElementById("import-local-components");
-let importGlobalComponents = document.getElementById("import-global-components")
 componentsDialog.addEventListener("click", e => {
   var target = e.target;
   if (!target.classList.contains("add-new-local-component") ||
@@ -367,8 +368,10 @@ async function getComponentAsZip(pkg, zip, pkgName, isLocal, componentsCache = [
   if (componentsCache.find(a => a.name == pkg.name))
     return componentsCache;
 
-  var path = ((pkg.path || "") + "/").replace(/\/+/g, "/");
   var updatepath = (updatePath + "/").replace(/\/+/g, "/");
+  var path = isLocal ?
+    ((pkg.path || "") + "/").replace(/\/+/g, "/") :
+    updatepath === pkgName ? "" : updatepath;
   var style = pkg.bundle.stylesheet;
   var script = pkg.bundle.script;
   var getSettingsRaw = await app.storageInterface.read(path + "tilepieces.component.json", isLocal ? null : pkgName);
@@ -631,12 +634,16 @@ async function importingComponents(e, local) {
   } else openerDialog.open("Import finished");
 }
 
-importLocalComponents.addEventListener("change", async e => {
+localComponents.addEventListener("change", async e => {
+  if(e.target.id != "import-local-components")
+    return;
   importingComponents(e, true)
-});
+},true);
 importGlobalComponents.addEventListener("change", async e => {
+  if(e.target.id != "import-global-components")
+    return;
   importingComponents(e)
-});
+},true);
 componentsDialog.addEventListener("click", async e => {
   var target = e.target;
   if (!target.classList.contains("remove-component"))

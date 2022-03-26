@@ -16,9 +16,13 @@ async function importingComponents(e, local) {
   } else openerDialog.open("Import finished");
 }
 
-importLocalComponents.addEventListener("change", async e => {
+localComponents.addEventListener("change", async e => {
+  if(e.target.id != "import-local-components")
+    return;
   importingComponents(e, true)
-});
+},true);
 importGlobalComponents.addEventListener("change", async e => {
+  if(e.target.id != "import-global-components")
+    return;
   importingComponents(e)
-});
+},true);

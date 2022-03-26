@@ -50,7 +50,9 @@
     "modules/tilepieces/element-panel/element-panel-pop.html",
     "modules/tilepieces/element-panel/bundle/element-panel.bundle.css",
     "modules/tilepieces/element-panel/bundle/element-panel.bundle.js",
-    "modules/tilepieces/element-panel/tag-components",
+    "modules/tilepieces/element-panel/tag-components/TABLE/css.css",
+    "modules/tilepieces/element-panel/tag-components/TABLE/interface.html",
+    "modules/tilepieces/element-panel/tag-components/TABLE/table.bundle.js",
     "modules/tilepieces/screen-dimensions-panel/screen-dimensions.html",
     "modules/tilepieces/screen-dimensions-panel/components/screen-dimensions-panel/bundle/screen-dimensions-panel.bundle.css",
     "modules/tilepieces/screen-dimensions-panel/components/screen-dimensions-panel/bundle/screen-dimensions-panel.bundle.js",
@@ -67,10 +69,6 @@
   ],
   "lastFileOpened": "/index.html",
   "openedPanels": [
-    "package-manager",
-    "project-explorer",
-    "element-panel",
-    "html-inspector",
-    "component-panel"
+    "package-manager"
   ]
 }
