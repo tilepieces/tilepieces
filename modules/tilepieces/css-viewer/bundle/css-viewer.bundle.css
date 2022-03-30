@@ -73,7 +73,9 @@ a.info-icon { background-image: url("/modules/tilepieces/stylesheet/svg-info.svg
 details > summary svg { display: none; }
 summary::before { width: 17px; height: 17px; background-image: url("/modules/tilepieces/stylesheet/svg-summary.svg"); background-repeat: no-repeat; content: ""; position: absolute; left: -4px; top: 50%; transform: translate(0px, -50%) rotate(90deg); }
 details > summary h3, details > summary .h3 { margin: 0px; padding: 0px; }
-details[open] > summary::before { transform: translate(0px, -50%) rotate(180deg); }nav.tab-vertical.tab-vertical-open .tab-buttons .tab-buttons-wrap .tab-buttons-inside { display: inline-flex; height: 100%; flex-direction: column; justify-content: center; }
+details[open] > summary::before { transform: translate(0px, -50%) rotate(180deg); }
+details summary::-webkit-details-marker { display: none; }
+summary { outline: none; user-select: none; -webkit-user-select: none}nav.tab-vertical.tab-vertical-open .tab-buttons .tab-buttons-wrap .tab-buttons-inside { display: inline-flex; height: 100%; flex-direction: column; justify-content: center; }
 body { padding-left: 35px; margin: 0px; }
 nav.tab-vertical:not(.tab-vertical-open) .tab-buttons { overflow: hidden; }
 nav.tab-vertical-open .tab-buttons .tab-buttons-wrap { height: 100%; overflow:auto}
@@ -139,44 +141,52 @@ nav.tab-vertical button svg { transform: rotate(90deg); height: 25px; width: 25p
 .arrow-up { border-bottom: 0.5em solid rgb(153, 153, 153); border-left: 0.35em solid transparent; border-right: 0.35em solid transparent; position: absolute; top: -0.3em; left: 50%; transform: translate(-50%, 0px); }
 .arrow-down { border-top: 0.5em solid rgb(153, 153, 153); border-left: 0.35em solid transparent; border-right: 0.35em solid transparent; position: absolute; bottom: -0.3em; left: 50%; transform: translate(-50%, 0px); }
 .span-color-button { width: 0.5em; height: 0.5em; display: inline-block; border: 1px solid rgb(51, 51, 51); }
-span.color-value { margin-inline-end: 0.5em; }ul.rule-block__list{
-    padding:0 0 0 10px;
-    list-style:none;
-    margin:0;
+span.color-value { margin-inline-end: 0.5em; }ul.rule-block__list {
+  padding: 0 0 0 10px;
+  list-style: none;
+  margin: 0;
 }
-.rule-block__list li{
-    position:relative;
+
+.rule-block__list li {
+  position: relative;
 }
-.rule-block__list li > div{
-    display:inline-block;
+
+.rule-block__list li > div {
+  display: inline-block;
 }
+
 .rule-block__list li .rule-block__key,
-.rule-block__list li .rule-block__divider{
-    padding:0.3em 0 0.3em 0.45em;
+.rule-block__list li .rule-block__divider {
+  padding: 0.3em 0 0.3em 0.45em;
 }
-.rule-block__list li .rule-block__key{
-    color:indianred;
+
+.rule-block__list li .rule-block__key {
+  color: indianred;
 }
-.autocomplete-hint{
-    min-width:250px;
-    font-size:13px;
+
+.autocomplete-hint {
+  min-width: 250px;
+  font-size: 13px;
 }
-.rule-block__add-property{
-    width: 100%;
-    position: absolute;
-    bottom: 6px;
-    max-width: 7%;
-    right: 9px;
-    text-align: center;
-    padding: 0;
-    //visibility:hidden;
-    user-select:none;
+
+.rule-block__add-property {
+  width: 100%;
+  position: absolute;
+  bottom: 6px;
+  max-width: 7%;
+  right: 9px;
+  text-align: center;
+  padding: 0;
+/ / visibility: hidden;
+  user-select: none;
 }
-.rule-block__list li .input-css{
-    vertical-align:middle;
+
+.rule-block__list li .input-css {
+  vertical-align: middle;
 }
-.rule-block__list li .input-css-placeholder{
-    padding-right:0
+
+.rule-block__list li .input-css-placeholder {
+  padding-right: 0
 }
 body {
   background: white;

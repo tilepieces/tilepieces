@@ -194,31 +194,31 @@ l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,22.1,13.5,21.5,13.2,21.2z"></path>
       <div id="settings-component-metadata" style="">
         <details>
           <summary><h2 style="display: inline;">Component metadata</h2></summary><fieldset>
-          <legend><label for="component-properties-name">NAME:</label></legend>
+          <legend><label for="component-properties-name">NAME:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#name" class="info-round-icon" target="_blank"></a></legend>
           <input id="component-properties-name" name="component-properties-name" data-bind="name" disabled="">
         </fieldset><fieldset>
           <legend>
-            <label for="component-properties-version">VERSION:</label>
+            <label for="component-properties-version">VERSION:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#version" class="info-round-icon" target="_blank"></a>
           </legend>
           <input id="component-properties-version" name="component-properties-version" data-bind="version">
         </fieldset><fieldset>
           <legend>
-            <label for="component-properties-author">AUTHOR:</label>
+            <label for="component-properties-author">AUTHOR:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#author" class="info-round-icon" target="_blank"></a>
           </legend>
           <input id="component-properties-author" name="component-properties-author" data-bind="author">
         </fieldset><fieldset>
           <legend>
-            <label for="component-properties-description">DESCRIPTION:</label>
+            <label for="component-properties-description">DESCRIPTION:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#description" class="info-round-icon" target="_blank"></a>
           </legend>
           <input id="component-properties-description" name="component-properties-description" data-bind="description">
         </fieldset><fieldset>
           <legend>
-            <label for="component-properties-repository">REPOSITORY:</label>
+            <label for="component-properties-repository">REPOSITORY:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#repository" class="info-round-icon" target="_blank"></a>
           </legend>
           <input id="component-properties-repository" name="component-properties-repository" data-bind="repository">
         </fieldset><fieldset>
           <legend>
-            <label for="component-properties-website">WEBSITE:</label>
+            <label for="component-properties-website">WEBSITE:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#website" class="info-round-icon" target="_blank"></a>
           </legend>
           <input id="component-properties-website" name="component-properties-website" data-bind="website">
         </fieldset>
@@ -235,7 +235,7 @@ l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,22.1,13.5,21.5,13.2,21.2z"></path>
         <details>
           <summary><h2 style="display: inline;">Component properties</h2></summary><fieldset>
           <legend>
-            <label for="component-properties-html">HTML:</label>
+            <label for="component-properties-html">HTML:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#html" class="info-round-icon" target="_blank"></a>
           </legend>
           <div class="html-info">
             <input id="component-properties-html" name="component-properties-html" data-bind="html">
@@ -260,24 +260,24 @@ l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,22.1,13.5,21.5,13.2,21.2z"></path>
           <iframe data-if="html" data-src="${iframePath}" style="max-width: 100%; width: 100%;" sandbox="allow-same-origin"></iframe>
           <div>
             <label for="fixedHTML">Is fixed</label>
-            <input type="checkbox" id="fixedHTML" data-bind="fixedHTML">
+            <input type="checkbox" id="fixedHTML" data-bind="fixedHTML"><a href="https://tilepieces.net/documentation/data-structures/component.html#fixedhtml" class="info-round-icon" target="_blank"></a>
           </div>
         </fieldset><details>
-          <summary><h3>Dependencies: </h3></summary>
+          <summary><span class="h3">Dependencies: </span><a href="https://tilepieces.net/documentation/data-structures/component.html#dependencies" class="info-round-icon" target="_blank"></a></summary>
 
           <div class="details-open-summery-child">
             <label for="addDependenciesToBundles">
               <input id="addDependenciesToBundles" type="checkbox" data-bind="addDependenciesToBundles">
               add to bundle
-            </label>
+            </label><a href="https://tilepieces.net/documentation/data-structures/component.html#adddependenciestobundles" class="info-round-icon" target="_blank" id="add-to-bundle-link"></a>
             <button data-add-component-property="dependencies" class="component-properties-add">+</button>
             <div data-foreach="dependencies" class="flex-box">
               <input data-bind="key.name">
               <button class="component-properties-remove-template component-properties-remove" data-index="${key.index}" data-remove-component-property="dependencies">-</button>
             </div></div>
         </details><details>
-          <summary><h3>
-Bundles: </h3></summary>
+          <summary><span class="h3">
+Bundle: </span><a href="https://tilepieces.net/documentation/data-structures/component.html#bundle" class="info-round-icon" target="_blank"></a></summary>
           <div class="details-open-summery-child">
 
             <fieldset>
@@ -316,8 +316,8 @@ Bundles: </h3></summary>
               </div>
             </fieldset> </div>
         </details><details>
-          <summary><h3>
-Sources:</h3></summary>
+          <summary><span class="h3">
+Sources:</span><a href="https://tilepieces.net/documentation/data-structures/component.html#sources" class="info-round-icon" target="_blank"></a></summary>
           <div class="details-open-summery-child">
 
 
@@ -341,7 +341,7 @@ Sources:</h3></summary>
               </div>
             </fieldset>
           </div></details><details>
-          <summary><h3>Miscellaneous:</h3></summary>
+          <summary><span class="h3">Miscellaneous:</span><a href="https://tilepieces.net/documentation/data-structures/component.html#miscellaneous" class="info-round-icon" target="_blank"></a></summary>
           <div class="details-open-summery-child">
 
 
@@ -353,22 +353,23 @@ Sources:</h3></summary>
         </details>
           <fieldset>
             <legend>
-              <input id="mergeMiscellaneous" type="checkbox" data-bind="mergeMiscellaneous"><label for="mergeMiscellaneous">MERGE MISCELLANEOUS:</label>
+              <input id="mergeMiscellaneous" type="checkbox" data-bind="mergeMiscellaneous"><label for="mergeMiscellaneous">MERGE MISCELLANEOUS:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#mergemiscellaneous" class="info-round-icon" target="_blank"></a>
             </legend>
 
           </fieldset>
           <fieldset>
-            <legend>INTERFACE:</legend>
+            <legend><label for="component-properties-interface">INTERFACE:<label></label><a href="https://tilepieces.net/documentation/data-structures/component.html#interface" class="info-round-icon" target="_blank"></a></label></legend>
             <div class="flex-box">
 
 
               <input id="component-properties-interface" name="component-properties-interface" data-bind="interface">
             </div>
           </fieldset><fieldset>
-          <legend>PARSEHTML FUNCTION FILE PATH:</legend>
+          <legend><label for="component-properties-parseHTML">
+  PARSEHTML FUNCTION FILE PATH:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#parsehtml" class="info-round-icon" target="_blank"></a></legend>
           <input id="component-properties-parseHTML" name="component-properties-parseHTML" data-bind="parseHTML">
         </fieldset><fieldset>
-          <legend>SELECTOR:</legend>
+          <legend><label for="component-properties-selector">SELECTOR:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#selector" class="info-round-icon" target="_blank"></a></legend>
           <input id="component-properties-selector" name="component-properties-selector" data-bind="selector">
         </fieldset>
         </details>

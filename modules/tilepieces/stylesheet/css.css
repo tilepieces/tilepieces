@@ -74,3 +74,5 @@ details > summary svg { display: none; }
 summary::before { width: 17px; height: 17px; background-image: url("/modules/tilepieces/stylesheet/svg-summary.svg"); background-repeat: no-repeat; content: ""; position: absolute; left: -4px; top: 50%; transform: translate(0px, -50%) rotate(90deg); }
 details > summary h3, details > summary .h3 { margin: 0px; padding: 0px; }
 details[open] > summary::before { transform: translate(0px, -50%) rotate(180deg); }
+details summary::-webkit-details-marker { display: none; }
+summary { outline: none; user-select: none; -webkit-user-select: none}

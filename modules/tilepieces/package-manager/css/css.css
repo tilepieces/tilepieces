@@ -57,9 +57,11 @@ fieldset { margin: 0px 0.5em 2em; }
 a.info-round-icon { margin-top: 0px; vertical-align: bottom; margin-left: 0.3em; }
 fieldset legend { font-size: 1.1em; }
 legend > :first-child { font-size: 1.1rem; }
-#tabs{position:sticky;top:0;background:#fff;z-index:2}
-.html-info{position:relative;}
-.svg-link{position:absolute;top:0;right:0;z-index:3;cursor:pointer;padding:0 5px;height:100%;display: flex;align-items: center}
-.svg-link svg{pointer-events: none}
-.html-info > input:focus + .svg-link{display:none}
-#local-components .top-button-actions,#global-components .top-button-actions{top: 45px;background: white;z-index: 2;position:sticky}
+#tabs { position: sticky; top: 0px; background: rgb(255, 255, 255); z-index: 2; }
+.html-info { position: relative; }
+.svg-link { position: absolute; top: 0px; right: 0px; z-index: 3; cursor: pointer; padding: 0px 5px; height: 100%; display: flex; align-items: center; }
+.svg-link svg { pointer-events: none; }
+.html-info > input:focus + .svg-link { display: none; }
+#local-components .top-button-actions, #global-components .top-button-actions { top: 45px; background: white; z-index: 2; position: sticky; }
+#component-settings summary > .h3 + a.info-round-icon { vertical-align: middle; }
+#add-to-bundle-link { vertical-align: middle; }

@@ -18,8 +18,8 @@ details summary svg { transform: rotate(90deg); margin-right: 5px; cursor: point
 details summary > span:first-child { vertical-align: middle; }
 details[open] > summary svg { transform: rotate(180deg); }
 details ul { padding-left: 26px; }
-ul summary { padding-top: 0; padding-bottom:0}
-summary { list-style-type: none; padding: 1em 0px; cursor: pointer; padding-inline-start: 23px; position: relative; }
+ul summary { padding-top: 0px; padding-bottom: 0px; }
+summary { list-style-type: none; padding: 1em 0px; cursor: pointer; position: relative; padding-inline-start: 23px !important; }
 small.tilepieces-small-error { display: none; color: red; }
 small.tilepieces-small-error.show { display: block; }
 ul { list-style: none; padding: 0px; }
@@ -72,9 +72,10 @@ a.info-round-icon { background-image: url("/modules/tilepieces/stylesheet/svg-ci
 a.info-icon { background-image: url("/modules/tilepieces/stylesheet/svg-info.svg"); display: inline-block; width: 0.8125em; height: 0.8125em; vertical-align: middle; }
 details > summary svg { display: none; }
 summary::before { width: 17px; height: 17px; background-image: url("/modules/tilepieces/stylesheet/svg-summary.svg"); background-repeat: no-repeat; content: ""; position: absolute; left: -4px; top: 50%; transform: translate(0px, -50%) rotate(90deg); }
-details > summary h3 span, details > summary .h3 span { display: none; }
 details > summary h3, details > summary .h3 { margin: 0px; padding: 0px; }
-details[open] > summary::before { transform: translate(0px, -50%) rotate(180deg); }.tab-horizontal.tab-buttons { position: relative; padding: 0em 0px 0px; font: 1.3em sans-serif; margin-bottom: 1em; overflow-x: hidden; }
+details[open] > summary::before { transform: translate(0px, -50%) rotate(180deg); }
+details summary::-webkit-details-marker { display: none; }
+summary { outline: none; user-select: none; -webkit-user-select: none}.tab-horizontal.tab-buttons { position: relative; padding: 0em 0px 0px; font: 1.3em sans-serif; margin-bottom: 1em; overflow-x: hidden; }
 .tab-horizontal.tab-buttons > a { position: absolute; text-decoration: none; color: rgb(51, 51, 51); display: none; font-size: 1.2em; z-index: 2; background: url("/modules/tilepieces/tabs/svg-ico-freccia.svg") 50% 60% / 35% no-repeat scroll rgb(255, 255, 255); text-indent: -9999px; padding: 0.6em 0.9em 0.3em; height: calc(100% - 3px); box-sizing: border-box; }
 .tab-horizontal.tab-buttons > a:hover { }
 .tab-horizontal.tab-buttons > .tab-prev { left: 0px; transform: rotate(180deg); background-position-y: 38%;}
