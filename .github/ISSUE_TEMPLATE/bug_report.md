@@ -10,9 +10,11 @@ assignees: ''
  - Name: [e.g. PWA,NodeJs]
  - Version [e.g. 0.1.2]
  - Framework version [e.g. 0.1.2]
+
 **Browser:**
  - Name: [e.g. chrome, safari] [e.g. iOS]
  - Version [e.g. 22]
+
 **Operating system:**
  - Name: [e.g. iOS,macOS,windows,android]
  - Version [e.g. 22]
