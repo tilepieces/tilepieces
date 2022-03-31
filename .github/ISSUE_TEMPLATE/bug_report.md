@@ -6,6 +6,7 @@ labels: ''
 assignees: ''
 
 ---
+
 **Application info (you find clicking on the ? button):**
  - Name: [e.g. PWA,NodeJs]
  - Version [e.g. 0.1.2]
