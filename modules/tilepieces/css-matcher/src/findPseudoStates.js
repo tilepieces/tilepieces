@@ -40,7 +40,12 @@ function findPseudoStates(DOMEl, rule, style) {
         }
       }
       //var withoutPseudo = v.replace(PSEUDOSTATES,"").trim();
-      match = DOMEl.matches(withoutPseudo);
+      try {
+        match = DOMEl.matches(withoutPseudo);
+      }
+      catch(e){
+        console.error("match pseudo state error:",withoutPseudo);
+      }
       if (match) {
         pseudoMatches.forEach(p => pseudos.indexOf(p) < 0 && pseudos.push(p));
         var spec = cssSpecificity(v);

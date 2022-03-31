@@ -51,7 +51,13 @@ function findPseudoElements(DOMEl, rule, style) {
     var pseudoMatch = v.match(mainPseudoRegex);
     if (pseudoMatch) {
       var withoutPseudo = v.replace(mainPseudoRegex, "").trim();
-      match = DOMEl.matches(withoutPseudo || "*");
+      try {
+        match = DOMEl.matches(withoutPseudo || "*");
+      }
+      catch(e){
+        console.error(withoutPseudo || "*")
+        console.error(e);
+      }
       if (match) {
         pseudos.push(pseudoMatch[0]);
         var spec = cssSpecificity(v);
@@ -121,7 +127,13 @@ function findPseudoStates(DOMEl, rule, style) {
         }
       }
       //var withoutPseudo = v.replace(PSEUDOSTATES,"").trim();
-      match = DOMEl.matches(withoutPseudo);
+      try {
+        match = DOMEl.matches(withoutPseudo);
+      }
+      catch(e){
+        console.error(withoutPseudo)
+        console.error(e);
+      }
       if (match) {
         pseudoMatches.forEach(p => pseudos.indexOf(p) < 0 && pseudos.push(p));
         var spec = cssSpecificity(v);

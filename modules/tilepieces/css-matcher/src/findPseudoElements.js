@@ -19,7 +19,12 @@ function findPseudoElements(DOMEl, rule, style) {
     var pseudoMatch = v.match(mainPseudoRegex);
     if (pseudoMatch) {
       var withoutPseudo = v.replace(mainPseudoRegex, "").trim();
-      match = DOMEl.matches(withoutPseudo || "*");
+      try {
+        match = DOMEl.matches(withoutPseudo || "*");
+      }
+      catch(e){
+        console.error("match pseudo element error:",withoutPseudo || "*");
+      }
       if (match) {
         pseudos.push(pseudoMatch[0]);
         var spec = cssSpecificity(v);
