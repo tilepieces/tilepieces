@@ -14,7 +14,7 @@ Once you have downloaded the [zip file](https://github.com/tilepieces/tilepieces
 From here, edit the [index.html](https://github.com/tilepieces/tilepieces/blob/main/index.html) file present at the root of the application.
 You can:
 - remove add [panels](https://tilepieces.net/documentation/panels/index.html), inside the # dock-frames node
-- change the [storageInterface](https://tilepieces.net/documentation/api/storage/index.html), which currently points to modules/tilepieces/storage-interface-http/tilepieces-storage-interface-http.bundle.js.
+- change the [storageInterface](https://tilepieces.net/documentation/api/storage/index.html), which currently points to [modules/tilepieces/storage-interface-http/tilepieces-storage-interface-http.bundle.js](https://github.com/tilepieces/tilepieces/blob/main/modules/tilepieces/storage-interface-http/tilepieces-storage-interface-http.bundle.js).
 - Edit the application info, inside the #tilepieces-dialog-info template tag
 
 Further configurations can be made by editing the settings.json file following [this page](https://tilepieces.net/documentation/data-structures/general-settings.html).
