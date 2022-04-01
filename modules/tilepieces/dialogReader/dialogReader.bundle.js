@@ -27,8 +27,8 @@ let globalModel = {
   disabled:"disabled"
 };
 let docPath;
-let inputFile,filePathInput,fileButtonSave;
-function inputFileEvents() {
+let inputFile,filePathInput,fileButtonSave,fileSearch;
+function inputFileEvents(endsFilesAccepted) {
   inputFile.addEventListener("change", e=> {
     globalModel.disableinputfile = "";
     var file = e.target.files[0];
@@ -51,6 +51,19 @@ function inputFileEvents() {
       alertDialog(e.err || e.error || e.toString(),true);
     }
   })
+  fileSearchInput.addEventListener("keydown",e=>{
+    if(e.key == "Enter"){
+      e.preventDefault();
+      submitSearch(endsFilesAccepted)
+    }
+  })
+  fileSearchInput.addEventListener("change",e=>{
+      submitSearch(endsFilesAccepted)
+  })
+  fileSearch.addEventListener("submit", async e=> {
+    e.preventDefault();
+    submitSearch(endsFilesAccepted)
+  })
 }
 window.dialogReader = (typeProp = "img",path = "")=>{
   return new Promise(async (res,rej)=>{
@@ -61,30 +74,7 @@ window.dialogReader = (typeProp = "img",path = "")=>{
     var searchResult,storageInterfaceError;
     var endsFilesAccepted = blobAccepted.split(",");
     dialog.open("please wait...",true);
-    try {
-      searchResult = await storageInterface.search("",searchEnum[type]);
-    }
-    catch(e){
-      searchResult = {searchResult:[]};
-      storageInterfaceError = true;
-    }
-    var searchResults = searchResult.searchResult.filter(v=>endsFilesAccepted.find(ef=>v.endsWith(ef)))
-    var resources = searchResults.map(i=>{
-        return{
-            src:tilepieces.frameResourcePath() + "/" + i,
-            filename:i.split(/[\\/]/).pop()
-        }
-    });
-    if(resources.length>paginationItems) {
-        pagination = {
-            total : resources.slice(0),
-            pages : Math.ceil(resources.length / paginationItems),
-            page:1,
-            pointer:0
-        };
-        resources = resources.slice(0, paginationItems);
-    }
-    else pagination = null;
+    var {resources,pagination} = await search(endsFilesAccepted)
     globalModel = {
       pagination,
       resources,
@@ -106,10 +96,40 @@ window.dialogReader = (typeProp = "img",path = "")=>{
     inputFile = document.getElementById("dialog-reader-file-input");
     filePathInput = document.getElementById("dialog-reader-filepath-input");
     fileButtonSave= document.getElementById("dialog-reader-file-button");
-    inputFileEvents();
+    fileSearch = document.getElementById("dialog-reader-filepath-search-form");
+    fileSearchInput = document.getElementById("dialog-reader-filepath-search");
+    fileSearchInput.value=""
+    inputFileEvents(endsFilesAccepted);
     res(evs);
   })
 };
+async function search(endsFilesAccepted,customSearch){
+  try {
+    searchResult = await storageInterface.search("",customSearch || searchEnum[type]);
+  }
+  catch(e){
+    searchResult = {searchResult:[]};
+    storageInterfaceError = true;
+  }
+  var searchResults = searchResult.searchResult.filter(v=>endsFilesAccepted.find(ef=>v.endsWith(ef)))
+  var resources = searchResults.map(i=>{
+    return{
+      src:tilepieces.frameResourcePath() + "/" + i,
+      filename:i.split(/[\\/]/).pop()
+    }
+  });
+  if(resources.length>paginationItems) {
+    pagination = {
+      total : resources.slice(0),
+      pages : Math.ceil(resources.length / paginationItems),
+      page:1,
+      pointer:0
+    };
+    resources = resources.slice(0, paginationItems);
+  }
+  else pagination = null;
+  return {resources,pagination};
+}
 function selection(e){
   var target = e.target;
   if(target.closest(".upload-file-mask"))
@@ -128,7 +148,7 @@ function selection(e){
     var selectedValue = selected.dataset.value.replace(tilepieces.frameResourcePath() + "/","");
     evs.dispatch("submit",tilepieces.relativePaths ?
       tilepieces.utils.getRelativePath(docPath || tilepieces.utils.getDocumentPath(),selectedValue) :
-        "/" + selectedValue
+      selectedValue[0] == "/" ? selectedValue : "/" + selectedValue
     );
   }
   if(typeof target.dataset.prev == "string" ||
@@ -148,6 +168,21 @@ function selection(e){
     t.set("",globalModel);
     globalModel =t.scope;
     selected && selected.classList.remove("sel");
+  }
+}
+async function submitSearch(endsFilesAccepted){
+  //dialog.open("searching...");
+  try {
+    var {resources,pagination} = await search(endsFilesAccepted,fileSearchInput.value);
+    globalModel.resources = resources;
+    globalModel.pagination = pagination;
+    t.set("",globalModel)
+    //dialog.close();
+  }
+  catch(e){
+    console.error(e);
+    dialog.close();
+    alertDialog(e.err || e.error || e.toString(),true);
   }
 }
 

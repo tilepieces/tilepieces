@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title></title><link href="../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet"><link href="../../dialog/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialog"><link href="../css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialogReader"></head><body><div><b>It's ok to not see any image.&nbsp;</b>Use in a normal project to test it.﻿</div><div id="target"></div><button id="relative-path">Get relative Path</button><button id="absolute-path">Get Absolute Path</button><div class="tilepieces-dialog" id="tilepieces-alert-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+<html><head><meta charset="UTF-8"><title></title><link href="../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet"><link href="../../dialog/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialog"><link href="../css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialogReader"></head><body><div><b>It's ok to not see any image.&nbsp;</b>Use in a normal project to test it.</div><div id="target"></div><button id="relative-path">Get relative Path</button><button id="absolute-path">Get Absolute Path</button><div class="tilepieces-dialog" id="tilepieces-alert-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
     <div class="tilepieces-dialog-content">
         <form id="tilepieces-dialog-alert-form">
             <div class="tilepieces-alert-dialog-content">
@@ -46,7 +46,16 @@
     </div>
     <div class="tilepieces-dialog-close" aria-label="close"></div>
 </div><template id="tilepieces-search-template" data-tilepieces-component="tilepieces/dialogReader"><div class="flex-box upload-file-mask"><div class="upload-button"><label class="as-button">UPLOAD
-<input type="file" id="dialog-reader-file-input"></label></div><input id="dialog-reader-filepath-input" value="${miscpath}" ${disableinputfile}="" accept="${accept}"><button id="dialog-reader-file-button" ${disableinputfile}="">SAVE AND SELECT</button></div>
+<input type="file" id="dialog-reader-file-input"></label></div><input id="dialog-reader-filepath-input" value="${miscpath}" ${disableinputfile}="" accept="${accept}"><button id="dialog-reader-file-button" ${disableinputfile}="">SAVE AND SELECT</button></div><form id="dialog-reader-filepath-search-form" class="flex-box"><label for="dialog-reader-filepath-search">Search:</label><input id="dialog-reader-filepath-search"><button type="submit">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17" width="17" height="17">
+        <g>
+          <path style="fill:#999999;" d="M12.5,9.4l-6.4,6.4c-0.5,0.5-1.2,0.5-1.7,0l0,0C4,15.2,4,14.5,4.5,14l6.4-6.4c0.5-0.5,1.2-0.5,1.7,0
+            l0,0C13,8.1,13,8.9,12.5,9.4z"></path>
+          <path style="fill:#999999;" d="M12.5,7.6L6.2,1.3C5.7,0.8,5,0.8,4.5,1.3l0,0C4,1.8,4,2.5,4.5,3l6.4,6.4c0.5,0.5,1.2,0.5,1.7,0l0,0
+            C13,8.9,13,8.1,12.5,7.6z"></path>
+        </g>
+      </svg>
+    </button></form>
     <div class="${storageInterfaceClass}"><div class="storage-interface-error-msg">Error on search</div>
     <section class="image-search-box" data-if="resources.length">
         <figure data-foreach="resources" data-value="${key.src}">

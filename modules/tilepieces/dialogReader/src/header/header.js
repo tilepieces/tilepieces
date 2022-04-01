@@ -26,4 +26,4 @@ let globalModel = {
   disabled:"disabled"
 };
 let docPath;
-let inputFile,filePathInput,fileButtonSave;
+let inputFile,filePathInput,fileButtonSave,fileSearch;

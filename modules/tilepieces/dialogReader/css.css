@@ -1,15 +1,6 @@
-div.interface-error .image-search-box,
-div.interface-error .image-search-pagination-box,
-div.interface-error .image-search-box-submit
-{ display:none }
-div.storage-interface-error-msg{
-  display:none;
-  padding:1em;
-  text-align:center;
-}
-div.interface-error div.storage-interface-error-msg{
-  display:block;
-}
+div.interface-error .image-search-box, div.interface-error .image-search-pagination-box, div.interface-error .image-search-box-submit { display: none; }
+div.storage-interface-error-msg { display: none; padding: 1em; text-align: center; }
+div.interface-error div.storage-interface-error-msg { display: block; }
 section.image-search-box figure { width: 20%; text-align: center; overflow-wrap: break-word; box-sizing: border-box; margin: 0px; padding: 1em; display: inline-flex; flex-direction: column; }
 section.image-search-box figure.sel { background: lightcyan; }
 section.image-search-box figure img, section.image-search-box figure video, section.image-search-box figure audio { max-width: 100%; }
@@ -19,17 +10,6 @@ section.image-search-box figure img, section.image-search-box figure video, sect
 .image-search-box-submit { float: right; clear: both; }
 .upload-button label { border-right: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; }
 section.image-search-box figure figcaption { margin: 0px 0px 1em; }
-.tilepieces-dialog .tilepieces-dialog-content .upload-button label {
-  border-right: 1px solid rgb(204, 204, 204);
-  border-top-right-radius: 7px;
-  border-bottom-right-radius: 7px;
-}
-.tilepieces-dialog .tilepieces-dialog-content .image-search-box-submit{
-  float: none;
-  width: 100%;
-  background-color: rgb(240, 240, 240);
-  text-transform: uppercase;
-  font-size: 16px;
-  border: none;
-  margin: 0 auto;
-  padding: 0.5em 0;}
+.tilepieces-dialog .tilepieces-dialog-content .upload-button label { border-right: 1px solid rgb(204, 204, 204); border-top-right-radius: 7px; border-bottom-right-radius: 7px; }
+.tilepieces-dialog .tilepieces-dialog-content .image-search-box-submit { float: none; width: 100%; background-color: rgb(240, 240, 240); text-transform: uppercase; font-size: 16px; border: none; margin: 0px auto; padding: 0.5em 0px; }
+#dialog-reader-filepath-search { margin-left: 16px; }

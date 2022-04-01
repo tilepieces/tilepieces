@@ -16,9 +16,7 @@ function setTemplate(e) {
   if (d.target != model.elementPresent)
     model.tabToSelect = 0;
   model.elementPresent = d.target;
-  model.backgroundImageBase = properties["background-image"] ?
-    properties["background-image"].rule.parentStyleSheet.href :
-    app.core.currentDocument.location.href;
+  model.backgroundImageBase = properties["background-image"]?.rule.parentStyleSheet.href || app.core.currentDocument.location.href;
   var backgroundImage = properties["background-image"] ?
     properties["background-image"].value : d.styles.backgroundImage;
   model.backgroundImage = backgroundImage;

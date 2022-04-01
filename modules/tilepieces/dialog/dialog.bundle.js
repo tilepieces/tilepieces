@@ -9,7 +9,7 @@
       new Event('alert-dialog-reject')
     );
   });
-  alertDialogEl.ownerDocument.addEventListener("keydown", e => {
+  alertDialogEl.addEventListener("keydown", e => {
     if (e.key == "Escape" || e.key == "Enter")
       submit(e)
   });
