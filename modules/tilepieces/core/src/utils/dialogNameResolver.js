@@ -1,7 +1,7 @@
-function dialogNameResolver(file, ext) {
+function dialogNameResolver(file, ext, label, noprocess ) {
   return new Promise((resolve, reject) => {
     var prompt = promptDialog({
-      label: "Insert file ." + ext + " name:",
+      label: label || "Insert file ." + ext + " name:",
       buttonName: "CREATE",
       checkOnSubmit: true,
       patternFunction: (value, target) => {
@@ -12,11 +12,13 @@ function dialogNameResolver(file, ext) {
     });
     prompt.events.on("submit",prompte => {
       dialog.open("processing file...", true);
-      tilepieces.utils.processFile(file, tilepieces.miscDir + "/" + prompte + "." + ext)
+      if(!noprocess)
+       tilepieces.utils.processFile(file, tilepieces.miscDir + "/" + prompte + "." + ext)
         .then(filepath => {
           dialog.close();
           resolve(filepath)
         }, err => reject(err));
+      else resolve(prompte)
     });
     prompt.events.on("reject",prompte =>{
       reject();

@@ -1398,9 +1398,19 @@ function importProjectAsZip(blobFile) {
     try {
       var contents = await zip.loadAsync(blobFile);
       var projectsData = contents.files["tilepieces.projects.json"];
-      if (!projectsData)
-        throw("no data in zip");
-      var projects = JSON.parse(await projectsData.async("string"));
+      var projects;
+      if (!projectsData) {
+        console.warn("zip doesn't contain 'tilepieces.projects.json'");
+        var projectName = await app.utils.dialogNameResolver(null, null, "no 'tilepieces.projects.json' found. " +
+          "Tilepieces will import the entire zip: Please type the new project name", true );
+        projects = [{
+          path : "",
+          name : projectName
+        }]
+      }
+      else{
+        projects = JSON.parse(await projectsData.async("string"));
+      }
       for (var i = 0; i < projects.length; i++) {
         var p = projects[i];
         var name = p.name;
@@ -1433,6 +1443,9 @@ function importProjectAsZip(blobFile) {
           projectSettings: p
         });
       }
+      opener.dispatchEvent(new CustomEvent('set-project', {
+        detail: {name:projects[projects.length-1].name}
+      }))
       resolve();
     } catch (err) {
       reject(err);
