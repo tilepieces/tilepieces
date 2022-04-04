@@ -11,10 +11,10 @@ async function minifySourceScripts() {
     return;
   }
   try {
-    var options = {};
-    options = app.terserConfiguration;
+    var options =  typeof settingsModel.terserConfiguration === 'object' &&
+      !Array.isArray(settingsModel.terserConfiguration) && settingsModel.terserConfiguration || app.terserConfiguration;
     minifyObj = {};
-    minifyObj[bundlePath] = final;
+    minifyObj[options.sourceMap ? options.sourceMap.filename : bundlePath] = final;
     var finalMinified = await window.Terser.minify(minifyObj, options);
     if (typeof finalMinified.code !== "string")
       throw "code minification error";
@@ -25,8 +25,11 @@ async function minifySourceScripts() {
   }
   try {
     if (options.sourceMap) {
-      await app.storageInterface.update(options.sourceMap.filename, new Blob([final]));
-      await app.storageInterface.update(options.sourceMap.url, new Blob([finalMinified.map]));
+      var path = bundlePath.split("/").filter((v,i,a)=>i!=a.length-1).join("/");
+      await app.storageInterface.update((path + "/" + options.sourceMap.filename).replace(/\/+/g,"/"),
+        new Blob([final]));
+      await app.storageInterface.update((path + "/" + options.sourceMap.url).replace(/\/+/g,"/"),
+        new Blob([finalMinified.map]));
     }
     await app.storageInterface.update(bundlePath, new Blob([finalMinified.code]));
     if (!originalBundleName) {

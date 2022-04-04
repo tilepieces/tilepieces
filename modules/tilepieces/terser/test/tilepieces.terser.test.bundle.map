@@ -1,0 +1,1 @@
+{"version":3,"sources":["tilepieces.terser.test.bundle.js"],"names":["buttonDOM","document","getElementById","addEventListener","event","console","log","buttonDOM2"],"mappings":"AAAA,MAAMA,UAAYC,SAASC,eAAe,eAC1CF,UAAUG,iBAAiB,SAAQC,IACjCC,QAAQC,IAAIF,MAEd,MAAMG,WAAaN,SAASC,eAAe,gBAC3CK,WAAWJ,iBAAiB,SAAQC,IAClCC,QAAQC,IAAIF","file":"tilepieces.terser.test.bundle.js"}

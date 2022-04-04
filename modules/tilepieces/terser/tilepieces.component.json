@@ -1,7 +1,7 @@
 {
-  "name": "terser",
-  "description": "Tilepieces library of Terser, based on version 5.9.0",
-  "version": "5.9.0",
+  "name": "tilepieces/terser",
+  "description": "Tilepieces library of Terser, based on version 5.12.1",
+  "version": "5.12.1",
   "author": "Mihai Bazon <mihai.bazon@gmail.com> (http://lisperator.net/)",
   "website": "https://terser.org/",
   "repository": "https://github.com/terser/terser",
@@ -21,11 +21,16 @@
     "stylesheets": [],
     "scripts": [
       "source-map.js",
-      "terser.bundle.js"
+      "bundle.min.js"
     ]
   },
   "dependencies": [],
-  "components": {},
+  "components": {
+    "tilepieces/terser/test": {
+      "path": "/test",
+      "name": "tilepieces/terser/test"
+    }
+  },
   "mergeMiscellaneous": false,
   "miscellaneous": [],
   "selector": "",

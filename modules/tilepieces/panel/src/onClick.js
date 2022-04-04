@@ -26,6 +26,11 @@ Panel.prototype.onClick = function () {
     newWindow.dispatchEvent(newEvent);
     $self.panelElementIframe.contentWindow.dispatchEvent(newEvent);
     window.dispatchEvent(new Event("panel-maximized"));
+    // force exit listener
+    newWindow.document.addEventListener("keydown",e=>{
+      if(e.shiftKey && e.key.toLowerCase()==="q")
+        newWindow.close();
+    })
     newWindow.focus();
     newWindow.addEventListener("unload", function (e) {
       if (!$self.closingWindow) {

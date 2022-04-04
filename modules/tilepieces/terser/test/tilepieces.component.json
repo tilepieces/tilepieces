@@ -1,41 +1,41 @@
 {
-  "name": "tilepieces/codeMirror-editor/panel-bundle",
+  "name": "tilepieces/terser/test",
   "description": "",
   "version": "",
   "author": "",
   "website": "",
   "repository": "",
   "html": "",
-  "addDependenciesToBundles": true,
+  "addDependenciesToBundles": false,
   "bundle": {
-    "stylesheet": {
-      "href": "codeMirror-editor.bundle.css"
-    },
+    "stylesheet": {},
     "stylesheetHeader": "",
     "stylesheetFooter": "",
     "scriptHeader": "",
     "scriptFooter": "",
     "script": {
-      "src": "codeMirror-editor.bundle.js"
+      "src": "tilepieces.terser.test.bundle.min.js"
     }
   },
   "sources": {
-    "stylesheets": [
-      "css.css"
-    ],
+    "stylesheets": [],
     "scripts": [
-      "src"
+      "one.js",
+      "two.js"
     ]
   },
-  "dependencies": [
-    "tilepieces/codemirror"
-  ],
+  "dependencies": [],
   "mergeMiscellaneous": false,
   "miscellaneous": [],
   "selector": "",
   "interface": "",
   "fixedHTML": false,
   "parseHTML": "",
-  "terserConfiguration": "",
-  "components": []
+  "terserConfiguration": {
+    "sourceMap": {
+      "filename": "tilepieces.terser.test.bundle.js",
+      "url": "tilepieces.terser.test.bundle.map"
+    }
+  },
+  "components": {}
 }

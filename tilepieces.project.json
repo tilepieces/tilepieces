@@ -67,9 +67,13 @@
     "modules/tilepieces/project-tree/svg/svg-file.svg",
     "modules/tilepieces/project-tree/arrow.svg"
   ],
-  "lastFileOpened": "/modules/tilepieces/element-panel/test/machine code - wikipedia.html",
+  "lastFileOpened": "/modules/tilepieces/package-manager/components/component-settings/component-settings.html",
   "openedPanels": [
-    "package-manager"
+    "package-manager",
+    "project-explorer",
+    "html-inspector",
+    "css-viewer",
+    "component-panel"
   ],
   "relativePaths": true
 }

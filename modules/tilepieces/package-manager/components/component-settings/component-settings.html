@@ -9,7 +9,7 @@
 
       <div id="settings-component-metadata" style="">
         <details>
-          <summary><h2 style="display: inline;">Component metadata</h2></summary><fieldset>
+          <summary><h2 style="display: inline;">Component metadata</h2></summary><div class="flexbox" id="settings-component-path"><span>Path (click on the button to highlight the component directory in project explorer panel):</span><button id="settings-component-path-button" data-path="${path}">${path}</button></div><fieldset>
           <legend><label for="component-properties-name">NAME:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#name" class="info-round-icon" target="_blank"></a></legend>
           <input id="component-properties-name" name="component-properties-name" data-bind="name" disabled="">
         </fieldset><fieldset>
@@ -147,7 +147,10 @@ Sources:</span><a href="https://tilepieces.net/documentation/data-structures/com
               </div>
             </fieldset>
             <fieldset>
-              <legend>SCRIPTS:</legend>
+              <legend>SCRIPTS:</legend><fieldset id="terser-configuration-fieldset">
+            <legend><span for="component-terser-configuration">TERSER CONFIGURATION:</span><button class="edit-component-terser-configuration">Edit</button><a href="https://tilepieces.net/documentation/data-structures/component.html#terser-configuration" class="info-round-icon" target="_blank"></a></legend>
+            
+          </fieldset>
               <button data-add-component-property="sources.script" class="component-properties-add">+</button>
               <button data-if="sources.scripts.length" class="concatenate-sources" data-type="scripts">Concatenate</button>
               <button data-if="sources.scripts.length" class="minify-source-scripts">Minify</button>

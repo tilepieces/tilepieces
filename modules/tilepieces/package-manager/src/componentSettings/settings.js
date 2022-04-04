@@ -25,6 +25,12 @@ componentSettingsForm.addEventListener("click", e => {
     getDependenciesFromDocument();
   if (classList.contains("svg-link"))
     linkToHTML(e);
+  if (classList.contains("edit-component-terser-configuration"))
+    editComponentTerserConfiguration(e);
+  if(target.id=="settings-component-path-button")
+    opener.dispatchEvent(new CustomEvent("project-explorer-highlight-path",{
+      detail:{path : target.dataset.path}
+    }))
   var dataset = target.dataset;
   if (dataset.addComponentProperty)
     addComponentProperty(dataset.addComponentProperty);

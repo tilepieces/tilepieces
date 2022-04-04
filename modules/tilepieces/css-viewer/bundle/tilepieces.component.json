@@ -30,11 +30,12 @@
   "dependencies": [
     "tilepieces/css-viewer"
   ],
-  "components": {},
   "mergeMiscellaneous": false,
   "miscellaneous": [],
   "selector": "",
   "interface": "",
   "fixedHTML": false,
-  "parseHTML": ""
+  "parseHTML": "",
+  "terserConfiguration": "",
+  "components": {}
 }

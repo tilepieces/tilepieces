@@ -65,3 +65,8 @@ legend > :first-child { font-size: 1.1rem; }
 #local-components .top-button-actions, #global-components .top-button-actions { top: 45px; background: white; z-index: 2; position: sticky; }
 #component-settings summary > .h3 + a.info-round-icon { vertical-align: middle; }
 #add-to-bundle-link { vertical-align: middle; }
+#terser-configuration-fieldset legend > :first-child { padding-left: 0px; font-size: 0.9em; }
+#terser-configuration-fieldset { margin-bottom: 0px; }
+#settings-component-path { padding-left: 1em; margin: 0px 0px 1em; font-size: 0.9em; }
+#terser-configuration-fieldset button { font-size: 0.8em; }
+#settings-component-path-button:empty::before { content: "[root]"; }

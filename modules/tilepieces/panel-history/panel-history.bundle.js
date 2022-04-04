@@ -54,5 +54,8 @@ opener.addEventListener("content-editable-end", e => {
 if (app.contenteditable) {
   section.ownerDocument.body.classList.add("content-editable-start")
 }
+else{
+  window.scrollTo(0, document.body.scrollHeight);
+}
 
 })();

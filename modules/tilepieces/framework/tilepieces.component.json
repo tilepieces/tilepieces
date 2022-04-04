@@ -46,5 +46,6 @@
   "interface": "",
   "fixedHTML": true,
   "parseHTML": "parseHTML.js",
+  "terserConfiguration": "",
   "components": {}
 }

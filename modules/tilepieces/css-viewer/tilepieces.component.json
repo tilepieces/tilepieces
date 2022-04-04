@@ -38,12 +38,6 @@
     "tilepieces/animations",
     "tilepieces/css-text"
   ],
-  "components": {
-    "tilepieces/css-viewer/bundle": {
-      "name": "tilepieces/css-viewer/bundle",
-      "path": "/bundle"
-    }
-  },
   "mergeMiscellaneous": false,
   "miscellaneous": [
     "html/css-viewer.html",
@@ -52,5 +46,12 @@
   "selector": "",
   "interface": "",
   "fixedHTML": true,
-  "parseHTML": ""
+  "parseHTML": "",
+  "terserConfiguration": "",
+  "components": {
+    "tilepieces/css-viewer/bundle": {
+      "path": "/bundle",
+      "name": "tilepieces/css-viewer/bundle"
+    }
+  }
 }

@@ -1,5 +1,6 @@
-function createDocumentString(doc) {
-  var body = doc.documentElement.outerHTML.replace(/[\u200B-\u200D\uFEFF]/g, "");
+function createDocumentString(doc,maxTrim) {
+  var regexToReplace = maxTrim ? /([\u200B-\u200D\uFEFF]|\n|\t|\r)/g : /[\u200B-\u200D\uFEFF]/g;
+  var body = doc.documentElement.outerHTML.replace(regexToReplace, "");
   if (doc.doctype) {
     var doctype = {
       name: doc.doctype.name,

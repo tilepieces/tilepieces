@@ -839,6 +839,25 @@ async function concatenateSources(type, noUpdate) {
     }
   )
 };
+async function editComponentTerserConfiguration(){
+  app.codeMirrorEditor(JSON.stringify(settingsModel.terserConfiguration), "json")
+    .then(res => {
+      if(!res) {
+        settingsModel.terserConfiguration = "";
+        submitSettings();
+        return;
+      }
+      try{
+        settingsModel.terserConfiguration = JSON.parse(res);
+        submitSettings();
+      }
+      catch(e){
+        alertDialog("invalid JSON. terserConfiguration setted to <pre><code>" +
+          JSON.stringify(settingsModel.terserConfiguration,null,2)
+          + "</code></pre>");
+      }
+    }, e => console.warn(e))
+}
 async function getDependencies(pkg, bundleType, bundleAttr, separationString) {
   var text = "";
   var dependencies = getDependenciesFlat(pkg);
@@ -915,7 +934,7 @@ async function getHTMLFromDocument(objectPointerString = "html") {
 function linkToHTML(e){
   e.preventDefault();
   var iframePath = settingsModel.__local ? app.utils.paddingURL(settingsModel.path) : "/";
-  app.setFrame(iframePath + settingsModel.html);
+  app.setFrame((iframePath + settingsModel.html).replace(/\/+/g,"/"));
 }
 function getScriptsFromDocument(e) {
   var scripts =
@@ -962,10 +981,10 @@ async function minifySourceScripts() {
     return;
   }
   try {
-    var options = {};
-    options = app.terserConfiguration;
+    var options =  typeof settingsModel.terserConfiguration === 'object' &&
+      !Array.isArray(settingsModel.terserConfiguration) && settingsModel.terserConfiguration || app.terserConfiguration;
     minifyObj = {};
-    minifyObj[bundlePath] = final;
+    minifyObj[options.sourceMap ? options.sourceMap.filename : bundlePath] = final;
     var finalMinified = await window.Terser.minify(minifyObj, options);
     if (typeof finalMinified.code !== "string")
       throw "code minification error";
@@ -976,8 +995,11 @@ async function minifySourceScripts() {
   }
   try {
     if (options.sourceMap) {
-      await app.storageInterface.update(options.sourceMap.filename, new Blob([final]));
-      await app.storageInterface.update(options.sourceMap.url, new Blob([finalMinified.map]));
+      var path = bundlePath.split("/").filter((v,i,a)=>i!=a.length-1).join("/");
+      await app.storageInterface.update((path + "/" + options.sourceMap.filename).replace(/\/+/g,"/"),
+        new Blob([final]));
+      await app.storageInterface.update((path + "/" + options.sourceMap.url).replace(/\/+/g,"/"),
+        new Blob([finalMinified.map]));
     }
     await app.storageInterface.update(bundlePath, new Blob([finalMinified.code]));
     if (!originalBundleName) {
@@ -1129,6 +1151,7 @@ async function submitSettings() {
     interface: settingsModel.interface.trim(),
     fixedHTML: settingsModel.fixedHTML,
     parseHTML: settingsModel.parseHTML,
+    terserConfiguration : settingsModel.terserConfiguration,
     path: settingsModel.__local ? settingsModel.path || ("/" + app.componentPath +
       "/" + name) : ""
   };
@@ -1171,6 +1194,12 @@ componentSettingsForm.addEventListener("click", e => {
     getDependenciesFromDocument();
   if (classList.contains("svg-link"))
     linkToHTML(e);
+  if (classList.contains("edit-component-terser-configuration"))
+    editComponentTerserConfiguration(e);
+  if(target.id=="settings-component-path-button")
+    opener.dispatchEvent(new CustomEvent("project-explorer-highlight-path",{
+      detail:{path : target.dataset.path}
+    }))
   var dataset = target.dataset;
   if (dataset.addComponentProperty)
     addComponentProperty(dataset.addComponentProperty);
@@ -1207,6 +1236,7 @@ function settingsFormActivation(component, isLocal) {
   settingsModel.html = isComponent.html || "";
   settingsModel.path = isComponent.path || "";
   settingsModel.parseHTML = isComponent.parseHTML || "";
+  settingsModel.terserConfiguration = isComponent.terserConfiguration || "";
   var iframePath = settingsModel.__local ? settingsModel.path + "/" : "/";
   var absoulteAppFrameRes = app.frameResourcePath()[0] == "/" ? app.frameResourcePath() : "/" + app.frameResourcePath();
   settingsModel.iframePath = (absoulteAppFrameRes + (iframePath[0] == "/" ? iframePath : "/" + iframePath) + settingsModel.html)

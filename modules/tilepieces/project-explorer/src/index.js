@@ -31,7 +31,9 @@ opener.addEventListener('delete-project', e => {
   //wrapperText.textContent = "";
   projectWrapper.style.display = "none";
 });
-
+opener.addEventListener("project-explorer-highlight-path",e=>{
+  openRecursively(e.detail.path,e.detail.dblClick)
+})
 /*
 projectWrapper.addEventListener("click",e=>{
     projectWrapper.classList.toggle("project-tree-caret__open");
