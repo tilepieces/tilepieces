@@ -69,11 +69,7 @@
   ],
   "lastFileOpened": "/modules/tilepieces/package-manager/components/component-settings/component-settings.html",
   "openedPanels": [
-    "package-manager",
-    "project-explorer",
-    "html-inspector",
-    "css-viewer",
-    "component-panel"
+    "package-manager"
   ],
   "relativePaths": true
 }

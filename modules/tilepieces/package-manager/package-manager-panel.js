@@ -1316,6 +1316,19 @@ async function createProject(projectName) {
   try {
     var newProject = await app.storageInterface.create(projectName);
     await app.getSettings();
+    app.currentProject = projectName;
+    var proj = app.projects.find(v => v.name == projectName);
+    if(!proj.lastFileOpened) {
+      try {
+        var index = await app.storageInterface.read("index.html");
+      } catch (e) {
+        await app.storageInterface.update("index.html",
+          new Blob([`This is file index.html of the ${projectName} project. 
+Visit <a href='https://tilepieces.net/tutorials' target="_blank">our video tutorial</a> or 
+<a href="https://tilepieces.net/documentation" target="_blank">documentation</a> to know more about tilepieces`]));
+      }
+      newProject.lastFileOpened = "index.html";
+    }
     openerDialog.close();
     opener.dispatchEvent(new CustomEvent('set-project', {
       detail: newProject
