@@ -20,10 +20,6 @@ Panel.prototype.show = function (target) {
     if (target)
       $self.putOnTop({detail: {target}});
   } else {
-    if (target) {
-      var targetCoords = popupCoords(target);
-      $self.windowOpen.moveTo(targetCoords.left, targetCoords.top);
-    }
     $self.windowOpen.focus();
   }
 }
