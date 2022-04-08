@@ -1,8 +1,4 @@
 # Tilepieces
-- [Create a new application](#How-to-create-a-new-application)
-- [Getting help and asking for new features](#getting-help-and-asking-for-new-features)
-- [Contributing code](#contributing-code)
-
 Tilepieces is an open source software designed for the visual editing of HTML and project management where HTML files are used.
 For more information, please consult the official website [tilepieces.net](https://tilepieces.net) 
 and the [documentation](https://tilepieces.net/documentation).

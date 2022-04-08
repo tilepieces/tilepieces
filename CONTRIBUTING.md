@@ -1,9 +1,5 @@
 # How to contribute
 
-- [Getting help and asking for new features](#getting-help-and-asking-for-new-features)
-- [Submitting bug reports](#submitting-bug-reports)
-- [Contributing code](#contributing-code)
-
 ## Getting help and asking for new features
 
 If you have any questions about tilepieces, go to 
