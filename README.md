@@ -19,4 +19,4 @@ If you have any questions about tilepieces, go to
 If you want to ask about new features, please create a post on
 [new features](https://github.com/tilepieces/tilepieces/discussions/categories/new-features)
 ## Contributing
-See [CONTRIBUTING.md](https://github.com/tilepieces/tilepieces/blob/master/CONTRIBUTING.md) for contributing guidelines.
+See [CONTRIBUTING.md](https://github.com/tilepieces/tilepieces/blob/main/CONTRIBUTING.md) for contributing guidelines.
