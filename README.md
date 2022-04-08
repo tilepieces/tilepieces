@@ -3,7 +3,7 @@ Tilepieces is an open source software designed for the visual editing of HTML an
 For more information, please consult the official website [tilepieces.net](https://tilepieces.net) 
 and the [documentation](https://tilepieces.net/documentation).
 In this repository you will find the source code of the main project.
-#How to create a new application
+## How to create a new application
 Using this package, you can create an application.
 To do this, download the latest version of the project release.
 Once you have downloaded the [zip file](https://github.com/tilepieces/tilepieces/releases/download/latest/tilepieces.project.zip), you can upload it to a working version of a Tilepieces application. The Node.js version is the most suitable for this purpose.
