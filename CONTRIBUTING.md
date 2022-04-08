@@ -1,22 +1,22 @@
-# How to contribute
+## How to contribute
 
-## Getting help and asking for new features
+### Getting help and asking for new features
 
 If you have any questions about tilepieces, go to 
 [Q&A](https://github.com/tilepieces/tilepieces/discussions/categories/q-a).
 If you want to ask about new features, please create a post on 
 [new features](https://github.com/tilepieces/tilepieces/discussions/categories/new-features)
 
-## Submitting bug reports
+### Submitting bug reports
 
 The preferred way to report bugs is to use the
 [GitHub issue tracker](https://github.com/tilepieces/tilepieces/issues).
 Use the "bug report" template and try to fill in every field. Try to add some GIFs if you think it will be useful to understand your problem.
 Please be always polite.
 
-## Contributing code
+### Contributing code
 
-If you want to contribute to the code, don't create pull requests without saying anything first. If you want to fix a bug, ask about the bug itself. If you want to implement a new feature, propose on the appropriate discussion. 
+If you want to contribute to the code, don't create pull requests without saying anything first. If you want to fix a bug, ask in the dedicated issue to be assigned. If you want to implement a new feature, propose on the appropriate discussion. 
 If you prefer, please contact the maintainer directly at [mantainer@tilepieces.com](mailto:mantainer@tilepieces.com)
 
 - Make sure you have a [GitHub Account](https://github.com/signup/free)
