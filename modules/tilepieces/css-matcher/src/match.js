@@ -87,7 +87,10 @@ window.cssMatcher = function (DOMEl, stylesheets) {
             DOMElWin.CSS.supports(rule.conditionText))
             processRules(rule.cssRules, style);
           break;
-        default:// other cases not handled
+        case "CSSLayerBlockRule"://@layer
+          rule.cssRules && processRules(rule.cssRules, style);
+          break;
+        default:
           break;
       }
     }

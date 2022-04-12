@@ -298,7 +298,7 @@
             <span data-foreach="rule.selectors" data-foreach-key-name="selector" class="selector ${selector.match}">${selector.selectorText}</span>{
     </div>
   </div>
-  <a data-if="!rule.isStyle" class="css-inspector__href" href="#" title="${rule.loc}">${rule.locPop}</a>
+  <a data-if="!rule.isStyle" class="css-inspector__href" href="${rule.loc}" title="${rule.loc}" target="_blank">${rule.locPop}</a>
   <div data-use="css-properties-list" data-params="rule,rule"></div>
 </template>
 <section id="border-style" class="${isVisible}" data-tilepieces-component="tilepieces/border" style="display: none;">

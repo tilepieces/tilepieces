@@ -1,4 +1,5 @@
 function notAdmittedTagNameInPosition(tagName, composedPath) {
+  tagName = tagName.toUpperCase(); // SVG return a lower case tagName
   var doc = composedPath[0].ownerDocument;
   if (tagName == "MAIN")
     return doc.querySelector("main:not([hidden])") ||
@@ -78,6 +79,8 @@ function notAdmittedTagNameInPosition(tagName, composedPath) {
     return !composedPath[0].tagName.match(/SELECT|OPTGROUP|DATALIST/);
   if (tagName.match(/^(HTML|BODY|HEAD)$/))
     return true;
+  if(tilepieces.utils.svgTags.indexOf(tagName.toLowerCase())>-1)
+    return !composedPath.find(v=>v.tagName == "svg")
   return composedPath.find((v, i) => v.tagName && (
       (v.tagName.match(tilepieces.utils.notInsertableTags) && i == 0) ||
       v.tagName.match(tilepieces.utils.notEditableTags) ||

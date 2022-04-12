@@ -92,9 +92,13 @@ function mapPseudoRules(rules) {
         newRule.parentRules.unshift({type: "media", conditionText: swapRule.parentRule.conditionText});
       if (swapRule.parentRule.constructor.name == "CSSSupportsRule")
         newRule.parentRules.unshift({type: "supports", conditionText: swapRule.parentRule.conditionText});
+      if(swapRule.parentRule.constructor.name == "CSSLayerBlockRule")
+        newRule.parentRules.unshift({type: "layer", conditionText: swapRule.parentRule.name});
       swapRule = swapRule.parentRule;
     }
-    newRule.loc = newRule.href || opener.tilepieces.core.currentDocument.location.href;
+    newRule.loc = newRule.rule.parentStyleSheet.ownerNode?.href ||
+      newRule.rule.parentStyleSheet.href || // import
+      newRule.href || app.core.currentDocument.location.href;
     newRule.locPop = newRule.loc.split("/").pop();
     newRule.editSelector = false;
     newRule.selectorMatch = true;
@@ -151,14 +155,20 @@ function mapRules(rule, index) {
       newRule.parentRules.unshift({type: "media", conditionText: swapRule.parentRule.conditionText});
     if (swapRule.parentRule.constructor.name == "CSSSupportsRule")
       newRule.parentRules.unshift({type: "supports", conditionText: swapRule.parentRule.conditionText});
+    if(swapRule.parentRule.constructor.name == "CSSLayerBlockRule")
+      newRule.parentRules.unshift({type: "layer", conditionText: swapRule.parentRule.name});
     swapRule = swapRule.parentRule;
   }
   if (!newRule.isStyle) {
-    var loc = newRule.rule.parentStyleSheet.ownerNode.getAttribute("href");
-    if(loc && loc[0]=="/")
-      loc = ("/"+app.frameResourcePath()+loc).replace(/\/+/g,"/")
+    var locHref = newRule.rule.parentStyleSheet.ownerNode?.getAttribute("href");
+    var loc;
+    if(locHref && locHref[0]=="/")
+      loc = ("/"+app.frameResourcePath()+locHref).replace(/\/+/g,"/")
+    else if(locHref)
+      loc = new URL(locHref,app.core.currentDocument.location).href
     else
-      loc = newRule.href || app.core.currentDocument.location.href
+       loc = newRule.rule.parentStyleSheet.href || // import
+      newRule.href || app.core.currentDocument.location.href;
     newRule.loc = loc;
     newRule.locPop = newRule.loc.split("/").pop();
     newRule.editSelector = false;

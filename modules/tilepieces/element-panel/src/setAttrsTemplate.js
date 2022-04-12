@@ -1,8 +1,8 @@
 function setAttrsTemplate(target, match) {
+  var tagName = target.tagName;
   modelAttributes.attributes = [...target.attributes].reverse().map((a, i) => {
     var name = a.nodeName;
     var value = a.nodeValue;
-    var tagName = target.tagName;
     var parentNode = target.parentNode;
     var classSrc = (
       tagName.match(/^(VIDEO|AUDIO|IMG)$/) ||
@@ -21,8 +21,8 @@ function setAttrsTemplate(target, match) {
       dropzone: classSrc && !disabled ? "data-dropzone" : ""
     }
   });
-  modelAttributes.nodeName = target.tagName;
-  modelAttributes.nodenamedisabled = match.match ? "" : "disabled";
+  modelAttributes.nodeName = tagName;
+  modelAttributes.nodenamedisabled = match.match && !tagName.match(/(HTML|BODY|HEAD)/) ? "" : "disabled";
   modelAttributes.isVisible = "block";
   modelAttributes.notmatch = !match.match || !match.attributes || !match.HTML ? "" : "hidden";
   modelAttributes.not_matching_phrase = !match.match ? "cannot find the element in the original tree" :

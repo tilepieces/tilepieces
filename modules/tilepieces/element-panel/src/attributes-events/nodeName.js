@@ -9,6 +9,7 @@ attributesView.addEventListener("nodeName", e => {
   var isNotAdmitted = app.utils.notAdmittedTagNameInPosition(newNodeName, composedPath);
   if (isNotAdmitted) {
     modelAttributes.nodenameinvalid = "";
+    modelAttributes.node_name_invalid_explanation = "Node " + newNodeName + " is invalid in this position";
     attrsTemplate.set("", modelAttributes);
     return;
   }
@@ -26,8 +27,10 @@ attributesView.addEventListener("nodeName", e => {
         subComposedPath.push(swap);
         swap = swap.parentNode;
       }
-      if (app.utils.notAdmittedTagNameInPosition(currentNode.tagName, subComposedPath)) {
+      var tagName = currentNode.tagName
+      if (app.utils.notAdmittedTagNameInPosition(tagName, subComposedPath)) {
         modelAttributes.nodenameinvalid = "";
+        modelAttributes.node_name_invalid_explanation = "This node has a tag called " + tagName + " which cannot have " + newNodeName + " as parent";
         attrsTemplate.set("", modelAttributes);
         return;
       }

@@ -5,7 +5,8 @@ tilepieces.setFrame = function (URL, htmltext,noSetHistory = false) {
       tilepieces.setFrame(URL, htmltext);
     },250)
   }
-  else dialog.close()
+  else
+    dialog.dialogElement.classList.contains("open") && dialog.close()
   tilepieces.frame.removeEventListener("load", tilepieces.loadFunction);
   if(!URL){
     tilepieces.frame.src = "";

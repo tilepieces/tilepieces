@@ -55,8 +55,7 @@ function findPseudoElements(DOMEl, rule, style) {
         match = DOMEl.matches(withoutPseudo || "*");
       }
       catch(e){
-        console.error(withoutPseudo || "*")
-        console.error(e);
+        console.error("match pseudo element error:",withoutPseudo || "*");
       }
       if (match) {
         pseudos.push(pseudoMatch[0]);
@@ -131,8 +130,7 @@ function findPseudoStates(DOMEl, rule, style) {
         match = DOMEl.matches(withoutPseudo);
       }
       catch(e){
-        console.error(withoutPseudo)
-        console.error(e);
+        console.error("match pseudo state error:",withoutPseudo);
       }
       if (match) {
         pseudoMatches.forEach(p => pseudos.indexOf(p) < 0 && pseudos.push(p));
@@ -276,7 +274,10 @@ window.cssMatcher = function (DOMEl, stylesheets) {
             DOMElWin.CSS.supports(rule.conditionText))
             processRules(rule.cssRules, style);
           break;
-        default:// other cases not handled
+        case "CSSLayerBlockRule"://@layer
+          rule.cssRules && processRules(rule.cssRules, style);
+          break;
+        default:
           break;
       }
     }

@@ -15,9 +15,20 @@ function mapPseudoRules(rules) {
         newRule.parentRules.unshift({type: "media", conditionText: swapRule.parentRule.conditionText});
       if (swapRule.parentRule.constructor.name == "CSSSupportsRule")
         newRule.parentRules.unshift({type: "supports", conditionText: swapRule.parentRule.conditionText});
+      if(swapRule.parentRule.constructor.name == "CSSLayerBlockRule")
+        newRule.parentRules.unshift({type: "layer", conditionText: swapRule.parentRule.name});
       swapRule = swapRule.parentRule;
     }
-    newRule.loc = newRule.href || opener.tilepieces.core.currentDocument.location.href;
+    var locHref = newRule.rule.parentStyleSheet.ownerNode?.getAttribute("href");
+    var loc;
+    if(locHref && locHref[0]=="/")
+      loc = ("/"+app.frameResourcePath()+locHref).replace(/\/+/g,"/")
+    else if(locHref)
+      loc = new URL(locHref,app.core.currentDocument.location).href
+    else
+      loc = newRule.rule.parentStyleSheet.href || // import
+        newRule.href || app.core.currentDocument.location.href;
+    newRule.loc = loc;
     newRule.locPop = newRule.loc.split("/").pop();
     newRule.editSelector = false;
     newRule.selectorMatch = true;

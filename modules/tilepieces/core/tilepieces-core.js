@@ -140,7 +140,7 @@ document.body.append(highlightOver, selectionDiv, paddingDiv, marginDiv, borderD
 
 let drawSelection;//requestAnimationFrame reference
 window.tilepieces = {
-  version : "0.1.9",
+  version : "0.1.10",
   projects: [],
   globalComponents: [],
   localComponents: [],
@@ -3464,6 +3464,7 @@ function getRelativePath(absolutePathDoc, absolutePathSource) {
   return arr.join("") + absolutePathSource
 }
 function notAdmittedTagNameInPosition(tagName, composedPath) {
+  tagName = tagName.toUpperCase(); // SVG return a lower case tagName
   var doc = composedPath[0].ownerDocument;
   if (tagName == "MAIN")
     return doc.querySelector("main:not([hidden])") ||
@@ -3543,6 +3544,8 @@ function notAdmittedTagNameInPosition(tagName, composedPath) {
     return !composedPath[0].tagName.match(/SELECT|OPTGROUP|DATALIST/);
   if (tagName.match(/^(HTML|BODY|HEAD)$/))
     return true;
+  if(tilepieces.utils.svgTags.indexOf(tagName.toLowerCase())>-1)
+    return !composedPath.find(v=>v.tagName == "svg")
   return composedPath.find((v, i) => v.tagName && (
       (v.tagName.match(tilepieces.utils.notInsertableTags) && i == 0) ||
       v.tagName.match(tilepieces.utils.notEditableTags) ||
@@ -3624,6 +3627,7 @@ async function setFixedHTMLInProject(component){
   }
   dialog.open("update done");
 }
+tilepieces.utils.svgTags = ['a', 'animate', 'animateMotion', 'animateTransform', 'circle', 'clipPath', 'defs', 'desc', 'discard', 'ellipse', 'feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap', 'feDistantLight', 'feDropShadow', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology', 'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile', 'feTurbulence', 'filter', 'foreignObject', 'g', 'hatch', 'hatchpath', 'image', 'line', 'linearGradient', 'marker', 'mask', 'metadata', 'mpath', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect', 'script', 'set', 'stop', 'style', 'svg', 'switch', 'symbol', 'text', 'textPath', 'title', 'tspan', 'use', 'view']
 // https://stackoverflow.com/questions/33704791/how-do-i-uninstall-a-service-worker
 function unregisterSw() {
   return new Promise((resolve, reject) => {
