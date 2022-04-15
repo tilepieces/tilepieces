@@ -1582,7 +1582,9 @@ projectsDialog.addEventListener("projectsChecked", e => {
     return v;
   }));
 });
-document.getElementById("export-projects").addEventListener("click", e => {
+projectsDialog.addEventListener("click", e => {
+  if(e.target.id!="export-projects")
+    return;
   try {
     exportProjectsAsZip(projectsUIMOdel.projects.filter(v => v.checked));
   } catch (e) {
@@ -1590,7 +1592,9 @@ document.getElementById("export-projects").addEventListener("click", e => {
     openerDialog.open(JSON.stringify(e), false);
   }
 });
-document.getElementById("import-projects").addEventListener("change", async e => {
+projectsDialog.addEventListener("change", async e => {
+  if(e.target.id!="import-projects")
+    return;
   var errors = [];
   openerDialog.open("importing projects...", true);
   if (e.target.files.length) {
@@ -1606,7 +1610,7 @@ document.getElementById("import-projects").addEventListener("change", async e =>
   if (errors.length) {
     openerDialog.open("Errors in importing projects:<br>" + errors.join("<br>"));
   } else openerDialog.open("Import finished");
-});
+},true);
 projectsDialog.addEventListener("template-digest", async e => {
   var detail = e.detail;
   var target = detail.target;
