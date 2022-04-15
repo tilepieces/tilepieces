@@ -22,6 +22,7 @@ function settingsFormActivation(component, isLocal) {
   settingsModel.path = isComponent.path || "";
   settingsModel.parseHTML = isComponent.parseHTML || "";
   settingsModel.terserConfiguration = isComponent.terserConfiguration || "";
+  settingsModel.skipMatchAll= isComponent.skipMatchAll || false;
   var iframePath = settingsModel.__local ? settingsModel.path + "/" : "/";
   var absoulteAppFrameRes = app.frameResourcePath()[0] == "/" ? app.frameResourcePath() : "/" + app.frameResourcePath();
   settingsModel.iframePath = (absoulteAppFrameRes + (iframePath[0] == "/" ? iframePath : "/" + iframePath) + settingsModel.html)

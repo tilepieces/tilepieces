@@ -20,7 +20,6 @@ function setProject(e){
           fileText: res
         };
         tilepieces.setFrame(lastFileOpened, res)
-        dialog.close();
       }, err => {
         var sentence = "error in reading file " + lastFileOpened + " in current project '" + prName + "'";
         console.error("[" + sentence + "]", err);

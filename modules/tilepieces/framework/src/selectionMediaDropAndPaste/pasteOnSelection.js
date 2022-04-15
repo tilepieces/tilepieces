@@ -1,6 +1,8 @@
 document.addEventListener("paste", async e => {
   if (!tilepieces.elementSelected)
     return;
+  if(e.target.closest(".tilepieces-dialog"))
+    return;
   /*
   if(!tilepieces.core.currentDocument.hasFocus())
       return;*/

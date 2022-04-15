@@ -41,6 +41,8 @@ function findPseudoStates(DOMEl, rule, style) {
       }
       //var withoutPseudo = v.replace(PSEUDOSTATES,"").trim();
       try {
+        if(withoutPseudo.endsWith(">"))
+          withoutPseudo+="*";
         match = DOMEl.matches(withoutPseudo);
       }
       catch(e){

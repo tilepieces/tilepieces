@@ -1,8 +1,8 @@
-TilepiecesCore.prototype.init = async function (doc, HTMLText) {
+TilepiecesCore.prototype.init = async function (doc, HTMLText,skipMatchAll) {
   var $self = this;
   $self.currentDocument = doc;
   $self.currentWindow = doc.defaultView;
-  $self.htmlMatch = HTMLTreeMatch(HTMLText, doc);
+  $self.htmlMatch = HTMLTreeMatch(HTMLText, doc,skipMatchAll);
   $self.styles = await cssMapper(doc, tilepieces.idGenerator, tilepieces.classGenerator);
   var currentStyle = [...doc.querySelectorAll("[data-tilepieces-current-stylesheet]")].pop();
   var currentStyleIsAccesible;

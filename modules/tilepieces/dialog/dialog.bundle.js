@@ -115,7 +115,6 @@
           }
       }
       dialog.classList.add("lock-down");
-      window.dispatchEvent(new Event("lock-down"))
       if (closeDisabled) {
         closeButton.style.display = "none";
       } else {
@@ -130,12 +129,15 @@
         dialog.classList.add("on-top");
       } else
         dialog.classList.remove("on-top");
+      window.dispatchEvent(new Event("lock-down"))
       return {
         dialog: dialogContent,
         events: evs
       };
     },
     close: () => {
+      if(!w.dialog.dialogElement.classList.contains("open"))
+        return;
       window.dispatchEvent(new Event("release"));
       dialog.classList.remove("lock-down");
       dialog.classList.remove("open", "on-top");

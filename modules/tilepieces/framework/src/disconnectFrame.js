@@ -8,5 +8,6 @@ function disconnectFrame(errorObject, errorStringForAlert = ""){
       project: tilepieces.project
     }, "", "?project=" + encodeURIComponent(tilepieces.project.name));
   }
+  dialog.close();
   errorStringForAlert && alertDialog(errorStringForAlert, true);
 }

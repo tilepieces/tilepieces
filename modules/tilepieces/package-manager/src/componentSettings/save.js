@@ -49,6 +49,7 @@ async function submitSettings() {
     fixedHTML: settingsModel.fixedHTML,
     parseHTML: settingsModel.parseHTML,
     terserConfiguration : settingsModel.terserConfiguration,
+    skipMatchAll : settingsModel.skipMatchAll,
     path: settingsModel.__local ? settingsModel.path || ("/" + app.componentPath +
       "/" + name) : ""
   };

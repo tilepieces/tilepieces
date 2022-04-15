@@ -140,7 +140,7 @@ document.body.append(highlightOver, selectionDiv, paddingDiv, marginDiv, borderD
 
 let drawSelection;//requestAnimationFrame reference
 window.tilepieces = {
-  version : "0.1.10",
+  version : "0.1.11",
   projects: [],
   globalComponents: [],
   localComponents: [],
@@ -191,6 +191,7 @@ window.tilepieces = {
   terserConfiguration: {compress: false, mangle: false},
   frameResourcePath: () => tilepieces.workspace ? (tilepieces.workspace + "/" + (tilepieces.currentProject || "")).replace(/\/+/g, "/") : "",
   serviceWorkers: [],
+  skipMatchAll : false,
   utils: {
     numberRegex: /[+-]?\d+(?:\.\d+)?|[+-]?\.\d+?/,
     colorRegex: /rgb\([^)]*\)|rgba\([^)]*\)|#([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})\b|hsl\([^)]*\)|hsla\([^)]*\)/g,
@@ -2237,11 +2238,11 @@ TilepiecesCore.prototype.undo = async function (dontSave) {
     alertDialog.open("history error",true);
   }
 };
-TilepiecesCore.prototype.init = async function (doc, HTMLText) {
+TilepiecesCore.prototype.init = async function (doc, HTMLText,skipMatchAll) {
   var $self = this;
   $self.currentDocument = doc;
   $self.currentWindow = doc.defaultView;
-  $self.htmlMatch = HTMLTreeMatch(HTMLText, doc);
+  $self.htmlMatch = HTMLTreeMatch(HTMLText, doc,skipMatchAll);
   $self.styles = await cssMapper(doc, tilepieces.idGenerator, tilepieces.classGenerator);
   var currentStyle = [...doc.querySelectorAll("[data-tilepieces-current-stylesheet]")].pop();
   var currentStyleIsAccesible;

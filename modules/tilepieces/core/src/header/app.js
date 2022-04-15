@@ -14,7 +14,7 @@ document.body.append(highlightOver, selectionDiv, paddingDiv, marginDiv, borderD
 
 let drawSelection;//requestAnimationFrame reference
 window.tilepieces = {
-  version : "0.1.10",
+  version : "0.1.11",
   projects: [],
   globalComponents: [],
   localComponents: [],
@@ -65,6 +65,7 @@ window.tilepieces = {
   terserConfiguration: {compress: false, mangle: false},
   frameResourcePath: () => tilepieces.workspace ? (tilepieces.workspace + "/" + (tilepieces.currentProject || "")).replace(/\/+/g, "/") : "",
   serviceWorkers: [],
+  skipMatchAll : false,
   utils: {
     numberRegex: /[+-]?\d+(?:\.\d+)?|[+-]?\.\d+?/,
     colorRegex: /rgb\([^)]*\)|rgba\([^)]*\)|#([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})\b|hsl\([^)]*\)|hsla\([^)]*\)/g,

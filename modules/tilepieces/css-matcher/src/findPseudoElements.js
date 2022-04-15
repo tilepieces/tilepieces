@@ -20,6 +20,8 @@ function findPseudoElements(DOMEl, rule, style) {
     if (pseudoMatch) {
       var withoutPseudo = v.replace(mainPseudoRegex, "").trim();
       try {
+        if(withoutPseudo.endsWith(">"))
+          withoutPseudo+="*";
         match = DOMEl.matches(withoutPseudo || "*");
       }
       catch(e){

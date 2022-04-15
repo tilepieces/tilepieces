@@ -59,6 +59,9 @@ window.cssMatcher = function (DOMEl, stylesheets) {
             //break;
           }
           var selector = rule.selectorText;
+          //
+          if(selector.endsWith(">"))
+            selector+="*";
           try {
             match = DOMEl.matches(selector)
           } catch (e) {

@@ -1,12 +1,11 @@
 tilepieces.setFrame = function (URL, htmltext,noSetHistory = false) {
+  dialog.open("Loading " + URL + "...", true);
   if(Object.keys(tilepieces.toUpdateFileObject).length){
     dialog.open("Files are finishing to be updated...", true);
     return setTimeout(()=>{
       tilepieces.setFrame(URL, htmltext);
     },250)
   }
-  else
-    dialog.dialogElement.classList.contains("open") && dialog.close()
   tilepieces.frame.removeEventListener("load", tilepieces.loadFunction);
   if(!URL){
     tilepieces.frame.src = "";
@@ -22,6 +21,7 @@ tilepieces.setFrame = function (URL, htmltext,noSetHistory = false) {
     if (tilepieces.frame.contentDocument == tilepieces.core?.currentDocument)
       return;
     var framePath = tilepieces.frame.contentDocument.location.pathname;
+    dialog.open("Loading " + framePath + "...", true);
     var pathname = decodeURI(framePath);
     var resourcePathToRemove = tilepieces.frameResourcePath();
     resourcePathToRemove = resourcePathToRemove.startsWith("/") ? resourcePathToRemove : "/" + resourcePathToRemove;
@@ -44,7 +44,7 @@ tilepieces.setFrame = function (URL, htmltext,noSetHistory = false) {
       }
     }
     pathname = pathname.replace(resourcePathToRemove, "");
-    tilepieces.core = await tilepiecesCore().init(tilepieces.frame.contentDocument, htmltext);
+    tilepieces.core = await tilepiecesCore().init(tilepieces.frame.contentDocument, htmltext,tilepieces.skipMatchAll);
     tilepieces.currentPage = {
       path: pathname[0] == "/" ? pathname.slice(1) : pathname,
       fileText: htmltext
@@ -98,6 +98,7 @@ tilepieces.setFrame = function (URL, htmltext,noSetHistory = false) {
         pathname
       }, document.title, "?project=" + encodeURIComponent(tilepieces.project.name) + "&path=" + encodeURIComponent(pathname));
     }
+    dialog.close();
   }
   tilepieces.frame.addEventListener("load", tilepieces.loadFunction);
   if (tilepieces.sandboxFrame)
@@ -105,5 +106,6 @@ tilepieces.setFrame = function (URL, htmltext,noSetHistory = false) {
   else
     tilepieces.frame.removeAttribute("sandbox");
   var frameRes = tilepieces.frameResourcePath();
-  tilepieces.frame.src = (frameRes ? tilepieces.utils.paddingURL(frameRes) + URL : URL).replace(/\/+/g,"/");
+  var src = (frameRes ? tilepieces.utils.paddingURL(frameRes) + URL : URL).replace(/\/+/g,"/");
+  tilepieces.frame.src = src;
 };
