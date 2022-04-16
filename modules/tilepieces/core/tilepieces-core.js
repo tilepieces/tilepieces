@@ -140,7 +140,7 @@ document.body.append(highlightOver, selectionDiv, paddingDiv, marginDiv, borderD
 
 let drawSelection;//requestAnimationFrame reference
 window.tilepieces = {
-  version : "0.1.12",
+  version : "0.1.13",
   projects: [],
   globalComponents: [],
   localComponents: [],

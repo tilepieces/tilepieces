@@ -1,14 +1,12 @@
 function updateSettings(prName) {
   tilepieces.currentProject = prName;
   var proj = tilepieces.projects.find(v => v.name == tilepieces.currentProject);
-  if (proj) {
-    tilepieces.isComponent = proj.isComponent;
-    if (tilepieces.isComponent)
-      tilepieces.isComponent.path = "";
-    tilepieces.localComponents = proj.components;
-    tilepieces.localComponentsFlat = proj.componentsFlat;
-    tilepieces.componentPath = proj.componentPath || "components";
-  }
+  tilepieces.isComponent = proj.isComponent;
+  if (tilepieces.isComponent)
+    tilepieces.isComponent.path = "";
+  tilepieces.localComponents = proj.components;
+  tilepieces.localComponentsFlat = proj.componentsFlat;
+  tilepieces.componentPath = proj.componentPath || "components";
   tilepieces.project = Object.assign({}, proj);
   var exPanelPosition = tilepieces.panelPosition;
   var exSandboxFrame = tilepieces.sandboxFrame;

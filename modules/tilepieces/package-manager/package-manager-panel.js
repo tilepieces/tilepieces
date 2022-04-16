@@ -1482,14 +1482,23 @@ function importProjectAsZip(blobFile) {
             component = p.components[icomp];
             await app.storageInterface.createComponent({local: true, component})
           }
-
+        }
+        if(!p.lastFileOpened) {
+          try{
+            await app.storageInterface.read("index.html");
+            p.lastFileOpened = "index.html";
+          }
+          catch(e) {
+            var search = await app.storageInterface.search("", "**/*.html");
+            p.lastFileOpened = search.searchResult[0] || null;
+          }
         }
         await app.storageInterface.setSettings({
           projectSettings: p
         });
       }
       opener.dispatchEvent(new CustomEvent('set-project', {
-        detail: {name:projects[projects.length-1].name}
+        detail: {name:projects[projects.length-1].name,lastFileOpened:p.lastFileOpened}
       }))
       resolve();
     } catch (err) {
