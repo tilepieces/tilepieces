@@ -1374,6 +1374,7 @@ async function exportProjectsAsZip(projects = []) {
   var projectsPackages = app.projects.filter(p => projects.indexOf(p) > -1);
   var zip = await app.utils.newJSZip();
   var errors = [];
+  var toExport = [];
   for (var i = 0; i < projectsPackages.length; i++) {
     var pkg = structuredClone(projectsPackages[i]);
     openerDialog.open("exporting " + pkg.name + " components...", true);
@@ -1405,8 +1406,9 @@ async function exportProjectsAsZip(projects = []) {
     delete pkg.checked;
     delete pkg.localComponents;
     delete pkg.componentsFlat;
+    toExport.push(pkg);
   }
-  zip.file("tilepieces.projects.json", JSON.stringify(projectsPackages));
+  zip.file("tilepieces.projects.json", JSON.stringify(toExport));
   var blobZip = await zip.generateAsync({
       type: "blob",
       compression: "DEFLATE",
