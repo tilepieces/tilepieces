@@ -7,8 +7,10 @@ window.addEventListener("lock-down", () => {
   tilepieces.panels.forEach(d => {
     if (!d)// colorpicker
       return;
-    if (d.windowOpen) {
-      d.windowOpen.document.body.appendChild(stopEditing.cloneNode());
+    var wO = d.windowOpen;
+    var wODoc = wO?.document;
+    if (wO && !wODoc.getElementById(stopEditing.id)) {
+      wODoc.body.appendChild(stopEditing.cloneNode());
     }
   })
 });
@@ -17,7 +19,8 @@ window.addEventListener("release", () => {
   tilepieces.panels.forEach(d => {
     if (!d) // colorpicker
       return;
-    if (d.windowOpen)
-      d.windowOpen.document.getElementById("stop-editing").remove();
+    var wO = d.windowOpen;
+    if (wO)
+      wO.document.getElementById(stopEditing.id).remove();
   })
 });

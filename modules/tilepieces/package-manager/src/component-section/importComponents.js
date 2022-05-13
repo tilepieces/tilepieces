@@ -14,6 +14,7 @@ async function importingComponents(e, local) {
   if (errors.length) {
     openerDialog.open("Errors in importing components:<br>" + errors.join("<br>"));
   } else openerDialog.open("Import finished");
+  e.target.value = "";
 }
 
 localComponents.addEventListener("change", async e => {

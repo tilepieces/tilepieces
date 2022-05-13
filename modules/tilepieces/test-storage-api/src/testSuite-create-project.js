@@ -15,7 +15,7 @@ async function createProject() {
     .then(res => JSON.parse(res));
   var test2 = !Array.isArray(configurationJson) && configurationJson.name == "test" &&
     JSON.stringify(configurationJson.components) == "{}" &&
-    Object.values(configurationJson).length == 2;
+    Object.keys(settings.settings.globalSettings).every(v=>typeof configurationJson[v] !== "undefined");
   logOnDocument(
     assert(test2, "expect project/tilepieces.project.json filled with properties 'name' and 'components'")
     , "success");

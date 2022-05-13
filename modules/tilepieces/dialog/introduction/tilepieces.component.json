@@ -1,37 +1,35 @@
 {
-  "name": "tilepieces/wysiwyg",
+  "name": "tilepieces/dialog/introduction",
   "description": "",
-  "version": "1.0.0",
+  "version": "",
   "author": "",
   "website": "",
   "repository": "",
-  "html": "",
+  "html": "introduction-dialog.html",
   "addDependenciesToBundles": false,
   "bundle": {
-    "stylesheet": {},
+    "stylesheet": {
+      "href": "introduction-css.css"
+    },
     "stylesheetHeader": "",
     "stylesheetFooter": "",
-    "scriptHeader": "(()=>{",
-    "scriptFooter": "})();",
+    "scriptHeader": "",
+    "scriptFooter": "",
     "script": {
-      "src": "wysiwyg.bundle.js"
+      "src": "introduction-dialog-templates.js"
     }
   },
   "sources": {
     "stylesheets": [],
-    "scripts": [
-      "src"
-    ]
+    "scripts": []
   },
-  "dependencies": [
-    "tilepieces/core"
-  ],
+  "dependencies": [],
   "mergeMiscellaneous": false,
   "miscellaneous": [],
   "selector": "",
   "interface": "",
-  "fixedHTML": false,
-  "parseHTML": "",
+  "fixedHTML": true,
+  "parseHTML": "parseHTML.js",
   "terserConfiguration": "",
   "skipMatchAll": false,
   "components": {}

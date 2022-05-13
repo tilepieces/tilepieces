@@ -16,7 +16,7 @@ async function clickOnComponent(e) {
     var dependenciesFlat = getDependenciesFlat(component);
     for (var d = 0; d < dependenciesFlat.length; d++) {
       var c = dependenciesFlat[d];
-      newHTMLElement = (isAddHtml || isAddBundle) && await addComponentHTML(c);
+      newHTMLElement = (isAddHtml || isAddBundle) && await addComponentHTML(c,component.name != c.name);
       if (component.addDependenciesToBundles && c != component)
         continue;
       (isAddCss || isAddBundle) && c.bundle?.stylesheet?.href && await addComponentCss(c,

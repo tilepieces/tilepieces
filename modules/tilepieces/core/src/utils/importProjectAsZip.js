@@ -1,9 +1,7 @@
 function importProjectAsZip(blobFile) {
   return new Promise(async (resolve, reject) => {
-    if (!window.JSZip) {
-      await import("./../../jszip/jszip.min.js");
-    }
-    var zip = new JSZip();
+    var app = tilepieces;
+    var zip = await app.utils.newJSZip();
     try {
       var contents = await zip.loadAsync(blobFile);
       var projectsData = contents.files["tilepieces.projects.json"];
@@ -24,7 +22,7 @@ function importProjectAsZip(blobFile) {
         var p = projects[i];
         var name = p.name;
         var path = p.path;
-        openerDialog.open("importing project '" + name + "'", true);
+        dialog.open("importing project '" + name + "'", true);
         await app.storageInterface.create(name);
         await app.getSettings();
         app.updateSettings(name);
@@ -35,11 +33,11 @@ function importProjectAsZip(blobFile) {
         });
         for (var f = 0; f < files.length; f++) {
           var file = files[f];
-          openerDialog.open("importing project '" + name + "' : " + file.relativePath, true);
+          dialog.open("importing project '" + name + "' : " + file.relativePath, true);
           await app.storageInterface.update(file.relativePath, new Blob([await file.file.async("arraybuffer")]));
         }
         delete p.path;
-        openerDialog.open("importing project '" + name + "' metadata", true);
+        dialog.open("importing project '" + name + "' metadata", true);
         var component;
         if (p.components) {
           for (var icomp = 0; icomp < p.components.length; icomp++) {
@@ -61,7 +59,8 @@ function importProjectAsZip(blobFile) {
           projectSettings: p
         });
       }
-      opener.dispatchEvent(new CustomEvent('set-project', {
+      await app.getSettings();
+      window.dispatchEvent(new CustomEvent('set-project', {
         detail: {name:projects[projects.length-1].name,lastFileOpened:p.lastFileOpened}
       }))
       resolve();

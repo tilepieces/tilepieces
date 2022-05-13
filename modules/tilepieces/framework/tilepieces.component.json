@@ -38,7 +38,8 @@
     "tilepieces/codeMirror-editor",
     "tilepieces/colorpicker",
     "tilepieces/dialogReader",
-    "tilepieces/wysiwyg"
+    "tilepieces/wysiwyg",
+    "tilepieces/dialog/introduction"
   ],
   "mergeMiscellaneous": false,
   "miscellaneous": [],
@@ -47,5 +48,6 @@
   "fixedHTML": true,
   "parseHTML": "parseHTML.js",
   "terserConfiguration": "",
+  "skipMatchAll": false,
   "components": {}
 }

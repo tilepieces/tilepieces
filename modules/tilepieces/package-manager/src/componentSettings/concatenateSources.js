@@ -16,14 +16,14 @@ async function concatenateSources(type, noUpdate) {
       settingsModel.bundle[key2 + "Header"] + "\n" : "";
     if (settingsModel.addDependenciesToBundles) {
       var pkg = app.localComponentsFlat[name];
-      final += await getDependencies(pkg, key2, key4, key1 == "scripts" ? "\n" : false);
+      final += await getDependencies(pkg, key2, key4);
     }
     for (var i = 0; i < search.searchResult.length; i++) {
       var source = search.searchResult[i];
       if (source.match(app.utils.URLIsAbsolute))
         return;
       final += await app.storageInterface.read(defaultPath + source);
-      if (key1 == "scripts") final += "\n";
+      if (i<search.searchResult.length-1) final += "\n";
     }
     var bundleNameInCompSettings = settingsModel.bundle[key2] &&
       settingsModel.bundle[key2].find(v => v.name == key4);

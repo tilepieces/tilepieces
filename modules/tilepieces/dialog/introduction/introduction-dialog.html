@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title></title><meta name="description" content=""><meta name="viewport" content="width=device-width,initial-scale=1.0"><link href="../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet"><link href="../css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialog"><link rel="stylesheet" href="introduction-css.css" data-tilepieces-current-stylesheet=""></head><body><div class="tilepieces-dialog" tabindex="-1" id="dialog-templates">
+    <div class="tilepieces-dialog-content"><div class="templates-grid">
+  <div class="template-item" data-foreach="templates" data-foreach-key-name="template">
+    <img data-src="${template.img}">
+    <div class="dialog-templates-info"><div><b>${template.name}</b></div>
+      <div><i>${template.desc}</i></div>
+      <div>
+        <a data-if="template.doc" href="${template.doc}" class="dialog-templates-links" target="_blank">Documentation link</a>
+      </div>
+      <button class="dialog-templates-download" data-link="${template.link}" data-root="${template.root}">Download</button></div>
+  </div>
+</div></div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><div class="tilepieces-dialog open" tabindex="-1" id="dialog-introduction">
+    <div class="tilepieces-dialog-content">Welcome to Tilepieces!<br>This application is created for web professionals who need to create and edit HTML files.<br>We recommend that you take a look at the <a href="https://tilepieces.net/documentation/index.html">documentation</a>, particularly in the <a href="https://tilepieces.net/documentation/core-concepts/index.html">core concepts</a> section, and watch our <a href="https://tilepieces.net/tutorials.html">video tutorials</a> that show you how to create a new project and edit files.<br>If you want, you can choose a <a href="javascript:void(0)" class="dialog-introduction-create-template" onclick="tilepieces.getTemplatesDialog()">template</a>&nbsp;to start with.<hr><button id="dialog-introduction-close">Close this modal</button><button id="dialog-introduction-create-template" class="dialog-introduction-create-template" onclick="tilepieces.getTemplatesDialog()">Start from template</button></div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div></body></html>

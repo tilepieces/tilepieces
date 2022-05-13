@@ -1,7 +1,12 @@
 componentSettingsForm.addEventListener("change", e => {
   console.log("change form", e);
   //settingsTT.set("disabled","");
-
+}, true);
+componentSettingsForm.addEventListener("keydown", e => {
+  if(e.key == "Enter") {
+    e.preventDefault();
+    e.target.dispatchEvent(new Event("change"));
+  }
 }, true);
 componentSettingsForm.addEventListener("click", e => {
   var target = e.target;

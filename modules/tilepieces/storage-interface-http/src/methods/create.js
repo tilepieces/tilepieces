@@ -11,7 +11,6 @@ return json type schema of directory , ex :
 * */
 function create(projectName){
     return new Promise(async (resolve,reject)=> {
-        console.log("[frontart storage => 'create']", projectName);
         projectName = projectName.replace(/&/g,"%26");
         fetch(API.create + "&projectName=" + projectName).then(res=>{
             handleResult(res)

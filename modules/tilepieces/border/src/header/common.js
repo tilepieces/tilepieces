@@ -1,5 +1,5 @@
 const opener = window.opener || window.parent;
-const app = opener.app;
+const app = opener.tilepieces;
 window.cssDefaults = opener.tilepieces.cssDefaultValues;
 const appView = document.getElementById("border-style");
 const urlPlaceholder = "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=)";

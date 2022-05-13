@@ -140,7 +140,7 @@ document.body.append(highlightOver, selectionDiv, paddingDiv, marginDiv, borderD
 
 let drawSelection;//requestAnimationFrame reference
 window.tilepieces = {
-  version : "0.1.13",
+  version : "0.1.14",
   projects: [],
   globalComponents: [],
   localComponents: [],
@@ -172,7 +172,7 @@ window.tilepieces = {
   imageDir: "images",
   miscDir: "miscellaneous",
   frame: iframeTest,
-  panelPosition: "free",
+  panelPosition: "right",
   idGenerator: "app-",
   classGenerator: "app-",
   getFilesAsDataUrl: true,
@@ -191,7 +191,7 @@ window.tilepieces = {
   terserConfiguration: {compress: false, mangle: false},
   frameResourcePath: () => tilepieces.workspace ? (tilepieces.workspace + "/" + (tilepieces.currentProject || "")).replace(/\/+/g, "/") : "",
   serviceWorkers: [],
-  skipMatchAll : false,
+  skipMatchAll : true,
   utils: {
     numberRegex: /[+-]?\d+(?:\.\d+)?|[+-]?\.\d+?/,
     colorRegex: /rgb\([^)]*\)|rgba\([^)]*\)|#([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})\b|hsl\([^)]*\)|hsla\([^)]*\)/g,
@@ -236,7 +236,9 @@ window.tilepieces = {
     getDocumentPath,
     getHashes,
     setFixedHTMLInProject,
-    dialogNameResolver
+    dialogNameResolver,
+    newJSZip,
+    importProjectAsZip
   }
 };
 tilepieces.cssDefaultProperties = [];
@@ -2291,8 +2293,10 @@ window.addEventListener("lock-down", () => {
   tilepieces.panels.forEach(d => {
     if (!d)// colorpicker
       return;
-    if (d.windowOpen) {
-      d.windowOpen.document.body.appendChild(stopEditing.cloneNode());
+    var wO = d.windowOpen;
+    var wODoc = wO?.document;
+    if (wO && !wODoc.getElementById(stopEditing.id)) {
+      wODoc.body.appendChild(stopEditing.cloneNode());
     }
   })
 });
@@ -2301,8 +2305,9 @@ window.addEventListener("release", () => {
   tilepieces.panels.forEach(d => {
     if (!d) // colorpicker
       return;
-    if (d.windowOpen)
-      d.windowOpen.document.getElementById("stop-editing").remove();
+    var wO = d.windowOpen;
+    if (wO)
+      wO.document.getElementById(stopEditing.id).remove();
   })
 });
 let regexNumbers = /[+-]?\d+(?:\.\d+)?/; // https://codereview.stackexchange.com/questions/115885/extract-numbers-from-a-string-javascript
@@ -3464,6 +3469,84 @@ function getRelativePath(absolutePathDoc, absolutePathSource) {
   });
   return arr.join("") + absolutePathSource
 }
+function importProjectAsZip(blobFile) {
+  return new Promise(async (resolve, reject) => {
+    var app = tilepieces;
+    var zip = await app.utils.newJSZip();
+    try {
+      var contents = await zip.loadAsync(blobFile);
+      var projectsData = contents.files["tilepieces.projects.json"];
+      var projects;
+      if (!projectsData) {
+        console.warn("zip doesn't contain 'tilepieces.projects.json'");
+        var projectName = await app.utils.dialogNameResolver(null, null, "no 'tilepieces.projects.json' found. " +
+          "Tilepieces will import the entire zip: Please type the new project name", true );
+        projects = [{
+          path : "",
+          name : projectName
+        }]
+      }
+      else{
+        projects = JSON.parse(await projectsData.async("string"));
+      }
+      for (var i = 0; i < projects.length; i++) {
+        var p = projects[i];
+        var name = p.name;
+        var path = p.path;
+        dialog.open("importing project '" + name + "'", true);
+        await app.storageInterface.create(name);
+        await app.getSettings();
+        app.updateSettings(name);
+        var files = [];
+        zip.folder(path).forEach((relativePath, file) => {
+          if (!file.dir)
+            files.push({relativePath, file})
+        });
+        for (var f = 0; f < files.length; f++) {
+          var file = files[f];
+          dialog.open("importing project '" + name + "' : " + file.relativePath, true);
+          await app.storageInterface.update(file.relativePath, new Blob([await file.file.async("arraybuffer")]));
+        }
+        delete p.path;
+        dialog.open("importing project '" + name + "' metadata", true);
+        var component;
+        if (p.components) {
+          for (var icomp = 0; icomp < p.components.length; icomp++) {
+            component = p.components[icomp];
+            await app.storageInterface.createComponent({local: true, component})
+          }
+        }
+        if(!p.lastFileOpened) {
+          try{
+            await app.storageInterface.read("index.html");
+            p.lastFileOpened = "index.html";
+          }
+          catch(e) {
+            var search = await app.storageInterface.search("", "**/*.html");
+            p.lastFileOpened = search.searchResult[0] || null;
+          }
+        }
+        await app.storageInterface.setSettings({
+          projectSettings: p
+        });
+      }
+      await app.getSettings();
+      window.dispatchEvent(new CustomEvent('set-project', {
+        detail: {name:projects[projects.length-1].name,lastFileOpened:p.lastFileOpened}
+      }))
+      resolve();
+    } catch (err) {
+      reject(err);
+    }
+  })
+}
+async function newJSZip(){
+  if (!tilepieces.JSZip) {
+    await import("/modules/tilepieces/jszip/jszip.min.js");
+    tilepieces.JSZip = JSZip
+  }
+  return new tilepieces.JSZip();
+}
 function notAdmittedTagNameInPosition(tagName, composedPath) {
   tagName = tagName.toUpperCase(); // SVG return a lower case tagName
   var doc = composedPath[0].ownerDocument;
@@ -3647,5 +3730,4 @@ function unregisterSw() {
       }, reject)
   })
 }
-
 })();

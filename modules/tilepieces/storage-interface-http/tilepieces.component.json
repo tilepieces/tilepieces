@@ -11,22 +11,26 @@
     "stylesheet": {},
     "stylesheetHeader": "",
     "stylesheetFooter": "",
-    "scriptHeader": "",
-    "scriptFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
     "script": {
       "src": "tilepieces-storage-interface-http.bundle.js"
     }
   },
   "sources": {
     "stylesheets": [],
-    "scripts": []
+    "scripts": [
+      "src"
+    ]
   },
   "dependencies": [],
-  "components": {},
   "mergeMiscellaneous": false,
   "miscellaneous": [],
   "selector": "",
   "interface": "",
   "fixedHTML": false,
-  "parseHTML": ""
+  "parseHTML": "",
+  "terserConfiguration": "",
+  "skipMatchAll": false,
+  "components": {}
 }

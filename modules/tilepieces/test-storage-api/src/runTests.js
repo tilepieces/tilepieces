@@ -12,6 +12,11 @@
     await deleteComponents();
     await settings();
     await deleteProject();
+    logOnDocument(
+      assert(
+        true,
+        "ALL TESTS ARE COMPLETED!")
+      , "success");
   } catch (e) {
     console.error(e);
     logOnDocument(e.err || e.error || e.toString(), "error");

@@ -1,4 +1,6 @@
 opener.addEventListener("tilepieces-file-updating", async e => {
+  if(!pt)
+    return;
   var path = e.detail.path;
   if (path[0] == "/")
     path = path.substring(1);

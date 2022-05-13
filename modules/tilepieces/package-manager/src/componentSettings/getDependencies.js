@@ -1,4 +1,4 @@
-async function getDependencies(pkg, bundleType, bundleAttr, separationString) {
+async function getDependencies(pkg, bundleType, bundleAttr) {
   var text = "";
   var dependencies = getDependenciesFlat(pkg);
   for (var di = 0; di < dependencies.length; di++) {
@@ -14,7 +14,7 @@ async function getDependencies(pkg, bundleType, bundleAttr, separationString) {
     if (depBundlePath[0] == "/")
       depBundlePath = depBundlePath.substring(1);
     text += await app.storageInterface.read(depBundlePath);
-    if (separationString) text += separationString
+    if (di<dependencies.length-1) text += "\n"
   }
   return text;
 }

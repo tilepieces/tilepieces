@@ -1,19 +1,93 @@
 <!DOCTYPE html>
-<html><head>
-  <title>tilepieces</title>
-  
-  
-  
-  <link href="../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet">
-  <link href="../../drag/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag">
-  <link href="../../panel/css/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/panel">
-  <link href="../../dialog/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialog">
-  <link href="../../colorpicker/colorpicker.css" rel="stylesheet" data-tilepieces-component="tilepieces/colorpicker">
-  <link href="../../dialogReader/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialogReader">
-  <link href="../css/tilepieces.framework.css" rel="stylesheet" data-tilepieces-component="tilepieces/framework/css" data-tilepieces-current-stylesheet="">
-<link href="../../dialog/introduction/introduction-css.css" rel="stylesheet" data-tilepieces-component="tilepieces/dialog/introduction"></head>
-<body>
-<div id="menu-bar-trigger" class="menu-bar-trigger no-frame"><a href="javascript:void(0)" id="menu-trigger">
+<html><head><meta charset="UTF-8"><title></title><meta name="description" content=""><meta name="viewport" content="width=device-width,initial-scale=1.0"><link href="../../framework/tilepieces-framework.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/framework"></head><body><button onclick="tilepieces.getTemplatesDialog()">Launch template dialog</button><div class="tilepieces-dialog" id="tilepieces-alert-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <form id="tilepieces-dialog-alert-form">
+            <div class="tilepieces-alert-dialog-content">
+                <svg viewBox="0 0 19.672209 17.5" class="error" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(-2.1798954,-3.5)">
+                        <path d="m 11,16 h 2 v 2 h -2 z" style="fill: rgb(0, 0, 0); fill-opacity: 1;"></path>
+                        <path d="m 13.516,10 h -3 L 11,15 h 2 z" style="fill: rgb(0, 0, 0);"></path>
+                        <path d="M 12.017,5.974 19.536,19 H 4.496 L 12.017,5.974 m 0,-2.474 c -0.544,0 -1.088,0.357 -1.5,1.071 L 2.532,18.402 C 1.707,19.831 2.382,21 4.032,21 H 20 c 1.65,0 2.325,-1.169 1.5,-2.599 L 13.517,4.572 C 13.104,3.857 12.561,3.5 12.017,3.5 Z" style="fill: rgb(255, 93, 0); fill-opacity: 1;"></path></g>
+                </svg>
+                <div id="tilepieces-alert-dialog-label"></div>
+            </div>
+            <div class="tilepieces-dialog-footer">
+                <button type="submit" id="tilepieces-alert-dialog-button">OK</button>
+            </div>
+        </form>
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><div class="tilepieces-dialog" id="tilepieces-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <!-- insert content here -->
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><div class="tilepieces-dialog" id="tilepieces-confirm-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <span id="tilepieces-confirm-dialog-label"></span>
+        <div>
+            <button id="tilepieces-confirm-dialog-button">Ok</button>
+            <button id="tilepieces-reject-dialog-button">Cancel</button>
+        </div>
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><div class="tilepieces-dialog" id="tilepieces-prompt-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
+    <div class="tilepieces-dialog-content">
+        <form id="tilepieces-dialog-prompt-form">
+            <label for="tilepieces-dialog-prompt">
+                <span id="tilepieces-prompt-dialog-label"></span>
+                <input name="tilepieces-dialog-prompt" id="tilepieces-dialog-prompt" title="" autocomplete="off">
+                <small id="tilepieces-prompt-dialog-label-error"></small>
+            </label>
+            <div>
+                <button type="submit" id="tilepieces-prompt-dialog-button"></button>
+            </div>
+        </form>
+    </div>
+    <div class="tilepieces-dialog-close" aria-label="close"></div>
+</div><template id="tilepieces-search-template" data-tilepieces-component="tilepieces/dialogReader"><div class="flex-box upload-file-mask"><div class="upload-button"><label class="as-button">UPLOAD
+<input type="file" id="dialog-reader-file-input"></label></div><input id="dialog-reader-filepath-input" value="${miscpath}" ${disableinputfile}="" accept="${accept}"><button id="dialog-reader-file-button" ${disableinputfile}="">SAVE AND SELECT</button></div><form id="dialog-reader-filepath-search-form" class="flex-box"><label for="dialog-reader-filepath-search">Search:</label><input id="dialog-reader-filepath-search"><button type="submit">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17" width="17" height="17">
+        <g>
+          <path style="fill:#999999;" d="M12.5,9.4l-6.4,6.4c-0.5,0.5-1.2,0.5-1.7,0l0,0C4,15.2,4,14.5,4.5,14l6.4-6.4c0.5-0.5,1.2-0.5,1.7,0
+            l0,0C13,8.1,13,8.9,12.5,9.4z"></path>
+          <path style="fill:#999999;" d="M12.5,7.6L6.2,1.3C5.7,0.8,5,0.8,4.5,1.3l0,0C4,1.8,4,2.5,4.5,3l6.4,6.4c0.5,0.5,1.2,0.5,1.7,0l0,0
+            C13,8.9,13,8.1,12.5,7.6z"></path>
+        </g>
+      </svg>
+    </button></form>
+    <div class="${storageInterfaceClass}"><div class="storage-interface-error-msg">Error on search</div>
+    <section class="image-search-box" data-if="resources.length">
+        <figure data-foreach="resources" data-value="${key.src}">
+          <figcaption>${key.filename}</figcaption>
+<div data-if="type == 'img' || type == 'video' || type == 'audio'">
+  <img data-if="type == 'img'" title="${key.src}" data-src="${key.src}">
+  <video data-if="type == 'video'" title="${key.src}" data-src="${key.src}"></video>
+  <audio data-if="type == 'audio'" title="${key.src}" data-src="${key.src}"></audio>
+</div>
+
+
+          
+        </figure>
+    </section><div class="image-search-pagination-box" data-if="pagination">
+        <span class="image-search-previous" data-prev="" data-if="pagination.pointer > 0">&lt;</span>
+        <span class="image-search-next" data-next="" data-if="pagination.page < pagination.pages">&gt;</span>
+    </div><button class="image-search-box-submit">Select</button>
+    </div>
+
+
+
+</template><template id="dialog-templates" data-tilepieces-component="tilepieces/dialog/introduction"><div class="templates-grid">
+  <div class="template-item" data-foreach="templates" data-foreach-key-name="template">
+  <img src="${template.img}">
+  <div class="dialog-templates-info"><div><b>${template.name}</b></div>
+  <div><i>${template.desc}</i></div>
+<div>
+    <a data-if="template.doc" href="${template.doc}" class="dialog-templates-links" target="_blank">Documentation link</a>
+</div>
+  <button class="dialog-templates-download" data-link="${template.link}" data-root="${template.root}">Download</button></div>
+</div>
+</div></template><template id="dialog-introduction" data-tilepieces-component="tilepieces/dialog/introduction">Welcome to Tilepieces!<br>This application was created for web professionals who need to create and edit HTML files.<br>We recommend that you take a look at the <a href="https://tilepieces.net/documentation/index.html">documentation</a>, particularly in the <a href="https://tilepieces.net/documentation/core-concepts/index.html">core concepts</a> section, and watch our <a href="https://tilepieces.net/tutorials.html">video tutorials</a> that show you how to create a new project and edit files.<br>If you want, you can choose a <a href="#" class="dialog-introduction-create-template">template</a>&nbsp;to start with.<hr><button id="dialog-introduction-close">Close this modal</button><button id="dialog-introduction-create-template" class="dialog-introduction-create-template" onclick="tilepieces.getTemplatesDialog()">Start from template</button></template><div id="menu-bar-trigger" class="menu-bar-trigger no-frame" data-tilepieces-component="tilepieces/framework" style="display:none"><a href="javascript:void(0)" id="menu-trigger">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.8 55.3" width="24" height="24">
 <circle style="fill:#727272" cx="8.6" cy="10.4" r="6"></circle>
 <circle style="fill:#727272" cx="8.6" cy="28.9" r="6"></circle>
@@ -95,12 +169,10 @@
       </g>
     </svg>
   </a>
-</div>
-<div id="menu-bar">
+</div><div id="menu-bar" data-tilepieces-component="tilepieces/framework">
   <ul id="window-list">
   </ul>
-</div>
-<div id="mobile-wrapper" class="right">
+</div><div id="mobile-wrapper" data-tilepieces-component="tilepieces/framework">
   <div class="move-bar-dummy"></div>
   <div id="target-frame-wrapper">
     <iframe id="target-frame"></iframe>
@@ -108,8 +180,7 @@
   <div id="move-bar"></div>
   <div id="dock-frames" tabindex="-1">
   </div>
-</div>
-<div class="panel-element" data-alt-popup="/modules/tilepieces/colorpicker/colorpicker-pop.html" data-tilepieces-component="panel-html-template" id="colorpicker" style="background: #98b8c8;">
+</div><div class="panel-element" data-alt-popup="/modules/tilepieces/colorpicker/colorpicker-pop.html" data-tilepieces-component="tilepieces/framework" id="colorpicker" style="background: #98b8c8;">
   <div class="panel-handler"><span class="panel-handler-ico">
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
 <path fill="#FFFFFF" d="M22,9v9c0,1.1-0.9,2-2,2H4c-1.1,0-2-0.9-2-2V6c0-1.1,0.9-2,2-2h5.3c0.9,0,1.6,0.6,1.9,1.4L11.7,7H20
@@ -148,8 +219,7 @@
 </svg></span>
   <iframe data-src="/modules/tilepieces/colorpicker/colorpicker.html"></iframe>
   <div class="panel-prevent-iframe-mousedown"></div>
-</div>
-<div class="panel-element" data-alt-popup="/modules/tilepieces/codeMirror-editor/index-pop.html" data-tilepieces-component="panel-html-template" id="codeMirror-editor">
+</div><div class="panel-element" data-alt-popup="/modules/tilepieces/codeMirror-editor/index-pop.html" data-tilepieces-component="tilepieces/framework" id="codeMirror-editor">
   <div class="panel-handler"><span class="panel-handler-ico">
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
 <path fill="#FFFFFF" d="M22,9v9c0,1.1-0.9,2-2,2H4c-1.1,0-2-0.9-2-2V6c0-1.1,0.9-2,2-2h5.3c0.9,0,1.6,0.6,1.9,1.4L11.7,7H20
@@ -189,8 +259,7 @@
 </svg></span>
   <iframe data-src="/modules/tilepieces/codeMirror-editor/index.html"></iframe>
   <div class="panel-prevent-iframe-mousedown"></div>
-</div>
-<template id="tilepieces-dialog-info"><ul id="tilepieces-info-dialog">
+</div><template id="tilepieces-dialog-info" data-tilepieces-component="tilepieces/framework"><ul id="tilepieces-info-dialog">
     <li><b>name</b>: tilepieces</li>
     <li><b>version</b>: x.x.x</li>
     <li><b>framework version</b>:&nbsp;<span data-tilepieces-version=""></span></li>
@@ -200,4 +269,4 @@
     <li><b>repository</b>: <a href="https://github.com//tilepieces" target="_blank">https://github.com//tilepieces/tilepieces</a></li>
   <li><b>issues</b>: <a href="https://github.com//tilepieces/PWA/issues" target="_blank">ISSUES</a></li>
   <li><b>license</b>:&nbsp;<a href="https://github.com//tilepieces/tilepieces/blob/main/LICENSE" target="_blank">LICENSE</a></li>
-  </ul></template></body></html>
+  </ul></template><script src="../../framework/tilepieces-framework.bundle.js" data-tilepieces-component="tilepieces/framework"></script></body></html>

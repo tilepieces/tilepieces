@@ -293,10 +293,7 @@ settingsFormActivation(app.isComponent);
 projectsInnerTemplates = [];
 async function exportComponentsAsZip(componentsToExport, isLocal) {
   // only the first level
-  if (!window.JSZip) {
-    await import("./../../jszip/jszip.min.js");
-  }
-  var zip = new JSZip();
+  var zip = await app.utils.newJSZip();
   var pkgsExported = [];
   var errors = [];
   var pkgToExport = [];
@@ -574,10 +571,7 @@ async function updateResourceFromComponent(toImport,
 }
 function importComponentAsZip(blobFile, local) {
   return new Promise(async (resolve, reject) => {
-    if (!window.JSZip) {
-      await import("./../../jszip/jszip.min.js");
-    }
-    var zip = new JSZip();
+    var zip = await app.utils.newJSZip();
     try {
       var contents = await zip.loadAsync(blobFile);
       var componentsData = contents.files["tilepieces.components.json"];
@@ -633,6 +627,7 @@ async function importingComponents(e, local) {
   if (errors.length) {
     openerDialog.open("Errors in importing components:<br>" + errors.join("<br>"));
   } else openerDialog.open("Import finished");
+  e.target.value = "";
 }
 
 localComponents.addEventListener("change", async e => {
@@ -795,14 +790,14 @@ async function concatenateSources(type, noUpdate) {
       settingsModel.bundle[key2 + "Header"] + "\n" : "";
     if (settingsModel.addDependenciesToBundles) {
       var pkg = app.localComponentsFlat[name];
-      final += await getDependencies(pkg, key2, key4, key1 == "scripts" ? "\n" : false);
+      final += await getDependencies(pkg, key2, key4);
     }
     for (var i = 0; i < search.searchResult.length; i++) {
       var source = search.searchResult[i];
       if (source.match(app.utils.URLIsAbsolute))
         return;
       final += await app.storageInterface.read(defaultPath + source);
-      if (key1 == "scripts") final += "\n";
+      if (i<search.searchResult.length-1) final += "\n";
     }
     var bundleNameInCompSettings = settingsModel.bundle[key2] &&
       settingsModel.bundle[key2].find(v => v.name == key4);
@@ -858,7 +853,7 @@ async function editComponentTerserConfiguration(){
       }
     }, e => console.warn(e))
 }
-async function getDependencies(pkg, bundleType, bundleAttr, separationString) {
+async function getDependencies(pkg, bundleType, bundleAttr) {
   var text = "";
   var dependencies = getDependenciesFlat(pkg);
   for (var di = 0; di < dependencies.length; di++) {
@@ -874,7 +869,7 @@ async function getDependencies(pkg, bundleType, bundleAttr, separationString) {
     if (depBundlePath[0] == "/")
       depBundlePath = depBundlePath.substring(1);
     text += await app.storageInterface.read(depBundlePath);
-    if (separationString) text += separationString
+    if (di<dependencies.length-1) text += "\n"
   }
   return text;
 }
@@ -1171,7 +1166,12 @@ async function submitSettings() {
 componentSettingsForm.addEventListener("change", e => {
   console.log("change form", e);
   //settingsTT.set("disabled","");
-
+}, true);
+componentSettingsForm.addEventListener("keydown", e => {
+  if(e.key == "Enter") {
+    e.preventDefault();
+    e.target.dispatchEvent(new Event("change"));
+  }
 }, true);
 componentSettingsForm.addEventListener("click", e => {
   var target = e.target;
@@ -1371,14 +1371,11 @@ function deleteProject(projectName) {
 }
 
 async function exportProjectsAsZip(projects = []) {
-  var projectsPackages = app.projects.filter(p => projects.indexOf(p) > -1).slice(0);
-  if (!window.JSZip) {
-    await import("./../../jszip/jszip.min.js");
-  }
-  var zip = new JSZip();
+  var projectsPackages = app.projects.filter(p => projects.indexOf(p) > -1);
+  var zip = await app.utils.newJSZip();
   var errors = [];
   for (var i = 0; i < projectsPackages.length; i++) {
-    var pkg = projectsPackages[i];
+    var pkg = structuredClone(projectsPackages[i]);
     openerDialog.open("exporting " + pkg.name + " components...", true);
     var filesToFetch = pkg.files || [""];
     var files = [];
@@ -1403,8 +1400,8 @@ async function exportProjectsAsZip(projects = []) {
       }
     }
     pkg.path = pkg.name;
-    delete pkg.components;
-    //pkg.components = Object.assign({},pkg.componentsFlat);
+    for(var k in pkg.components)
+      pkg.components[k] = {name:pkg.components[k].name,path:pkg.componentsFlat[k].path}
     delete pkg.checked;
     delete pkg.localComponents;
     delete pkg.componentsFlat;
@@ -1433,78 +1430,6 @@ async function exportProjectsAsZip(projects = []) {
       </details>`
   }
   openerDialog.open(statement, false);
-}
-function importProjectAsZip(blobFile) {
-  return new Promise(async (resolve, reject) => {
-    if (!window.JSZip) {
-      await import("./../../jszip/jszip.min.js");
-    }
-    var zip = new JSZip();
-    try {
-      var contents = await zip.loadAsync(blobFile);
-      var projectsData = contents.files["tilepieces.projects.json"];
-      var projects;
-      if (!projectsData) {
-        console.warn("zip doesn't contain 'tilepieces.projects.json'");
-        var projectName = await app.utils.dialogNameResolver(null, null, "no 'tilepieces.projects.json' found. " +
-          "Tilepieces will import the entire zip: Please type the new project name", true );
-        projects = [{
-          path : "",
-          name : projectName
-        }]
-      }
-      else{
-        projects = JSON.parse(await projectsData.async("string"));
-      }
-      for (var i = 0; i < projects.length; i++) {
-        var p = projects[i];
-        var name = p.name;
-        var path = p.path;
-        openerDialog.open("importing project '" + name + "'", true);
-        await app.storageInterface.create(name);
-        await app.getSettings();
-        app.updateSettings(name);
-        var files = [];
-        zip.folder(path).forEach((relativePath, file) => {
-          if (!file.dir)
-            files.push({relativePath, file})
-        });
-        for (var f = 0; f < files.length; f++) {
-          var file = files[f];
-          openerDialog.open("importing project '" + name + "' : " + file.relativePath, true);
-          await app.storageInterface.update(file.relativePath, new Blob([await file.file.async("arraybuffer")]));
-        }
-        delete p.path;
-        openerDialog.open("importing project '" + name + "' metadata", true);
-        var component;
-        if (p.components) {
-          for (var icomp = 0; icomp < p.components.length; icomp++) {
-            component = p.components[icomp];
-            await app.storageInterface.createComponent({local: true, component})
-          }
-        }
-        if(!p.lastFileOpened) {
-          try{
-            await app.storageInterface.read("index.html");
-            p.lastFileOpened = "index.html";
-          }
-          catch(e) {
-            var search = await app.storageInterface.search("", "**/*.html");
-            p.lastFileOpened = search.searchResult[0] || null;
-          }
-        }
-        await app.storageInterface.setSettings({
-          projectSettings: p
-        });
-      }
-      opener.dispatchEvent(new CustomEvent('set-project', {
-        detail: {name:projects[projects.length-1].name,lastFileOpened:p.lastFileOpened}
-      }))
-      resolve();
-    } catch (err) {
-      reject(err);
-    }
-  })
 }
 projectsDialog.addEventListener("click", async e => {
   if (!e.target.classList.contains("project-name-open"))
@@ -1592,7 +1517,7 @@ projectsDialog.addEventListener("projectsChecked", e => {
   }));
 });
 projectsDialog.addEventListener("click", e => {
-  if(e.target.id!="export-projects")
+  if(!e.target.closest("#export-projects"))
     return;
   try {
     exportProjectsAsZip(projectsUIMOdel.projects.filter(v => v.checked));
@@ -1609,7 +1534,7 @@ projectsDialog.addEventListener("change", async e => {
   if (e.target.files.length) {
     for (var i = 0; i < e.target.files.length; i++) {
       try {
-        await importProjectAsZip(e.target.files[i]);
+        await app.utils.importProjectAsZip(e.target.files[i]);
       } catch (e) {
         console.error(e);
         errors.push(e)
@@ -1619,7 +1544,11 @@ projectsDialog.addEventListener("change", async e => {
   if (errors.length) {
     openerDialog.open("Errors in importing projects:<br>" + errors.join("<br>"));
   } else openerDialog.open("Import finished");
+  e.target.value = "";
 },true);
+document.getElementById("open-template-dialog").addEventListener("click",e=>{
+  app.getTemplatesDialog();
+});
 projectsDialog.addEventListener("template-digest", async e => {
   var detail = e.detail;
   var target = detail.target;

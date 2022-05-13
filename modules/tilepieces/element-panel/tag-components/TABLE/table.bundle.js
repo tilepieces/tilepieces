@@ -112,9 +112,11 @@ function setTemplate(target) {
       mergecellcolafter = "";
     }
   }
+  /*
   if (target != globalModel.target) {
     app.core.selectElement(target);
   }
+  */
   globalModel = {
     rows: tableTarget.rows.length,
     columns: wideRow.cells.length,

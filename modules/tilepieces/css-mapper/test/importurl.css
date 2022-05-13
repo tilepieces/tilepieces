@@ -1,12 +1,13 @@
-@supports(display:grid){
-    @media screen and (max-width:900px){
-        footer {
-            font-size: 12px;
-        }
-        @media screen and (max-width:600px) {
-            footer {
-                font-size: 10px;
-            }
-        }
+@supports (display:grid) {
+  @media screen and (max-width: 900px) {
+    footer {
+      font-size: 12px;
     }
+
+    @media screen and (max-width: 600px) {
+      footer {
+        font-size: 10px;
+      }
+    }
+  }
 }

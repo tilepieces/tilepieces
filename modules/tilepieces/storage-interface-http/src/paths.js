@@ -1,4 +1,4 @@
-var API = {
+const API = {
     copy : "/?tilepieces-copy",
     create : "/?tilepieces-create",
     delete : "/?tilepieces-delete",

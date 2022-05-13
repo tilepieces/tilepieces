@@ -7,7 +7,6 @@
 function read(path,component,project){
     return new Promise(async (resolve,reject)=> {
         path = path.replace(/&/g,"%26");
-        console.log("[frontart storage => 'read']",path);
         var headers = {};
         if(tilepieces.currentProject)
             headers['current-project'] = tilepieces.currentProject;
@@ -15,7 +14,6 @@ function read(path,component,project){
             `${project ? `&project=${project}` : ``}`,{
                 headers
             }).then(async res=>{
-            console.log(res.headers);
             var isDirectoryRapresentation = res.headers.has('tilepieces-directory');
             if(res.ok && !isDirectoryRapresentation && isTextMimeType(res.headers.get('Content-Type')))
                 resolve(await res.text());

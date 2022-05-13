@@ -136,35 +136,25 @@ async function addComponentCss(component, index, dependenciesFlat) {
   }
 }
 // return the first dom element inserted.
-async function addComponentHTML(component) {
-  var elementSelected = app.elementSelected.nodeType != 1 ? app.elementSelected.parentNode : app.elementSelected;
-  if (!component.html || (!elementSelected && !component.fixedHTML))
+async function addComponentHTML(component,isSubComponent) {
+  var elementSelected = app.elementSelected?.nodeType != 1 ? app.elementSelected.parentNode : app.elementSelected;
+  if (!component.html || (!elementSelected && !component.fixedHTML) || (isSubComponent && !component.fixedHTML))
     return;
   var currentDoc = app.core.currentDocument;
   var newElText = await app.storageInterface.read((component.path || "") + "/" + component.html);
   if (component.parseHTML) {
-    try {
-      var functionToParse = await app.storageInterface.read((component.path || "") + "/" + component.parseHTML);
-      var HTMLText = newElText;
-      var customParseFunction = new Function("HTMLText", "tilepieces", "return (" + functionToParse + ")(HTMLText, tilepieces)");
-      HTMLText = customParseFunction(HTMLText, app);
-      if (typeof HTMLText !== "string") {
-        console.error("[HTMLText received] : ", HTMLText);
-        throw "HTMLText received is not a string"
-      }
-      newElText = HTMLText;
-    } catch (e) {
-      console.error(e)
+    var functionToParse = await app.storageInterface.read((component.path || "") + "/" + component.parseHTML);
+    var HTMLText = newElText;
+    var customParseFunction = new Function("HTMLText", "tilepieces", "return (" + functionToParse + ")(HTMLText, tilepieces)");
+    HTMLText = customParseFunction(HTMLText, app);
+    if (typeof HTMLText !== "string") {
+      console.error("[HTMLText received] : ", HTMLText);
+      throw "HTMLText received is not a string"
     }
+    newElText = HTMLText;
   }
   // search in the document with [data-tilepieces-component]
-  try {
-    var toRemove = currentDoc.querySelectorAll(component.selector || `[${app.componentAttribute}="${component.name}"]`);
-  } catch (e) {
-    console.error(e);
-    opener.alertDialog("cannot insert " + component.name + ".<br>" + e.toString(),true);
-    return;
-  }
+  var toRemove = currentDoc.querySelectorAll(component.selector || `[${app.componentAttribute}="${component.name}"]`);
   var fixedPlaceholder;
   var indexHTML = 0;
   // remove all previous element labeled as this component
@@ -583,7 +573,7 @@ async function clickOnComponent(e) {
     var dependenciesFlat = getDependenciesFlat(component);
     for (var d = 0; d < dependenciesFlat.length; d++) {
       var c = dependenciesFlat[d];
-      newHTMLElement = (isAddHtml || isAddBundle) && await addComponentHTML(c);
+      newHTMLElement = (isAddHtml || isAddBundle) && await addComponentHTML(c,component.name != c.name);
       if (component.addDependenciesToBundles && c != component)
         continue;
       (isAddCss || isAddBundle) && c.bundle?.stylesheet?.href && await addComponentCss(c,

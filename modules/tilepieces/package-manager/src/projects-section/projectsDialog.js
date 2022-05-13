@@ -36,7 +36,7 @@ projectsDialog.addEventListener("projectsChecked", e => {
   }));
 });
 projectsDialog.addEventListener("click", e => {
-  if(e.target.id!="export-projects")
+  if(!e.target.closest("#export-projects"))
     return;
   try {
     exportProjectsAsZip(projectsUIMOdel.projects.filter(v => v.checked));
@@ -53,7 +53,7 @@ projectsDialog.addEventListener("change", async e => {
   if (e.target.files.length) {
     for (var i = 0; i < e.target.files.length; i++) {
       try {
-        await importProjectAsZip(e.target.files[i]);
+        await app.utils.importProjectAsZip(e.target.files[i]);
       } catch (e) {
         console.error(e);
         errors.push(e)
@@ -63,4 +63,8 @@ projectsDialog.addEventListener("change", async e => {
   if (errors.length) {
     openerDialog.open("Errors in importing projects:<br>" + errors.join("<br>"));
   } else openerDialog.open("Import finished");
+  e.target.value = "";
 },true);
+document.getElementById("open-template-dialog").addEventListener("click",e=>{
+  app.getTemplatesDialog();
+});

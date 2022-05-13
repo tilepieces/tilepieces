@@ -9,7 +9,6 @@ function del(path = "",project=null){
         if(tilepieces.currentProject)
             headers['current-project'] = tilepieces.currentProject;
         path = path.replace(/&/g,"%26");
-        console.log("[frontart storage => 'delete']",path);
         fetch(`${API.delete}&path=${path}${project ? `&project=${project}` : ""}`,{
             headers
         }).then(res=>{

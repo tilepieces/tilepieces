@@ -30,20 +30,24 @@
   ],
   "components": {
     "tilepieces/dialog/alert": {
-      "name": "tilepieces/dialog/alert",
-      "path": "/components/dialog/alert"
+      "path": "/components/dialog/alert",
+      "name": "tilepieces/dialog/alert"
     },
     "tilepieces/dialog/dialog": {
-      "name": "tilepieces/dialog/dialog",
-      "path": "/components/dialog/dialog"
+      "path": "/components/dialog/dialog",
+      "name": "tilepieces/dialog/dialog"
     },
     "tilepieces/dialog/confirm": {
-      "name": "tilepieces/dialog/confirm",
-      "path": "/components/dialog/confirm"
+      "path": "/components/dialog/confirm",
+      "name": "tilepieces/dialog/confirm"
     },
     "tilepieces/dialog/prompt": {
-      "name": "tilepieces/dialog/prompt",
-      "path": "/components/dialog/prompt"
+      "path": "/components/dialog/prompt",
+      "name": "tilepieces/dialog/prompt"
+    },
+    "tilepieces/dialog/introduction": {
+      "path": "/introduction",
+      "name": "tilepieces/dialog/introduction"
     }
   },
   "mergeMiscellaneous": false,

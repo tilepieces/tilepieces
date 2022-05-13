@@ -87,6 +87,7 @@ tilepieces.setFrame = function (URL, htmltext,noSetHistory = false) {
           "lastFileOpened": pathname
         }
       });
+      tilepieces.projects.find(v=>v.name == tilepieces.project.name).lastFileOpened = pathname;
     }
     document.title = `${tilepieces.project ? `${tilepieces.project.name} - ` : ``}${pathname} - tilepieces`;
     if(tilepieces.project) {

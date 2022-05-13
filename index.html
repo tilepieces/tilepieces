@@ -93,7 +93,7 @@
 </div><div id="menu-bar" data-tilepieces-component="tilepieces/framework">
   <ul id="window-list">
   </ul>
-</div><div id="mobile-wrapper" data-tilepieces-component="tilepieces/framework">
+</div><div id="mobile-wrapper" class="right" data-tilepieces-component="tilepieces/framework">
   <div class="move-bar-dummy"></div>
   <div id="target-frame-wrapper">
     <iframe id="target-frame"></iframe>
@@ -479,7 +479,6 @@
 		C15.4,6.8,14.8,6.8,14.4,7.2z"></path>
 </g>
 </svg>
-
 </span><span class="panel-eject panel-botton-position">
   <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 23 23">
 <g>
@@ -543,17 +542,32 @@
 </svg></span>
   <iframe data-src="/modules/tilepieces/codeMirror-editor/index.html"></iframe>
   <div class="panel-prevent-iframe-mousedown"></div>
-</div><template id="tilepieces-dialog-info" data-tilepieces-component="tilepieces/framework"><ul id="tilepieces-info-dialog">
-  <li><b>name</b>: tilepieces</li>
-  <li><b>version</b>: x.x.x</li>
-  <li><b>framework version</b>:&nbsp;<span data-tilepieces-version=""></span></li>
-  <li><b>author</b>: Simone Di Nuovo</li>
-  <li><b>mantainer</b>: &lt;<a href="mailto:mantainer@tilepieces.com">mantainer@tilepieces.com</a>&gt;</li>
-  <li><b>website</b>: <a href="https://tilepieces.net">tilepieces.net</a></li>
-  <li><b>repository</b>: <a href="https://github.com//tilepieces" target="_blank">https://github.com//tilepieces/tilepieces</a></li>
+</div>
+<template id="tilepieces-dialog-info" data-tilepieces-component="tilepieces/framework"><ul id="tilepieces-info-dialog">
+    <li><b>name</b>: tilepieces</li>
+    <li><b>version</b>: x.x.x</li>
+    <li><b>framework version</b>:&nbsp;<span data-tilepieces-version=""></span></li>
+    <li><b>author</b>: Simone Di Nuovo</li>
+    <li><b>mantainer</b>: &lt;<a href="mailto:mantainer@tilepieces.com">mantainer@tilepieces.com</a>&gt;</li>
+    <li><b>website</b>: <a href="https://tilepieces.net">tilepieces.net</a></li>
+    <li><b>repository</b>: <a href="https://github.com//tilepieces" target="_blank">https://github.com//tilepieces/tilepieces</a></li>
   <li><b>issues</b>: <a href="https://github.com//tilepieces/PWA/issues" target="_blank">ISSUES</a></li>
   <li><b>license</b>:&nbsp;<a href="https://github.com//tilepieces/tilepieces/blob/main/LICENSE" target="_blank">LICENSE</a></li>
-</ul></template>
+  </ul></template>
+<template id="dialog-templates" data-tilepieces-component="tilepieces/dialog/introduction"><div class="templates-grid">
+  <div class="template-item" data-foreach="templates" data-foreach-key-name="template">
+  <img src="${template.img}">
+  <div class="dialog-templates-info"><div><b>${template.name}</b></div>
+  <div><i>${template.desc}</i></div>
+<div>
+    <a data-if="template.doc" href="${template.doc}" class="dialog-templates-links" target="_blank">Documentation link</a>
+</div>
+  <button class="dialog-templates-download" data-link="${template.link}" data-root="${template.root}">Download</button></div>
+</div>
+</div></template>
+<template id="dialog-introduction" data-tilepieces-component="tilepieces/dialog/introduction">Welcome to Tilepieces!<br>This application is created for web professionals who need to create and edit HTML files.<br>We recommend that you take a look at the <a href="https://tilepieces.net/documentation/index.html">documentation</a>, particularly in the <a href="https://tilepieces.net/documentation/core-concepts/index.html">core concepts</a> section, and watch our <a href="https://tilepieces.net/tutorials.html">video tutorials</a> that show you how to create a new project and edit files.<br>If you want, you can choose a <a href="javascript:void(0)" class="dialog-introduction-create-template" onclick="tilepieces.getTemplatesDialog()">template</a>&nbsp;to start with.<hr><button id="dialog-introduction-close">Close this modal</button><button id="dialog-introduction-create-template" class="dialog-introduction-create-template" onclick="tilepieces.getTemplatesDialog()">Start from template</button></template>
+
+
   <div class="tilepieces-dialog" id="tilepieces-alert-dialog" tabindex="-1" data-tilepieces-component="tilepieces/dialog">
     <div class="tilepieces-dialog-content">
         <form id="tilepieces-dialog-alert-form">
@@ -639,5 +653,4 @@
 </template>
 <script src="modules/tilepieces/storage-interface-http/tilepieces-storage-interface-http.bundle.js" data-tilepieces-component="tilepieces/storage-interface-http"></script>
 <script src="modules/tilepieces/framework/tilepieces-framework.bundle.js" data-tilepieces-component="tilepieces/framework"></script>
-
 </body></html>

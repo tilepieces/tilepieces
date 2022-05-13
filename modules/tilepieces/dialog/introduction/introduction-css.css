@@ -1,0 +1,12 @@
+#dialog-introduction-create-template { background: rgb(163, 152, 198); color: rgb(255, 255, 255); }
+#dialog-templates.open { display: block; }
+#dialog-templates .tilepieces-dialog-content { max-width: 100%; max-height: 100vh; height: 100%; width: 100%; }
+div.templates-grid { display:flex;flex-wrap:wrap; }
+.templates-grid img { width: 100%; }
+div.template-item { text-align: center; position: relative; flex-direction: column; place-content: space-between; align-items: center; display: flex; width:50%;}
+div.dialog-templates-info { line-height: 2.7; }
+@media (max-width:700px){
+  div.template-item{
+    width:100%;
+  }
+}

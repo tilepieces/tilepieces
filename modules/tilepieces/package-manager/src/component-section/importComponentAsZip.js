@@ -1,9 +1,6 @@
 function importComponentAsZip(blobFile, local) {
   return new Promise(async (resolve, reject) => {
-    if (!window.JSZip) {
-      await import("./../../jszip/jszip.min.js");
-    }
-    var zip = new JSZip();
+    var zip = await app.utils.newJSZip();
     try {
       var contents = await zip.loadAsync(blobFile);
       var componentsData = contents.files["tilepieces.components.json"];

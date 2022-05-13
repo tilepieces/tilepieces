@@ -1,3 +1,4 @@
+(()=>{
 function addTag(tagName,properties = [],node = false,contenteditable = null){
     if(tagName.toUpperCase().match(app.utils.notEditableTags)){
         createNotEditableTag(tagName,node);
@@ -392,3 +393,4 @@ window.wysiwyg = {
     selection:()=>globalSel,
     range:()=>globalRange
 }
+})();

@@ -1,112 +1,155 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <title>Test css parser</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
-    <link href="css.css" rel="stylesheet">
-    <link rel="stylesheet" media="screen and (min-width: 900px)" href="widescreen.css">
-    <link rel="stylesheet" media="screen and (max-width: 600px)" href="smallscreen.css">
-    <style>
-        @font-face { src: url("OpenSans-Regular.ttf"); font-family: "Open Sans"; }
-        @-webkit-keyframes mymove {
-            from {top: 0px;}
-            to {top: 200px;}
-        }
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test css parser</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link href="css.css" rel="stylesheet">
+  <link rel="stylesheet" media="screen and (min-width: 900px)" href="widescreen.css">
+  <link rel="stylesheet" media="screen and (max-width: 600px)" href="smallscreen.css">
+  <style>
+    @font-face {
+      src: url("OpenSans-Regular.ttf");
+      font-family: "Open Sans";
+    }
 
-        /* Standard syntax */
-        @keyframes mymove {
-            from {top: 0px;}
-            to {top: 200px;}
-        }
-        h1{
-            background: linear-gradient(to right, #f08300 0%,#e3000f 35%,#a72879 80%,#064497 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent!important;
-        }
-    </style>
-<link href="../../test-utils/test-utils.css" rel="stylesheet" data-tilepieces-component="tilepieces/test-utils"></head>
+    @-webkit-keyframes mymove {
+      from {
+        top: 0px;
+      }
+      to {
+        top: 200px;
+      }
+    }
+
+    /* Standard syntax */
+    @keyframes mymove {
+      from {
+        top: 0px;
+      }
+      to {
+        top: 200px;
+      }
+    }
+
+    h1 {
+      background: linear-gradient(to right, #f08300 0%, #e3000f 35%, #a72879 80%, #064497 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent !important;
+    }
+  </style>
+  <link href="../../test-utils/test-utils.css" rel="stylesheet" data-tilepieces-component="tilepieces/test-utils">
+</head>
 <body>
-    <details>
-        <summary>test details</summary>
-      <section id="log-section" data-tilepieces-component="tilepieces/test-utils"></section>
-    </details>
+<details>
+  <summary>test details</summary>
+  <section id="log-section" data-tilepieces-component="tilepieces/test-utils"></section>
+</details>
 
 <nav>
-    <ul>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link2</a></li>
-        <li><a href="#">Link3</a></li>
-        <li><a href="#">Link4</a></li>
-    </ul>
+  <ul>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link2</a></li>
+    <li><a href="#">Link3</a></li>
+    <li><a href="#">Link4</a></li>
+  </ul>
 </nav>
 <h1>The quick brown fox jumps over the lazy dog</h1>
 <h2>A test</h2>
 <main>
-    <section class="articles">
-        <article>Vestibulum vitae <b><i>erat</i></b> ex. Praesent efficitur eleifend elit, a lacinia enim mollis vel. Phasellus porta quis tellus tincidunt accumsan. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis vulputate auctor eros vel vehicula. Praesent ut nisl et risus commodo semper nec vitae magna.
-            Nam sit amet <b>sapien</b> at est ornare imperdiet quis et urna.
-        </article>
-        <article>
-            Suspendisse <mark>potenti</mark>. Ut et lectus sit amet odio accumsan fringilla. Aliquam vehicula risus ligula, facilisis blandit turpis facilisis quis. Aenean sit amet nisi felis. Duis libero elit, aliquam eget enim a, lobortis eleifend lectus. Phasellus sed placerat diam. Etiam bibendum, ex vitae mattis tincidunt, tortor orci elementum dui, in mollis quam elit eu ligula.
-            Phasellus porta porttitor odio <u>sed</u> accumsan. Donec imperdiet sagittis eros, quis auctor arcu posuere id.
-        </article>
-        <article>Vestibulum vitae <b><i>erat</i></b> ex. Praesent efficitur eleifend elit, a lacinia enim mollis vel. Phasellus porta quis tellus tincidunt accumsan. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis vulputate auctor eros vel vehicula. Praesent ut nisl et risus commodo semper nec vitae magna.
-            Nam sit amet <b>sapien</b> at est ornare imperdiet quis et urna.
-        </article>
-        <article>
-            Suspendisse <mark>potenti</mark>. Ut et lectus sit <s><u>amet</u></s> odio accumsan fringilla. Aliquam vehicula risus ligula, facilisis blandit turpis facilisis quis. Aenean sit amet nisi felis. Duis libero elit, aliquam eget enim a, lobortis eleifend lectus. Phasellus sed placerat diam. Etiam bibendum, ex vitae mattis tincidunt, tortor orci elementum dui, in mollis quam elit eu ligula.
-            Phasellus porta <s>porttitor</s> odio <u>sed</u> accumsan. Donec imperdiet sagittis eros, quis auctor arcu posuere id.
-        </article>
-        <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in risus varius ligula mollis porta. Quisque id gravida ipsum. Integer vel massa eu urna auctor condimentum et quis nisl. Ut pretium tortor sed libero hendrerit pretium. Pellentesque odio lectus, varius id risus vel, tristique vehicula lectus.</p>
-            <p><b>Lorem Ipsum generator <a href="https://www.lipsum.com/" target="_blank">site</a></b></p>
-        </blockquote>
-    </section>
+  <section class="articles">
+    <article>Vestibulum vitae <b><i>erat</i></b> ex. Praesent efficitur eleifend elit, a lacinia enim mollis vel.
+      Phasellus porta quis tellus tincidunt accumsan. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+      posuere cubilia Curae; Duis vulputate auctor eros vel vehicula. Praesent ut nisl et risus commodo semper nec vitae
+      magna.
+      Nam sit amet <b>sapien</b> at est ornare imperdiet quis et urna.
+    </article>
+    <article>
+      Suspendisse
+      <mark>potenti</mark>
+      . Ut et lectus sit amet odio accumsan fringilla. Aliquam vehicula risus ligula, facilisis blandit turpis facilisis
+      quis. Aenean sit amet nisi felis. Duis libero elit, aliquam eget enim a, lobortis eleifend lectus. Phasellus sed
+      placerat diam. Etiam bibendum, ex vitae mattis tincidunt, tortor orci elementum dui, in mollis quam elit eu
+      ligula.
+      Phasellus porta porttitor odio <u>sed</u> accumsan. Donec imperdiet sagittis eros, quis auctor arcu posuere id.
+    </article>
+    <article>Vestibulum vitae <b><i>erat</i></b> ex. Praesent efficitur eleifend elit, a lacinia enim mollis vel.
+      Phasellus porta quis tellus tincidunt accumsan. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+      posuere cubilia Curae; Duis vulputate auctor eros vel vehicula. Praesent ut nisl et risus commodo semper nec vitae
+      magna.
+      Nam sit amet <b>sapien</b> at est ornare imperdiet quis et urna.
+    </article>
+    <article>
+      Suspendisse
+      <mark>potenti</mark>
+      . Ut et lectus sit <s><u>amet</u></s> odio accumsan fringilla. Aliquam vehicula risus ligula, facilisis blandit
+      turpis facilisis quis. Aenean sit amet nisi felis. Duis libero elit, aliquam eget enim a, lobortis eleifend
+      lectus. Phasellus sed placerat diam. Etiam bibendum, ex vitae mattis tincidunt, tortor orci elementum dui, in
+      mollis quam elit eu ligula.
+      Phasellus porta <s>porttitor</s> odio <u>sed</u> accumsan. Donec imperdiet sagittis eros, quis auctor arcu posuere
+      id.
+    </article>
+    <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in risus varius ligula mollis porta.
+      Quisque id gravida ipsum. Integer vel massa eu urna auctor condimentum et quis nisl. Ut pretium tortor sed libero
+      hendrerit pretium. Pellentesque odio lectus, varius id risus vel, tristique vehicula lectus.</p>
+      <p><b>Lorem Ipsum generator <a href="https://www.lipsum.com/" target="_blank">site</a></b></p>
+    </blockquote>
+  </section>
 </main>
 <footer>
-    <div>A wikipedia footer</div>
-    <ul id="footer-info">
-        <li id="footer-info-lastmod"> This page was last edited on 16 August 2019, at 13:32<span class="anonymous-show">&nbsp;(UTC)</span>.</li>
-        <li id="footer-info-copyright">Text is available under the <a rel="license" href="//en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative Commons Attribution-ShareAlike License</a><a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/" style="display:none;"></a>;
-            additional terms may apply.  By using this site, you agree to the <a href="//foundation.wikimedia.org/wiki/Terms_of_Use">Terms of Use</a> and <a href="//foundation.wikimedia.org/wiki/Privacy_policy">Privacy Policy</a>. Wikipedia® is a registered trademark of the <a href="//www.wikimediafoundation.org/">Wikimedia Foundation, Inc.</a>, a non-profit organization.</li>
-    </ul>
+  <div>A wikipedia footer</div>
+  <ul id="footer-info">
+    <li id="footer-info-lastmod"> This page was last edited on 16 August 2019, at 13:32<span class="anonymous-show">&nbsp;(UTC)</span>.
+    </li>
+    <li id="footer-info-copyright">Text is available under the <a rel="license"
+                                                                  href="//en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative
+      Commons Attribution-ShareAlike License</a><a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/"
+                                                   style="display:none;"></a>;
+      additional terms may apply. By using this site, you agree to the <a
+        href="//foundation.wikimedia.org/wiki/Terms_of_Use">Terms of Use</a> and <a
+        href="//foundation.wikimedia.org/wiki/Privacy_policy">Privacy Policy</a>. Wikipedia® is a registered trademark
+      of the <a href="//www.wikimediafoundation.org/">Wikimedia Foundation, Inc.</a>, a non-profit organization.
+    </li>
+  </ul>
 </footer>
 <script src="../css-mapper.bundle.js" data-tilepieces-component="tilepieces/css-mapper"></script>
-  <script src="../../test-utils/test-utils.bundle.js" data-tilepieces-component="tilepieces/test-utils"></script>
-    <script>
-      (async ()=>{
-  var styles = await cssMapper(document);
-  console.log(styles);
-  try{
-    assert(styles.animations.length == 2)
-    assert(styles.animations[0].cssText.startsWith("@-webkit-keyframes mymove"))
-    assert(styles.animations[1].cssText.startsWith("@keyframes mymove"));
-    logOnDocument("expect 2 animations","success");
-    assert(styles.conditionalGroups.length == 4)
-    assert(styles.conditionalGroups[0].conditionText == "@supports (display:grid)")
-    assert(styles.conditionalGroups[0].inheritedConditionText == "")
-    assert(styles.conditionalGroups[1].conditionText == "@media screen and (max-width: 900px)")
-    assert(styles.conditionalGroups[1].inheritedConditionText == "@supports (display:grid)")
-    assert(styles.conditionalGroups[2].conditionText == "@media screen and (max-width: 600px)")
-    assert(styles.conditionalGroups[2].inheritedConditionText == "@media screen and (max-width: 900px), @supports (display:grid)")
-    assert(styles.conditionalGroups[3].conditionText == "@media screen and (min-width: 900px)")
-    assert(styles.conditionalGroups[3].inheritedConditionText == "")
-    logOnDocument("expect 4 conditionalsGroups","success");
-    assert(styles.fontDeclarations.length == 2 && styles.fontDeclarations[0] == '"Titillium Web", sans-serif' && styles.fontDeclarations[1] == 'Roboto, sans-serif');
-    logOnDocument("expect 2 fontDeclarations","success");
-    assert(styles.fonts.length == 23 && styles.fonts[22].mapped.fontFamily == '"Open Sans"')
-    logOnDocument("expect 23 fonts, 22 from google fonts, the last one '\"Open Sans\"'","success");
-    assert(styles.mediaQueries.length == 5 && styles.mediaQueries[0].rule.conditionText == "screen and (max-width: 900px)" &&
-            styles.mediaQueries[0].children[0].rule.conditionText == "screen and (max-width: 600px)")
-    logOnDocument("expect 5 media queries, with the first one with one children","success");
-    assert(styles.styleSheets.length == 7 &&
-            styles.styleSheets[0].href == "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" &&
-            styles.styleSheets[1].href == "https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,700,700i&display=swap" &&
-            styles.styleSheets[5].href == null)
-    logOnDocument("expect 7 stylesheets","success");
-  }
-    catch(e){
-        console.error(e);
-        logOnDocument(e.err || e.error || e.toString(),"error");
+<script src="../../test-utils/test-utils.bundle.js" data-tilepieces-component="tilepieces/test-utils"></script>
+<script>
+  (async () => {
+    var styles = await cssMapper(document);
+    console.log(styles);
+    try {
+      assert(styles.animations.length == 2)
+      assert(styles.animations[0].cssText.startsWith("@-webkit-keyframes mymove"))
+      assert(styles.animations[1].cssText.startsWith("@keyframes mymove"));
+      logOnDocument("expect 2 animations", "success");
+      assert(styles.conditionalGroups.length == 4)
+      assert(styles.conditionalGroups[0].conditionText == "@supports (display:grid)")
+      assert(styles.conditionalGroups[0].inheritedConditionText == "")
+      assert(styles.conditionalGroups[1].conditionText == "@media screen and (max-width: 900px)")
+      assert(styles.conditionalGroups[1].inheritedConditionText == "@supports (display:grid)")
+      assert(styles.conditionalGroups[2].conditionText == "@media screen and (max-width: 600px)")
+      assert(styles.conditionalGroups[2].inheritedConditionText == "@media screen and (max-width: 900px), @supports (display:grid)")
+      assert(styles.conditionalGroups[3].conditionText == "@media screen and (min-width: 900px)")
+      assert(styles.conditionalGroups[3].inheritedConditionText == "")
+      logOnDocument("expect 4 conditionalsGroups", "success");
+      assert(styles.fontDeclarations.length == 2 && styles.fontDeclarations[0] == '"Titillium Web", sans-serif' && styles.fontDeclarations[1] == 'Roboto, sans-serif');
+      logOnDocument("expect 2 fontDeclarations", "success");
+      assert(styles.fonts.length == 23 && styles.fonts[22].mapped.fontFamily == '"Open Sans"')
+      logOnDocument("expect 23 fonts, 22 from google fonts, the last one '\"Open Sans\"'", "success");
+      assert(styles.mediaQueries.length == 5 && styles.mediaQueries[0].rule.conditionText == "screen and (max-width: 900px)" &&
+        styles.mediaQueries[0].children[0].rule.conditionText == "screen and (max-width: 600px)")
+      logOnDocument("expect 5 media queries, with the first one with one children", "success");
+      assert(styles.styleSheets.length == 7 &&
+        styles.styleSheets[0].href == "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" &&
+        styles.styleSheets[1].href == "https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,700,700i&display=swap" &&
+        styles.styleSheets[5].href == null)
+      logOnDocument("expect 7 stylesheets", "success");
+    } catch (e) {
+      console.error(e);
+      logOnDocument(e.err || e.error || e.toString(), "error");
     }
-})();</script></body></html>
+  })();</script>
+</body>
+</html>

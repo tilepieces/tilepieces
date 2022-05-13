@@ -1,12 +1,9 @@
 async function exportProjectsAsZip(projects = []) {
-  var projectsPackages = app.projects.filter(p => projects.indexOf(p) > -1).slice(0);
-  if (!window.JSZip) {
-    await import("./../../jszip/jszip.min.js");
-  }
-  var zip = new JSZip();
+  var projectsPackages = app.projects.filter(p => projects.indexOf(p) > -1);
+  var zip = await app.utils.newJSZip();
   var errors = [];
   for (var i = 0; i < projectsPackages.length; i++) {
-    var pkg = projectsPackages[i];
+    var pkg = structuredClone(projectsPackages[i]);
     openerDialog.open("exporting " + pkg.name + " components...", true);
     var filesToFetch = pkg.files || [""];
     var files = [];
@@ -31,8 +28,8 @@ async function exportProjectsAsZip(projects = []) {
       }
     }
     pkg.path = pkg.name;
-    delete pkg.components;
-    //pkg.components = Object.assign({},pkg.componentsFlat);
+    for(var k in pkg.components)
+      pkg.components[k] = {name:pkg.components[k].name,path:pkg.componentsFlat[k].path}
     delete pkg.checked;
     delete pkg.localComponents;
     delete pkg.componentsFlat;

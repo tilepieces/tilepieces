@@ -83,12 +83,14 @@
   let evs;
   var dialogContent = dialog.children[0]; // .tilepieces-dialog-content
   var closeButton = dialog.children[1]; // .tilepieces-dialog-close
-  closeButton.addEventListener("click", () => {
-    window.dispatchEvent(new Event("release"));
-    dialog.classList.remove("lock-down");
-    dialog.classList.remove("open", "on-top");
-    document.body.style.overflow = "";
-    evs.dispatch("close", dialog);
+  dialog.addEventListener("click", e => {
+    if(e.target === closeButton || e.target.id=="dialog-introduction-close") {
+      window.dispatchEvent(new Event("release"));
+      dialog.classList.remove("lock-down");
+      dialog.classList.remove("open", "on-top");
+      document.body.style.overflow = "";
+      evs.dispatch("close", dialog);
+    }
   });
   dialog.addEventListener("keydown", e => {
     if (e.key == "Escape" && closeButton.style.display == "block") {

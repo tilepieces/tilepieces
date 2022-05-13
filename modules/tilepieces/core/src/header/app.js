@@ -14,7 +14,7 @@ document.body.append(highlightOver, selectionDiv, paddingDiv, marginDiv, borderD
 
 let drawSelection;//requestAnimationFrame reference
 window.tilepieces = {
-  version : "0.1.13",
+  version : "0.1.14",
   projects: [],
   globalComponents: [],
   localComponents: [],
@@ -46,7 +46,7 @@ window.tilepieces = {
   imageDir: "images",
   miscDir: "miscellaneous",
   frame: iframeTest,
-  panelPosition: "free",
+  panelPosition: "right",
   idGenerator: "app-",
   classGenerator: "app-",
   getFilesAsDataUrl: true,
@@ -65,7 +65,7 @@ window.tilepieces = {
   terserConfiguration: {compress: false, mangle: false},
   frameResourcePath: () => tilepieces.workspace ? (tilepieces.workspace + "/" + (tilepieces.currentProject || "")).replace(/\/+/g, "/") : "",
   serviceWorkers: [],
-  skipMatchAll : false,
+  skipMatchAll : true,
   utils: {
     numberRegex: /[+-]?\d+(?:\.\d+)?|[+-]?\.\d+?/,
     colorRegex: /rgb\([^)]*\)|rgba\([^)]*\)|#([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})\b|hsl\([^)]*\)|hsla\([^)]*\)/g,
@@ -110,6 +110,8 @@ window.tilepieces = {
     getDocumentPath,
     getHashes,
     setFixedHTMLInProject,
-    dialogNameResolver
+    dialogNameResolver,
+    newJSZip,
+    importProjectAsZip
   }
 };

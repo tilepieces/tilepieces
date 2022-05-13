@@ -70,3 +70,5 @@ legend > :first-child { font-size: 1.1rem; }
 #settings-component-path { padding-left: 1em; margin: 0px 0px 1em; font-size: 0.9em; }
 #terser-configuration-fieldset button { font-size: 0.8em; }
 #settings-component-path-button:empty::before { content: "[root]"; }
+#projects-list #open-template-dialog { margin-top: 0.5em; display: block; width: calc(100% - 10px); background: rgb(163, 152, 198); color: rgb(255, 255, 255); }
+#projects-list { position: relative; }

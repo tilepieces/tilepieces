@@ -1,9 +1,6 @@
 async function exportComponentsAsZip(componentsToExport, isLocal) {
   // only the first level
-  if (!window.JSZip) {
-    await import("./../../jszip/jszip.min.js");
-  }
-  var zip = new JSZip();
+  var zip = await app.utils.newJSZip();
   var pkgsExported = [];
   var errors = [];
   var pkgToExport = [];

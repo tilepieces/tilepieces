@@ -13,7 +13,6 @@ function update(path,blobFile) {
         var headers = {};
         if(tilepieces.currentProject)
             headers['current-project'] = tilepieces.currentProject;
-        console.log("[frontart storage => 'update']", path,blobFile);
         var formData = new FormData();
         formData.append("path", path);
         blobFile && formData.append("file", blobFile);

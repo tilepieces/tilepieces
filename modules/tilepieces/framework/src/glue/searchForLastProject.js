@@ -32,5 +32,6 @@ async function searchForLastProject() {
   } else {
     dialog.close();
     tilepieces.setFrame("");
+    window.dispatchEvent(new Event("tilepieces-no-projects"))
   }
 }

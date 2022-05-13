@@ -13,6 +13,11 @@
     await deleteComponents();
     await settings();
     await deleteProject();
+    logOnDocument(
+      assert(
+        true,
+        "ALL TESTS ARE COMPLETED!")
+      , "success");
   } catch (e) {
     console.error(e);
     logOnDocument(e.err || e.error || e.toString(), "error");
@@ -328,7 +333,7 @@ async function createProject() {
     .then(res => JSON.parse(res));
   var test2 = !Array.isArray(configurationJson) && configurationJson.name == "test" &&
     JSON.stringify(configurationJson.components) == "{}" &&
-    Object.values(configurationJson).length == 2;
+    Object.keys(settings.settings.globalSettings).every(v=>typeof configurationJson[v] !== "undefined");
   logOnDocument(
     assert(test2, "expect project/tilepieces.project.json filled with properties 'name' and 'components'")
     , "success");
@@ -601,5 +606,4 @@ async function updateRead() {
       res == "alert('ok from js/vendor/test.js')", "file updated with response as expected")
     , "success");
 }
-
 })();
