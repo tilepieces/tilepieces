@@ -1705,5 +1705,4 @@ searchTrigger.addEventListener("click", e => {
   var isOpened = searchBar.classList.toggle("opened");
   isOpened && selectedTab && selectedTab.click();
 });
-
 })();

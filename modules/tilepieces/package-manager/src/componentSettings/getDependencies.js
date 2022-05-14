@@ -14,7 +14,7 @@ async function getDependencies(pkg, bundleType, bundleAttr) {
     if (depBundlePath[0] == "/")
       depBundlePath = depBundlePath.substring(1);
     text += await app.storageInterface.read(depBundlePath);
-    if (di<dependencies.length-1) text += "\n"
+    text += "\n"
   }
   return text;
 }

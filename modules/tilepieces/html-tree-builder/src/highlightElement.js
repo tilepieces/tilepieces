@@ -41,8 +41,7 @@ HtmlTreeBuilder.prototype.highlightElement = function (target, highlight = true)
     var bound = rootElement.querySelector(".html-tree-builder__tag").getBoundingClientRect();
     win.scroll({
       top: bound.top + (bound.height / 2 ) + win.scrollY - (win.innerHeight / 2),
-      left: 0,
-      behavior: 'smooth'
+      left: 0
     });
   }
   return rootElement;

@@ -202,7 +202,8 @@ div.dialog-templates-info { line-height: 2.7; }
   div.template-item{
     width:100%;
   }
-}html, body { height: 100%; }
+}
+html, body { height: 100%; }
 body { margin: 0px; overflow: hidden; display: flex; flex-direction: column; font-family: sans-serif; }
 #target-frame-wrapper { width: 100%; height: 100%; }
 #target-frame { border: 0px; position: relative; width: 100%; height: 100%; box-sizing: border-box; margin: auto; display: block; }

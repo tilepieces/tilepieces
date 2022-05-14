@@ -236,8 +236,7 @@ HtmlTreeBuilder.prototype.highlightElement = function (target, highlight = true)
     var bound = rootElement.querySelector(".html-tree-builder__tag").getBoundingClientRect();
     win.scroll({
       top: bound.top + (bound.height / 2 ) + win.scrollY - (win.innerHeight / 2),
-      left: 0,
-      behavior: 'smooth'
+      left: 0
     });
   }
   return rootElement;
@@ -357,8 +356,6 @@ window.addEventListener("resize",e=>{
   })
 });
 function openTree(e) {
-  if (e.target.closest(".CodeMirror"))
-    return;
   if (!e.target.classList.contains("html-tree-builder__caret"))
     return;
   var doc = htmlTreeBuilderTarget.ownerDocument;
@@ -493,5 +490,4 @@ function treeBuilder(el, whereAppend, t) {
   whereAppend.appendChild(html);
   return li;
 }
-
 })();
