@@ -431,6 +431,7 @@
   </div>
 </div></template><template id="dialog-introduction" data-tilepieces-component="tilepieces/dialog/introduction">Welcome to Tilepieces!<br>This application is created for web professionals who need to create and edit HTML files.<br>We recommend that you take a look at the <a href="https://tilepieces.net/documentation/index.html">documentation</a>, particularly in the <a href="https://tilepieces.net/documentation/core-concepts/index.html">core concepts</a> section, and watch our <a href="https://tilepieces.net/tutorials.html">video tutorials</a> that show you how to create a new project and edit files.<br>If you want, you can choose a <a href="javascript:void(0)" class="dialog-introduction-create-template" onclick="tilepieces.getTemplatesDialog()">template</a>&nbsp;to start with.<hr><button id="dialog-introduction-close">Close this modal</button><button id="dialog-introduction-create-template" class="dialog-introduction-create-template" onclick="tilepieces.getTemplatesDialog()">Start from template</button></template><script src="../../framework/tilepieces-framework.bundle.js" data-tilepieces-component="tilepieces/framework"></script>
 <script>tilepieces.workspace = "";
+tilepieces.sandboxFrame = false;
 var frameURL = "test-frame.html";
 fetch(frameURL)
   .then(v => v.text())
