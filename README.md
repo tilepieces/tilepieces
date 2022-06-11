@@ -1,5 +1,5 @@
 # Tilepieces
-Tilepieces is an open source software designed for the visual editing of HTML and project management where HTML files are used.
+Tilepieces is an open source software designed for the visual editing of HTML documents and project management where HTML files are used.
 For more information, please consult the official website [tilepieces.net](https://tilepieces.net) 
 and the [documentation](https://tilepieces.net/documentation).
 In this repository you will find the source code of the main project.
