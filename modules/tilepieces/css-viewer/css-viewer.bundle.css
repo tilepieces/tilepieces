@@ -25,7 +25,7 @@ body.modal #css-viewer { position: static; }
 .modal-new-gr-select select { width: 100%; }
 input[data-bind="mediaQueryUIFreeHand"] { width: 100%; }
 body > .true[hidden] { display: none; }
-#css-viewer { position: sticky; top: 0px; padding: 0.3em; background: rgb(255, 255, 255); z-index: 2; }
+#css-viewer { position: sticky; top: 0px; padding: 0.3em; background: rgb(255, 255, 255); z-index: 3; }
 .css-selector > details > summary { padding: 0px; }
 .grouping-condition { cursor: pointer; margin: 5px; border: none; padding: 0.3em 1em 0.3em 0.3em; text-align: center; color: rgb(153, 153, 153); font-size: 1em; letter-spacing: 1px; }
 .grouping-condition svg { transform: rotate(90deg); opacity: 0.2; vertical-align: sub; }

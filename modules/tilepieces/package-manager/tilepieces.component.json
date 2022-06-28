@@ -30,7 +30,8 @@
   "dependencies": [
     "tilepieces/stylesheet",
     "tilepieces/dialog",
-    "tilepieces/tabs"
+    "tilepieces/tabs",
+    "tilepieces/dropzone"
   ],
   "mergeMiscellaneous": false,
   "miscellaneous": [

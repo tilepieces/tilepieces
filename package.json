@@ -1,0 +1,20 @@
+{
+  "name": "tilepieces-pkg",
+  "version": "0.1.17",
+  "description": "tilepieces package",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tilepieces"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tilepieces/tilepieces.git"
+  },
+  "author": "simone di nuovo <dinuovos@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tilepieces/tilepieces/issues"
+  },
+  "homepage": "https://github.com/tilepieces/tilepieces#readme"
+}

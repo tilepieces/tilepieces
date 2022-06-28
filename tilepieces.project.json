@@ -67,13 +67,10 @@
     "modules/tilepieces/project-tree/svg/svg-file.svg",
     "modules/tilepieces/project-tree/arrow.svg"
   ],
-  "lastFileOpened": "/modules/tilepieces/html-inspector/test/test.html",
+  "lastFileOpened": "/modules/tilepieces/project-explorer/project-explorer.html",
   "openedPanels": [
     "package-manager",
-    "html-inspector",
-    "css-viewer",
-    "component-panel",
-    "panel-history"
+    "project-explorer"
   ],
   "relativePaths": true
 }

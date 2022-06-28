@@ -27,8 +27,10 @@ appView.addEventListener("currentSelector", e => {
 });
 appView.addEventListener("keydown", e => {
   if (e.target.dataset.bind == "currentSelector") {
-    if (e.key == "Enter")
+    if (e.key == "Enter") {
       e.preventDefault();
+      e.target.blur();
+    }
   }
 });
 /* on rule selected */

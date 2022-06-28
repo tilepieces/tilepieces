@@ -83,6 +83,22 @@ opener.addEventListener("cssMapper-changed", e => {
   app.elementSelected &&
   app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}));
 });
+// on mutation
+opener.addEventListener("tilepieces-mutation-event", e => {
+  var findAttributeMutation, childrenList;
+  var mutationList = e.detail.mutationList;
+  mutationList.forEach(mutation => {
+    if (mutation.type == "childList" &&
+      mutation.target == app.elementSelected)
+      childrenList = true;
+    if (mutation.type == "attributes" &&
+      mutation.target == app.elementSelected)
+      findAttributeMutation = true;
+  });
+  if (childrenList || findAttributeMutation)
+    app.core.selectElement(app.elementSelected)
+    //app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}));
+})
 
 appView.addEventListener("click", e => {
   if (!e.target.classList.contains("delete-gr-rule"))
@@ -198,8 +214,10 @@ appView.addEventListener("currentSelector", e => {
 });
 appView.addEventListener("keydown", e => {
   if (e.target.dataset.bind == "currentSelector") {
-    if (e.key == "Enter")
+    if (e.key == "Enter") {
       e.preventDefault();
+      e.target.blur();
+    }
   }
 });
 /* on rule selected */
@@ -384,5 +402,4 @@ appView.addEventListener("click", e => {
       appView.ownerDocument.body.classList.remove("modal");
     });
 });
-
 })();

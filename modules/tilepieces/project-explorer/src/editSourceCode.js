@@ -3,7 +3,7 @@ editSourceCode.addEventListener("click", e => {
   var ext = selected.dataset.file.split('.').pop();
   storageIntegration.read(selected.dataset.path).then(fileText => {
     if(typeof fileText != "string"){
-      alertDialog("This file appears not to be a \"text file\" and therefore cannot be opened.", true);
+      alertDialog("This file appears not to be a text file and therefore cannot be opened.", true);
       return;
     }
     app.codeMirrorEditor(fileText, ext)

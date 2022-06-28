@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html><head>
   <meta charset="UTF-8">
   <title>Project-tree</title>
 
@@ -12,8 +11,7 @@
       margin: 0;
     }
   </style>
-  <link href="bundle/project-explorer.bundle.css" rel="stylesheet"
-        data-tilepieces-component="tilepieces/project-explorer">
+  <link href="bundle/project-explorer.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/project-explorer">
 </head>
 <body>
 <div id="project-wrapper" style="display:none">
@@ -38,7 +36,7 @@
     <div id="project-tree-paste">Paste</div>
     <div id="project-tree-delete">Delete</div>
     <div id="project-tree-refactor">Rename</div>
-  </div>
+  <div id="project-tree-set-template">Set as project template</div></div>
   <div id="project-tree-wrapper" class="project-tree-directory">
   </div>
 </div>
@@ -46,9 +44,7 @@
 <template id="new-file-form-template">
   <form id="new-file-form">
     <label for="new-file-name">
-      <input name="new-file-name" id="new-file-name" title="File name cannot contain /\?%*:|&quot;<> characters"
-             oninvalid="this.setCustomValidity(this.title);" oninput="this.setCustomValidity('');this.checkValidity();"
-             required="">
+      <input name="new-file-name" id="new-file-name" title="File name cannot contain /\?%*:|&quot;<> characters" oninvalid="this.setCustomValidity(this.title);" oninput="this.setCustomValidity('');this.checkValidity();" required="">
     </label>
     <button type="submit">Create</button>
   </form>
@@ -56,5 +52,5 @@
 
 
 <script src="bundle/project-explorer.bundle.js" data-tilepieces-component="tilepieces/project-explorer"></script>
-</body>
-</html>
+
+</body></html>

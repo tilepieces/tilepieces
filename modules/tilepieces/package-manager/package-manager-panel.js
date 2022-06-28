@@ -611,13 +611,13 @@ function importComponentAsZip(blobFile, local) {
     }
   })
 }
-async function importingComponents(e, local) {
+async function importingComponents(files, local) {
   var errors = [];
   openerDialog.open("importing components...", true);
-  if (e.target.files.length) {
-    for (var i = 0; i < e.target.files.length; i++) {
+  if (files.length) {
+    for (var i = 0; i < files.length; i++) {
       try {
-        await importComponentAsZip(e.target.files[i], local);
+        await importComponentAsZip(files[i], local);
       } catch (e) {
         console.error(e);
         errors.push(e)
@@ -627,18 +627,27 @@ async function importingComponents(e, local) {
   if (errors.length) {
     openerDialog.open("Errors in importing components:<br>" + errors.join("<br>"));
   } else openerDialog.open("Import finished");
-  e.target.value = "";
 }
 
 localComponents.addEventListener("change", async e => {
   if(e.target.id != "import-local-components")
     return;
-  importingComponents(e, true)
+  importingComponents(e.target.files, true);
+  e.target.value = "";
 },true);
-importGlobalComponents.addEventListener("change", async e => {
+localComponents.addEventListener("dropzone-dropping", async e => {
+  importingComponents(e.detail.files, true)
+  e.target.value = "";
+},true);
+globalComponents.addEventListener("change", async e => {
   if(e.target.id != "import-global-components")
     return;
-  importingComponents(e)
+  importingComponents(e.target.files)
+  e.target.value = "";
+},true);
+globalComponents.addEventListener("dropzone-dropping", async e => {
+  importingComponents(e.detail.files)
+  e.target.value = "";
 },true);
 componentsDialog.addEventListener("click", async e => {
   var target = e.target;
@@ -1452,6 +1461,23 @@ projectsDialog.addEventListener("click", async e => {
     opener.alertDialog("[error in reopening project: " + project);
   }
 });
+async function packageManagerImportProject(files){
+  var errors = [];
+  openerDialog.open("importing projects...", true);
+  if (files.length) {
+    for (var i = 0; i < files.length; i++) {
+      try {
+        await app.utils.importProjectAsZip(files[i]);
+      } catch (e) {
+        console.error(e);
+        errors.push(e)
+      }
+    }
+  }
+  if (errors.length) {
+    openerDialog.open("Errors in importing projects:<br>" + errors.join("<br>"));
+  } else openerDialog.open("Import finished");
+}
 function openSubPackage(projectName, path) {
   openerDialog.open("Creating Project...", true);
   app.storageInterface.create(projectName, path).then(res => {
@@ -1528,28 +1554,28 @@ projectsDialog.addEventListener("click", e => {
     openerDialog.open(JSON.stringify(e), false);
   }
 });
+
 projectsDialog.addEventListener("change", async e => {
   if(e.target.id!="import-projects")
     return;
-  var errors = [];
-  openerDialog.open("importing projects...", true);
-  if (e.target.files.length) {
-    for (var i = 0; i < e.target.files.length; i++) {
-      try {
-        await app.utils.importProjectAsZip(e.target.files[i]);
-      } catch (e) {
-        console.error(e);
-        errors.push(e)
-      }
-    }
-  }
-  if (errors.length) {
-    openerDialog.open("Errors in importing projects:<br>" + errors.join("<br>"));
-  } else openerDialog.open("Import finished");
+  await packageManagerImportProject(e.target.files)
   e.target.value = "";
 },true);
+projectsDialog.addEventListener("dropzone-dropping", async e => {
+  await packageManagerImportProject(e.detail.files)
+});
+
 document.getElementById("open-template-dialog").addEventListener("click",e=>{
   app.getTemplatesDialog();
+});
+projectsDialog.addEventListener("click", async function (ev) {
+  if(!ev.target.classList.contains("edit-project-template"))
+      return;
+  app.codeMirrorEditor(app.project?.template || "", "html")
+    .then(async res => {
+      await app.changeSettings("template", res);
+      await app.getSettings();
+    }, e => console.warn(e))
 });
 projectsDialog.addEventListener("template-digest", async e => {
   var detail = e.detail;

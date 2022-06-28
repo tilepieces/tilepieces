@@ -9,6 +9,7 @@ body { background: rgb(255, 255, 255); margin: 0px; }
 #projects-list .flex-box .upload-button label { border: none; text-align: center; color: rgb(153, 153, 153); font-size: 1em; }
 #projects-list button { border-radius: 7px; padding: 0.3em 1em; margin: 0px 0.2em; text-align: center; color: rgb(153, 153, 153); font-size: 1em; letter-spacing: 1px; }
 #projects-list button:hover { color: rgb(51, 51, 51); }
+[data-dropzone].ondrop { border: 1px outset rgb(106, 106, 106) !important; background: rgb(240, 240, 240); color: rgb(51, 51, 51) !important; }
 #projects-list .flex-box .upload-button label:hover { color: rgb(51, 51, 51); }
 #projects-list .flex-box { margin-bottom: 1.5em; }
 #projects-list ul { margin-top: 0px; }

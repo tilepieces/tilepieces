@@ -75,7 +75,8 @@ summary::before { width: 17px; height: 17px; background-image: url("/modules/til
 details > summary h3, details > summary .h3 { margin: 0px; padding: 0px; }
 details[open] > summary::before { transform: translate(0px, -50%) rotate(180deg); }
 details summary::-webkit-details-marker { display: none; }
-summary { outline: none; user-select: none; -webkit-user-select: none}.tilepieces-dialog { align-items: center; display: none; flex-direction: column; justify-content: center; overflow: hidden; position: fixed; z-index: 45; inset: 0px; font-family: Helvetica, Arial, sans-serif; line-height: 1.5em; }
+summary { outline: none; user-select: none; -webkit-user-select: none}
+.tilepieces-dialog { align-items: center; display: none; flex-direction: column; justify-content: center; overflow: hidden; position: fixed; z-index: 45; inset: 0px; font-family: Helvetica, Arial, sans-serif; line-height: 1.5em; }
 .tilepieces-dialog-content { position: absolute; overflow: auto; padding: 20px; border: 1px solid rgb(204, 204, 204); max-width: 80vw; min-width: 940px; background-color: rgb(255, 255, 255); border-radius: 6px; box-shadow: rgba(10, 10, 10, 0.1) 0px 2px 3px, rgba(10, 10, 10, 0.1) 0px 0px 0px 1px; color: rgb(74, 74, 74); max-height: calc(100vh - 40px); box-sizing: border-box; }
 .tilepieces-dialog.open { display: flex; }
 .tilepieces-dialog.open.on-top { z-index: 46; }
@@ -96,7 +97,8 @@ summary { outline: none; user-select: none; -webkit-user-select: none}.tilepiece
 div.tilepieces-alert-dialog-content { display: flex; }
 div.tilepieces-dialog-footer { text-align: center; }
 #tilepieces-prompt-dialog-label-error { color: red; display: none; }
-[data-invalid] + #tilepieces-prompt-dialog-label-error { display: block; }.tab-horizontal.tab-buttons { position: relative; padding: 0em 0px 0px; font: 1.3em sans-serif; margin-bottom: 1em; overflow-x: hidden; }
+[data-invalid] + #tilepieces-prompt-dialog-label-error { display: block; }
+.tab-horizontal.tab-buttons { position: relative; padding: 0em 0px 0px; font: 1.3em sans-serif; margin-bottom: 1em; overflow-x: hidden; }
 .tab-horizontal.tab-buttons > a { position: absolute; text-decoration: none; color: rgb(51, 51, 51); display: none; font-size: 1.2em; z-index: 2; background: url("/modules/tilepieces/tabs/svg-ico-freccia.svg") 50% 60% / 35% no-repeat scroll rgb(255, 255, 255); text-indent: -9999px; padding: 0.6em 0.9em 0.3em; height: calc(100% - 3px); box-sizing: border-box; }
 .tab-horizontal.tab-buttons > a:hover { }
 .tab-horizontal.tab-buttons > .tab-prev { left: 0px; transform: rotate(180deg); background-position-y: 38%;}
@@ -106,7 +108,13 @@ div.tilepieces-dialog-footer { text-align: center; }
 .tab-horizontal .tab-buttons-inside a { text-decoration: none; cursor: pointer; border-radius: 0px; position: relative; text-transform: capitalize; font-size: 1em; color: rgb(153, 153, 153); padding: 0.6em 1em 0.3em; }
 .tab-horizontal .tab-buttons-wrap .tab-buttons-inside a.selected { color: rgb(102, 102, 102); background: none 0% 0% repeat scroll transparent; }
 .tab-horizontal .tab-buttons-wrap .tab-buttons-inside a.selected::after {content: "";position: absolute;top: 100%;border-bottom: 2px solid rgb(102, 102, 102);left: 0;width: 100%;}
-.tab-horizontal .tab-buttons-inside a:hover { background: transparent; color: rgb(102, 102, 102);}body { background: rgb(255, 255, 255); margin: 0px; }
+.tab-horizontal .tab-buttons-inside a:hover { background: transparent; color: rgb(102, 102, 102);}
+[data-dropzone].ondrop{
+    border:2px outset #ff0000;
+    background:#FFFF4F;
+    box-shadow: inset 0 3px 4px #888;
+}
+body { background: rgb(255, 255, 255); margin: 0px; }
 #projects, #components { width: calc(100% - 1em); margin: auto; }
 #components ul { list-style: none; margin: 0px; }
 #global-components .global-local .add-new-local-component { display: none; }
@@ -117,6 +125,7 @@ div.tilepieces-dialog-footer { text-align: center; }
 #projects-list .flex-box .upload-button label { border: none; text-align: center; color: rgb(153, 153, 153); font-size: 1em; }
 #projects-list button { border-radius: 7px; padding: 0.3em 1em; margin: 0px 0.2em; text-align: center; color: rgb(153, 153, 153); font-size: 1em; letter-spacing: 1px; }
 #projects-list button:hover { color: rgb(51, 51, 51); }
+[data-dropzone].ondrop { border: 1px outset rgb(106, 106, 106) !important; background: rgb(240, 240, 240); color: rgb(51, 51, 51) !important; }
 #projects-list .flex-box .upload-button label:hover { color: rgb(51, 51, 51); }
 #projects-list .flex-box { margin-bottom: 1.5em; }
 #projects-list ul { margin-top: 0px; }

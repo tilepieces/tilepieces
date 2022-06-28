@@ -45,26 +45,17 @@ projectsDialog.addEventListener("click", e => {
     openerDialog.open(JSON.stringify(e), false);
   }
 });
+
 projectsDialog.addEventListener("change", async e => {
   if(e.target.id!="import-projects")
     return;
-  var errors = [];
-  openerDialog.open("importing projects...", true);
-  if (e.target.files.length) {
-    for (var i = 0; i < e.target.files.length; i++) {
-      try {
-        await app.utils.importProjectAsZip(e.target.files[i]);
-      } catch (e) {
-        console.error(e);
-        errors.push(e)
-      }
-    }
-  }
-  if (errors.length) {
-    openerDialog.open("Errors in importing projects:<br>" + errors.join("<br>"));
-  } else openerDialog.open("Import finished");
+  await packageManagerImportProject(e.target.files)
   e.target.value = "";
 },true);
+projectsDialog.addEventListener("dropzone-dropping", async e => {
+  await packageManagerImportProject(e.detail.files)
+});
+
 document.getElementById("open-template-dialog").addEventListener("click",e=>{
   app.getTemplatesDialog();
 });

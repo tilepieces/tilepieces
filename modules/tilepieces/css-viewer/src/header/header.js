@@ -60,8 +60,8 @@ opener.addEventListener("frame-resize", e => {
     model.groupingRules = mapGrouping(app.core.styles.conditionalGroups);
     model.grChosen = model.groupingRules.find(v=>v.isCurrentGr);
     t.set("",model);*/
-  app.elementSelected &&
-  app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}))
+  app.elementSelected && app.core.selectElement(app.elementSelected)
+  //app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}))
 });
 // main tabs
 /*
@@ -79,6 +79,22 @@ if (app.elementSelected)
 
 opener.addEventListener("cssMapper-changed", e => {
   model.isVisible &&
-  app.elementSelected &&
-  app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}));
+  app.elementSelected && app.core.selectElement(app.elementSelected)
+  //app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}));
 });
+// on mutation
+opener.addEventListener("tilepieces-mutation-event", e => {
+  var findAttributeMutation, childrenList;
+  var mutationList = e.detail.mutationList;
+  mutationList.forEach(mutation => {
+    if (mutation.type == "childList" &&
+      mutation.target == app.elementSelected)
+      childrenList = true;
+    if (mutation.type == "attributes" &&
+      mutation.target == app.elementSelected)
+      findAttributeMutation = true;
+  });
+  if (childrenList || findAttributeMutation)
+    app.core.selectElement(app.elementSelected)
+    //app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}));
+})

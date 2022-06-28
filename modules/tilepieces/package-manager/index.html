@@ -17,7 +17,7 @@
   <div id="projects-list" data-tilepieces-component="tilepieces/package-manager/project-list"><button id="open-template-dialog">Download template</button>
 <div class="flex-box top-button-actions">
     <button id="new-project" class="button-bg-fill">+ Create</button>
-    <div class="upload-button"><label class="as-button"><span>
+    <div class="upload-button"><label class="as-button" data-dropzone=""><span>
 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 19.6 19.6">
 <g>
 <path style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" d="M2.8,17.3h14"></path>
@@ -90,6 +90,10 @@ l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,22.1,13.5,21.5,13.2,21.2z"></path>
       <legend><input type="checkbox" data-bind="project.sandboxFrame">sandbox page<a href="https://tilepieces.net/documentation/data-structures/general-settings.html#sandbox-page" class="info-round-icon" target="_blank"></a>
       </legend>
     </fieldset>
+<fieldset>
+            <legend><span for="project.template">TEMPLATE</span><button class="edit-project-template">Edit</button><a href="https://tilepieces.net/documentation/data-structures/general-settings.html#template" class="info-round-icon" target="_blank"></a></legend>
+            
+          </fieldset>
     <fieldset>
       <legend><input type="checkbox" data-bind="project.relativePaths">relative paths
         <a href="https://tilepieces.net/documentation/data-structures/general-settings.html#relative-paths" class="info-round-icon" target="_blank"></a></legend>
@@ -398,7 +402,7 @@ Sources:</span><a href="https://tilepieces.net/documentation/data-structures/com
 
 
     <div data-if="projectName" class="upload-button">
-      <label class="as-button button-bg-fill"><input type="file" id="import-local-components" class="no-background"><span>
+      <label class="as-button button-bg-fill" data-dropzone=""><input type="file" id="import-local-components" class="no-background"><span>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.6 19.6">
 <g>
 <path style="fill:none;stroke:#999999;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" d="M2.8,17.3h14"></path>
@@ -463,7 +467,7 @@ Select all</span>
 </div>
   <div id="global-components" hidden="" data-tilepieces-component="tilepieces/package-manager/global-components">
   <div class="flex-box top-button-actions">
-    <div class="upload-button"><label class="as-button button-bg-fill"><input type="file" id="import-global-components">
+    <div class="upload-button"><label class="as-button button-bg-fill" data-dropzone=""><input type="file" id="import-global-components">
       <span>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.6 19.6">
 <g>

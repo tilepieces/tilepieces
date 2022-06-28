@@ -23,8 +23,10 @@ const buttonAddFile = document.getElementById("project-tree-add-file");
 const buttonDeleteFile = document.getElementById("project-tree-delete");
 const buttonRefactorFile = document.getElementById("project-tree-refactor");
 const newFileDialog = document.getElementById("new-file-form-template");
+const buttonSetTemplate = document.getElementById("project-tree-set-template");
 let pt;
-const HTMLTextTemplate = (text) => `<!DOCTYPE html><html><head><meta charset="UTF-8"><title></title><meta name="description" content=""><meta name="viewport" content="width=device-width,initial-scale=1.0"></head><body><div>${text}</div></body></html>`;
+const HTMLTextTemplate = (text) => app.template ||
+  `<!DOCTYPE html><html><head><meta charset="UTF-8"><title></title><meta name="description" content=""><meta name="viewport" content="width=device-width,initial-scale=1.0"></head><body><div>${text}</div></body></html>`;
 function ptDelete(data) {
   var confirm = confirmDialog(`Do you want to delete ${data.path}?`);
   confirm.events.on("confirm",value=>{
@@ -146,6 +148,7 @@ function openTooltip(e) {
   buttonCreateDir.hidden = isFile;
   projectTreeAddFileWrapper.hidden = isFile;
   buttonRefactorFile.hidden = isRoot;
+  buttonSetTemplate.hidden = !ext.match(/htm|html/);
   tooltip(e.e);
 }
 function ptOpenTree(data) {
@@ -349,7 +352,7 @@ editSourceCode.addEventListener("click", e => {
   var ext = selected.dataset.file.split('.').pop();
   storageIntegration.read(selected.dataset.path).then(fileText => {
     if(typeof fileText != "string"){
-      alertDialog("This file appears not to be a \"text file\" and therefore cannot be opened.", true);
+      alertDialog("This file appears not to be a text file and therefore cannot be opened.", true);
       return;
     }
     app.codeMirrorEditor(fileText, ext)
@@ -478,6 +481,25 @@ buttonRefactorFile.addEventListener("click", e => {
   if (pt && pt.selected[0]) {
     pt.refactor(pt, pt.selected[0]);
     tooltipEl.style.display = "none";
+  }
+});
+buttonSetTemplate.addEventListener("click",async e=>{
+  var selected = pt && pt.selected[0];
+  dialog.open("loading " + selected.dataset.path,true)
+  try{
+    var fileText = await storageIntegration.read(selected.dataset.path)
+    if(typeof fileText != "string"){
+      alertDialog("This file appears not to be a text file and therefore cannot be opened.", true);
+      return;
+    }
+    await app.changeSettings("template", fileText);
+    app.template = fileText;
+    dialog.close();
+    tooltipEl.style.display="none";
+  }
+  catch(e){
+    alertDialog(e.error || e.err || e.toString(), true);
+    console.error(e)
   }
 });
 opener.addEventListener("tilepieces-file-updating", async e => {

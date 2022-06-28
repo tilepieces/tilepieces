@@ -15,5 +15,6 @@ function openTooltip(e) {
   buttonCreateDir.hidden = isFile;
   projectTreeAddFileWrapper.hidden = isFile;
   buttonRefactorFile.hidden = isRoot;
+  buttonSetTemplate.hidden = !ext.match(/htm|html/);
   tooltip(e.e);
 }

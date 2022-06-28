@@ -96,9 +96,16 @@ function mapPseudoRules(rules) {
         newRule.parentRules.unshift({type: "layer", conditionText: swapRule.parentRule.name});
       swapRule = swapRule.parentRule;
     }
-    newRule.loc = newRule.rule.parentStyleSheet.ownerNode?.href ||
-      newRule.rule.parentStyleSheet.href || // import
-      newRule.href || app.core.currentDocument.location.href;
+    var locHref = newRule.rule.parentStyleSheet.ownerNode?.getAttribute("href");
+    var loc;
+    if(locHref && locHref[0]=="/")
+      loc = ("/"+app.frameResourcePath()+locHref).replace(/\/+/g,"/")
+    else if(locHref)
+      loc = new URL(locHref,app.core.currentDocument.location).href
+    else
+      loc = newRule.rule.parentStyleSheet.href || // import
+        newRule.href || app.core.currentDocument.location.href;
+    newRule.loc = loc;
     newRule.locPop = newRule.loc.split("/").pop();
     newRule.editSelector = false;
     newRule.selectorMatch = true;
@@ -312,7 +319,7 @@ appView.addEventListener("blur", e => {
   var ruleBlock = e.target.closest(".css-inspector__rule-block");
   var rule = ruleBlock["__css-viewer-rule"];
   var el = model.elementPresent;
-  var selectorText = e.target.innerText.trim();
+  var selectorText = e.target.innerText.trim().replace(/[\u200B-\u200D\uFEFF\u00A0\r\n]/g, "");
   var selectorMatch;
   try {
     selectorMatch = el.matches(selectorText.replace(PSEUDOSTATES, ""));
@@ -348,7 +355,14 @@ appView.addEventListener("input", e => {
   }
   t.set("", model);
 });
-
+appView.addEventListener("keydown", e => {
+  if (!e.target.classList.contains("rule-selector-edit"))
+    return;
+  if(e.key == "Enter") {
+    e.preventDefault();
+    e.target.blur();
+  }
+});
 appView.addEventListener("paste",e=>{
   var t = e.target;
   if(!t.classList.contains("rule-selector-edit"))
@@ -477,5 +491,4 @@ function updateTemplateOnNewRule(newRule) {
     behavior: 'smooth'
   });
 }
-
 })();

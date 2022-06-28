@@ -19,7 +19,7 @@ appView.addEventListener("blur", e => {
   var ruleBlock = e.target.closest(".css-inspector__rule-block");
   var rule = ruleBlock["__css-viewer-rule"];
   var el = model.elementPresent;
-  var selectorText = e.target.innerText.trim();
+  var selectorText = e.target.innerText.trim().replace(/[\u200B-\u200D\uFEFF\u00A0\r\n]/g, "");
   var selectorMatch;
   try {
     selectorMatch = el.matches(selectorText.replace(PSEUDOSTATES, ""));
@@ -55,7 +55,14 @@ appView.addEventListener("input", e => {
   }
   t.set("", model);
 });
-
+appView.addEventListener("keydown", e => {
+  if (!e.target.classList.contains("rule-selector-edit"))
+    return;
+  if(e.key == "Enter") {
+    e.preventDefault();
+    e.target.blur();
+  }
+});
 appView.addEventListener("paste",e=>{
   var t = e.target;
   if(!t.classList.contains("rule-selector-edit"))

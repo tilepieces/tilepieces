@@ -5,6 +5,8 @@ async function changeSettings(propName, propValue, set = true) {
     set && await tilepieces.storageInterface.setSettings({projectSettings});
     tilepieces.project[propName] = propValue;
     tilepieces.projects.find(v=>v.name == tilepieces.project.name)[propName] = propValue;
+    if(tilepieces[propName] && set)
+      tilepieces[propName] = propValue
   } catch (e) {
     console.error(e);
     return;

@@ -23,4 +23,5 @@ const buttonAddFile = document.getElementById("project-tree-add-file");
 const buttonDeleteFile = document.getElementById("project-tree-delete");
 const buttonRefactorFile = document.getElementById("project-tree-refactor");
 const newFileDialog = document.getElementById("new-file-form-template");
+const buttonSetTemplate = document.getElementById("project-tree-set-template");
 let pt;
