@@ -1,6 +1,6 @@
 {
   "name": "tilepieces-pkg",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "tilepieces package",
   "main": "",
   "scripts": {
@@ -10,6 +10,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tilepieces/tilepieces.git"
+  },
+  "dependencies": {
+    "@tilepieces-official/tilepieces-node": "latest"
   },
   "author": "simone di nuovo <dinuovos@gmail.com>",
   "license": "MIT",

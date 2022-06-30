@@ -14,7 +14,7 @@ function updateSettings(prName) {
     tilepieces[k] = proj[k];
   }
   for(var g in tilepieces.globalSettings){
-    if(!proj[g])
+    if(typeof proj[g] === "undefined")
       tilepieces[g] = tilepieces.globalSettings[g];
   }
   // change settings events
