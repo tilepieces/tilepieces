@@ -74,7 +74,7 @@ function onKeyDown(e) {
       return;
     }
   }
-  if (e.ctrlKey) {
+  if (e.ctrlKey||e.metaKey) {
     switch (e.key) {
       case "c":
       case "C":

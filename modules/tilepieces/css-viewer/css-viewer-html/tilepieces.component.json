@@ -1,0 +1,32 @@
+{
+  "name": "tilepieces/css-viewer/css-viewer-html",
+  "description": "",
+  "version": "",
+  "author": "",
+  "website": "",
+  "repository": "",
+  "html": "css-viewer.html",
+  "addDependenciesToBundles": false,
+  "bundle": {
+    "stylesheet": {},
+    "stylesheetHeader": "",
+    "stylesheetFooter": "",
+    "scriptHeader": "",
+    "scriptFooter": "",
+    "script": {}
+  },
+  "sources": {
+    "stylesheets": [],
+    "scripts": []
+  },
+  "dependencies": [],
+  "mergeMiscellaneous": false,
+  "miscellaneous": [],
+  "selector": "",
+  "interface": "",
+  "fixedHTML": true,
+  "parseHTML": "",
+  "terserConfiguration": "",
+  "skipMatchAll": false,
+  "components": {}
+}

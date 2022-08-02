@@ -6,6 +6,10 @@ const mainPseudoRegex = /(:{1,2}before|:{1,2}after|:{1,2}first-letter|:{1,2}firs
 // the same in cssMatcher
 const PSEUDOSTATES = /(:hover|:active|:focus|:focus-within|:visited|:focus-visible|:target)(?=$|:|\s|,)/;
 const replacePseudos = new RegExp(mainPseudoRegex.source + "|" + PSEUDOSTATES.source, "g");
+const selectorHelperView = document.getElementById("selector-helper");
+const selectorHelperTemplate = selectorHelperView.children[0];
+const selectorHelperTrigger = document.getElementById("selector-helper-trigger");
+let shtModel = {nodes : []};
 let model = {
   isVisible: false,
   groupingRules: [],

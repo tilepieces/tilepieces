@@ -1,3 +1,5 @@
+// regex to get a rule with a class defined ( only the class must be defined )
+const regexOneClassInSelector = /^\.-?[_a-zA-Z-]+[_a-zA-Z0-9-]$/
 async function parseRules(rules, returnObj) {
   // SEARCHING FOR IMPORT, FONTS AND ANIMATIONS
   for (var rulei = 0; rulei < rules.length; rulei++) {
@@ -6,6 +8,14 @@ async function parseRules(rules, returnObj) {
       case "CSSStyleRule":
         if (rule.style.fontFamily && !returnObj.fontDeclarations.includes(rule.style.fontFamily))
           returnObj.fontDeclarations.push(rule.style.fontFamily);
+        var selectors = splitCssValue(rule.selectorText);
+        selectors.map((v, i, a) => {
+          var match = v.match(regexOneClassInSelector)
+          if(match)
+            returnObj.classes.push(match[0].replace(".",""))
+        });
+        // TODO remove
+        /*
         if (returnObj.classGenerator) {
           var matchClassGenerator = rule.selectorText.match(returnObj.classGenerator);
           if (matchClassGenerator) {
@@ -19,6 +29,7 @@ async function parseRules(rules, returnObj) {
               returnObj.classIndex = n;
           }
         }
+        // TODO remove
         if (returnObj.idGenerator) {
           var matchIdGenerator = rule.selectorText.match(returnObj.idGenerator);
           if (matchIdGenerator) {
@@ -32,6 +43,7 @@ async function parseRules(rules, returnObj) {
               returnObj.idIndex = n;
           }
         }
+         */
         break;
       case "CSSFontFaceRule":
         var mapped = {

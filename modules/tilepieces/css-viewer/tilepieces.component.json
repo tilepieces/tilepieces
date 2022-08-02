@@ -5,7 +5,7 @@
   "author": "",
   "website": "",
   "repository": "",
-  "html": "css-viewer-html/css-viewer.html",
+  "html": "",
   "addDependenciesToBundles": false,
   "bundle": {
     "stylesheet": {
@@ -52,6 +52,10 @@
     "tilepieces/css-viewer/bundle": {
       "path": "/bundle",
       "name": "tilepieces/css-viewer/bundle"
+    },
+    "tilepieces/css-viewer/css-viewer-html": {
+      "path": "/css-viewer-html",
+      "name": "tilepieces/css-viewer/css-viewer-html"
     }
   }
 }

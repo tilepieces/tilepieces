@@ -243,8 +243,15 @@ opener.addEventListener("frame-DOM-selected", e => {
   treeBuilder && treeBuilder.highlightElement(e.detail.target);
 });
 opener.addEventListener("highlight-click", function (e) {
-  if (overlay.style.display == "none")
-    return;
+  if (overlay.style.display == "none") {
+    if(!selectedJsCSS || selectedJsCSS["__html-tree-builder-el"] != e.detail.target){
+      selectedTab.classList.remove("selected");
+      overlay.ownerDocument.querySelector(selectedTab.getAttribute("href")).style.display = "none";
+      selectedTab = null;
+      overlay.style.display = "block";
+    }
+    else return;
+  }
   if (selected && selected["__html-tree-builder-el"] == e.detail.target)
     return;
   selected = treeBuilder.highlightElement(e.detail.target);
@@ -1148,12 +1155,10 @@ function copyEl(elementsToCopy) {
   // clear multiselection
   //treeBuilder.clearMultiSelection();
   // elementsToCopy means a call from css/js view. We disable multiselection in this case.
-  /*
-    if(treeBuilder.multiselection) {
-        multiselectButton.click();
-        //app.core.deselectElement();
-    }
-    */
+  if(treeBuilder.multiselection) {
+      multiselectButton.click();
+      //app.core.deselectElement();
+  }
 }
 function cutEl(elementsToCut) {
   var clipboard = copy || cut;
@@ -1168,12 +1173,10 @@ function cutEl(elementsToCut) {
   // clear multiselection
   //treeBuilder.clearMultiSelection(); // problem with selected
   // elementsToCopy means a call from css/js view. We disable multiselection in this case.
-  /*
     if(treeBuilder.multiselection) {
         multiselectButton.click();
         //app.core.deselectElement();
     }
-    */
 }
 function dblclick(e) {
   if (!selected || !selected.contains(e.target))
@@ -1274,7 +1277,7 @@ function onKeyDown(e) {
       return;
     }
   }
-  if (e.ctrlKey) {
+  if (e.ctrlKey||e.metaKey) {
     switch (e.key) {
       case "c":
       case "C":

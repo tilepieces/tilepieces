@@ -19,8 +19,9 @@ function updateTemplateOnNewRule(newRule) {
     block = [...pseudoElements.querySelectorAll(".css-inspector__rule-block")].find(v=>v["__css-viewer-rule"].rule == newRule);
   }
   var win = mainRules.getRootNode().defaultView;
+  var scrollTo = block.offsetTop + (block.offsetHeight / 2 ) + win.scrollY - (win.innerHeight / 2);
   win.scroll({
-    top: block.offsetTop + (block.offsetHeight / 2 ) + win.scrollY - (win.innerHeight / 2),
+    top: block.offsetTop - (77 + 28),//(scrollTo - win.scrollY)>=(77 + 28) ? scrollTo : 77 + 28,
     left: 0,
     behavior: 'smooth'
   });

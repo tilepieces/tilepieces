@@ -7,6 +7,10 @@ const mainPseudoRegex = /(:{1,2}before|:{1,2}after|:{1,2}first-letter|:{1,2}firs
 // the same in cssMatcher
 const PSEUDOSTATES = /(:hover|:active|:focus|:focus-within|:visited|:focus-visible|:target)(?=$|:|\s|,)/;
 const replacePseudos = new RegExp(mainPseudoRegex.source + "|" + PSEUDOSTATES.source, "g");
+const selectorHelperView = document.getElementById("selector-helper");
+const selectorHelperTemplate = selectorHelperView.children[0];
+const selectorHelperTrigger = document.getElementById("selector-helper-trigger");
+let shtModel = {nodes : []};
 let model = {
   isVisible: false,
   groupingRules: [],
@@ -61,8 +65,8 @@ opener.addEventListener("frame-resize", e => {
     model.groupingRules = mapGrouping(app.core.styles.conditionalGroups);
     model.grChosen = model.groupingRules.find(v=>v.isCurrentGr);
     t.set("",model);*/
-  app.elementSelected &&
-  app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}))
+  app.elementSelected && app.core.selectElement(app.elementSelected)
+  //app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}))
 });
 // main tabs
 /*
@@ -80,8 +84,8 @@ if (app.elementSelected)
 
 opener.addEventListener("cssMapper-changed", e => {
   model.isVisible &&
-  app.elementSelected &&
-  app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}));
+  app.elementSelected && app.core.selectElement(app.elementSelected)
+  //app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}));
 });
 // on mutation
 opener.addEventListener("tilepieces-mutation-event", e => {
@@ -100,6 +104,14 @@ opener.addEventListener("tilepieces-mutation-event", e => {
     //app.elementSelected.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}));
 })
 
+function createElementRepresentation(target) {
+  var myObject = [];
+  var attributes = target.attributes;
+  // attribute cycle to print element
+  for (var i = 0; i < attributes.length; i++)
+    myObject[i] = attributes[i].nodeName.toLowerCase() + "=\"" + attributes[i].nodeValue + "\"";
+  return "<" + target.tagName + " " + myObject.join(" ") + " >";
+}
 appView.addEventListener("click", e => {
   if (!e.target.classList.contains("delete-gr-rule"))
     return;
@@ -220,6 +232,11 @@ appView.addEventListener("keydown", e => {
     }
   }
 });
+appView.addEventListener("focus", e => {
+  if (e.target.dataset.bind == "currentSelector")
+    if(selectorHelperView.classList.contains("show"))
+      selectorHelperTrigger.click();
+},true);
 /* on rule selected */
 opener.addEventListener("css-selector-change", () => {
   model.currentSelector = app.cssSelector;
@@ -250,6 +267,9 @@ function setTemplate(e) {
   model.editMode = app.editMode;
   appView.ownerDocument.body.style.display = "block";
   t.set("", model);
+  if(selectorHelperView.classList.contains("show")){
+    selectorHelperView.classList.remove("show")
+  }
 }
 
 addGrButton.addEventListener("click", e => {
@@ -402,4 +422,98 @@ appView.addEventListener("click", e => {
       appView.ownerDocument.body.classList.remove("modal");
     });
 });
+// same regex from cssSpecificity component // TODO create a unique point
+const idMatch = /#[_a-zA-Z0-9-]+/g;
+const elementMatch =/(\s+|^|\*|\+|>|~|\|\|)[_a-zA-Z0-9-]+/g;
+function newShtModel(currentSelector){
+  var model = {};
+  var target = app.elementSelected;
+  var classList = target.classList.length;
+  var lastSelector = currentSelector.split(",").pop().trim();
+  model.nodes = app.selectorObj.composedPath.reduce((acc,v)=>{
+    if(v.tagName){
+      acc.push(v);
+    }
+    return acc;
+  },[]);
+  model.nodes = model.nodes.map((v,i)=>{
+    var nodeModel = {};
+    nodeModel.index = i;
+    nodeModel.ancestor = v != target;
+    var elementMatchingSelector = "";
+    if(lastSelector && v.matches(lastSelector)){
+      var lastSelectorArray = lastSelector.split(/\s+/);
+      elementMatchingSelector = lastSelectorArray.pop();
+      lastSelector = lastSelectorArray.join(" ")
+    }
+    nodeModel.tagName = {checked:elementMatchingSelector.match(elementMatch),value:v.tagName.toLowerCase()};
+    nodeModel.id = {checked:elementMatchingSelector.match(idMatch),value:v.id ? "#"+v.id : ""};
+    nodeModel.elementRepresentation = createElementRepresentation(v);
+    nodeModel.classes = {value:[...v.classList].map(v=>{
+        return {checked:elementMatchingSelector.match(new RegExp("\\."+v+"(\\s|,|$|#|\\[|\\.)")),value:"."+v}
+      })};
+    nodeModel.classes.checked = nodeModel.classes.value.every(v=>v.checked);
+    nodeModel.attributes = {value:[...v.attributes].map(attr=>{
+        var selectorModel = `[${attr.nodeName}${attr.nodeValue.length ? `="${attr.nodeValue}"` : ""}]`
+        return {checked:elementMatchingSelector.indexOf(selectorModel)>=0,value:selectorModel}
+      })};
+    nodeModel.attributes.checked = nodeModel.attributes.value.every(v=>v.checked);
+    return nodeModel;
+  });
+  return model;
+}
+selectorHelperTrigger.addEventListener("click",e=>{
+  var isActive = selectorHelperView.classList.toggle("show");
+  if(isActive){
+    shtModel = newShtModel(model.currentSelector);
+    selectorHelperTrigger.src = "/modules/tilepieces/stylesheet/svg-close.svg"
+    sht.set("",shtModel);
+  }
+  else{
+    selectorHelperTrigger.src = "/modules/tilepieces/stylesheet/svg-summary.svg"
+  }
+})
+let sht = new opener.TT(selectorHelperTemplate, shtModel);
+selectorHelperView.addEventListener("change",e=>{
+  var t = e.target;
+  var index = t.dataset.index || 0;
+  var node = shtModel.nodes[+index];
+  var isClass = t.dataset.bind == "node.classes.checked";
+  var isAttrs = t.dataset.bind == "node.attributes.checked";
+  var closestClass = t.closest("[data-if='node.classes.value.length']");
+  var closestAttr = t.closest("[data-if='node.attributes.value.length']");
+  var valued = false;
+  if(isClass || isAttrs){
+    isClass && node.classes.value.forEach(v=>v.checked = t.checked);
+    isAttrs && node.attributes.value.forEach(v=>v.checked = t.checked);
+    valued = true;
+  }
+  if(closestClass &&
+    node.classes.value.length == 1) {
+    node.classes.checked = t.checked;
+    valued = true;
+  }
+  if(closestAttr &&
+    node.attributes.value.length == 1) {
+    node.attributes.checked = t.checked;
+    valued = true;
+  }
+  if(valued){
+    sht.set("",shtModel);
+    updateSelector();
+  }
+})
+function updateSelector(){
+  model.currentSelector = shtModel.nodes.slice(0).reverse().reduce((acc,v,i)=>{
+    var tagName = v.tagName.checked ? v.tagName.value : "";
+    var id = v.id.checked ? v.id.value : "";
+    var classes = v.classes.value.map(c=>c.checked ? c.value : "").join("");
+    var attributes = v.attributes.value.map(c=>c.checked ? c.value : "").join("");
+    var sel = `${tagName}${id}${classes}${attributes}`
+    if(i > 0 && sel) sel = " " + sel;
+    return sel ? acc + sel : acc;
+  },"")
+  t.set("currentSelector",model.currentSelector);
+}
+selectorHelperTemplate.addEventListener("template-digest",updateSelector)
 })();

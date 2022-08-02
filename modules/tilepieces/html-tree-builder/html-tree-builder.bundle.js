@@ -195,9 +195,9 @@ function getLevels(el, bodyRoot) {
 }
 HtmlTreeBuilder.prototype.highlightElement = function (target, highlight = true) {
   //var treeBuilderDOMRepr = htmlTreeBuilderTarget.ownerDocument.querySelector(".html-tree-builder");
-  var treeBuilderDOMRepr = htmlTreeBuilderTarget.children[0];
-  //var rootElement = treeBuilderDOMRepr.querySelector(".html-tree-builder-body > li");
-  var rootElement = treeBuilderDOMRepr;
+  //var treeBuilderDOMRepr = htmlTreeBuilderTarget.children[0];
+  //var treeBuilderDOMRepr = htmlTreeBuilderTarget.querySelector(".html-tree-builder-el");
+  var rootElement = htmlTreeBuilderTarget.querySelector(".html-tree-builder-el");
   //var levels = getLevels(target,root || rootElement["__html-tree-builder-el"]);
   var levels = getLevels(target);
   levels.forEach((level) => {
@@ -211,7 +211,7 @@ HtmlTreeBuilder.prototype.highlightElement = function (target, highlight = true)
     var li = caret.closest("li");
     if (!li.classList.contains("open"))
       openTree({target: caret});
-    var ul = rootElement === treeBuilderDOMRepr ? rootElement : rootElement.querySelector("ul");
+    var ul = rootElement.querySelector("ul");
     // childrens are represented inside an ul tag ( except for the main html )
     [...ul.children].forEach((children) => {
       if (children["__html-tree-builder-el"] == level)

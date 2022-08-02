@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html><head><title> css viewer</title>
-  <link href="../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs">
-  <link href="../../drag/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag">
-  <link href="../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input">
-  <link href="../../autocomplete/autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete">
-  <link href="../../css-text/css-text.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-text">
-  <link href="../../css-rule-modification/css-rule-modification.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-rule-modification">
-  <link href="../../animations/animations.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/animations">
-  <link href="../../transform/transform.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/transform">
-  <link href="../../layout/layout.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/layout">
-  <link href="../../dropzone/dropzone.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/dropzone">
-  <link href="../../gradient/gradient.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/gradient">
-  <link href="../../background/background.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/background">
-  <link href="../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet">
-  <link href="../../fonts/fonts.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/fonts">
-  <link href="../../border/border.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/border">
-  <link href="../../css-inspector/css-inspector.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-inspector">
-  <link href="../css-viewer.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-viewer" data-tilepieces-current-stylesheet="">
-</head>
-<body>
-<div id="css-viewer" class="${isVisible}">
+<html><head><meta charset="UTF-8"><title></title><meta name="description" content=""><meta name="viewport" content="width=device-width,initial-scale=1.0"><link href="../../../stylesheet/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/stylesheet"><link href="../../../vertical-tab/vertical-tab.css" rel="stylesheet" data-tilepieces-component="tilepieces/vertical-tab"><link href="../../../autocomplete/autocomplete.css" rel="stylesheet" data-tilepieces-component="tilepieces/autocomplete"><link href="../../../css-input/css-input.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-input"><link href="../../../css-rule-modification/css-rule-modification.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-rule-modification"><link href="../../../css-inspector/css-inspector.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-inspector"><link href="../../../tabs/tabs.css" rel="stylesheet" data-tilepieces-component="tilepieces/tabs"><link href="../../../gradient/gradient.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/gradient"><link href="../../../drag/css.css" rel="stylesheet" data-tilepieces-component="tilepieces/drag"><link href="../../../border/border.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/border"><link href="../../../dropzone/dropzone.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/dropzone"><link href="../../../fonts/fonts.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/fonts"><link href="../../../background/background.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/background"><link href="../../../layout/layout.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/layout"><link href="../../../transform/transform.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/transform"><link href="../../../animations/animations.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/animations"><link href="../../../css-text/css-text.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-text"><link href="../../css-viewer.bundle.css" rel="stylesheet" data-tilepieces-component="tilepieces/css-viewer"></head><body><nav class="tab-vertical" data-tilepieces-component="tilepieces/vertical-tab">
+  <button><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+<g>
+	
+		<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:0.35;fill:#FFFFFF;" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
+	<path style="fill: rgb(153, 153, 153);" d="M12.2,8.2l5.2,5.2c0.4,0.4,0.4,1,0,1.4l0,0c-0.4,0.4-1,0.4-1.4,0l-5.2-5.2c-0.4-0.4-0.4-1,0-1.4l0,0
+		C11.2,7.8,11.8,7.8,12.2,8.2z"></path>
+	<path style="fill: rgb(153, 153, 153);" d="M10.8,8.2l-5.2,5.2c-0.4,0.4-0.4,1,0,1.4l0,0c0.4,0.4,1,0.4,1.4,0l5.2-5.2c0.4-0.4,0.4-1,0-1.4l0,0
+		C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
+</g>
+</svg></button>
+    <div class="tab-buttons">
+      <div class="tab-buttons-wrap">
+          <div class="tab-buttons-inside">
+              
+              <a href="#one" class="selected">Tab 1</a><a href="#two">Tab 2</a>
+          </div>
+      </div>
+  </div>
+</nav><div id="css-viewer" class="${isVisible}" data-tilepieces-component="tilepieces/css-viewer/css-viewer-html">
   <div class="css-selector">
     <details>
       <summary class="css-viewer-media-rules">
@@ -62,7 +61,7 @@
       </ul>
     </details>
     <div><div class="css-selector__selector"><span>Rule:</span><span data-bind="currentSelector" data-bind-events="blur,input" contenteditable="" spellcheck="false"></span>
-  <img src="/modules/tilepieces/stylesheet/svg-summary.svg" id="selector-helper-trigger" width=17 height=17 title="show selector helper">
+  <img src="/modules/tilepieces/stylesheet/svg-summary.svg" id="selector-helper-trigger" title="show selector helper" width=17 height=17>
 </div>
       
       <div class="related-selectors">
@@ -206,6 +205,4 @@
       </div>
     </section>
   </div>
-</div>
-
-</body></html>
+</div><script src="../../../vertical-tab/vertical-tab.js" data-tilepieces-component="tilepieces/vertical-tab"></script><script src="../../../css-input/css-input.bundle.js" data-tilepieces-component="tilepieces/css-input"></script><script src="../../../tabs/tabs.js" data-tilepieces-component="tilepieces/tabs"></script><script src="../../../offset/offset.js" data-tilepieces-component="tilepieces/offset"></script><script src="../../../drag/drag.js" data-tilepieces-component="tilepieces/drag"></script><script src="../../css-viewer.bundle.js" data-tilepieces-component="tilepieces/css-viewer"></script></body></html>

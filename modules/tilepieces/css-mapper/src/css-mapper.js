@@ -12,6 +12,7 @@ async function cssMapper(doc, idGenerator, classGenerator) {
     conditionalGroups: [],
     idGenerator: idGenerator ? new RegExp(`#${idGenerator}\\d+(\\s|$|,)`) : idGenerator,
     classGenerator: classGenerator ? new RegExp(`\\.${classGenerator}\\d+(\\s|$|,)`) : classGenerator,
+    classes : [],
     idIndex: 0,
     classIndex: 0
   };

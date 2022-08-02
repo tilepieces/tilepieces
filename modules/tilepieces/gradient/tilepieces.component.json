@@ -13,8 +13,8 @@
     },
     "stylesheetHeader": "",
     "stylesheetFooter": "",
-    "scriptHeader": "",
-    "scriptFooter": "",
+    "scriptHeader": "(()=>{",
+    "scriptFooter": "})();",
     "script": {
       "src": "gradient.bundle.js"
     }

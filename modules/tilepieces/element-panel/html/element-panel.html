@@ -46,7 +46,9 @@
           <legend>
             <label for="new-class">Classes:</label></legend>
           <form id="new-class" class="flex-box">
-            <input placeholder="Add new class" ${{canadd}}="" data-bind="newClassName" data-bind-events="input">
+            <input placeholder="Add new class" ${{canadd}}="" data-bind="newClassName" data-bind-events="input" list="classes-in-css">
+            <datalist id="classes-in-css">
+            </datalist>
             <button type="submit">OK</button>
           </form>
           <small ${{classinvalid}}="">${{classinvalid_phrase}}</small>
@@ -78,7 +80,6 @@
                 <button class="search-button" data-type="img">🔎</button>
               </div>
             </fieldset>
-
           </li>
         </ul>
       </fieldset>

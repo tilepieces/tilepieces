@@ -11,10 +11,8 @@ function copyEl(elementsToCopy) {
   // clear multiselection
   //treeBuilder.clearMultiSelection();
   // elementsToCopy means a call from css/js view. We disable multiselection in this case.
-  /*
-    if(treeBuilder.multiselection) {
-        multiselectButton.click();
-        //app.core.deselectElement();
-    }
-    */
+  if(treeBuilder.multiselection) {
+      multiselectButton.click();
+      //app.core.deselectElement();
+  }
 }

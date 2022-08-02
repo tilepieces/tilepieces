@@ -7,6 +7,7 @@ window.TT = opener.TT;
 const copyButton = document.getElementById("copy-button");
 const moveButton = document.getElementById("move-button");
 const copyMoveAction = "";
+const classesInCss = document.getElementById("classes-in-css");
 const elementSumSection = document.getElementById("element-sum");
 const insidePath = document.getElementById("inside-path");
 const wrapper = document.getElementById("wrapper");

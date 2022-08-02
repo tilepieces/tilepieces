@@ -35,8 +35,16 @@ body > .true[hidden] { display: none; }
 .css-selector { user-select: none; }
 .css-selector ul, .css-selector li { margin: 0px; padding: 0px; }
 #css-viewer .flex-box-stroke span:first-of-type { padding: 0px; }
-span[data-bind="currentSelector"] { padding: 0px 0.2em; }
+span[data-bind="currentSelector"] { padding: 0px 0.2em; word-break: break-all; }
 .css-inspector__href span { display: none; }
-.media-feature{margin-bottom:1em}
-.media-feature + div{display:inline-block}
-.label-for-mediaQueryUICheck{margin:1em 0.4em}
+.media-feature { margin-bottom: 1em; }
+.media-feature + div { display: inline-block; }
+.label-for-mediaQueryUICheck { margin: 1em 0.4em; }
+#selector-helper { background: rgb(255, 255, 255); width: 100%; padding-top: 4px; flex-grow: 1; display: none; }
+#selector-helper.show{display:block}
+ul.selector-helper-ul { margin: 0px; }
+ul.selector-helper-ul ul{padding-left:16px}
+#css-viewer summary::before { left: 0px; }
+.css-selector__selector { display: flex; }
+#selector-helper-trigger { transform: rotate(180deg); margin-left: auto; cursor: pointer; }
+#selector-helper.show #selector-helper-trigger{ transform:rotate(0)}

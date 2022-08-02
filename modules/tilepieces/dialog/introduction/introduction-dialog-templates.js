@@ -14,7 +14,7 @@
     var root = e.target.dataset.root;
     var link = e.target.dataset.link;
     var rootlink = root + link;
-    dialog.open("download "+ rootlink + ".<br>This may take a few seconds, depending on your connection. Please wait.",true);
+    dialog.open("download "+ rootlink + ".<br>This may take a few seconds. Please wait.",true);
     try{
       var prRaw = await fetch(rootlink);
       await tilepieces.utils.importProjectAsZip(await prRaw.blob())

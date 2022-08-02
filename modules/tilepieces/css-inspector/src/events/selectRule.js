@@ -16,7 +16,7 @@ appView.addEventListener("click", e => {
   rule.selected = "selected";
   selectedRule = rule;
   t.set("", model);
-  if(!rule.inheritedProps && rule.isEditable) {
+  if(!rule.inheritedProps && rule.isEditable && !rule.isStyle) {
     app.cssSelector = rule.rule.selectorText;
     var parentRule= rule.rule.parentRule;
     if(!parentRule)

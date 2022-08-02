@@ -3,7 +3,9 @@
   <link href="../bundle/css-viewer.bundle.css" rel="stylesheet" data-tilepieces-component="css-viewer/bundle">
 </head>
 <body style="display:none">
-<div id="css-viewer" class="${isVisible}" data-tilepieces-component="tilepieces/css-viewer">
+
+
+<div id="css-viewer" class="${isVisible}" data-tilepieces-component="tilepieces/css-viewer/css-viewer-html">
   <div class="css-selector">
     <details>
       <summary class="css-viewer-media-rules">
@@ -45,12 +47,65 @@
         </li>
       </ul>
     </details>
-    <div><span>Rule:</span>
-      <span data-bind="currentSelector" data-bind-events="blur,input" contenteditable="" spellcheck="false"></span>
+    <div><div class="css-selector__selector"><span>Rule:</span><span data-bind="currentSelector" data-bind-events="blur,input" contenteditable="" spellcheck="false"></span>
+  <img src="/modules/tilepieces/stylesheet/svg-summary.svg" id="selector-helper-trigger" width="17" height="17" title="show selector helper">
+</div>
+      
       <div class="related-selectors">
-        Elements matching this selector: <span class="related-selectors-select">${relatedSelectors.length}</span>
+        <a href="#" class="related-selectors-select">${relatedSelectors.length}</a> affected by this rule
       </div>
-      <div data-if="!selectorMatch" class="rule-sector-wrong">Selector doesn't match the selected element</div>
+      <div data-if="!selectorMatch" class="rule-sector-wrong">Selector doesn't apply to current element</div>
+      <div id="selector-helper" data-isolate=""><div>
+        <div data-foreach="nodes" data-foreach-key-name="node" class="node-list">
+        <div class="css-inspector__rule-block__inherited-divider">
+          <span class="css-inspector__show-element">${node.elementRepresentation}</span>
+        </div>
+        <ul class="selector-helper-ul">
+          <li>
+            <label>
+              <input type="checkbox" data-bind="node.tagName.checked">
+              <span>Tag name : ${node.tagName.value}</span>
+            </label>
+          </li><li data-if="node.id.value">
+          <label>
+            <input type="checkbox" data-bind="node.id.checked">
+            <span>Id : ${node.id.value}</span>
+          </label>
+        </li>
+          <li data-if="node.classes.value.length">
+            <details>
+              <summary>
+                <input type="checkbox" data-bind="node.classes.checked" data-index="${node.index}">
+                <span>Classes</span>
+              </summary>
+              <ul>
+                <li data-foreach="node.classes.value" data-foreach-key-name="class">
+                  <label>
+                    <input type="checkbox" data-bind="class.checked" data-index="${node.index}">
+                    <span>${class.value}</span>
+                  </label>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li data-if="node.attributes.value.length">
+            <details>
+              <summary>
+                <input type="checkbox" data-bind="node.attributes.checked" data-index="${node.index}">
+                <span>Attributes</span>
+              </summary>
+              <ul>
+                <li data-foreach="node.attributes.value" data-foreach-key-name="attr">
+                  <label>
+                    <input type="checkbox" data-bind="attr.checked" data-index="${node.index}">
+                    <span>${attr.value}</span>
+                  </label>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+</div></div></div>
     </div>
   </div>
   <!-- modal new gr -->
@@ -137,10 +192,8 @@
       </div>
     </section>
   </div>
-</div>
-
-<nav class="tab-vertical" data-tilepieces-component="tilepieces/vertical-tab">
-  <button><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
+</div><nav class="tab-vertical" data-tilepieces-component="tilepieces/vertical-tab">
+  <button><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17" height="17" viewBox="0 0 23 23" style="enable-background:new 0 0 23 23;" xml:space="preserve">
 <g>
 	
 		<ellipse transform="matrix(0.4833 -0.8755 0.8755 0.4833 -4.1254 16.0107)" style="opacity:0.35;fill:#FFFFFF;" cx="11.5" cy="11.5" rx="11" ry="11"></ellipse>
@@ -198,15 +251,16 @@
   </div>
 </section></template>
 <template id="css-properties-list" data-tilepieces-component="tilepieces/css-rule-modification">
-    <ul class="rule-block__list" data-bind-dom-prop="__css-viewer-rule,rule">
-        <li data-foreach="rule.properties" data-foreach-key-name="property" data-index="${property.index}" class="rule__property ${property.isInheritedClass} ${rule.contenteditable}">
-            <input class="rule-block__checked" type="checkbox" data-bind="property.checked" ${property.disabled}="">
-            <div class="rule-block__key autocomplete" data-bind-dom-prop="__autocomplete_suggestions,cssDefaultProperties" data-key="${property.property}" data-bind="property.property" data-contenteditable="${property.contenteditable}"></div>
-            <div class="rule-block__divider">:</div>
-            <div class="input-css rule-block__value autocomplete" data-bind-dom-prop="__autocomplete_suggestions,property.autocomplete_suggestions" data-prop="${property.property}" data-bind="property.value" ${property.contenteditable}=""></div><div>;</div>
-        </li>
-    </ul>
-    <button class="rule-block__add-property">+</button>
+  <ul class="rule-block__list" data-bind-dom-prop="__css-viewer-rule,rule">
+    <li data-foreach="rule.properties" data-foreach-key-name="property" data-index="${property.index}" class="rule__property ${property.isInheritedClass} ${rule.contenteditable}">
+      <input class="rule-block__checked" type="checkbox" data-bind="property.checked" ${property.disabled}="">
+      <div class="rule-block__key autocomplete" data-bind-dom-prop="__autocomplete_suggestions,cssDefaultProperties" data-key="${property.property}" data-bind="property.property" data-contenteditable="${property.contenteditable}"></div>
+      <div class="rule-block__divider">:</div>
+      <div class="input-css rule-block__value autocomplete" data-bind-dom-prop="__autocomplete_suggestions,property.autocomplete_suggestions" data-prop="${property.property}" data-bind="property.value" ${property.contenteditable}=""></div>
+      <div>;</div>
+    </li>
+  </ul>
+  <button class="rule-block__add-property">+</button>
 </template>
 <div id="css-inspector" class="${isVisible}" data-tilepieces-component="tilepieces/css-inspector">
   <div class="css-inspector__menu-bar">
@@ -1109,7 +1163,7 @@
         </div>
       </div>
       <button id="add-css-grid-row">+ Row</button>
-      <button id="remove-css-grid-row">- Row</button>
+      <button id="remove-css-grid-row" data-if="gridAreasTemplate.length">- Row</button>
     </fieldset>
     <fieldset class="${gridChildren}">
       <legend><a href="#property-grid-area" tabindex="-1">grid-area:</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area" class="info-round-icon" target="_blank"></a></legend>
@@ -1512,7 +1566,7 @@
       </div>
     </details>
   </div>
-  <div id="keyframes" style="display:none">
+  <div id="keyframes" style="display: none;">
     <div class="flex-box top-button-actions">
       <button id="new-animation" class="button-bg-fill">New Animation</button>
     </div>
@@ -1730,8 +1784,8 @@ C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
       </div>
     </fieldset>
     <fieldset data-foreach="textShadows" data-foreach-key-name="textShadowValue" class="text-shadow">
-      <legend>Text Shadow #${textShadowValue.index}</legend>
-      <button class="remove-text-shadow" data-index="${textShadowValue.index}">Remove</button>
+      <legend>Text Shadow #${textShadowValue.index}<button class="remove-text-shadow" data-index="${textShadowValue.index}">Remove</button></legend>
+      
       <div style="float:left;width:calc(100% - 220px)">
         <label for="x-offset-${textShadowValue.index}">X offset</label>
         <div class="flex-box">
@@ -1748,8 +1802,8 @@ C11.8,7.8,11.2,7.8,10.8,8.2z"></path>
           <input id="blur-offset-${textShadowValue.index}" type="number" data-index="${textShadowValue.index}" min="0" step="0.5" data-text-shadow="blur" data-bind="textShadowValue.blur">
           <span>px</span>
         </div>
-        <input data-bind="textShadowValue.blurToSlider" data-text-shadow="blur" data-index="${textShadowValue.index}" type="range" min="0" max="30" step="0.5">
-        <div data-text-shadow="color" class="color-button" data-index="${textShadowValue.index}" style="background:${textShadowValue.color}"></div>
+        <!--<input data-bind="textShadowValue.blurToSlider" data-text-shadow="blur" data-index="${textShadowValue.index}" type="range" min="0" max="30" step="0.5">-->
+        <div class="flex-box"><label>Color</label><div data-text-shadow="color" class="color-button" data-index="${textShadowValue.index}" style="background:${textShadowValue.color};margin-left:0.2em"></div></div>
       </div>
       <div style="float:right">
         <svg id="svg-text-shadow-${textShadowValue.index}" data-index="${textShadowValue.index}" style="border:1px solid;display:block;margin:auto;width:200px;height:200px">

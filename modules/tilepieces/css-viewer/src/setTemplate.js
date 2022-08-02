@@ -21,4 +21,7 @@ function setTemplate(e) {
   model.editMode = app.editMode;
   appView.ownerDocument.body.style.display = "block";
   t.set("", model);
+  if(selectorHelperView.classList.contains("show")){
+    selectorHelperView.classList.remove("show")
+  }
 }

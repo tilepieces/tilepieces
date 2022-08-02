@@ -11,10 +11,8 @@ function cutEl(elementsToCut) {
   // clear multiselection
   //treeBuilder.clearMultiSelection(); // problem with selected
   // elementsToCopy means a call from css/js view. We disable multiselection in this case.
-  /*
     if(treeBuilder.multiselection) {
         multiselectButton.click();
         //app.core.deselectElement();
     }
-    */
 }

@@ -17,8 +17,9 @@ function matchGradients(cssBackgroundStyle) {
   var gradients = [];
   var gradient = cssBackgroundStyle.match(linearGradientRegex);
   while (gradient) {
-    s = gradient[1];
-    var g = gradient[1].replace(/\[/g, "(").replace(/]/g, ")");
+    // sometimes, the match is not in 1.
+    s = gradient.find((v,i)=>v && i);
+    var g = s.replace(/\[/g, "(").replace(/]/g, ")");
     var gradientParameters = g.split(",").map(v => v.replace(/\?/g, ","));
     var gradientType = gradient[0].match(gradientsName)[0];
     var gradientDecompiled = getGradientStops(gradientParameters, gradientType);

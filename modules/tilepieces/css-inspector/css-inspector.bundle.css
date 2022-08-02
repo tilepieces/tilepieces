@@ -11,6 +11,10 @@ body {
 .css-inspector__menu-bar {
   -webkit-user-select: none;
   user-select: none;
+  position:sticky;
+  top:77px;
+  z-index:2;
+  background:#fff;
 }
 
 .css-inspector__menu-bar > span {

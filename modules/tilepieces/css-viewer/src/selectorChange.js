@@ -33,6 +33,11 @@ appView.addEventListener("keydown", e => {
     }
   }
 });
+appView.addEventListener("focus", e => {
+  if (e.target.dataset.bind == "currentSelector")
+    if(selectorHelperView.classList.contains("show"))
+      selectorHelperTrigger.click();
+},true);
 /* on rule selected */
 opener.addEventListener("css-selector-change", () => {
   model.currentSelector = app.cssSelector;

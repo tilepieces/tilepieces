@@ -4,7 +4,7 @@ nav.tab-vertical:not(.tab-vertical-open) .tab-buttons { overflow: hidden; }
 nav.tab-vertical-open .tab-buttons .tab-buttons-wrap { height: 100%; overflow:auto}
 nav.tab-vertical .tab-buttons.tab-buttons-open { height: 100%; position: absolute; width: 100%; }
 nav.tab-vertical .tab-buttons.tab-buttons-open button { float: right; }
-nav.tab-vertical { position: fixed; height: 100%; width: 0px; background-color: rgb(255, 255, 255); left: 0px; top: 0px; z-index:3}
+nav.tab-vertical { position: fixed; height: 100%; width: 0px; background-color: rgb(255, 255, 255); left: 0px; top: 0px; z-index:4}
 nav.tab-vertical button { width:32px;position: fixed; height: 100%; background-color: rgb(255, 255, 255); outline-width: 0px; outline-offset: 0px; border-width: 0px 1px 0px 0px; border-style: solid; border-color: rgb(208, 208, 208); border-image: initial; padding: 0em 0.2em; border-radius: 0px; }
 nav.tab-vertical.tab-vertical-open { width: 100%; }
 nav.tab-vertical.tab-vertical-open .tab-buttons { height: 100%;padding: 12px 32px; box-sizing:border-box}

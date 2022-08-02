@@ -46,8 +46,15 @@ opener.addEventListener("frame-DOM-selected", e => {
   treeBuilder && treeBuilder.highlightElement(e.detail.target);
 });
 opener.addEventListener("highlight-click", function (e) {
-  if (overlay.style.display == "none")
-    return;
+  if (overlay.style.display == "none") {
+    if(!selectedJsCSS || selectedJsCSS["__html-tree-builder-el"] != e.detail.target){
+      selectedTab.classList.remove("selected");
+      overlay.ownerDocument.querySelector(selectedTab.getAttribute("href")).style.display = "none";
+      selectedTab = null;
+      overlay.style.display = "block";
+    }
+    else return;
+  }
   if (selected && selected["__html-tree-builder-el"] == e.detail.target)
     return;
   selected = treeBuilder.highlightElement(e.detail.target);

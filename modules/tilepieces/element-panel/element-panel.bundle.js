@@ -7,6 +7,7 @@ window.TT = opener.TT;
 const copyButton = document.getElementById("copy-button");
 const moveButton = document.getElementById("move-button");
 const copyMoveAction = "";
+const classesInCss = document.getElementById("classes-in-css");
 const elementSumSection = document.getElementById("element-sum");
 const insidePath = document.getElementById("inside-path");
 const wrapper = document.getElementById("wrapper");
@@ -292,6 +293,11 @@ function setClasses() {
   classesModel.newClassName = "";
   classesModel.classinvalid = "hidden";
   classesTemplate.set("", classesModel);
+  app.core.styles.classes.find(v=>{
+    var newOptionElement = document.createElement("option");
+    newOptionElement.textContent = v;
+    classesInCss.append(newOptionElement)
+  })
 }
 function setInterfaces() {
   componentsTemplate.set("interfaces", []);
