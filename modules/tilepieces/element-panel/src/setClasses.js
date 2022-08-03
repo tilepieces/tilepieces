@@ -20,9 +20,12 @@ function setClasses() {
   classesModel.newClassName = "";
   classesModel.classinvalid = "hidden";
   classesTemplate.set("", classesModel);
-  app.core.styles.classes.find(v=>{
+  classesInCss.innerHTML = "";
+  app.core.styles.classes.forEach(v=>{
+    if(app.elementSelected.classList.contains(v))
+      return;
     var newOptionElement = document.createElement("option");
     newOptionElement.textContent = v;
-    classesInCss.append(newOptionElement)
+    classesInCss.append(newOptionElement);
   })
 }

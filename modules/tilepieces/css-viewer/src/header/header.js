@@ -9,6 +9,7 @@ const replacePseudos = new RegExp(mainPseudoRegex.source + "|" + PSEUDOSTATES.so
 const selectorHelperView = document.getElementById("selector-helper");
 const selectorHelperTemplate = selectorHelperView.children[0];
 const selectorHelperTrigger = document.getElementById("selector-helper-trigger");
+const cssInspectorView = document.getElementById("css-inspector");
 let shtModel = {nodes : []};
 let model = {
   isVisible: false,

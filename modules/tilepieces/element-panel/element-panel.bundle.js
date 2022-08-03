@@ -223,12 +223,17 @@ function setAttrsTemplate(target, match) {
     var name = a.nodeName;
     var value = a.nodeValue;
     var parentNode = target.parentNode;
+    var isPackageAttribute = name == app.componentAttribute.toLowerCase();
+    var packageObj = isPackageAttribute ? app.localComponentsFlat[value] : null;
+    var packageLink = packageObj ? (packageObj.path + "/" + packageObj.html).replace(/\/+/g,"/") : "";
     var classSrc = (
       tagName.match(/^(VIDEO|AUDIO|IMG)$/) ||
       (parentNode?.tagName?.match(/^(VIDEO|AUDIO|IMG)$/) && tagName == "SOURCE")
     ) &&
     name.toLowerCase() == "src" ?
       "src-box" :
+      isPackageAttribute ?
+      "component-box" :
       "";
     var disabled = !match.match || match.match.getAttribute(name) != value ? "disabled" : "";
     return {
@@ -237,6 +242,7 @@ function setAttrsTemplate(target, match) {
       disabled,
       index: i,
       classSrc,
+      packageLink,
       dropzone: classSrc && !disabled ? "data-dropzone" : ""
     }
   });
@@ -293,10 +299,13 @@ function setClasses() {
   classesModel.newClassName = "";
   classesModel.classinvalid = "hidden";
   classesTemplate.set("", classesModel);
-  app.core.styles.classes.find(v=>{
+  classesInCss.innerHTML = "";
+  app.core.styles.classes.forEach(v=>{
+    if(app.elementSelected.classList.contains(v))
+      return;
     var newOptionElement = document.createElement("option");
     newOptionElement.textContent = v;
-    classesInCss.append(newOptionElement)
+    classesInCss.append(newOptionElement);
   })
 }
 function setInterfaces() {
@@ -456,6 +465,13 @@ newClassForm.addEventListener("submit", e => {
   setClasses();
   flagForInternalModifications = true;
 });
+attributesView.addEventListener("click", e => {
+  if (!e.target.closest(".go-to-component"))
+    return;
+  e.preventDefault();
+  app.setFrame(e.target.dataset.href);
+})
+
 attributesView.addEventListener("nodeName", e => {
   if (app.elementSelected != elementToChange) {
     console.warn("[element panel] returning from nodeName change, because app.elementSelected != elementToChange")

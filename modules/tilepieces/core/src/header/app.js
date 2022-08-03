@@ -14,7 +14,7 @@ document.body.append(highlightOver, selectionDiv, paddingDiv, marginDiv, borderD
 
 let drawSelection;//requestAnimationFrame reference
 window.tilepieces = {
-  version : "0.1.19",
+  version : "0.1.20",
   projects: [],
   globalComponents: [],
   localComponents: [],
@@ -92,6 +92,7 @@ window.tilepieces = {
     URLIsAbsolute: /^(?:[a-z]+:)?\/\//i,
     // https://stackoverflow.com/questions/49974145/how-to-convert-rgba-to-hex-color-code-using-javascript#:~:text=Since%20the%20alpha%20channel%20in,%2Fg%2C%20'').
     // https://css-tricks.com/converting-color-spaces-in-javascript/
+    regexOneClassInSelector : /^\.-?[_a-zA-Z-]+[_a-zA-Z0-9-]$/,
     // functions:
     getResourceAbsolutePath : (path)=>{
       return ("/" + tilepieces.frameResourcePath() + "/" + path).replace(/\/\//g,"/")

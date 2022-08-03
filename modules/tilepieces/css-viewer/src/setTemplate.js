@@ -22,6 +22,6 @@ function setTemplate(e) {
   appView.ownerDocument.body.style.display = "block";
   t.set("", model);
   if(selectorHelperView.classList.contains("show")){
-    selectorHelperView.classList.remove("show")
+    selectorHelperTrigger.click();
   }
 }

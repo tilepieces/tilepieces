@@ -5,12 +5,14 @@ TilepiecesCore.prototype.insertCssRule = function (stylesheet, cssText, index) {
     index = stylesheet.cssRules.length;
   stylesheet.insertRule(cssText, index);
   var newRecord = $self.saveStyleSheet(true);
+  var oldRule = stylesheet.cssRules[index];
+  detectNewClass(oldRule.selectorText);
   $self.setHistory({
     stylesheet,
     cssText,
     $self,
     index,
-    oldRule: stylesheet.cssRules[index],
+    oldRule,
     method: "insertCssRule",
     __historyFileRecord : {oldRecord, newRecord}
   });

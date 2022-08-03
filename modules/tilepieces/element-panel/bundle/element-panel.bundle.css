@@ -75,7 +75,8 @@ summary::before { width: 17px; height: 17px; background-image: url("/modules/til
 details > summary h3, details > summary .h3 { margin: 0px; padding: 0px; }
 details[open] > summary::before { transform: translate(0px, -50%) rotate(180deg); }
 details summary::-webkit-details-marker { display: none; }
-summary { outline: none; user-select: none; -webkit-user-select: none}.tab-horizontal.tab-buttons { position: relative; padding: 0em 0px 0px; font: 1.3em sans-serif; margin-bottom: 1em; overflow-x: hidden; }
+summary { outline: none; user-select: none; -webkit-user-select: none}
+.tab-horizontal.tab-buttons { position: relative; padding: 0em 0px 0px; font: 1.3em sans-serif; margin-bottom: 1em; overflow-x: hidden; }
 .tab-horizontal.tab-buttons > a { position: absolute; text-decoration: none; color: rgb(51, 51, 51); display: none; font-size: 1.2em; z-index: 2; background: url("/modules/tilepieces/tabs/svg-ico-freccia.svg") 50% 60% / 35% no-repeat scroll rgb(255, 255, 255); text-indent: -9999px; padding: 0.6em 0.9em 0.3em; height: calc(100% - 3px); box-sizing: border-box; }
 .tab-horizontal.tab-buttons > a:hover { }
 .tab-horizontal.tab-buttons > .tab-prev { left: 0px; transform: rotate(180deg); background-position-y: 38%;}
@@ -85,7 +86,8 @@ summary { outline: none; user-select: none; -webkit-user-select: none}.tab-horiz
 .tab-horizontal .tab-buttons-inside a { text-decoration: none; cursor: pointer; border-radius: 0px; position: relative; text-transform: capitalize; font-size: 1em; color: rgb(153, 153, 153); padding: 0.6em 1em 0.3em; }
 .tab-horizontal .tab-buttons-wrap .tab-buttons-inside a.selected { color: rgb(102, 102, 102); background: none 0% 0% repeat scroll transparent; }
 .tab-horizontal .tab-buttons-wrap .tab-buttons-inside a.selected::after {content: "";position: absolute;top: 100%;border-bottom: 2px solid rgb(102, 102, 102);left: 0;width: 100%;}
-.tab-horizontal .tab-buttons-inside a:hover { background: transparent; color: rgb(102, 102, 102);}.__drag__drop-overlay{
+.tab-horizontal .tab-buttons-inside a:hover { background: transparent; color: rgb(102, 102, 102);}
+.__drag__drop-overlay{
     box-shadow:inset 0 0 10px 0 rgba(0,0,0,0.35);
 }
 dummy-drag{
@@ -124,7 +126,8 @@ body.__drag-cursor-grabbing *{
 .targetClone li{list-style:none}
 .cloneToAppend{
     background-color:cyan;
-}html {
+}
+html {
   height: 100%;
 }
 
@@ -263,11 +266,13 @@ fieldset.attributes {
   border: 0px;
 }
 
-.flex-box .search-button {
+.flex-box .search-button,
+.flex-box .go-to-component{
   display: none;
 }
 
-.flex-box.src-box .search-button {
+.flex-box.src-box .search-button,
+.flex-box.component-box .go-to-component{
   display: block;
 }
 

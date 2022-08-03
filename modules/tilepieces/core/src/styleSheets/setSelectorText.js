@@ -4,6 +4,7 @@ TilepiecesCore.prototype.setSelectorText = function (rule, selectorText) {
   var exSelectorText = rule.selectorText;
   rule.selectorText = selectorText;
   var newRecord = $self.saveStyleSheet(true);
+  detectNewClass(selectorText);
   $self.setHistory({
     rule,
     exSelectorText,

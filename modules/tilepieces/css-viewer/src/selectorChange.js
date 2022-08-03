@@ -12,10 +12,7 @@ appView.addEventListener("template-digest", e => {
   }
   t.set("", model);
 });
-appView.addEventListener("currentSelector", e => {
-  // see above
-  if (e.detail.type != "blur")
-    return;
+function selectorUpdate(){
   if (!model.selectorMatch) {
     model.currentSelector = app.cssSelector;
     model.selectorMatch = true;
@@ -24,6 +21,12 @@ appView.addEventListener("currentSelector", e => {
     app.cssSelector = model.currentSelector;
   }
   t.set("", model);
+}
+appView.addEventListener("currentSelector", e => {
+  // see above
+  if (e.detail.type != "blur")
+    return;
+  selectorUpdate();
 });
 appView.addEventListener("keydown", e => {
   if (e.target.dataset.bind == "currentSelector") {

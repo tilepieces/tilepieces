@@ -1,20 +1,20 @@
 newRuleButton.addEventListener("click", e => {
-  var selector = opener.tilepieces.cssSelector;
+  var selector = app.cssSelector;
   if(!selector)
     return;
-  var selectorText = opener.tilepieces.cssSelector + "{}";
-  var currentStylesheet = opener.tilepieces.core.currentMediaRule || opener.tilepieces.core.currentStyleSheet;
+  var selectorText = app.cssSelector + "{}";
+  var currentStylesheet = app.core.currentMediaRule || app.core.currentStyleSheet;
   model.menuPlusHide = "css-inspector__hide";
   if (currentStylesheet) {
     var index = currentStylesheet.cssRules.length;
-    var newRule = opener.tilepieces.core.insertCssRule(currentStylesheet, selectorText, index);
+    var newRule = app.core.insertCssRule(currentStylesheet, selectorText, index);
     updateTemplateOnNewRule(newRule);
   } else {
     opener.addEventListener("cssMapper-changed", ()=>updateTemplateOnNewRule(), {once: true});
-    selectorText = opener.tilepieces.currentMediaRule
-      ? opener.tilepieces.utils.convertGroupingRuleToSelector(
-        opener.tilepieces.cssSelector, opener.tilepieces.core.currentMediaRule)
+    selectorText = app.currentMediaRule
+      ? app.utils.convertGroupingRuleToSelector(
+        app.cssSelector, app.core.currentMediaRule)
       : selectorText;
-    opener.tilepieces.core.createCurrentStyleSheet(selectorText);
+    app.core.createCurrentStyleSheet(selectorText);
   }
 });

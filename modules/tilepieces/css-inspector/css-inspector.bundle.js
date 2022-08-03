@@ -394,23 +394,23 @@ deleteRuleButton.addEventListener("click", e => {
   setTemplate();
 });
 newRuleButton.addEventListener("click", e => {
-  var selector = opener.tilepieces.cssSelector;
+  var selector = app.cssSelector;
   if(!selector)
     return;
-  var selectorText = opener.tilepieces.cssSelector + "{}";
-  var currentStylesheet = opener.tilepieces.core.currentMediaRule || opener.tilepieces.core.currentStyleSheet;
+  var selectorText = app.cssSelector + "{}";
+  var currentStylesheet = app.core.currentMediaRule || app.core.currentStyleSheet;
   model.menuPlusHide = "css-inspector__hide";
   if (currentStylesheet) {
     var index = currentStylesheet.cssRules.length;
-    var newRule = opener.tilepieces.core.insertCssRule(currentStylesheet, selectorText, index);
+    var newRule = app.core.insertCssRule(currentStylesheet, selectorText, index);
     updateTemplateOnNewRule(newRule);
   } else {
     opener.addEventListener("cssMapper-changed", ()=>updateTemplateOnNewRule(), {once: true});
-    selectorText = opener.tilepieces.currentMediaRule
-      ? opener.tilepieces.utils.convertGroupingRuleToSelector(
-        opener.tilepieces.cssSelector, opener.tilepieces.core.currentMediaRule)
+    selectorText = app.currentMediaRule
+      ? app.utils.convertGroupingRuleToSelector(
+        app.cssSelector, app.core.currentMediaRule)
       : selectorText;
-    opener.tilepieces.core.createCurrentStyleSheet(selectorText);
+    app.core.createCurrentStyleSheet(selectorText);
   }
 });
 appView.addEventListener("click", e => {
@@ -485,7 +485,6 @@ function updateTemplateOnNewRule(newRule) {
     block = [...pseudoElements.querySelectorAll(".css-inspector__rule-block")].find(v=>v["__css-viewer-rule"].rule == newRule);
   }
   var win = mainRules.getRootNode().defaultView;
-  var scrollTo = block.offsetTop + (block.offsetHeight / 2 ) + win.scrollY - (win.innerHeight / 2);
   win.scroll({
     top: block.offsetTop - (77 + 28),//(scrollTo - win.scrollY)>=(77 + 28) ? scrollTo : 77 + 28,
     left: 0,

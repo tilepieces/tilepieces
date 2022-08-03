@@ -140,7 +140,7 @@ document.body.append(highlightOver, selectionDiv, paddingDiv, marginDiv, borderD
 
 let drawSelection;//requestAnimationFrame reference
 window.tilepieces = {
-  version : "0.1.19",
+  version : "0.1.20",
   projects: [],
   globalComponents: [],
   localComponents: [],
@@ -218,6 +218,7 @@ window.tilepieces = {
     URLIsAbsolute: /^(?:[a-z]+:)?\/\//i,
     // https://stackoverflow.com/questions/49974145/how-to-convert-rgba-to-hex-color-code-using-javascript#:~:text=Since%20the%20alpha%20channel%20in,%2Fg%2C%20'').
     // https://css-tricks.com/converting-color-spaces-in-javascript/
+    regexOneClassInSelector : /^\.-?[_a-zA-Z-]+[_a-zA-Z0-9-]$/,
     // functions:
     getResourceAbsolutePath : (path)=>{
       return ("/" + tilepieces.frameResourcePath() + "/" + path).replace(/\/\//g,"/")
@@ -2521,7 +2522,7 @@ TilepiecesCore.prototype.runcssMapper = async function () {
   var $self = this;
   var styles = await cssMapper($self.currentDocument, tilepieces.idGenerator, tilepieces.classGenerator);
   $self.styles = styles;
-  findGeneratorIndexes($self);
+  //findGeneratorIndexes($self);
   $self.styleChanges.listeners = $self.styleChanges.listeners.filter(v => {
     v.cb();
     return !v.once;
@@ -2732,7 +2733,7 @@ historyMethods.appendKeyframe = {
     ho.newRule = newRule;
   }
 }
-TilepiecesCore.prototype.createCurrentStyleSheet = function (cssText) {
+TilepiecesCore.prototype.createCurrentStyleSheet = function(cssText) {
   var $self = this;
   var path = tilepieces.currentPage.path;
   var oldRecord ={path,text:$self.createDocumentText($self.htmlMatch.source)};
@@ -2755,6 +2756,7 @@ TilepiecesCore.prototype.createCurrentStyleSheet = function (cssText) {
   $self.currentStyleSheet = newStyle.sheet;
   $self.matchCurrentStyleSheetNode = newNodeSource;
   var newRecord = {path, text: $self.createDocumentText($self.htmlMatch.source)};
+  [...newStyle.sheet.cssRules].forEach(v=>detectNewClass(v.selectorText));
   $self.setHistory({
     doc,
     sourceDoc,
@@ -2931,6 +2933,17 @@ historyMethods.deleteKeyframe = {
     notTheRule.forEach(v => ho.rule.appendRule(v.cssText));
   }
 }
+function detectNewClass(selectorText){
+  var app = window.tilepieces;
+  var selSplitted = selectorText.split(",");
+  selSplitted.forEach(v=>{
+    v = v.trim();
+    if(v.match(app.utils.regexOneClassInSelector)) {
+      var className = v.replace(".","");
+      !app.core.styles.classes.includes(className) && app.core.styles.classes.push(className)
+    }
+  })
+}
 TilepiecesCore.prototype.insertCssRule = function (stylesheet, cssText, index) {
   var $self = this;
   var oldRecord = $self.saveStyleSheet(true);
@@ -2938,12 +2951,14 @@ TilepiecesCore.prototype.insertCssRule = function (stylesheet, cssText, index) {
     index = stylesheet.cssRules.length;
   stylesheet.insertRule(cssText, index);
   var newRecord = $self.saveStyleSheet(true);
+  var oldRule = stylesheet.cssRules[index];
+  detectNewClass(oldRule.selectorText);
   $self.setHistory({
     stylesheet,
     cssText,
     $self,
     index,
-    oldRule: stylesheet.cssRules[index],
+    oldRule,
     method: "insertCssRule",
     __historyFileRecord : {oldRecord, newRecord}
   });
@@ -3241,6 +3256,7 @@ TilepiecesCore.prototype.setSelectorText = function (rule, selectorText) {
   var exSelectorText = rule.selectorText;
   rule.selectorText = selectorText;
   var newRecord = $self.saveStyleSheet(true);
+  detectNewClass(selectorText);
   $self.setHistory({
     rule,
     exSelectorText,

@@ -137,11 +137,13 @@ fieldset.attributes {
   border: 0px;
 }
 
-.flex-box .search-button {
+.flex-box .search-button,
+.flex-box .go-to-component{
   display: none;
 }
 
-.flex-box.src-box .search-button {
+.flex-box.src-box .search-button,
+.flex-box.component-box .go-to-component{
   display: block;
 }
 

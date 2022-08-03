@@ -162,8 +162,10 @@ async function parseRules(rules, returnObj) {
         var selectors = splitCssValue(rule.selectorText);
         selectors.map((v, i, a) => {
           var match = v.match(regexOneClassInSelector)
-          if(match)
-            returnObj.classes.push(match[0].replace(".",""))
+          if(match) {
+            var className = match[0].replace(".", "")
+            !returnObj.classes.includes(className) && returnObj.classes.push(className)
+          }
         });
         // TODO remove
         /*

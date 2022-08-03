@@ -4,8 +4,8 @@ const elementMatch =/(\s+|^|\*|\+|>|~|\|\|)[_a-zA-Z0-9-]+/g;
 function newShtModel(currentSelector){
   var model = {};
   var target = app.elementSelected;
-  var classList = target.classList.length;
-  var lastSelector = currentSelector.split(",").pop().trim();
+  var lastSelector = currentSelector.split(",").pop().trim().replace(/[\u200B-\u200D\uFEFF\u00A0\r\n]/g, "")
+    .replace(replacePseudos, "");
   model.nodes = app.selectorObj.composedPath.reduce((acc,v)=>{
     if(v.tagName){
       acc.push(v);
@@ -19,7 +19,9 @@ function newShtModel(currentSelector){
     var elementMatchingSelector = "";
     if(lastSelector && v.matches(lastSelector)){
       var lastSelectorArray = lastSelector.split(/\s+/);
-      elementMatchingSelector = lastSelectorArray.pop();
+      elementMatchingSelector = lastSelectorArray.pop().trim().replace(/[\u200B-\u200D\uFEFF\u00A0\r\n]/g, "");
+      if(lastSelectorArray.length && lastSelectorArray.at(-1).trim().match(/[>~+]|\|\|/)) // css combinators
+        lastSelectorArray.splice(-1)
       lastSelector = lastSelectorArray.join(" ")
     }
     nodeModel.tagName = {checked:elementMatchingSelector.match(elementMatch),value:v.tagName.toLowerCase()};

@@ -4,9 +4,12 @@ selectorHelperTrigger.addEventListener("click",e=>{
     shtModel = newShtModel(model.currentSelector);
     selectorHelperTrigger.src = "/modules/tilepieces/stylesheet/svg-close.svg"
     sht.set("",shtModel);
+    cssInspectorView.style.display="none"
   }
   else{
     selectorHelperTrigger.src = "/modules/tilepieces/stylesheet/svg-summary.svg"
+    if(cssInspectorView.style.display=="none")
+      cssInspectorView.removeAttribute("style")
   }
 })
 let sht = new opener.TT(selectorHelperTemplate, shtModel);
@@ -49,6 +52,6 @@ function updateSelector(){
     if(i > 0 && sel) sel = " " + sel;
     return sel ? acc + sel : acc;
   },"")
-  t.set("currentSelector",model.currentSelector);
+  selectorUpdate();
 }
 selectorHelperTemplate.addEventListener("template-digest",updateSelector)

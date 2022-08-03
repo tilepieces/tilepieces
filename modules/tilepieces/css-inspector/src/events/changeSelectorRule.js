@@ -34,7 +34,7 @@ appView.addEventListener("blur", e => {
     e.target.focus();
   } else {
     //opener.tilepieces.core.deleteOrChangeCssRule(rule.rule,selectorText+"{"+rule.rule.style.cssText+"}");
-    opener.tilepieces.core.setSelectorText(rule.rule, selectorText);
+    app.core.setSelectorText(rule.rule, selectorText);
     model.elementPresent.dispatchEvent(new PointerEvent("pointerdown", {bubbles: true}));
     return;
   }

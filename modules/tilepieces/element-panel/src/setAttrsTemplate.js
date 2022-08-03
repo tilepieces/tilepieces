@@ -4,12 +4,17 @@ function setAttrsTemplate(target, match) {
     var name = a.nodeName;
     var value = a.nodeValue;
     var parentNode = target.parentNode;
+    var isPackageAttribute = name == app.componentAttribute.toLowerCase();
+    var packageObj = isPackageAttribute ? app.localComponentsFlat[value] : null;
+    var packageLink = packageObj ? (packageObj.path + "/" + packageObj.html).replace(/\/+/g,"/") : "";
     var classSrc = (
       tagName.match(/^(VIDEO|AUDIO|IMG)$/) ||
       (parentNode?.tagName?.match(/^(VIDEO|AUDIO|IMG)$/) && tagName == "SOURCE")
     ) &&
-    name.toLowerCase() == "src" ?
+      name.toLowerCase() == "src" ?
       "src-box" :
+      isPackageAttribute ?
+      "component-box" :
       "";
     var disabled = !match.match || match.match.getAttribute(name) != value ? "disabled" : "";
     return {
@@ -18,6 +23,7 @@ function setAttrsTemplate(target, match) {
       disabled,
       index: i,
       classSrc,
+      packageLink,
       dropzone: classSrc && !disabled ? "data-dropzone" : ""
     }
   });

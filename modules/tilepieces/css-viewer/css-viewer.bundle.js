@@ -10,6 +10,7 @@ const replacePseudos = new RegExp(mainPseudoRegex.source + "|" + PSEUDOSTATES.so
 const selectorHelperView = document.getElementById("selector-helper");
 const selectorHelperTemplate = selectorHelperView.children[0];
 const selectorHelperTrigger = document.getElementById("selector-helper-trigger");
+const cssInspectorView = document.getElementById("css-inspector");
 let shtModel = {nodes : []};
 let model = {
   isVisible: false,
@@ -211,10 +212,7 @@ appView.addEventListener("template-digest", e => {
   }
   t.set("", model);
 });
-appView.addEventListener("currentSelector", e => {
-  // see above
-  if (e.detail.type != "blur")
-    return;
+function selectorUpdate(){
   if (!model.selectorMatch) {
     model.currentSelector = app.cssSelector;
     model.selectorMatch = true;
@@ -223,6 +221,12 @@ appView.addEventListener("currentSelector", e => {
     app.cssSelector = model.currentSelector;
   }
   t.set("", model);
+}
+appView.addEventListener("currentSelector", e => {
+  // see above
+  if (e.detail.type != "blur")
+    return;
+  selectorUpdate();
 });
 appView.addEventListener("keydown", e => {
   if (e.target.dataset.bind == "currentSelector") {
@@ -268,7 +272,7 @@ function setTemplate(e) {
   appView.ownerDocument.body.style.display = "block";
   t.set("", model);
   if(selectorHelperView.classList.contains("show")){
-    selectorHelperView.classList.remove("show")
+    selectorHelperTrigger.click();
   }
 }
 
@@ -428,8 +432,8 @@ const elementMatch =/(\s+|^|\*|\+|>|~|\|\|)[_a-zA-Z0-9-]+/g;
 function newShtModel(currentSelector){
   var model = {};
   var target = app.elementSelected;
-  var classList = target.classList.length;
-  var lastSelector = currentSelector.split(",").pop().trim();
+  var lastSelector = currentSelector.split(",").pop().trim().replace(/[\u200B-\u200D\uFEFF\u00A0\r\n]/g, "")
+    .replace(replacePseudos, "");
   model.nodes = app.selectorObj.composedPath.reduce((acc,v)=>{
     if(v.tagName){
       acc.push(v);
@@ -443,7 +447,9 @@ function newShtModel(currentSelector){
     var elementMatchingSelector = "";
     if(lastSelector && v.matches(lastSelector)){
       var lastSelectorArray = lastSelector.split(/\s+/);
-      elementMatchingSelector = lastSelectorArray.pop();
+      elementMatchingSelector = lastSelectorArray.pop().trim().replace(/[\u200B-\u200D\uFEFF\u00A0\r\n]/g, "");
+      if(lastSelectorArray.length && lastSelectorArray.at(-1).trim().match(/[>~+]|\|\|/)) // css combinators
+        lastSelectorArray.splice(-1)
       lastSelector = lastSelectorArray.join(" ")
     }
     nodeModel.tagName = {checked:elementMatchingSelector.match(elementMatch),value:v.tagName.toLowerCase()};
@@ -468,9 +474,12 @@ selectorHelperTrigger.addEventListener("click",e=>{
     shtModel = newShtModel(model.currentSelector);
     selectorHelperTrigger.src = "/modules/tilepieces/stylesheet/svg-close.svg"
     sht.set("",shtModel);
+    cssInspectorView.style.display="none"
   }
   else{
     selectorHelperTrigger.src = "/modules/tilepieces/stylesheet/svg-summary.svg"
+    if(cssInspectorView.style.display=="none")
+      cssInspectorView.removeAttribute("style")
   }
 })
 let sht = new opener.TT(selectorHelperTemplate, shtModel);
@@ -513,7 +522,7 @@ function updateSelector(){
     if(i > 0 && sel) sel = " " + sel;
     return sel ? acc + sel : acc;
   },"")
-  t.set("currentSelector",model.currentSelector);
+  selectorUpdate();
 }
 selectorHelperTemplate.addEventListener("template-digest",updateSelector)
 })();

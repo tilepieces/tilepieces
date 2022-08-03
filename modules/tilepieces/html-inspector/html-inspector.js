@@ -646,6 +646,7 @@ Also, if this stylesheet contains rules that have been previously edited, manipu
 Continue?`);
   configDialog.events.on("confirm",()=>{
     app.core.saveStyleSheet();
+    app.core.runcssMapper();
   });
 }
 addStyleSheetButton.addEventListener("click", e => {

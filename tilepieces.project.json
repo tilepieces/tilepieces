@@ -57,6 +57,7 @@
     "modules/tilepieces/screen-dimensions-panel/components/screen-dimensions-panel/bundle/screen-dimensions-panel.bundle.css",
     "modules/tilepieces/screen-dimensions-panel/components/screen-dimensions-panel/bundle/screen-dimensions-panel.bundle.js",
     "modules/tilepieces/tabs/svg-ico-freccia.svg",
+    "modules/tilepieces/stylesheet/svg-close.svg",
     "modules/tilepieces/stylesheet/svg-summary.svg",
     "modules/tilepieces/stylesheet/svg-circle-info.svg",
     "modules/tilepieces/stylesheet/svg-info.svg",
@@ -67,7 +68,7 @@
     "modules/tilepieces/project-tree/svg/svg-file.svg",
     "modules/tilepieces/project-tree/arrow.svg"
   ],
-  "lastFileOpened": "/modules/tilepieces/dialog/html/main.html",
+  "lastFileOpened": "/modules/tilepieces/dialog/introduction/introduction-dialog.html",
   "openedPanels": [
     "package-manager",
     "project-explorer",

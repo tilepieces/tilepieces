@@ -1,4 +1,4 @@
-TilepiecesCore.prototype.createCurrentStyleSheet = function (cssText) {
+TilepiecesCore.prototype.createCurrentStyleSheet = function(cssText) {
   var $self = this;
   var path = tilepieces.currentPage.path;
   var oldRecord ={path,text:$self.createDocumentText($self.htmlMatch.source)};
@@ -21,6 +21,7 @@ TilepiecesCore.prototype.createCurrentStyleSheet = function (cssText) {
   $self.currentStyleSheet = newStyle.sheet;
   $self.matchCurrentStyleSheetNode = newNodeSource;
   var newRecord = {path, text: $self.createDocumentText($self.htmlMatch.source)};
+  [...newStyle.sheet.cssRules].forEach(v=>detectNewClass(v.selectorText));
   $self.setHistory({
     doc,
     sourceDoc,
