@@ -140,7 +140,7 @@ document.body.append(highlightOver, selectionDiv, paddingDiv, marginDiv, borderD
 
 let drawSelection;//requestAnimationFrame reference
 window.tilepieces = {
-  version : "0.1.20",
+  version : "0.1.21",
   projects: [],
   globalComponents: [],
   localComponents: [],
@@ -2933,7 +2933,7 @@ historyMethods.deleteKeyframe = {
     notTheRule.forEach(v => ho.rule.appendRule(v.cssText));
   }
 }
-function detectNewClass(selectorText){
+function detectNewClass(selectorText = ""){
   var app = window.tilepieces;
   var selSplitted = selectorText.split(",");
   selSplitted.forEach(v=>{

@@ -1,4 +1,4 @@
-function detectNewClass(selectorText){
+function detectNewClass(selectorText = ""){
   var app = window.tilepieces;
   var selSplitted = selectorText.split(",");
   selSplitted.forEach(v=>{
