@@ -21,7 +21,7 @@ TilepiecesCore.prototype.setHistory = async function (historyObject) {
     await tilepieces.updateFile(newRecord.path, newRecord.text);
   }
   catch(e){
-    alertDialog.open("can't save the path "+ newRecord.path,true);
+    alertDialog("can't save the path "+ newRecord.path,true);
   }
   window.dispatchEvent(new Event("tilepieces-core-history-set"));
 };

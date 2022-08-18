@@ -140,7 +140,7 @@ document.body.append(highlightOver, selectionDiv, paddingDiv, marginDiv, borderD
 
 let drawSelection;//requestAnimationFrame reference
 window.tilepieces = {
-  version : "0.1.21",
+  version : "0.1.22",
   projects: [],
   globalComponents: [],
   localComponents: [],
@@ -2180,7 +2180,7 @@ TilepiecesCore.prototype.redo = async function (dontSave) {
     window.dispatchEvent(new Event("tilepieces-core-history-error"));
     window.dispatchEvent(new Event("tilepieces-core-history-set"));
     dialog.close();
-    alertDialog.open("history error",true);
+    alertDialog("history error",true);
   }
 };
 TilepiecesCore.prototype.setHistory = async function (historyObject) {
@@ -2206,7 +2206,7 @@ TilepiecesCore.prototype.setHistory = async function (historyObject) {
     await tilepieces.updateFile(newRecord.path, newRecord.text);
   }
   catch(e){
-    alertDialog.open("can't save the path "+ newRecord.path,true);
+    alertDialog("can't save the path "+ newRecord.path,true);
   }
   window.dispatchEvent(new Event("tilepieces-core-history-set"));
 };
@@ -2238,7 +2238,7 @@ TilepiecesCore.prototype.undo = async function (dontSave) {
     window.dispatchEvent(new Event("tilepieces-core-history-error"));
     window.dispatchEvent(new Event("tilepieces-core-history-set"));
     dialog.close();
-    alertDialog.open("history error",true);
+    alertDialog("history error",true);
   }
 };
 TilepiecesCore.prototype.init = async function (doc, HTMLText,skipMatchAll) {
@@ -2431,32 +2431,39 @@ TilepiecesCore.prototype.observe = function (targetNode) {
   observer.observe(targetNode, observerOptions);
   return observer;
 }
+TilepiecesCore.prototype.checkCurrentStyleSheet = function () {
+  var $self = this;
+  var currentStyleSheet = $self.currentStyleSheet;
+  var currentStyleSheetSelector = "[" + tilepieces.currentStyleSheetAttribute + "]";
+  if (currentStyleSheet && !$self.currentDocument.documentElement.contains(currentStyleSheet.ownerNode)) {
+    if($self.currentMediaRule) $self.currentMediaRule = null;
+    var match = $self.htmlMatch.match($self.matchCurrentStyleSheetNode, false, false, true);
+    if (match) {
+      $self.currentStyleSheet = match.sheet
+    } else {
+      var possiblesCurrentStyleSheets = [...$self.currentDocument.querySelectorAll(currentStyleSheetSelector)];
+      if (possiblesCurrentStyleSheets.length) {
+        var last = possiblesCurrentStyleSheets.pop();
+        $self.matchCurrentStyleSheetNode = $self.htmlMatch.match(last);
+        if ($self.matchCurrentStyleSheetNode) {
+          longPollingStyleSheet(last, () => $self.currentStyleSheet = last.sheet)
+        } else {
+          $self.currentStyleSheet = null;
+          $self.matchCurrentStyleSheetNode = null
+        }
+      } else {
+        $self.currentStyleSheet = null;
+        $self.matchCurrentStyleSheetNode = null
+      }
+    }
+  }
+}
 let globalPendingStyle;
 
 function updateStyles($self) {
   console.log("[is updating styles...]");
   console.log("[globalPendingStyle] ", globalPendingStyle);
-  var currentStyleSheet = $self.currentStyleSheet;
-  var currentStyleSheetSelector = "[" + tilepieces.currentStyleSheetAttribute + "]";
-  if (currentStyleSheet &&
-    !$self.currentDocument.documentElement.contains(currentStyleSheet.ownerNode)) {
-    var match = $self.htmlMatch.match($self.matchCurrentStyleSheetNode, false, false, true);
-    if (match) {
-      $self.currentStyleSheet = match.sheet;
-    } else {
-      var possiblesCurrentStyleSheets = [...$self.currentDocument.querySelectorAll(currentStyleSheetSelector)];
-      if (possiblesCurrentStyleSheets.length) {
-        var last = possiblesCurrentStyleSheets.pop();
-        $self.matchCurrentStyleSheetNode =
-          $self.htmlMatch.match(last);
-        if ($self.matchCurrentStyleSheetNode)
-          $self.currentStyleSheet = last.sheet;
-      } else {
-        $self.currentStyleSheet = null;
-        $self.matchCurrentStyleSheetNode = null;
-      }
-    }
-  }
+  $self.checkCurrentStyleSheet();
   $self.runcssMapper();
   if (globalPendingStyle)
     globalPendingStyle = false;

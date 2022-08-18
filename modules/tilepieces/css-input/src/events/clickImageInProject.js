@@ -13,7 +13,7 @@ function clickImageInProject(e) {
       setText(inputCssPlaceholder)
     });
   }, e => {
-    opener.alertDialog.open(e.error || e.err || e.toString(), true);
+    opener.alertDialog(e.error || e.err || e.toString(), true);
     console.log(e);
   })
 }

@@ -3,27 +3,7 @@ let globalPendingStyle;
 function updateStyles($self) {
   console.log("[is updating styles...]");
   console.log("[globalPendingStyle] ", globalPendingStyle);
-  var currentStyleSheet = $self.currentStyleSheet;
-  var currentStyleSheetSelector = "[" + tilepieces.currentStyleSheetAttribute + "]";
-  if (currentStyleSheet &&
-    !$self.currentDocument.documentElement.contains(currentStyleSheet.ownerNode)) {
-    var match = $self.htmlMatch.match($self.matchCurrentStyleSheetNode, false, false, true);
-    if (match) {
-      $self.currentStyleSheet = match.sheet;
-    } else {
-      var possiblesCurrentStyleSheets = [...$self.currentDocument.querySelectorAll(currentStyleSheetSelector)];
-      if (possiblesCurrentStyleSheets.length) {
-        var last = possiblesCurrentStyleSheets.pop();
-        $self.matchCurrentStyleSheetNode =
-          $self.htmlMatch.match(last);
-        if ($self.matchCurrentStyleSheetNode)
-          $self.currentStyleSheet = last.sheet;
-      } else {
-        $self.currentStyleSheet = null;
-        $self.matchCurrentStyleSheetNode = null;
-      }
-    }
-  }
+  $self.checkCurrentStyleSheet();
   $self.runcssMapper();
   if (globalPendingStyle)
     globalPendingStyle = false;

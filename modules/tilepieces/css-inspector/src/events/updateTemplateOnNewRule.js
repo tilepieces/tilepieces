@@ -20,7 +20,7 @@ function updateTemplateOnNewRule(newRule) {
   }
   var win = mainRules.getRootNode().defaultView;
   win.scroll({
-    top: block.offsetTop - (77 + 28),//(scrollTo - win.scrollY)>=(77 + 28) ? scrollTo : 77 + 28,
+    top: block.offsetTop - (76 + 28),//(scrollTo - win.scrollY)>=(77 + 28) ? scrollTo : 77 + 28,
     left: 0,
     behavior: 'smooth'
   });

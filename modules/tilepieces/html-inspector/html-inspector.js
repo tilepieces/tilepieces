@@ -783,6 +783,10 @@ function createEditorCssJs(src, value, mode, originalElement) {
               var newElement = originalElement.cloneNode();
               app.core.htmlMatch.replaceWith(originalElement, newElement)
               selectedJsCSS = {"__html-tree-builder-el": newElement};
+              if(mode=="css"){
+                app.core.checkCurrentStyleSheet();
+                app.core.runcssMapper();
+              }
             },
             err => {
               console.error("[update resource error]", err);
@@ -793,6 +797,10 @@ function createEditorCssJs(src, value, mode, originalElement) {
         newScript.innerHTML = res;
         app.core.htmlMatch.replaceWith(originalElement, newScript);
         selectedJsCSS = {"__html-tree-builder-el": newScript};
+        if(mode=="css"){
+          app.core.checkCurrentStyleSheet();
+          app.core.runcssMapper();
+        }
       }
     }, e => console.error(e));
 }

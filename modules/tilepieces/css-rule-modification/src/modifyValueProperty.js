@@ -1,5 +1,6 @@
 function modifyValueProperty(rule, prop, value, isStyle) {
   var priority = "";
+  value = value.trim().replace(/[\u200B-\u200D\uFEFF\u00A0\r\n]/g, "")
   var matchImportant = value.match(/!important/i);
   if (matchImportant) {
     value = value.substring(0, matchImportant.index) +

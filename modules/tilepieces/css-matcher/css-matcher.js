@@ -319,10 +319,13 @@ window.cssMatcher = function (DOMEl, stylesheets) {
     inheritedProps: false,
     type: "inline"
   });
+  // TODO create a new array from matches with @layers, sorted by specificity order
+  // TODO maybe this array could be directly valorized during process rules...
   cssMatches.sort((a, b) => b.specificity - a.specificity);
   pseudoElements.sort((a, b) => b.specificity - a.specificity);
   pseudoStates.sort((a, b) => b.specificity - a.specificity);
   ancestors.map(anc => {
+    // TODO
     anc.matches.sort((a, b) => b.specificity - a.specificity);
     return anc;
   });
@@ -438,22 +441,16 @@ function parsingRule(DOMEl, rule, style, inherited) {
   }
 }
 function propertiesMap(properties, inherited) {
-  var isInherit = false;
   properties = properties.map((v) => {
     if (typeof v.property === "undefined")
       return;
-
     var isInherited = inherited && v.property.match(inheritedProperties);
-    if (isInherited && !isInherit)
-      isInherit = true;
     return {
       property: v.property,
       value: v.value,
       isInherited: !!isInherited
     };
   });
-  if (inherited && !isInherit)
-    return null;
   return properties;
 }
 // https://github.com/gilmoreorless/css-shorthand-properties/blob/master/index.js
@@ -533,5 +530,4 @@ function isShortHand(property) {
       return k;
   }
 }
-
 })();

@@ -26,6 +26,6 @@ TilepiecesCore.prototype.undo = async function (dontSave) {
     window.dispatchEvent(new Event("tilepieces-core-history-error"));
     window.dispatchEvent(new Event("tilepieces-core-history-set"));
     dialog.close();
-    alertDialog.open("history error",true);
+    alertDialog("history error",true);
   }
 };
