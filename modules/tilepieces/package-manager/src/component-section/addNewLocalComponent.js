@@ -15,7 +15,7 @@ componentsDialog.addEventListener("click", e => {
         target.dataset.errormsg = "Component name cannot contain \\/?%*:|\"<> characters";
         return false;
       }
-      if (app.localComponents[value]) {
+      if (app.localComponents[(parent ? parent + "/" : "") + value]) {
         target.dataset.errormsg = "There's already a component with the same name";
         return false;
       }

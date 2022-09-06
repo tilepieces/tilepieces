@@ -47,13 +47,13 @@ async function concatenateSources(type, noUpdate) {
   if (noUpdate)
     return {final, bundlePath, originalBundleName};
   app.storageInterface.update(bundlePath, new Blob([final])).then(
-    res => {
-      openerDialog.close();
+    async res => {
+      var concatenatedPhrase = settingsModel.name + " " + key3 + " sources successfully concatenated in file " + bundlePath;
       if (!originalBundleName) {
         settingsTT.set("bundle." + key2, [{name: key4, value: bundlePath.replace(defaultPath, "")}]);
-        submitSettings();
+        await submitSettings();
       }
-
+      openerDialog.open(concatenatedPhrase)
     }, err => {
       console.error(`[error trying updating bundle ${key1} after concatenation]`, err);
       openerDialog.open("updating bundle error");

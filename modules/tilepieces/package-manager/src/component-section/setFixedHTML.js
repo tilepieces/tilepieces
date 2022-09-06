@@ -1,7 +1,8 @@
-componentsDialog.addEventListener("click", async e => {
+componentsDialog.addEventListener("click", e => {
   var target = e.target;
   if (!target.classList.contains("set-fixed-HTML"))
     return;
   var component = target.__project;
-  await app.utils.setFixedHTMLInProject(component);
+  var configDialog = opener.confirmDialog("change this html in every component in project?");
+  configDialog.events.on("confirm", ()=> app.utils.setFixedHTMLInProject(component));
 });

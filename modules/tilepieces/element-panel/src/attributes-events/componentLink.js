@@ -1,6 +1,7 @@
 attributesView.addEventListener("click", e => {
-  if (!e.target.closest(".go-to-component"))
+  var t = e.target.closest(".go-to-component");
+  if (!t)
     return;
   e.preventDefault();
-  app.setFrame(e.target.dataset.href);
+  app.setFrame(t.dataset.href);
 })

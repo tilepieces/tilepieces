@@ -107,7 +107,7 @@ componentsDialog.addEventListener("click", e => {
         target.dataset.errormsg = "Component name cannot contain \\/?%*:|\"<> characters";
         return false;
       }
-      if (app.localComponents[value]) {
+      if (app.localComponents[(parent ? parent + "/" : "") + value]) {
         target.dataset.errormsg = "There's already a component with the same name";
         return false;
       }
@@ -661,8 +661,11 @@ componentsDialog.addEventListener("click", async e => {
       component: {
         name: project.name
       },
-      deleteFiles : !isLocal
+      deleteFiles : !isLocal // TODO
     });
+    if(app.projects.find(v=>v.name === project.name)){
+      app.storageInterface.delete(project.name)
+    }
   } catch (e) {
     console.error("[error on removing component]", e);
     openerDialog.open("error on removing component");
@@ -696,12 +699,13 @@ componentsDialog.addEventListener("click", async e => {
     target.__project = app.localComponentsFlat[component.name];
   });
 })
-componentsDialog.addEventListener("click", async e => {
+componentsDialog.addEventListener("click", e => {
   var target = e.target;
   if (!target.classList.contains("set-fixed-HTML"))
     return;
   var component = target.__project;
-  await app.utils.setFixedHTMLInProject(component);
+  var configDialog = opener.confirmDialog("change this html in every component in project?");
+  configDialog.events.on("confirm", ()=> app.utils.setFixedHTMLInProject(component));
 });
 function turnComponentsToArray(comps, isGlobal) {
   var toArray = [];
@@ -830,19 +834,32 @@ async function concatenateSources(type, noUpdate) {
   if (noUpdate)
     return {final, bundlePath, originalBundleName};
   app.storageInterface.update(bundlePath, new Blob([final])).then(
-    res => {
-      openerDialog.close();
+    async res => {
+      var concatenatedPhrase = settingsModel.name + " " + key3 + " sources successfully concatenated in file " + bundlePath;
       if (!originalBundleName) {
         settingsTT.set("bundle." + key2, [{name: key4, value: bundlePath.replace(defaultPath, "")}]);
-        submitSettings();
+        await submitSettings();
       }
-
+      openerDialog.open(concatenatedPhrase)
     }, err => {
       console.error(`[error trying updating bundle ${key1} after concatenation]`, err);
       openerDialog.open("updating bundle error");
     }
   )
 };
+function createNewFileOnInput(filePath,fileString = ""){
+  return new Promise((res,rej)=>{
+    var configDialog = opener.confirmDialog(filePath +  " does not exists. Do you want to create it?");
+    configDialog.events.on("confirm",async ()=>{
+      try {
+        await app.storageInterface.update(filePath, new Blob([fileString]));
+      }
+      catch(e){return rej()}
+      res();
+    });
+    configDialog.events.on("reject",()=>rej({reason:"user reject"}));
+  })
+}
 async function editComponentTerserConfiguration(){
   app.codeMirrorEditor(JSON.stringify(settingsModel.terserConfiguration), "json")
     .then(res => {
@@ -1006,13 +1023,15 @@ async function minifySourceScripts() {
         new Blob([finalMinified.map]));
     }
     await app.storageInterface.update(bundlePath, new Blob([finalMinified.code]));
+    var concatenatedPhrase = settingsModel.name + " js sources successfully minified in file " + bundlePath;
     if (!originalBundleName) {
       var defaultPath = settingsModel.__local ?
         settingsModel.path + "/" :
         "";
       settingsTT.set("bundle.scripts", [{name: "src", value: bundlePath.replace(defaultPath, "")}]);
+      await submitSettings();
     }
-    openerDialog.close()
+    openerDialog.open(concatenatedPhrase)
   } catch (e) {
     console.error("[error minification]", e);
     openerDialog.open("error minification");
@@ -1216,9 +1235,28 @@ componentSettingsForm.addEventListener("click", e => {
   if (dataset.removeComponentProperty)
     removeComponentProperty(dataset.index, dataset.removeComponentProperty);
 });
-componentSettings.addEventListener("template-digest", e => {
+componentSettings.addEventListener("template-digest", async e => {
   console.log("digest", e);
-  submitSettings();
+  var stringModel = e.detail.stringModel;
+  if(stringModel == "html"){ // update html file if not exists
+    var iframePath = settingsModel.__local ? settingsModel.path + "/" : "/";
+    var filePath = ((iframePath[0] == "/" ? iframePath : "/" + iframePath) + settingsModel.html)
+      .replace(/\/\//g, "/");
+    try {
+      await app.storageInterface.read(filePath);
+    }
+    catch(e){
+      try {
+        await createNewFileOnInput(filePath,app.template)
+      }
+      catch(e){
+        if(e?.reason!=="user reject")
+          alertDialog("error on saving file->:" + e.error || e.err || e.toString(), true)
+        return settingsFormActivation(app.isComponent);
+      }
+    }
+  }
+  await submitSettings();
 });
 opener.addEventListener("html-rendered", e => {
   settingsTT.set("cangetfromdocument", app.core && app.core.currentDocument)

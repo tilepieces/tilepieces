@@ -68,14 +68,11 @@
     "modules/tilepieces/project-tree/svg/svg-file.svg",
     "modules/tilepieces/project-tree/arrow.svg"
   ],
-  "lastFileOpened": "/modules/tilepieces/dialog/introduction/introduction-dialog.html",
+  "lastFileOpened": "/index.html",
   "openedPanels": [
     "package-manager",
     "project-explorer",
-    "element-panel",
-    "html-inspector",
-    "css-viewer",
-    "component-panel"
+    "element-panel"
   ],
   "relativePaths": true
 }

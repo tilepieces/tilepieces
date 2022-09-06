@@ -230,7 +230,7 @@ function setAttrsTemplate(target, match) {
       tagName.match(/^(VIDEO|AUDIO|IMG)$/) ||
       (parentNode?.tagName?.match(/^(VIDEO|AUDIO|IMG)$/) && tagName == "SOURCE")
     ) &&
-    name.toLowerCase() == "src" ?
+      name.toLowerCase() == "src" ?
       "src-box" :
       isPackageAttribute ?
       "component-box" :
@@ -466,10 +466,11 @@ newClassForm.addEventListener("submit", e => {
   flagForInternalModifications = true;
 });
 attributesView.addEventListener("click", e => {
-  if (!e.target.closest(".go-to-component"))
+  var t = e.target.closest(".go-to-component");
+  if (!t)
     return;
   e.preventDefault();
-  app.setFrame(e.target.dataset.href);
+  app.setFrame(t.dataset.href);
 })
 
 attributesView.addEventListener("nodeName", e => {

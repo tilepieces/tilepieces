@@ -10,7 +10,7 @@ componentsDialog.addEventListener("click", async e => {
       component: {
         name: project.name
       },
-      deleteFiles : !isLocal
+      deleteFiles : !isLocal // TODO
     });
   } catch (e) {
     console.error("[error on removing component]", e);

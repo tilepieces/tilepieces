@@ -42,9 +42,28 @@ componentSettingsForm.addEventListener("click", e => {
   if (dataset.removeComponentProperty)
     removeComponentProperty(dataset.index, dataset.removeComponentProperty);
 });
-componentSettings.addEventListener("template-digest", e => {
+componentSettings.addEventListener("template-digest", async e => {
   console.log("digest", e);
-  submitSettings();
+  var stringModel = e.detail.stringModel;
+  if(stringModel == "html"){ // update html file if not exists
+    var iframePath = settingsModel.__local ? settingsModel.path + "/" : "/";
+    var filePath = ((iframePath[0] == "/" ? iframePath : "/" + iframePath) + settingsModel.html)
+      .replace(/\/\//g, "/");
+    try {
+      await app.storageInterface.read(filePath);
+    }
+    catch(e){
+      try {
+        await createNewFileOnInput(filePath,app.template)
+      }
+      catch(e){
+        if(e?.reason!=="user reject")
+          alertDialog("error on saving file->:" + e.error || e.err || e.toString(), true)
+        return settingsFormActivation(app.isComponent);
+      }
+    }
+  }
+  await submitSettings();
 });
 opener.addEventListener("html-rendered", e => {
   settingsTT.set("cangetfromdocument", app.core && app.core.currentDocument)

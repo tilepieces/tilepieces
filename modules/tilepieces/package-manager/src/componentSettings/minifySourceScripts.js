@@ -32,13 +32,15 @@ async function minifySourceScripts() {
         new Blob([finalMinified.map]));
     }
     await app.storageInterface.update(bundlePath, new Blob([finalMinified.code]));
+    var concatenatedPhrase = settingsModel.name + " js sources successfully minified in file " + bundlePath;
     if (!originalBundleName) {
       var defaultPath = settingsModel.__local ?
         settingsModel.path + "/" :
         "";
       settingsTT.set("bundle.scripts", [{name: "src", value: bundlePath.replace(defaultPath, "")}]);
+      await submitSettings();
     }
-    openerDialog.close()
+    openerDialog.open(concatenatedPhrase)
   } catch (e) {
     console.error("[error minification]", e);
     openerDialog.open("error minification");
