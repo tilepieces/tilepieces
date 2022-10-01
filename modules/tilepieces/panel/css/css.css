@@ -3,7 +3,7 @@
 .panel-element .panel-title { pointer-events: none; text-transform: uppercase; letter-spacing: 0.2em; line-height: normal; font-size: 16px; vertical-align: sub; }
 .panel-element iframe { width: 100%; height: 100%; border: 0px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; }
 .panel-prevent-iframe-mousedown { position: absolute; top: 1rem; left: 0px; width: 100%; height: calc(100% - 1rem); display: none; }
-.panel-element-minimized { border-radius: 7px 7px 0px 0px; height: auto !important; }
+.panel-element-minimized { border-radius: 7px 7px 0px 0px; height: auto !important; min-height:0!important }
 .panel-element-minimized iframe { display: none; }
 .panel-handler { background: rgb(204, 203, 203); position: relative; color: rgb(255, 255, 255); padding: 0.3em 1em; font: 0.8em Helvetica, Arial, sans-serif; border: none; border-radius: 7px 7px 0px 0px; }
 .panel-eject { width: 1em; height: 1em; position: absolute; right: 2.5em; top: 5px; z-index: 1; border: 1px solid rgb(204, 204, 204); }

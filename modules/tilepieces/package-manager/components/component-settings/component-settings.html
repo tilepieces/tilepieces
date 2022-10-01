@@ -54,7 +54,7 @@
             <label for="component-properties-html">HTML:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#html" class="info-round-icon" target="_blank"></a>
           </legend>
           <div class="html-info">
-            <input id="component-properties-html" name="component-properties-html" data-bind="html">
+            <input id="component-properties-html" name="component-properties-html" data-bind="html" data-value="${html}">
             <a class="svg-link" href="#"><svg data-if="html" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
               <g>
                 <g>
@@ -101,8 +101,8 @@ Bundle: </span><a href="https://tilepieces.net/documentation/data-structures/com
                 <button data-add-component-property="bundle.stylesheet" class="component-properties-add">+</button></legend>
 
               <div data-foreach="bundle.stylesheet" class="flex-box">
-                <input data-index="${key.index}" data-bind="key.name">:
-                <input data-index="${key.index}" data-bind="key.value">
+                <input data-index="${key.index}" data-attribute-name="${key.name}" data-bind="key.name">:
+                <input data-index="${key.index}" data-value="${key.value}" class="component-css-value" data-attribute-name="${key.name}" data-bind="key.value">
                 <button class="component-properties-remove-bundle-stylesheet-attr component-properties-remove" data-index="${key.index}" data-remove-component-property="bundle.stylesheet">-</button>
               </div>
               <div>
@@ -118,8 +118,8 @@ Bundle: </span><a href="https://tilepieces.net/documentation/data-structures/com
               <legend>SCRIPT:<button data-add-component-property="bundle.script" class="component-properties-add">+</button></legend>
 
               <div data-foreach="bundle.script" class="flex-box">
-                <input data-index="${key.index}" data-bind="key.name">:
-                <input data-index="${key.index}" data-bind="key.value">
+                <input data-index="${key.index}" data-attribute-name="${key.name}" data-bind="key.name">:
+                <input data-index="${key.index}" data-value="${key.value}" class="component-js-value" data-attribute-name="${key.name}" data-bind="key.value">
                 <button data-index="${key.index}" data-remove-component-property="bundle.script" class="component-properties-remove">-</button>
               </div>
               <div>

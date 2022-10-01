@@ -19,7 +19,7 @@
       new Event('confirm-dialog-reject')
     );
     confirmDialogEl.classList.remove("open");
-    evs.dispatch("confirm", false);
+    evs.dispatch("reject", true);
   }
 
   function confirm(e) {

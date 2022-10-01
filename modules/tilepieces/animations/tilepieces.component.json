@@ -37,5 +37,7 @@
   "interface": "",
   "fixedHTML": true,
   "parseHTML": "",
+  "terserConfiguration": "",
+  "skipMatchAll": false,
   "components": {}
 }

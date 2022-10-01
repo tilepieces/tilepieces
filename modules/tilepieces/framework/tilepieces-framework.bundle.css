@@ -121,7 +121,7 @@ body.__drag-cursor-grabbing *{
 .panel-element .panel-title { pointer-events: none; text-transform: uppercase; letter-spacing: 0.2em; line-height: normal; font-size: 16px; vertical-align: sub; }
 .panel-element iframe { width: 100%; height: 100%; border: 0px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; }
 .panel-prevent-iframe-mousedown { position: absolute; top: 1rem; left: 0px; width: 100%; height: calc(100% - 1rem); display: none; }
-.panel-element-minimized { border-radius: 7px 7px 0px 0px; height: auto !important; }
+.panel-element-minimized { border-radius: 7px 7px 0px 0px; height: auto !important; min-height:0!important }
 .panel-element-minimized iframe { display: none; }
 .panel-handler { background: rgb(204, 203, 203); position: relative; color: rgb(255, 255, 255); padding: 0.3em 1em; font: 0.8em Helvetica, Arial, sans-serif; border: none; border-radius: 7px 7px 0px 0px; }
 .panel-eject { width: 1em; height: 1em; position: absolute; right: 2.5em; top: 5px; z-index: 1; border: 1px solid rgb(204, 204, 204); }
@@ -215,7 +215,7 @@ body { margin: 0px; overflow: hidden; display: flex; flex-direction: column; fon
 .highlight-element__border { border: 0px solid rgb(253, 221, 155); }
 .highlight-element__padding { border: 0px solid rgb(194, 207, 138); }
 .highlight-element__content { background-color: rgb(139, 181, 192); }
-#dock-frames { position: absolute; top: 0px; left: 0px; width: 100%; pointer-events: none; }
+#dock-frames { position: absolute; top: 0px; left: 0px; width: 100%; pointer-events: none; background: rgb(242, 242, 242);}
 #mobile-wrapper { height: calc(100% - 48px); display: flex; flex-direction: column; }
 .panel-element { display: none; pointer-events: all; top: 48px; left: 0px; }
 .menu-bar-trigger { display: flex; height: 48px; width: 100%; z-index: 42; position: relative; box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 4px; }
@@ -271,8 +271,6 @@ body { margin: 0px; overflow: hidden; display: flex; flex-direction: column; fon
   #mobile-wrapper.top #move-bar, #mobile-wrapper.bottom #move-bar { cursor: n-resize; border-top: 1px solid rgb(204, 204, 204); border-bottom: 1px solid rgb(204, 204, 204); }
   #mobile-wrapper.right .panel-element .resizable-element:not(.s), #mobile-wrapper.left .panel-element .resizable-element:not(.s) { display: none; }
   #mobile-wrapper.top .panel-element .resizable-element:not(.e), #mobile-wrapper.bottom .panel-element .resizable-element:not(.e) { display: none; }
-  #mobile-wrapper.left #dock-frames, #mobile-wrapper.right #dock-frames, #mobile-wrapper.left #target-frame-wrapper, #mobile-wrapper.right #target-frame-wrapper { }
-  #mobile-wrapper.top #dock-frames, #mobile-wrapper.bottom #dock-frames, #mobile-wrapper.top #target-frame-wrapper, #mobile-wrapper.bottom #target-frame-wrapper { }
   #mobile-wrapper.left .panel-element, #mobile-wrapper.right .panel-element { max-width: calc(100% - 48px); min-width: calc(100% - 48px); position: static; margin: 20px 24px; transform: translate(0px, 0px) !important; }
   #mobile-wrapper.top .panel-element, #mobile-wrapper.bottom .panel-element { max-height: calc(100% - 48px); min-height: calc(100% - 48px); max-width: none; position: static; margin: 20px 10px; float: left; transform: translate(0px, 0px) !important; }
   #mobile-wrapper.right { flex-direction: row; }
@@ -280,10 +278,10 @@ body { margin: 0px; overflow: hidden; display: flex; flex-direction: column; fon
   #mobile-wrapper.top { flex-direction: column-reverse; }
   #mobile-wrapper.left #target-frame-wrapper, #mobile-wrapper.left #dock-frames, #mobile-wrapper.right #target-frame-wrapper, #mobile-wrapper.right #dock-frames { height: 100%; position: static; pointer-events: all; width: 50%; }
   #mobile-wrapper.top #target-frame-wrapper, #mobile-wrapper.top #dock-frames, #mobile-wrapper.bottom #target-frame-wrapper, #mobile-wrapper.bottom #dock-frames { position: static; pointer-events: all; width: 100%; height: 50%; overflow: auto; }
-  #mobile-wrapper.top #dock-frames, #mobile-wrapper.left #dock-frames, #mobile-wrapper.right #dock-frames, #mobile-wrapper.bottom #dock-frames { overflow: auto; position: relative; z-index: 8; background: rgb(255, 255, 255); }
+  #mobile-wrapper.top #dock-frames, #mobile-wrapper.left #dock-frames, #mobile-wrapper.right #dock-frames, #mobile-wrapper.bottom #dock-frames { overflow: auto; position: relative; z-index: 8; }
 }
 @media (max-width: 1023px) {
-  #dock-frames { height: 50%; position: relative; overflow: auto; z-index: 30; background: rgb(255, 255, 255); }
+  #dock-frames { height: 50%; position: relative; overflow: auto; z-index: 30; }
   #target-frame-wrapper.half { height: 50%; }
   #target-frame-wrapper ~ #dock-frames { display: none; }
   #target-frame-wrapper.half ~ #dock-frames { display: flex; pointer-events: auto; }
@@ -291,9 +289,9 @@ body { margin: 0px; overflow: hidden; display: flex; flex-direction: column; fon
   #mobile-wrapper.top { flex-direction: column-reverse; }
   #screen-dimensions, #colorpicker, #codeMirror-editor { top: 0px; left: 0px; transform: none !important; width: 100% !important; height: 100% !important; }
   @media (orientation: landscape) {
-  #mobile-wrapper { flex-direction: row; }
+  #mobile-wrapper { flex-direction: row}
   #mobile-wrapper.left { flex-direction: row-reverse; }
-  #dock-frames { flex-direction: column; }
+  #dock-frames { flex-direction: column; padding:1% }
   #target-frame-wrapper.half, #dock-frames { height: 100%; }
   #mobile-wrapper .panel-element { max-width: 100%; min-width: calc(100% - 6px); box-sizing: border-box; max-height: none; min-height: 200px; position: static; margin: 20px 0px; transform: translate(0px, 0px) !important; }
 }

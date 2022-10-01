@@ -63,8 +63,14 @@ let componentSettingsModel = {
   iscomponent: "hidden",
   templates: [],
   bundle: {
-    stylesheet: [],
-    script: []
+    stylesheet: [{
+      name : "href",
+      value : ""
+    }],
+    script: [{
+      name : "src",
+      value : ""
+    }]
   },
   sources: {
     scripts: [],
@@ -663,9 +669,6 @@ componentsDialog.addEventListener("click", async e => {
       },
       deleteFiles : !isLocal // TODO
     });
-    if(app.projects.find(v=>v.name === project.name)){
-      app.storageInterface.delete(project.name)
-    }
   } catch (e) {
     console.error("[error on removing component]", e);
     openerDialog.open("error on removing component");
@@ -758,15 +761,19 @@ function addComponentProperty(obj) {
       });
       break;
     case "bundle.stylesheet":
+      var name = settingsModel.bundle.stylesheet.length === 0 ? "href" :
+        "attr-" + settingsModel.bundle.stylesheet.length
       settingsModel.bundle.stylesheet.push(
         {
-          name: "attr-" + settingsModel.bundle.stylesheet.length, value: "",
+          name: name, value: "",
           index: settingsModel.bundle.stylesheet.length
         });
       break;
     case "bundle.script":
+      var name = settingsModel.bundle.script.length === 0 ? "src" :
+        "attr-" + settingsModel.bundle.script.length
       settingsModel.bundle.script.push({
-        name: "attr-" + settingsModel.bundle.script.length, value: "",
+        name: name, value: "",
         index: settingsModel.bundle.script.length
       });
       break;
@@ -1193,7 +1200,22 @@ async function submitSettings() {
 };
 componentSettingsForm.addEventListener("change", e => {
   console.log("change form", e);
-  //settingsTT.set("disabled","");
+  var target = e.target;
+  var name = target.name;
+  var value = target.value.trim();
+  var classList = target.classList;
+  if(value &&(
+      (name==="component-properties-html" && !value.match(/(.html|.htm)$/)) ||
+      (classList.contains("component-css-value") &&
+        target.dataset.attributeName === "href"  &&
+        !value.endsWith(".css")) ||
+      (classList.contains("component-js-value") &&
+        target.dataset.attributeName === "src"  &&
+        !value.match(/(.js|.mjs)$/))
+    )){
+    value = target.dataset.value;
+  }
+  e.target.value = value;
 }, true);
 componentSettingsForm.addEventListener("keydown", e => {
   if(e.key == "Enter") {
@@ -1237,22 +1259,40 @@ componentSettingsForm.addEventListener("click", e => {
 });
 componentSettings.addEventListener("template-digest", async e => {
   console.log("digest", e);
+  var target = e.detail.target;
+  var value = target.value;
   var stringModel = e.detail.stringModel;
-  if(stringModel == "html"){ // update html file if not exists
+  var attributeName = target.dataset.attributeName;
+  var isCss = target.classList.contains("component-css-value");
+  var isHTML = stringModel === "html";
+  var conditionToAskForSaveFile = (
+    (isHTML && value) ||
+    (value && isCss && attributeName === "href") ||
+    (value && target.classList.contains("component-js-value") && attributeName === "src")
+  )
+  if(conditionToAskForSaveFile){
+    openerDialog.open("checking resource...");
+    var type = isCss ? "css" : isHTML ? "html" : "js";
     var iframePath = settingsModel.__local ? settingsModel.path + "/" : "/";
-    var filePath = ((iframePath[0] == "/" ? iframePath : "/" + iframePath) + settingsModel.html)
+    var filePath = ((iframePath[0] == "/" ? iframePath : "/" + iframePath) + value)
       .replace(/\/\//g, "/");
     try {
       await app.storageInterface.read(filePath);
+      openerDialog.close();
     }
     catch(e){
       try {
-        await createNewFileOnInput(filePath,app.template)
+        openerDialog.close();
+        await createNewFileOnInput(filePath,isHTML ? app.template : "")
       }
       catch(e){
         if(e?.reason!=="user reject")
           alertDialog("error on saving file->:" + e.error || e.err || e.toString(), true)
-        return settingsFormActivation(app.isComponent);
+        var settingsModelString = isHTML ? "html" : "bundle[" + target.dataset.index + "].value";
+        var comp = app.localComponentsFlat[settingsModel.name]
+        var previousValue = isHTML ? comp.html : comp.bundle[type]?.[attributeName] || "";
+        return settingsTT.set(settingsModelString,
+          previousValue);
       }
     }
   }

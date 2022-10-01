@@ -32,8 +32,14 @@ let componentSettingsModel = {
   iscomponent: "hidden",
   templates: [],
   bundle: {
-    stylesheet: [],
-    script: []
+    stylesheet: [{
+      name : "href",
+      value : ""
+    }],
+    script: [{
+      name : "src",
+      value : ""
+    }]
   },
   sources: {
     scripts: [],

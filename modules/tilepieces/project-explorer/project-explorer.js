@@ -27,6 +27,28 @@ const buttonSetTemplate = document.getElementById("project-tree-set-template");
 let pt;
 const HTMLTextTemplate = (text) => app.template ||
   `<!DOCTYPE html><html><head><meta charset="UTF-8"><title></title><meta name="description" content=""><meta name="viewport" content="width=device-width,initial-scale=1.0"></head><body><div>${text}</div></body></html>`;
+async function ptCopy(data) {
+  if(!data || !Array.isArray(data))
+    return;
+  for(var i = 0;i<data.length;i++){
+    var node = data[i];
+    if(node.dataset.file){
+      dialog.open("copying file in clipboard...",true);
+      console.log("copying:", node);
+      try {
+        var dataFile = await app.storageInterface.read(node.dataset.path);
+        var file = dataFile instanceof Blob ? dataFile : new Blob([dataFile],{type:"text/html"});
+        var clipboardData = [new ClipboardItem({[file.type]: file})];
+        await navigator.clipboard.write(clipboardData)
+      }
+      catch(e){
+        console.error(e);
+        opener.alertDialog("error on copying file ",true);
+      }
+      dialog.close();
+    }
+  }
+}
 function ptDelete(data) {
   var confirm = confirmDialog(`Do you want to delete ${data.path}?`);
   confirm.events.on("confirm",value=>{
@@ -423,6 +445,7 @@ function ptInterface(pt) {
   pt.on("refactor", ptRefactor);
   pt.on("delete", ptDelete);
   pt.on("open-tooltip", openTooltip);
+  pt.on("copy",ptCopy)
 }
 
 buttonCreateFile.addEventListener("click", e => {

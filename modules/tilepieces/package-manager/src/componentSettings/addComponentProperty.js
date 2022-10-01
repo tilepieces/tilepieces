@@ -25,15 +25,19 @@ function addComponentProperty(obj) {
       });
       break;
     case "bundle.stylesheet":
+      var name = settingsModel.bundle.stylesheet.length === 0 ? "href" :
+        "attr-" + settingsModel.bundle.stylesheet.length
       settingsModel.bundle.stylesheet.push(
         {
-          name: "attr-" + settingsModel.bundle.stylesheet.length, value: "",
+          name: name, value: "",
           index: settingsModel.bundle.stylesheet.length
         });
       break;
     case "bundle.script":
+      var name = settingsModel.bundle.script.length === 0 ? "src" :
+        "attr-" + settingsModel.bundle.script.length
       settingsModel.bundle.script.push({
-        name: "attr-" + settingsModel.bundle.script.length, value: "",
+        name: name, value: "",
         index: settingsModel.bundle.script.length
       });
       break;

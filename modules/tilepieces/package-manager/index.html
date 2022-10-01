@@ -191,6 +191,7 @@ l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,22.1,13.5,21.5,13.2,21.2z"></path>
 </div>
 </div>
 <div id="components">
+  
   <div id="component-settings" hidden="" data-tilepieces-component="tilepieces/package-manager/component-settings">
   <form id="component-settings-form">
     <div class="flex-box top-button-actions">
@@ -244,7 +245,7 @@ l2.5,2.5c0.3,0.3,0.9,0.3,1.2,0l4.3-4.3C13.5,22.1,13.5,21.5,13.2,21.2z"></path>
             <label for="component-properties-html">HTML:</label><a href="https://tilepieces.net/documentation/data-structures/component.html#html" class="info-round-icon" target="_blank"></a>
           </legend>
           <div class="html-info">
-            <input id="component-properties-html" name="component-properties-html" data-bind="html">
+            <input id="component-properties-html" name="component-properties-html" data-bind="html" data-value="${html}">
             <a class="svg-link" href="#"><svg data-if="html" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
               <g>
                 <g>
@@ -291,8 +292,8 @@ Bundle: </span><a href="https://tilepieces.net/documentation/data-structures/com
                 <button data-add-component-property="bundle.stylesheet" class="component-properties-add">+</button></legend>
 
               <div data-foreach="bundle.stylesheet" class="flex-box">
-                <input data-index="${key.index}" data-bind="key.name">:
-                <input data-index="${key.index}" data-bind="key.value">
+                <input data-index="${key.index}" data-attribute-name="${key.name}" data-bind="key.name">:
+                <input data-index="${key.index}" data-value="${key.value}" class="component-css-value" data-attribute-name="${key.name}" data-bind="key.value">
                 <button class="component-properties-remove-bundle-stylesheet-attr component-properties-remove" data-index="${key.index}" data-remove-component-property="bundle.stylesheet">-</button>
               </div>
               <div>
@@ -308,8 +309,8 @@ Bundle: </span><a href="https://tilepieces.net/documentation/data-structures/com
               <legend>SCRIPT:<button data-add-component-property="bundle.script" class="component-properties-add">+</button></legend>
 
               <div data-foreach="bundle.script" class="flex-box">
-                <input data-index="${key.index}" data-bind="key.name">:
-                <input data-index="${key.index}" data-bind="key.value">
+                <input data-index="${key.index}" data-attribute-name="${key.name}" data-bind="key.name">:
+                <input data-index="${key.index}" data-value="${key.value}" class="component-js-value" data-attribute-name="${key.name}" data-bind="key.value">
                 <button data-index="${key.index}" data-remove-component-property="bundle.script" class="component-properties-remove">-</button>
               </div>
               <div>
@@ -393,8 +394,7 @@ Sources:</span><a href="https://tilepieces.net/documentation/data-structures/com
       </div>
     </div>
   </form>
-</div>
-  <div id="local-components" hidden="" data-tilepieces-component="tilepieces/package-manager/local-components">
+</div><div id="local-components" hidden="" data-tilepieces-component="tilepieces/package-manager/local-components">
   <div class="flex-box top-button-actions">
     <button data-if="isComponent" class="add-new-local-component button-bg-fill" data-parent="${projectName}">+
       Create

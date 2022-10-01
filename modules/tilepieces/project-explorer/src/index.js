@@ -46,6 +46,7 @@ function ptInterface(pt) {
   pt.on("refactor", ptRefactor);
   pt.on("delete", ptDelete);
   pt.on("open-tooltip", openTooltip);
+  pt.on("copy",ptCopy)
 }
 
 buttonCreateFile.addEventListener("click", e => {

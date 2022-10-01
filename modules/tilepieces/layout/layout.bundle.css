@@ -27,6 +27,7 @@
 #layout .grid-row-area input { width: auto; }
 .flex-icons button { margin-bottom: 0.5em; }
 .flex-icons svg { width: 1.5em; height: 1.5em; }
-.flex-icons .selected svg * { fill: blue !important; }
+.flex-icons .selected svg *[fill] { fill: blue !important; }
+.flex-icons .selected svg *[stroke] { stroke: blue !important; }
 #layout, #box-model { padding: 0px 1em; }
 legend > a.info-round-icon:first-child { letter-spacing: 0px; margin-top: 0px; background-repeat: no-repeat; padding: 0px; }
